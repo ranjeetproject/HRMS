@@ -1,0 +1,382 @@
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid #dcd7d3;
+    border-radius: 10px;
+}
+
+.limiter .container-table100 {
+    width: 100%;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.limiter .wrap-table100 {
+    width: 100%;
+}
+
+.limiter table {
+    border-spacing: 1;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.limiter table * {
+    position: relative;
+}
+
+.limiter table td,
+table th {
+    padding-left: 8px;
+}
+
+.limiter table thead tr {
+    height: 58px;
+    background: #f3f3f3;
+    border-bottom: 1px solid #dcd7d3;
+}
+
+.limiter table tbody tr {
+    height: auto;
+    background-color: transparent;
+}
+
+.limiter table tbody tr:last-child {
+    border: 0;
+}
+
+.limiter table td,
+table th {
+    text-align: left;
+    padding: 15px 10px;
+}
+
+.limiter table td {
+    background-color: #fff;
+}
+
+.limiter table td.l,
+table th.l {
+    text-align: right;
+}
+
+.limiter table td.c,
+table th.c {
+    text-align: center;
+}
+
+.limiter table td.r,
+table th.r {
+    text-align: center;
+}
+
+.limiter .table100-head th {
+    color: #929292;
+    line-height: 1.2;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.limiter tbody tr:nth-child(even) {
+    background-color: #fff;
+}
+
+.limiter tbody tr {
+    font-size: 14px;
+    color: #000;
+    line-height: 1.2;
+    font-weight: unset;
+    border-bottom: 1px solid #dcd7d3;
+    border-right: 1px solid #dcd7d3;
+}
+
+.limiter tbody th {
+    font-size: 15px;
+}
+
+.limiter tbody tr:hover {
+    color: #000;
+    background-color: #eee;
+    cursor: pointer;
+}
+
+
+/*  */
+
+.limiter.tasksTable table i {
+    font-size: 18px;
+    margin: 0px 3px;
+}
+
+.tasksTable th:nth-child(1) {
+    width: 10%;
+    text-align: center;
+}
+
+.tasksTable th:nth-child(2) {
+    width: 30%;
+}
+
+.tasksTable th:nth-child(3) {
+    width: 20%;
+}
+
+.tasksTable th:nth-child(4) {
+    width: 18%;
+}
+
+.tasksTable th:nth-child(5) {
+    width: 1%;
+}
+
+.tasksTable th:nth-child(6) {
+    width: 20%;
+}
+
+.tasksTable td:nth-child(1) {
+    text-align: center;
+}
+
+.limiter table i:nth-child(2) {
+    border-left: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    padding: 0px 8px;
+    margin: 0px 8px;
+}
+
+.limiter table i {
+    color: #929292;
+    font-size: 20px;
+}
+
+.limiter table i {
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.limiter table i:hover {
+    color: #006094
+}
+
+
+/*  */
+
+@media screen and (max-width: 992px) {
+    /* ------------profile-table------------ */
+    .limiter table {
+        display: block;
+    }
+    .limiter table>*,
+    table tr,
+    table td,
+    table th {
+        display: block;
+    }
+    .limiter table thead {
+        display: none;
+    }
+    .limiter table tbody tr {
+        height: auto;
+        /* padding: 37px 0; */
+        padding: 0px 0;
+    }
+    .limiter table tbody tr td {
+        padding-left: 40% !important;
+        margin-bottom: 0px;
+        border-bottom: 1px solid #ccc;
+    }
+    .limiter table tbody tr td:last-child {
+        margin-bottom: 0;
+        border-bottom: 0;
+    }
+    .limiter table tbody tr td:before {
+        font-size: 14px;
+        color: #999999;
+        line-height: 1.2;
+        font-weight: unset;
+        position: absolute;
+        width: 40%;
+        text-align: left;
+        left: 10px;
+        top: 12px;
+    }
+    .tasksTable td:nth-child(1) {
+        text-align: left;
+    }
+    .limiter.profileTable table tbody tr td:nth-child(1):before {
+        content: "Child Name";
+    }
+    .limiter.profileTable table tbody tr td:nth-child(2):before {
+        content: "Date of Birth";
+    }
+    .limiter.profileTable table tbody tr td:nth-child(3):before {
+        content: "Action";
+    }
+    .limiter.profileTable table tbody tr td:nth-child(4):before {
+        content: "";
+    }
+    .limiter.profileTable table tbody tr td:nth-child(5):before {
+        content: "";
+    }
+    /* --------------Picture-table------------ */
+    .limiter.picturetable table tbody tr td:nth-child(1):before {
+        content: "Child Name";
+    }
+    .limiter.picturetable table tbody tr td:nth-child(2):before {
+        content: "Action";
+    }
+    /* ============= tasksTable ================== */
+    .limiter.tasksTable table tbody tr td:nth-child(1):before {
+        content: "SL.No";
+    }
+    .limiter.tasksTable table tbody tr td:nth-child(2):before {
+        content: "Task Name";
+    }
+    .limiter.tasksTable table tbody tr td:nth-child(3):before {
+        content: "Chaild Name";
+    }
+    .limiter.tasksTable table tbody tr td:nth-child(4):before {
+        content: "Time";
+    }
+    .limiter.tasksTable table tbody tr td:nth-child(5):before {
+        content: "Status";
+    }
+    .limiter.tasksTable table tbody tr td:nth-child(6):before {
+        content: "Action";
+    }
+    /*  uploadTable_info */
+    .limiter.uploadTable_info table tbody tr td:nth-child(1):before {
+        content: "Child Name";
+    }
+    .limiter.uploadTable_info table tbody tr td:nth-child(2):before {
+        content: "Date of Birth";
+    }
+    .limiter.uploadTable_info table tbody tr td:nth-child(3):before {
+        content: "Action";
+    }
+    /* custom table  */
+    thead {
+        display: none;
+    }
+    table {
+        width: 100% !important;
+    }
+    .dataTables_filter tr td {
+        padding-left: 40% !important;
+    }
+    #task_table_front_end tbody tr td:nth-child(1):before {
+        content: "Task Name :";
+    }
+    #task_table_front_end tbody tr td:nth-child(2):before {
+        content: "Child Name :";
+    }
+    #task_table_front_end tbody tr td:nth-child(3):before {
+        content: "Price :";
+    }
+    #task_table_front_end tbody tr td:nth-child(4):before {
+        content: "Status :";
+    }
+    #task_table_front_end tbody tr td:nth-child(5):before {
+        content: "Action :";
+    }
+    #task_table_front_end td {
+        padding-left: 40%;
+        position: relative;
+    }
+    #task_table_front_end tbody tr td:before {
+        font-size: 14px;
+        color: #999999;
+        line-height: 1.2;
+        font-weight: unset;
+        position: absolute;
+        width: 40%;
+        text-align: left;
+        left: 10px;
+        top: 14px;
+    }
+    /*  */
+    #event_table_front_end tbody tr td:nth-child(1):before {
+        content: "Created Parent :";
+    }
+    #event_table_front_end tbody tr td:nth-child(2):before {
+        content: "Invited Parent :";
+    }
+    #event_table_front_end tbody tr td:nth-child(3):before {
+        content: "Event Title :";
+    }
+    #event_table_front_end tbody tr td:nth-child(4):before {
+        content: "Start Date :";
+    }
+    #event_table_front_end tbody tr td:nth-child(5):before {
+        content: "End Date :";
+    }
+    #event_table_front_end tbody tr td:nth-child(5):before {
+        content: "Status :";
+    }
+    #event_table_front_end tbody tr td:nth-child(5):before {
+        content: "Action :";
+    }
+    #event_table_front_end td {
+        padding-left: 40%;
+        position: relative;
+    }
+    #event_table_front_end tbody tr td:before {
+        font-size: 14px;
+        color: #999999;
+        line-height: 1.2;
+        font-weight: unset;
+        position: absolute;
+        width: 40%;
+        text-align: left;
+        left: 10px;
+        top: 14px;
+    }
+    /*  */
+    #behaviour_logs_table_front_end tbody tr td:nth-child(1):before {
+        content: "Parent :";
+    }
+    #behaviour_logs_table_front_end tbody tr td:nth-child(2):before {
+        content: "Children :";
+    }
+    #behaviour_logs_table_front_end tbody tr td:nth-child(3):before {
+        content: "Incident Date :";
+    }
+    #behaviour_logs_table_front_end tbody tr td:nth-child(4):before {
+        content: "Incident Details :";
+    }
+    #behaviour_logs_table_front_end tbody tr td:nth-child(5):before {
+        content: "Action :";
+    }
+    #behaviour_logs_table_front_end td {
+        padding-left: 40%;
+        position: relative;
+    }
+    #behaviour_logs_table_front_end tbody tr td:before {
+        font-size: 14px;
+        color: #999999;
+        line-height: 1.2;
+        font-weight: unset;
+        position: absolute;
+        width: 40%;
+        text-align: left;
+        left: 10px;
+        top: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container-table100 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}

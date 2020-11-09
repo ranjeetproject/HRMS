@@ -1,0 +1,520 @@
+/*Extra small device (XS-More refine)*/
+
+@media (min-width: 480px) {}
+
+
+/*Extra small device (XS)*/
+
+@media (min-width: 768px) {}
+
+
+/*Small device (SD)*/
+
+@media (min-width: 992px) {}
+
+
+/*Medium device (MD)*/
+
+@media (min-width: 1200px) {}
+
+
+/*.visible-xs
+.visible-sm
+.visible-md
+.visible-lg
+.hidden-xs
+.hidden-sm
+.hidden-md
+.hidden-lg*/
+
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+
+/*==========  Mobile First Method  ==========*/
+
+
+/* Custom, iPhone Retina */
+
+@media only screen and (min-width: 320px) {}
+
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (min-width: 567px) {}
+
+
+/* Small Devices, Tablets */
+
+@media only screen and (min-width: 768px) {}
+
+
+/* Medium Devices, Desktops */
+
+@media only screen and (min-width: 992px) {}
+
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (min-width: 1200px) {}
+
+@media only screen and (min-width: 1600px) {}
+
+@media only screen and (min-width: 1920px) {}
+
+
+/*==========  Non-Mobile First Method  ==========*/
+
+
+/* Large Devices, Wide Screens */
+
+@media only screen and (max-width: 1200px) {
+    .mt-hold-wrap::before {
+        right: 50px;
+        width: auto;
+        height: 468px;
+        background-size: 740px;
+        background-position: right bottom;
+    }
+    .dashboard_list_item ul li a {
+        font-size: 17px;
+    }
+}
+
+
+/* Medium Devices, Desktops */
+
+@media only screen and (max-width: 991px) {
+    .userLogn {
+        margin-right: 60px;
+        padding-left: 0;
+    }
+    .loginBase form {
+        width: 80%;
+    }
+    .header-holder {
+        margin-bottom: 20px;
+    }
+    .custom-nav {
+        padding: 15px 0 0 0;
+    }
+    .login-link-hold a {
+        font-size: 18px;
+        padding: 8px 0;
+        min-height: 38px;
+        min-width: 38px;
+    }
+    .login-link-hold a span {
+        display: none;
+    }
+    .login-link-hold a i {
+        display: block;
+    }
+    .custom-nav .navbar-brand {
+        max-width: 120px;
+    }
+    .custom-nav .navbar-collapse {
+        justify-content: inherit;
+        position: absolute;
+        top: 80px;
+        z-index: 9;
+        width: 100%;
+        background: #e8e8e8;
+        border: 1px solid #ddd;
+    }
+    .custom-nav .navbar-nav>li {
+        font-size: 15px;
+        margin-right: 0;
+        text-align: center;
+        border-bottom: 1px solid #ddd;
+    }
+    .custom-nav .navbar-nav>li>a.nav-link {
+        padding: 10px 15px;
+    }
+    .custom-nav .navbar-toggler {
+        position: absolute;
+        /*            right: 95px;*/
+        right: 0px;
+        border: 0;
+    }
+    .custom-nav .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(136, 11, 198)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+    .custom-nav .navbar-toggler:focus {
+        outline: 0;
+    }
+    .slide-caption {
+        width: 45%;
+    }
+    .bnr-slide-img {
+        max-width: 310px;
+    }
+    .slide-caption h3 {
+        font-size: 32px;
+    }
+    .slide-caption p {
+        font-size: 15px;
+    }
+    .btn-dvr {
+        font-size: 15px;
+        line-height: 44px;
+        min-width: 200px;
+    }
+    .bnr-btn-box {
+        margin-top: 35px;
+    }
+    .bnt-app-icons {
+        margin-left: 5px;
+    }
+    .bnt-app-icons i {
+        margin-left: 10px;
+    }
+    .bnt-app-icons i img {
+        width: 20px;
+    }
+    .flex-bnr-item {
+        min-height: 380px;
+    }
+    #carouselBannerSlide .carousel-control-next,
+    #carouselBannerSlide .carousel-control-prev {
+        display: none;
+    }
+    .padd-top100 {
+        padding-top: 60px;
+    }
+    .header-title {
+        font-size: 36px;
+    }
+    .hiw-info h5 {
+        font-size: 20px;
+        margin: 10px 0 30px 0;
+        line-height: 26px;
+    }
+    .hiw-info p {
+        font-size: 15px;
+    }
+    .hiw-hold-wrap {
+        padding-bottom: 255px;
+        background-size: 700px;
+    }
+    .cmn-info-hold h3 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        padding-left: 100px;
+        min-height: 53px;
+        padding-left: 60px;
+    }
+    .special-icon,
+    .special-icon-2 {
+        background-size: 44px;
+    }
+    .cmn-info-hold p {
+        font-size: 15px;
+    }
+    .btn-cmn {
+        font-size: 15px;
+    }
+    .mrt-30 {
+        margin-top: 20px;
+    }
+    .mrt-b-50 {
+        margin-bottom: 25px;
+    }
+    .mt-hold-wrap::before {
+        right: 5px;
+        height: 406px;
+        background-size: 640px;
+    }
+    .mt-hold-wrap {
+        min-height: inherit;
+    }
+    .padd-btm-40 {
+        padding-bottom: 25px;
+    }
+    .mce-flex-center {
+        min-height: 370px;
+    }
+    .mce-info {
+        padding-top: 30px;
+    }
+    .price_item_area {
+        flex-direction: column;
+    }
+    .price_block {
+        width: 100%;
+        margin-bottom: 37px;
+    }
+    .dashboard_list_item ul li {
+        width: 31.3%;
+    }
+}
+
+
+/* Small Devices, Tablets */
+
+@media only screen and (max-width: 767px) {
+    .ft-bottom {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .copyright-txt {
+        font-size: 13px;
+    }
+    .ft-top {
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+    .ft-logo img {
+        max-width: 100px;
+    }
+    .ft-cws-social a {
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+    .icon-f {
+        width: 36px;
+        height: 36px;
+        background-size: 36px;
+    }
+    .ft-cws-social::after,
+    .ft-cws-social::before {
+        display: none;
+    }
+    .ft-cws-social {
+        margin: 20px 0 15px 0;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .ft-links li {
+        font-size: 13px;
+        margin: 0 8px;
+    }
+    .flex-align-end {
+        flex-direction: column-reverse;
+    }
+    .mce-img-bx img {
+        max-width: 200px;
+    }
+    .mce-img-bx {
+        text-align: center;
+    }
+    .mce-flex-center {
+        min-height: inherit;
+    }
+    .cmn-info-hold h3 {
+        font-size: 18px;
+        padding-left: 40px;
+        background-size: 30px;
+        min-height: 32px;
+    }
+    .mce-info,
+    .mt-info {
+        padding-top: 5px;
+    }
+    .mce-info p,
+    .mt-info p {
+        text-align: left;
+    }
+    .header-title {
+        font-size: 26px;
+    }
+    .padd-top100 {
+        padding-top: 45px;
+    }
+    .mt-hold-wrap::before {
+        height: 100%;
+        background-size: 360px;
+        background-position: center bottom;
+    }
+    .mt-hold-wrap {
+        padding-bottom: 240px;
+    }
+    .hiw-info h5 {
+        font-size: 16px;
+        margin: 10px 0 15px 0;
+        line-height: 24px;
+    }
+    .hiw-hold-wrap {
+        padding-bottom: 190px;
+        background-size: 530px;
+    }
+    .explore-btn {
+        width: 70px;
+        height: 70px;
+        font-size: 11px;
+        bottom: 15px;
+    }
+    .bnr-slide-img {
+        max-width: 250px;
+    }
+    .slide-caption h3 {
+        font-size: 22px;
+    }
+    .slide-caption p {
+        font-size: 14px;
+    }
+    .flex-bnr-item {
+        min-height: 280px;
+    }
+    .btn-dvr {
+        font-size: 13px;
+        line-height: 44px;
+        min-width: 160px;
+    }
+    .bnr-btn-box {
+        margin-top: 18px;
+    }
+    .slide-caption p {
+        margin-top: 12px;
+    }
+    .slide-caption {
+        width: 50%;
+    }
+    .bnt-app-icons i img {
+        width: 18px;
+    }
+    .messages_opt {
+        flex-direction: column;
+    }
+    .messages_person {
+        width: 100%;
+    }
+    .chat_user_details h3 {
+        font-size: 16px;
+    }
+    .chat_user_details p {
+        font-size: 14px;
+    }
+    .reply_massage .user_cont {
+        width: auto;
+        padding: 13px 18px;
+        background: #006093;
+        border-radius: 20px 20px 0px 20px;
+    }
+    .action_massage .user_cont {
+        width: auto;
+        padding: 13px 18px;
+        background: #ffffff;
+        border-radius: 20px 20px 20px 0px;
+    }
+    .more_des2 {
+        left: -80px;
+    }
+    .reply_massage .more_des2 {
+        left: 0px !important;
+    }
+    .message_inp_text button.btn.btn-primary {
+        border-radius: 10px;
+        width: 38px;
+        height: 38px;
+        background: #00abf1 url(../images/send_btn.png) no-repeat center center;
+        background-size: 39px;
+    }
+    .form-control3 {
+        height: 50px;
+        padding: 0px 0px;
+        width: 29%;
+    }
+    .dashboard_list_item ul li {
+        width: 48%;
+        margin: 1%;
+    }
+    .dashboard_list_item ul li em {
+        width: 40px;
+        height: 40px;
+    }
+    .dashboard_list_item ul li a {
+        padding: 30px 15px;
+        font-size: 16px;
+    }
+    .dashboard_nav ul li a {
+        padding: 10px;
+        font-size: 14px;
+        align-items: center;
+    }
+    .dashboard_nav ul li em {
+        width: 24px;
+        height: 24px;
+        position: relative;
+    }
+}
+
+@media (max-width: 576px) {
+    .flex-bnr-item {
+        display: block;
+        text-align: center;
+    }
+    .slide-caption {
+        text-align: center;
+        position: relative;
+        top: 0;
+        -ms-transform: inherit;
+        -webkit-transform: inherit;
+        transform: inherit;
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-bottom: 20px;
+    }
+    .bnr-btn-box {
+        display: flex;
+        justify-content: center;
+    }
+    .bnr-slide-img {
+        max-width: 170px;
+    }
+}
+
+
+/* Extra Small Devices, Phones */
+
+@media only screen and (max-width: 480px) {
+    .userLogn {
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: 90px;
+    }
+    .loginBase form {
+        width: 100%;
+    }
+}
+
+
+/* Custom, iPhone Retina */
+
+@media only screen and (max-width: 360px) {
+    .mt-hold-wrap::before {
+        background-size: 300px;
+    }
+    .mt-hold-wrap {
+        padding-bottom: 190px;
+    }
+}
+
+
+/* Large desktops and laptops */
+
+@media (min-width: 1050px) and (max-width: 1400px) {}
+
+
+/* Landscape tablets and medium desktops */
+
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+
+/* Portrait tablets and small desktops */
+
+@media (min-width: 768px) and (max-width: 991px) {}
+
+
+/* Landscape phones and portrait tablets */
+
+@media (max-width: 767px) {}
+
+
+/* Portrait phones and smaller */
+
+@media (max-width: 480px) {}

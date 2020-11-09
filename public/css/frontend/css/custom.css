@@ -1,0 +1,59 @@
+.next-Btn-pay {
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 500;
+    line-height: 50px;
+    background: url(../images/btn-bg.png) no-repeat center center;
+    border-radius: 50px;
+    text-align: center;
+    min-width: 160px;
+    margin: 0 17px;
+}
+
+.next-Btn-pay i {
+    margin-left: 10px;
+}
+
+.next-Btn-pay:hover {
+    background: #880bc6;
+    color: #fff;
+}
+
+.next-Btn-pay:hover i {
+    animation: leftarrow 1s infinite;
+    animation-direction: linear;
+}
+
+.dataTables_length {
+    position: absolute!important;
+}
+
+.dataTables_info {
+    position: absolute!important;
+}
+
+.dataTables_filter {
+    float: right !important;
+}
+
+.dataTables_paginate {
+    float: right;
+}
+
+.dataTables_paginate {
+    float: right;
+}
+
+.divIframe{
+    overflow:hidden;
+}
+
+.yellow{
+    color:#ff0000;
+}
+.gridCustomButton{
+    border: none;
+    background: none;
+}

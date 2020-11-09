@@ -1,0 +1,27 @@
+Api for Hotel Booking Remaining (13 *2 = 26 working Days)
+================================
+1 > AvailableHotelRooms()       		
+2 > HotelCancellationPolicies()
+3 > HotelSearchWithRooms()
+4 > HotelCancellationPolicyForAllRooms()
+5 > Booking 
+6 > AvailabilityAndPricing()
+7 > HotelBook()
+8 > GenerateInvoice() 
+9 > HotelBookingDetail() 
+10 > HotelBookingDetailBasedOnDate()
+12 > HotelCancel() 
+13 > Cancellation flow and cancellation status 
+
+Packages ( 8 to 10 Days Approx)
+--------------------
+1> Package 					-> 3 Days
+2> Package Details				-> 3 Days
+3> Package Booking				-> 2 Days
+
+Travel Offer (5 Days Approx)
+--------------------
+1> Offer					-> 5 Day
+
+=============================================================================
+Only For Programatically Approx 40 Working Days (Min 40*8=320 Hours). 
