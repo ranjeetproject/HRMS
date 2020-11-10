@@ -13,24 +13,20 @@ class EmployeeController extends Controller
     {
         $this->employeeRepository = $employeeRepository;
     }
-
-    public function getMemberDashboard()
-    {
-        return view('admin.dashboard');
-    }
-    protected function guard()
-    {
-        return Auth::guard('member');
-    }
-
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.employee.index');
+        $input = $request->all();
+        if ($request->ajax()) {
+            return $this->employeeRepository->getAll($input);
+        } else {
+            return view('admin.employee.index');
+        }
+        
     }
 
     /**

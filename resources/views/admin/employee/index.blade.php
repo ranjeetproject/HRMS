@@ -42,8 +42,8 @@
                                             <tr>
                                                 <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                 <th>ID</th>
-                                                <th>Parent</th>
-                                                <th>Children</th>
+                                                <th>Name</th>
+                                                <th>Email</th>
                                                
                                                 <th>Action</th>
                                             </tr>
@@ -89,7 +89,7 @@
                 serverSide: true,
                 dom: 'lBfrtip<"actions">',
                 ajax: {
-                    url: baseUrl + 'admin/employee',
+                    url: baseUrl + 'admin/member',
                     data: function (d) {
                     }
                 },
@@ -142,7 +142,8 @@
                 columns: [
                     /*{data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},*/
                     {data: 'id', name: 'id', orderable: true, searchable: true, visible: false},
-                    {data: '', name: '', orderable: true},
+                    {data: 'name', name: 'name', orderable: true},
+                     {data: 'email', name: 'email', orderable: true},
                     {data: 'action', name: 'action', orderable: true, searchable: false}
                 ]
             });

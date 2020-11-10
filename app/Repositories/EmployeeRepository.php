@@ -16,6 +16,25 @@ use Yajra\DataTables\Facades\DataTables;
 
 class EmployeeRepository
 {
+
+    public function getAll()
+    {
+        $data = User::orderBy('created_at', 'ASC')->get([
+            'id', 'name','email'
+        ]);
+        return Datatables::of($data)
+            ->addColumn('action', function ($row) {
+                $html = '<a href="" data-toggle="tooltip"
+                data-placement="top" title="View" class="btn btn-info">
+                <i class="fas fa-eye"></i></a>';
+
+                return $html;
+            })
+            ->setRowId('id')
+            ->rawColumns(['action'])
+            ->make(true);
+
+    }
     public function fetchCategories()
     {
         return Category::get([
