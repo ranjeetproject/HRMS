@@ -46,6 +46,7 @@ Route::prefix('admin')->group(function ()
 
         Route::resource('member', 'EmployeeController');
         Route::resource('category', 'CategoryController');
+        Route::resource('account-info', 'AccountInfoController');
 
         
 

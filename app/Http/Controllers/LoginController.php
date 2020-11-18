@@ -42,6 +42,7 @@ class LoginController extends Controller
         $guards = array_combine(range(1, count($role)),array_keys($role));
         foreach($guards as $k => $guard)
         {
+            
             $credentials = ['email' => $request->get('email'),
             'password' => $request->get('password'), 'user_type' => $k-1];
             

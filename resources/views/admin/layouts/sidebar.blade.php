@@ -35,6 +35,13 @@
                         <p>Category</p>
                     </a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'account-info') ? 'active' : '' }}"
+                        href="{{action('AccountInfoController@index')}}">
+                        <i class="fas fa-images nav-icon"></i>
+                        <p>Account-Info Manage</p>
+                    </a>
+                </li>
                 {{-- <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'parent') ? 'active' : '' }}"
                         href="">
