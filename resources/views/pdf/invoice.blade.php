@@ -18,11 +18,11 @@
             <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 22px; color: #333;">
                 <tr>
                     <td style="width: 130px;">Invoice ID:</td>
-                    <td>{{@$data['payee_id']}}</td>
+                    <td>{{$payee_id}}</td>
                 </tr>
                 <tr>
                     <td style="width: 130px;">Email:</td>
-                    <td>{{@$data['email']}}</td>
+                    <td>{{$email}}</td>
                 </tr>
             </table>
 
@@ -50,11 +50,11 @@
                     <td style="vertical-align: top; font-weight: bold; border-bottom: 2px solid #333;">Amount<br>(USD)</td>
                 </tr>
                 <tr>
-                    <td style="vertical-align: top; padding-top: 5px; padding-bottom: 5px;">{{@$data['net_pay']}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
                     <td style="vertical-align: top; padding-top: 5px; padding-bottom: 5px;"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="vertical-align: top; padding-top: 5px; padding-bottom: 5px;">{{@$net_pay}}</td>
                 </tr>
                 <tr>
                     <td colspan="2" style="vertical-align: top; padding-top: 5px; padding-bottom: 5px; border-top: 2px solid #333; border-bottom: 2px solid #333;">&nbsp;</td>

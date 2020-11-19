@@ -48,6 +48,7 @@ class AccountInfoRepository
     public function insert($inputData)
     {
         $inputData['join_date'] = date('Y-m-d',strtotime($inputData['join_date']));
+        $data['payee_id'] = $inputData['payee_id'];
         $data['email'] = $inputData['email'];
         $data['net_pay'] = $inputData['net_pay'];
         PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
