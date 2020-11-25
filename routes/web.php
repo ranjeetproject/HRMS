@@ -13,47 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('admin')->group(function ()
-{
-    Route::get('/', 'LoginController@getLogin');
-    Route::get('/login', 'LoginController@getLogin');
-    Route::post('/post-login', 'LoginController@postAdminLogin');
-    
-
-    Route::middleware(['adminRoute:superadmin'])->group(function ()
-    {
-        
-        ////////////////////////////Get Route///////////////////////////////
-        Route::get('/dashboard', 'LoginController@getAdminDashboard');
-        Route::get('/logout', 'LoginController@getLogOut');
-        
-        
+Route::get('/login', 'LoginController@getLogin')->name('Login');
+Route::get('/', 'LoginController@getLogin');
 
 
+Route::post('/post-login', 'LoginController@authenticate')->name('Login.Auth');
 
-        ///////////////////////////Post Route////////////////////////////
-        Route::post('/change-password', 'UserController@changePasswordSubmit');
+Route::middleware(['adminRoute'])->group(function (){
+    Route::get('/logout','LoginController@getLogOut')->name('Logout'); 
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
-
-
-        Route::resource('member', 'EmployeeController');
-        Route::resource('category', 'CategoryController');
-        Route::resource('account-info', 'AccountInfoController');
-
-        
-
-    });
-    
-
-   
-
-
-});
+ });

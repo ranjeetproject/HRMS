@@ -43,12 +43,12 @@ return [
 
         'superadmin' => [
             'driver' => 'session',
-            'provider' => 'superadmins',
+            'provider' => 'users',
         ],
 
         'member' => [
             'driver' => 'session',
-            'provider' => 'members',
+            'provider' => 'users',
         ],
 
         'api' => [

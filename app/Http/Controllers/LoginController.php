@@ -15,61 +15,45 @@ use Session;
 class LoginController extends Controller
 {
     
-    protected $redirectTo = RouteServiceProvider::HOME;
     public function getLogin()
     {
-        if(Auth::guard('superadmin')->check())
-        {
-            return redirect()->action('LoginController@getAdminDashboard');
-        }
-        else{
-            return view('admin.login');
-        }
+        return view('login');
     }
 
-    public function postAdminLogin(Request $request)
+    public function authenticate(Request $request)
     {
-        
         $this->validate($request, [
             'email'   => 'required|email',
             'password' => 'required|min:6'
+        ],[
+            'email.required' => 'Incorrect email or password.',
+            'password.required' => 'Incorrect email or password.',
+            'email.email' => 'Email format is invalid',
+            'password.min' => 'Incorrect email or password.',
         ]);
-        
-        
-        $role = config('auth.guards');
-        unset($role['api']);
-        unset($role['web']);
-        $guards = array_combine(range(1, count($role)),array_keys($role));
+        $roles = config('auth.guards');
+        $user =null;
+        unset($roles['api']);
+        unset($roles['web']);
+        $guards = array_combine(range(1, count($roles)),array_keys($roles));
+       
         foreach($guards as $k => $guard)
         {
-            
             $credentials = ['email' => $request->get('email'),
-            'password' => $request->get('password'), 'user_type' => $k-1];
-            
-            if(Auth::guard($guard)->attempt($credentials))
+            'password' => $request->get('password'),'user_type' => $k];
+            if (Auth::guard($guard)->attempt($credentials))
             {
-                return redirect()->action('LoginController@getAdminDashboard');
+                return redirect()->route('dashboard');
             }
         }
         return back()->withInput($request->only('email', 'remember'))
-        ->with(['error'=>'Oops! You have entered invalid username or password']);
+        ->with(['error'=>'Incorrect email or password.']);
     }
-    
 
-    public function getAdminDashboard()
+    public function getLogOut()
     {
-        return view('admin.dashboard');
-    }
-
-    public function getLogOut(Request $request)
-               {   
-        Auth::guard('superadmin')->logout();
+        Session::flush();
+        Auth::logout();
         return redirect()->action('LoginController@getLogin');
     }
-    protected function guard()
-    {
-        dd(Auth::guard('superadmin'));
-        
-    }
-
 }

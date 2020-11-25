@@ -16,10 +16,6 @@ class memberRouteHandler
      */
     public function handle($request, Closure $next,$guard='member')
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect()->action('LoginController@getAdminDashboard');
-        }
-
-        return $next($request);
+      
     }
 }

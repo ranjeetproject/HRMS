@@ -2,7 +2,8 @@
 
 namespace App\Http\Middleware;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Closure;
 
 class adminRouteHandler
@@ -14,28 +15,29 @@ class adminRouteHandler
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next,$guard=null)
+    public function handle($request, Closure $next)
     {
-        $urlArray = explode('/',$request->route()->uri);
-        if(isset($urlArray[0]) && $urlArray[0]=='admin')
+        $roles = config('auth.guards');
+        $check = 0;
+        unset($roles['api']);
+        unset($roles['web']);
+        $guards = array_combine(range(1, count($roles)),array_keys($roles));
+        foreach($guards as $k => $guard)
         {
-            if ($guard == "superadmin" && !Auth::guard($guard)->check())
+            if(Auth::guard($guard)->check())
             {
-                
-                // dd($guard,Auth::guard('admin')->check(),session()->all());
-                return redirect()->action('LoginController@getLogin');
-            }
-            else
-            {
-                if($guard == "superadmin" && Auth::guard($guard)->check())
-                {
-                    if(!isset($urlArray[1]) || (isset($urlArray[1]) && $urlArray[1]==''))
-                    {
-                        return redirect()->action('LoginController@getAdminDashboard');
-                    }
-                }
+                $check++;
             }
         }
+        if($check==0)
+        {
+            if($request->ajax())
+            {
+                return response()->json(['success'=>false,'message'=>'Access Denied'],401);
+            }
+            return redirect()->action('LoginController@getLogin')->with(['error'=>'Oops ! .Something went wrong']);
+        }
+       
         return $next($request);
     }
 }
