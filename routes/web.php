@@ -28,5 +28,24 @@ Route::post('/post-login', 'LoginController@authenticate')->name('Login.Auth');
 Route::middleware(['adminRoute'])->group(function (){
     Route::get('/logout','LoginController@getLogOut')->name('Logout'); 
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('recruitment', 'RecruitmentController@index');
+    Route::get('recruitment/create', 'RecruitmentController@create');
+    Route::get('skills', 'SkillController@index');
+    Route::get('skills/create', 'SkillController@create');
+
+
+
+
+
+    Route::post('skills/store', 'SkillController@store');
+    Route::post('recruitment/store', 'RecruitmentController@store');
+
+
+    
+    Route::delete('skills/destroy/{id}', 'SkillController@destroy');
+
+
+    
 
  });
+ 

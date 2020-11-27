@@ -20,29 +20,21 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ (request()->segment(2) == 'member') ? 'active' : '' }}"
-                       href="">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <a class="nav-link {{ (request()->segment(2) == 'recruitment') ? 'active' : '' }}"
+                       href="{{action('RecruitmentController@index')}}">
+                        <i class="nav-icon fas fa-address-card"></i>
                         <p>
-                            Member Manage
+                           Recruitment Manage
                         </p>
                     </a>
                 </li>
                   <li class="nav-item ">
-                    <a class="nav-link {{ (request()->segment(2) == 'category') ? 'active' : '' }}"
-                        href="">
-                        <i class="fas fa-images nav-icon"></i>
-                        <p>Category</p>
+                    <a class="nav-link {{ (request()->segment(2) == 'skills') ? 'active' : '' }}"
+                        href="{{action('SkillController@index')}}">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>Add Skills</p>
                     </a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link {{ (request()->segment(2) == 'account-info') ? 'active' : '' }}"
-                        href="">
-                        <i class="fas fa-images nav-icon"></i>
-                        <p>Account-Info Manage</p>
-                    </a>
-                </li>
-            
             </ul>
         </nav>
     </div>
