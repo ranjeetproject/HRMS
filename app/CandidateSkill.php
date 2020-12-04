@@ -14,4 +14,9 @@ class CandidateSkill extends Model
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
     protected $fillable = ['recruitment_id','skill_id'];
+
+    public function skill()
+    {
+        return $this->belongsTo('App\Skill','skill_id');
+    }
 }

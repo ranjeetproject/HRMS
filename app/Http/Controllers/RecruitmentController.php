@@ -70,5 +70,64 @@ class RecruitmentController extends Controller
 
      }
 
+     public function show($id)
+     {
+          $recruitment = $this->recruitmentRepository->view($id);
+          return view('recruitments.show',compact('recruitment'));
+     }
+
+
+     public function edit($id)
+     {
+          $skilldata = array();
+          $data['recruitment'] = $this->recruitmentRepository->viewEdit($id);
+          $data['skills'] =  $this->recruitmentRepository->fetchSkills();
+          $data['recruitmentSkills'] =  $this->recruitmentRepository->fetchRecruitmentSkills($id);
+          foreach($data['recruitmentSkills'] as $key => $val)
+          {
+             $skilldata[] = $val['skill_id'];
+          }
+          return view('recruitments.edit',$data,compact('skilldata'));
+     }
+
+     public function update(Request $request, $id)
+     {
+          $request->validate([
+               'name_of_candidate' => 'required',
+               'mobile_number'=>'required',
+               'alternate_number' => 'required',
+               'total_years_experience' => 'required',
+               'total_months_experience' => 'required',
+               'address' => 'required',
+               'relevent_years_experience' => 'required',
+               'relevent_months_experience'=> 'required',
+               'email_id'=> 'required',
+               'application_for'=> 'required',
+               'highest_qualification'=> 'required',
+               'current_ctc'=> 'required',
+               'expected_ctc'=> 'required',
+               'current_location'=> 'required',
+               'skill'=> 'required',
+               'notice_period'=> 'required',
+               'reffered_by'=> 'required',
+               'special_remarks'=> 'required',
+           ]);
+          
+           $input = $request->all();
+           $data = $this->recruitmentRepository->updateSave($input,$id);
+           if ($data['success'] == true) {
+               $notification = array(
+                    'message' => 'Recruitment is successfully update!',
+                    'alert-type' => 'success'
+               );
+               return redirect()->action('RecruitmentController@index')->with($notification);
+           } else {
+               return redirect()->back();
+           }
+     }
+
+     public function interviewScheduling(){
+          return view('Interview_scheduled.interview_scheduling');
+     }
  
 }

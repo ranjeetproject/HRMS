@@ -30,6 +30,9 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
     Route::get('recruitment', 'RecruitmentController@index');
     Route::get('recruitment/create', 'RecruitmentController@create');
+    Route::get('recruitment/show/{id}', 'RecruitmentController@show');
+    Route::get('recruitment/edit/{id}', 'RecruitmentController@edit');
+    Route::get('recruitment/interview-scheduling/{id}', 'RecruitmentController@interviewScheduling');
     Route::get('skills', 'SkillController@index');
     Route::get('skills/create', 'SkillController@create');
 
@@ -39,6 +42,7 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::post('skills/store', 'SkillController@store');
     Route::post('recruitment/store', 'RecruitmentController@store');
+    Route::post('recruitment/update/{id}', 'RecruitmentController@update');
 
 
     

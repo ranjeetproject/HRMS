@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item"><a
                                     href=""><i class="nav-icon fas fa-address-card"></i>
                                     Recruitment</a></li>
-                            <li class="breadcrumb-item active">Add</li>
+                            <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div>
                 </div>
@@ -29,9 +29,9 @@
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title"><i class="fas fa-align-justify"></i> Create</h3>
+                                <h3 class="card-title"><i class="fas fa-align-justify"></i> Update</h3>
                             </div>
-                            <form role="form" action="{{action('RecruitmentController@store')}}" method="POST"
+                            <form role="form" action="{{action('RecruitmentController@update',[$recruitment->id])}}" method="POST"
                                   enctype="multipart/form-data" id="addReqForm">
                                 {{csrf_field()}}
                                 <div class="card-body">
@@ -44,7 +44,7 @@
                                                     type="text"
                                                     name="name_of_candidate" id="name_of_candidate" placeholder="Please enter name of candidate"
                                                     maxlength="191"
-                                                    value="{{old('name_of_candidate')}}">
+                                                    value="{{old('name_of_candidate',$recruitment->name_of_candidate)}}">
                                                 <span class="form-text text-danger"
                                                       id="error_name_of_candidate">{{ $errors->getBag('default')->first('name_of_candidate') }}
                                                 </span>
@@ -58,7 +58,7 @@
                                                     type="text"
                                                     name="mobile_number" id="mobile_number" placeholder="Please enter mobile number"
                                                     maxlength="191"
-                                                    value="{{old('mobile_number')}}">
+                                                    value="{{old('mobile_number',$recruitment->mobile_number)}}">
                                                 <span class="form-text text-danger"
                                                       id="error_mobile_number">{{ $errors->getBag('default')->first('mobile_number') }}
                                                 </span>
@@ -72,7 +72,7 @@
                                                     type="text"
                                                     name="alternate_number" id="alternate_number" placeholder="Please enter alternate number"
                                                     maxlength="191"
-                                                    value="{{old('alternate_number')}}">
+                                                    value="{{old('alternate_number',$recruitment->alternate_number)}}">
 
                                                 <span class="form-text text-danger"
                                                       id="error_alternate_number">{{ $errors->getBag('default')->first('alternate_number') }}</span>
@@ -87,7 +87,7 @@
                                                 <select
                                                     class="form-control custom-select {{ $errors->has("total_years_experience") ? 'is-invalid' : '' }}"
                                                     name="total_years_experience" id="total_years_experience">
-                                                    <option value="">Years</option>
+                                                    <option value="{{$recruitment->total_years_experience}}">{{$recruitment->total_years_experience}} Years</option>
                                                     <option value="0">0 Years</option>
                                                     <option value="1">1 Years</option>
                                                     <option value="2">2 Years</option>
@@ -119,7 +119,7 @@
                                                 <select
                                                     class="form-control custom-select {{ $errors->has("total_months_experience") ? 'is-invalid' : '' }}"
                                                     name="total_months_experience" id="total_months_experience">
-                                                    <option value="">Months</option>
+                                                    <option value="{{$recruitment->total_months_experience}}">{{$recruitment->total_months_experience}} Months</option>
                                                     <option value="0">0 Months</option>
                                                     <option value="1">1 Months</option>
                                                     <option value="2">2 Months</option>
@@ -148,7 +148,7 @@
                                                 <label class=" form-control-label" for="address">Address</label>
                                                 <textarea
                                                     class="form-control {{ $errors->has("address") ? 'is-invalid' : '' }}"
-                                                    name="address" id="address" placeholder="Please enter address">{{old('address')}}</textarea>
+                                                    name="address" id="address" placeholder="Please enter address">{{old('address',$recruitment->address)}}</textarea>
 
                                                 <span class="form-text text-danger"
                                                       id="error_address">{{ $errors->getBag('default')->first('address') }}</span>
@@ -163,7 +163,7 @@
                                                 <select
                                                     class="form-control custom-select {{ $errors->has("relevent_years_experience") ? 'is-invalid' : '' }}"
                                                     name="relevent_years_experience" id="relevent_years_experience">
-                                                    <option value="">Years</option>
+                                                    <option value="{{$recruitment->relevent_years_experience}}">{{$recruitment->relevent_years_experience}} Years</option>
                                                     <option value="0">0 Years</option>
                                                     <option value="1">1 Years</option>
                                                     <option value="2">2 Years</option>
@@ -194,7 +194,7 @@
                                                 <select
                                                     class="form-control custom-select {{ $errors->has("relevent_months_experience") ? 'is-invalid' : '' }}"
                                                     name="relevent_months_experience" id="relevent_months_experience">
-                                                    <option value="">Months</option>
+                                                    <option value="{{$recruitment->relevent_months_experience}}">{{$recruitment->relevent_months_experience}} Months</option>
                                                     <option value="0">0 Months</option>
                                                     <option value="1">1 Months</option>
                                                     <option value="2">2 Months</option>
@@ -226,7 +226,7 @@
                                                     type="text"
                                                     name="email_id" id="email_id" placeholder="Please enter email id"
                                                     maxlength="191"
-                                                    value="{{old('email_id')}}">
+                                                    value="{{old('email_id',$recruitment->email_id)}}">
 
                                                 <span class="form-text text-danger"
                                                       id="error_email_id">{{ $errors->getBag('default')->first('email_id') }}</span>
@@ -240,7 +240,7 @@
                                                     type="text"
                                                     name="application_for" id="application_for" placeholder="Please enter application for"
                                                     maxlength="191"
-                                                    value="{{old('application_for')}}">
+                                                    value="{{old('application_for',$recruitment->application_for)}}">
 
                                                 <span class="form-text text-danger"
                                                       id="error_application_for">{{ $errors->getBag('default')->first('application_for') }}</span>
@@ -254,7 +254,7 @@
                                                     type="text"
                                                     name="highest_qualification" id="highest_qualification" placeholder="Please enter highest qualification"
                                                     maxlength="191"
-                                                    value="{{old('highest_qualification')}}">
+                                                    value="{{old('highest_qualification',$recruitment->highest_qualification)}}">
 
                                                 <span class="form-text text-danger"
                                                       id="error_highest_qualification">{{ $errors->getBag('default')->first('highest_qualification') }}</span>
@@ -270,7 +270,7 @@
                                                     type="text"
                                                     name="current_ctc" id="current_ctc" placeholder="Please enter current ctc"
                                                     maxlength="191"
-                                                    value="{{old('current_ctc')}}">
+                                                    value="{{old('current_ctc',$recruitment->current_ctc)}}">
 
                                                 <span class="form-text text-danger"
                                                       id="error_current_ctc">{{ $errors->getBag('default')->first('current_ctc') }}</span>
@@ -284,7 +284,7 @@
                                                     type="text"
                                                     name="expected_ctc" id="expected_ctc" placeholder="Please enter expected ctc"
                                                     maxlength="191"
-                                                    value="{{old('expected_ctc')}}">
+                                                    value="{{old('expected_ctc',$recruitment->expected_ctc)}}">
 
                                                 <span class="form-text text-danger"
                                                       id="error_expected_ctc">{{ $errors->getBag('default')->first('expected_ctc') }}</span>
@@ -298,7 +298,7 @@
                                                     type="text"
                                                     name="current_location" id="current_location" placeholder="Please enter current location"
                                                     maxlength="191"
-                                                    value="{{old('current_location')}}">
+                                                    value="{{old('current_location',$recruitment->current_location)}}">
 
                                                 <span class="form-text text-danger"
                                                       id="error_current_location">{{ $errors->getBag('default')->first('current_location') }}</span>
@@ -311,7 +311,7 @@
                                             <label class=" form-control-label" for="skill">Skills/Technology</label>
                                                 <ul class="list-group list-group-flush">
                                                   @foreach($skills as $skill)
-                                                    <li class="list-group-item"> <input type="checkbox" class="form-check-input" name="skill[]" id="skill" value="{{$skill->id}}">{{$skill->skill_name}}</li>
+                                                    <li class="list-group-item"> <input type="checkbox" class="form-check-input" name="skill[]" id="skill" value="{{$skill->id}}" @if(in_array($skill->id,$skilldata)) {{'checked'}} @endIf >{{$skill->skill_name}}</li>
                                                   @endforeach
                                                 </ul>
                                                  <span class="form-text text-danger"
@@ -327,7 +327,7 @@
                                                         type="text"
                                                         name="notice_period" id="notice_period" placeholder="Please enter notice period"
                                                         maxlength="191"
-                                                        value="{{old('notice_period')}}">
+                                                        value="{{old('notice_period',$recruitment->notice_period)}}">
 
                                                     <span class="form-text text-danger"
                                                         id="error_notice_period">{{ $errors->getBag('default')->first('notice_period') }}</span>
@@ -354,7 +354,7 @@
                                                     <label class=" form-control-label" for="special_remarks">Special Remarks</label>
                                                 <textarea
                                                     class="form-control {{ $errors->has("special_remarks") ? 'is-invalid' : '' }}"
-                                                    name="special_remarks" id="special_remarks" placeholder="Please enter special remarks">{{old('special_remarks')}}</textarea>
+                                                    name="special_remarks" id="special_remarks" placeholder="Please enter special remarks">{{old('special_remarks',$recruitment->special_remarks)}}</textarea>
 
                                                     <span class="form-text text-danger"
                                                         id="error_special_remarks">{{ $errors->getBag('default')->first('special_remarks') }}</span>
@@ -370,7 +370,7 @@
                                     <div class="col text-right">
                                         <a class="btn btn-danger" href="">
                                             Cancel </a>
-                                        <button type="submit" class="btn btn-primary"> Submit</button>
+                                        <button type="submit" class="btn btn-primary"> Update</button>
                                     </div>
                                 </div>
                             </form>

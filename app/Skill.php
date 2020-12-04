@@ -14,4 +14,6 @@ class Skill extends Model
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
     protected $fillable = ['skill_name'];
+
+   
 }

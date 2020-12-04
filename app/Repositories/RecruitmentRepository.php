@@ -25,17 +25,20 @@ class RecruitmentRepository
         
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
-                $html = '<a href="" data-toggle="tooltip"
+                $html = '<a href="'.action('RecruitmentController@show', $row->id) .'" data-toggle="tooltip"
                 data-placement="top" title="View" class="btn btn-info">
                 <i class="fas fa-eye"></i></a>
-                <a href="="" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary">
+                <a href="'.action('RecruitmentController@edit', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary">
                 <i class="fas fa-edit"></i>
                 </a>
                 <form method="POST" action="" accept-charset="UTF-8" style="display: inline-block;"
                 onsubmit="return confirm(\'Are you sure want to delete this row?\');"><input name="_method" type="hidden" value="DELETE">
                         <input name="_token" type="hidden" value="' . csrf_token() . '">
                         <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
-                        </form> ';
+                        </form> 
+                <a href="'.action('RecruitmentController@interviewScheduling', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
+                <i class="fa fa-wheelchair"></i>
+                </a>';
 
                 return $html;
             })
@@ -51,6 +54,14 @@ class RecruitmentRepository
         return Skill::get([
             'id', 'skill_name'
         ]);
+    }
+
+    public function fetchRecruitmentSkills($id)
+    {
+        $all=CandidateSkill::select('skill_id')
+        ->where('recruitment_id',$id)
+       ->get()->toArray();
+       return $all;
     }
 
     public function insert($inputData)
@@ -86,4 +97,50 @@ class RecruitmentRepository
             return ['success' => false];
         }
     }
+
+    public function view($id)
+    {
+        $row = Recruitment::find($id);
+        return $row;
+    }
+
+    public function viewEdit($id)
+    {
+        $row = Recruitment::find($id);
+        return $row;
+    }
+
+    public function updateSave($inputData, $id)
+    {
+
+        $row = Recruitment::find($id);
+        if($row){
+            $row->name_of_candidate = $inputData['name_of_candidate'];
+            $row->mobile_number = $inputData['mobile_number'];
+            $row->alternate_number = $inputData['alternate_number'];
+            $row->total_years_experience = $inputData['total_years_experience'];
+            $row->total_months_experience = $inputData['total_months_experience'];
+            $row->relevent_years_experience = $inputData['relevent_years_experience'];
+            $row->relevent_months_experience = $inputData['relevent_months_experience'];
+            $row->email_id = $inputData['email_id'];
+            $row->highest_qualification = $inputData['highest_qualification'];
+            $row->current_ctc = $inputData['current_ctc'];
+            $row->expected_ctc = $inputData['expected_ctc'];
+            $row->current_location = $inputData['current_location'];
+            $row->notice_period = $inputData['notice_period'];
+            $row->special_remarks = $inputData['special_remarks'];
+            $row->update();
+            $recruitmentSkillData = [];
+            
+                    foreach($inputData['skill']  as $val){
+                        $recruitmentSkillData['skill_id'] = $val;
+                        $recruitmentSkillData['recruitment_id'] = $row->id;
+                        CandidateSkill::where('recruitment_id',$row->id)->update($recruitmentSkillData);
+                    } 
+            return ['success' => true];
+        } else {
+            return ['success' => false];
+        }
+    }
+ 
 }
