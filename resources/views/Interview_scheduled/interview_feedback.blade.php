@@ -6,7 +6,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h5>Interview Scheduling Magement</h5>
+                        <h5>Interview Feedback Magement</h5>
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
@@ -15,7 +15,7 @@
                                     Home</a></li>
                             <li class="breadcrumb-item"><a
                                     href=""><i class="nav-icon fas fa-address-card"></i>
-                                    Interview Scheduling</a></li>
+                                    Interview Feedback</a></li>
                             <li class="breadcrumb-item active">Add</li>
                         </ol>
                     </div>
@@ -31,10 +31,9 @@
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-align-justify"></i> Create</h3>
                             </div>
-                            <form role="form" action="{{action('InterviewScheduleController@store')}}" method="POST"
+                            <form role="form" action="{{action('InterviewFeedbackController@store')}}" method="POST"
                                   enctype="multipart/form-data" id="addReqForm">
                                 {{csrf_field()}}
-                                
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -57,15 +56,13 @@
                                         </div>
                                         <div class="col-md-2">
                                         <br><br>
-                                        @if(@$schedule->id)
                                             <div class="col text-right">
+                                            @if(@$feedback->id)
                                                 <button type="submit" class="btn btn-primary" disabled> Submit</button>
+                                            @else
+                                                <button type="submit" class="btn btn-primary" > Submit</button>
+                                            @endIf
                                             </div>
-                                        @else
-                                            <div class="col text-right">
-                                                <button type="submit" class="btn btn-primary"> Submit</button>
-                                            </div>
-                                        @endif
                                         </div>
                                     </div>
 
@@ -73,21 +70,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="interview_scheduling_date">Interview Scheduling</label>
-                                                @if(@$schedule->interview_scheduling_date)
-                                                    <input
-                                                            class="form-control {{ $errors->has('interview_scheduling_date') ? 'is-invalid' : '' }}"
-                                                            type="text"
-                                                            name="interview_scheduling_date" id="interview_scheduling_date" placeholder="Please enter interview scheduling date"
-                                                            maxlength="191"
-                                                            value="{{old('interview_scheduling_date',@$schedule->interview_scheduling_date)}}" disabled>
-                                                @else
-                                                    <input
-                                                            class="form-control {{ $errors->has('interview_scheduling_date') ? 'is-invalid' : '' }}"
-                                                            type="text"
-                                                            name="interview_scheduling_date" id="interview_scheduling_date" placeholder="Please enter interview scheduling date"
-                                                            maxlength="191"
-                                                            value="">
-                                                @endIf
+                                               <input
+                                                    class="form-control {{ $errors->has('interview_scheduling_date') ? 'is-invalid' : '' }}"
+                                                    type="text"
+                                                    name="interview_scheduling_date" id="interview_scheduling_date" placeholder="Please enter interview scheduling date"
+                                                    maxlength="191"
+                                                    value="{{old('interview_scheduling_date',@$schedule->interview_scheduling_date)}}" readonly>
+
                                                 <span class="form-text text-danger"
                                                       id="error_interview_scheduling_date">{{ $errors->getBag('default')->first('interview_scheduling_date') }}</span>
                                             </div>
@@ -97,8 +86,8 @@
                                                 <div class="col text-right">
                                                     <a class="btn btn-danger" href="{{action('RecruitmentController@index')}}">
                                                     Cancel </a>
-                                                </div>
                                             </div>
+                                        </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -106,9 +95,9 @@
                                         </div>
                                         <div class="col-md-2">
                                                 <br><br>
-                                                @if(@$schedule->id)
+                                                @if(@$feedback->id)
                                                 <div class="col text-right">
-                                                    <a   id="btedit" class="btn btn-info" href="{{action('InterviewScheduleController@interviewSchedulingEdit',['id'=>@$recruitment->id])}}">
+                                                    <a   id="btedit" class="btn btn-info" href="{{action('InterviewFeedbackController@interviewFeedbackEdit',['id'=>@$feedback->id])}}">
                                                     Edit </a>
                                                 </div>
                                                 @endif
@@ -118,22 +107,14 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="interviewer">Interviewer </label>
-                                                @if(@$schedule->user_id)
+                                                <label class=" form-control-label" for="interviewer">interviewer </label>
                                                <input
                                                     class="form-control {{ $errors->has('interviewer') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="interviewer" id="interviewer" placeholder="Please select interviewer name"
                                                     maxlength="191"
                                                     value="{{old('interviewer')}}" readonly>
-                                                @else
-                                                <input
-                                                    class="form-control {{ $errors->has('interviewer') ? 'is-invalid' : '' }}"
-                                                    type="text"
-                                                    name="interviewer" id="interviewer" placeholder="Please select interviewer name"
-                                                    maxlength="191"
-                                                    value="{{old('interviewer')}}">
-                                                @endIf
+
                                                 <span class="form-text text-danger"
                                                       id="error_interviewer">{{ $errors->getBag('default')->first('interviewer') }}</span>
                                             </div>
@@ -146,31 +127,77 @@
                                          <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="user_id"> </label>
-                                                @if(@$schedule->user_id)
                                                     <select
                                                         class="form-control custom-select {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
-                                                        name="user_id" id="user_id" disabled>
+                                                        name="user_id" id="user_id" readonly>
                                                         <option value="">SELECT</option>
                                                         <option value="1" @if(@$schedule->user_id==1) selected @endIf>A</option>
                                                         <option value="2" @if(@$schedule->user_id==2) selected @endIf>B</option>
                                                         <option value="3" @if(@$schedule->user_id==3) selected @endIf>C</option>
-                                                    </select>
-                                                @else
-                                                    <select
-                                                            class="form-control custom-select {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
-                                                            name="user_id" id="user_id">
-                                                            <option value="">SELECT</option>
-                                                            <option value="1">A</option>
-                                                            <option value="2">B</option>
-                                                            <option value="3">C</option>
-                                                    </select>
-                                                @endIf
+                                                </select>
                                                 <span class="form-text text-danger"
                                                       id="error_user_id">{{ $errors->getBag('default')->first('user_id') }}</span>
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                      <div class="row">
+                                        <div class="col-md-6 border border-dark">
+                                            <div class="row container-sm">
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label class=" form-control-label" for="interviewer_rating">Interviewer Rating</label>
+                                                        @if(@$feedback->interviewer_rating)
+                                                        <input
+                                                                class="form-control {{ $errors->has('interviewer_rating') ? 'is-invalid' : '' }}"
+                                                                type="text"
+                                                                name="interviewer_rating" id="interviewer_rating" placeholder="Please enter interviewer rating"
+                                                                maxlength="191"
+                                                                value="{{old('interviewer_rating',@$feedback->interviewer_rating)}}" readonly>
+                                                        @else
+                                                        <input
+                                                                class="form-control {{ $errors->has('interviewer_rating') ? 'is-invalid' : '' }}"
+                                                                type="text"
+                                                                name="interviewer_rating" id="interviewer_rating" placeholder="Please enter interviewer rating"
+                                                                maxlength="191"
+                                                                value="{{old('interviewer_rating')}}">
+                                                        @endIf
+
+                                                        <span class="form-text text-danger"
+                                                            id="error_interviewer_rating">{{ $errors->getBag('default')->first('interviewer_rating') }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <div class="form-group">
+                                                        <label class=" form-control-label" for="interviewer_feedback">Interviewer Feedback</label>
+                                                        @if(@$feedback->interviewer_feedback)
+                                                          <textarea
+                                                            class="form-control {{ $errors->has('interviewer_feedback') ? 'is-invalid' : '' }}"
+                                                            name="interviewer_feedback" id="interviewer_feedback" placeholder="Please enter interviewer feedback" readonly>{{old('interviewer_feedback',@$feedback->interviewer_feedback)}}</textarea>
+                                                        @else
+                                                            <textarea
+                                                                class="form-control {{ $errors->has('interviewer_feedback') ? 'is-invalid' : '' }}"
+                                                                name="interviewer_feedback" id="interviewer_feedback" placeholder="Please enter interviewer feedback">{{old('interviewer_feedback')}}</textarea>
+                                                        
+                                                        @endIf
+                                                        <span class="form-text text-danger"
+                                                            id="error_interviewer_feedback">{{ $errors->getBag('default')->first('interviewer_feedback') }}</span>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                        @if(@$feedback->active)
+                                                             <label class=" form-control-label" for="active"><input type="checkbox" name="active" value="" @if(@$feedback->active) {{'checked'}} @endIf> &nbsp;&nbsp;Selected for Final Round</label>
+                                                        @else
+                                                            <label class=" form-control-label" for="active"><input type="checkbox" name="active" value=""> &nbsp;&nbsp;Selected for Final Round</label>
+                                                        @endIf
+
+                                                            <span class="form-text text-danger"
+                                                                id="error_active">{{ $errors->getBag('default')->first('active') }}</span>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                         
+                                    </div>
 
                                     
 
@@ -190,40 +217,30 @@
 @section('customJsInclude')
     <script>
         $(function () {
-            $("#interview_scheduling_date").datepicker({
-                dateFormat: "dd-mm-yy",
-                changeMonth: true,
-                changeYear: true,
-                minDate: new Date()
-            });
+
             $('#user_id').change(function(){
                 var interview = ($('#user_id option:selected').text());
+                console.log(interview);
                 $('#interviewer').val(interview);
             })
             var interview = $('#user_id option:selected').text();
             $('#interviewer').val(interview);
-            
+
             $('#addReqForm').validate({
                 rules: {
-                    name_of_candidate: {
+                    interviewer_rating: {
                         required: true
                     },
-                    interview_scheduling_date: {
-                        required: true,
-                    },
-                    user_id: {
+                    interviewer_feedback: {
                         required: true
-                    },
+                    }
                 },
                 messages: {
-                    name_of_candidate: {
-                        required: "This name of candidate field is required.",
+                    interviewer_rating: {
+                        required: "This interviewer rating field is required.",
                     },
-                    interview_scheduling_date: {
-                        required: "This interview scheduling field is required.",
-                    },
-                    user_id: {
-                        required: "This interviewer field is required.",
+                    interviewer_feedback: {
+                        required: "This interviewer feedback field is required.",
                     },
                    
                 },

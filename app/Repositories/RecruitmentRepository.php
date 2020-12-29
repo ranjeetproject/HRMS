@@ -4,6 +4,8 @@
 namespace App\Repositories;
 
 use App\Recruitment;
+use App\InterviewSchedule;
+use App\InterviewFeedback;
 use App\Skill;
 use App\CandidateSkill;
 use Illuminate\Support\Facades\Auth;
@@ -31,12 +33,15 @@ class RecruitmentRepository
                 <a href="'.action('RecruitmentController@edit', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary">
                 <i class="fas fa-edit"></i>
                 </a>
-                <form method="POST" action="" accept-charset="UTF-8" style="display: inline-block;"
+                <form method="POST" action="' . action('RecruitmentController@destroy', [$row->id]) . '" accept-charset="UTF-8" style="display: inline-block;"
                 onsubmit="return confirm(\'Are you sure want to delete this row?\');"><input name="_method" type="hidden" value="DELETE">
                         <input name="_token" type="hidden" value="' . csrf_token() . '">
                         <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
                         </form> 
                 <a href="'.action('RecruitmentController@interviewScheduling', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
+                <i class="fa fa-wheelchair"></i> 
+                </a>
+                <a href="'.action('RecruitmentController@interviewFeedback', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
                 <i class="fa fa-wheelchair"></i>
                 </a>';
 
@@ -129,18 +134,49 @@ class RecruitmentRepository
             $row->current_location = $inputData['current_location'];
             $row->notice_period = $inputData['notice_period'];
             $row->special_remarks = $inputData['special_remarks'];
-            $row->update();
+            $row->save();
+            $skill = CandidateSkill::where('recruitment_id','=',$id)->get();
             $recruitmentSkillData = [];
             
                     foreach($inputData['skill']  as $val){
                         $recruitmentSkillData['skill_id'] = $val;
                         $recruitmentSkillData['recruitment_id'] = $row->id;
-                        CandidateSkill::where('recruitment_id',$row->id)->update($recruitmentSkillData);
+                        CandidateSkill::where('recruitment_id',$row->id)->save($recruitmentSkillData);
                     } 
             return ['success' => true];
         } else {
             return ['success' => false];
         }
+    }
+
+    public function deleteSpecific($id)
+    {
+        if ($id > 0) {
+            $row = Recruitment::find($id);
+            if ($row) {
+                $row->delete();
+                return ['success' => true];
+            } else {
+                return ['success' => false];
+            }
+        } else {
+            return ['success' => false];
+        }
+    }
+
+    public function viewSchedule($id)
+    {
+        $schedule = InterviewSchedule::where('recruitment_id',$id)->first();
+        $schedule['interview_scheduling_date'] = date('d-m-Y',strtotime($schedule['interview_scheduling_date']));
+        return $schedule;
+
+    }
+    public function viewFeedback($id)
+    {
+        $feedback = InterviewFeedback::where('recruitment_id',$id)->first();
+        $feedback['interview_scheduling_date'] = date('d-m-Y',strtotime($feedback['interview_scheduling_date']));
+        return $feedback;
+
     }
  
 }

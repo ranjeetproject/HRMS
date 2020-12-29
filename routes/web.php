@@ -33,6 +33,11 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('recruitment/show/{id}', 'RecruitmentController@show');
     Route::get('recruitment/edit/{id}', 'RecruitmentController@edit');
     Route::get('recruitment/interview-scheduling/{id}', 'RecruitmentController@interviewScheduling');
+    Route::get('recruitment/interview-feedback/{id}', 'RecruitmentController@interviewFeedback');
+    Route::get('recruitment/interview-scheduling-edit/{id}', 'InterviewScheduleController@interviewSchedulingEdit');
+    Route::get('recruitment/interview-feedback-edit/{id}', 'InterviewFeedbackController@interviewFeedbackEdit');
+
+
     Route::get('skills', 'SkillController@index');
     Route::get('skills/create', 'SkillController@create');
 
@@ -43,10 +48,18 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('skills/store', 'SkillController@store');
     Route::post('recruitment/store', 'RecruitmentController@store');
     Route::post('recruitment/update/{id}', 'RecruitmentController@update');
+    Route::post('interview-scheduling/store', 'InterviewScheduleController@store');
+    Route::post('interview-scheduling/update/{id}', 'InterviewScheduleController@update');
+    Route::post('interview-feedback/store', 'InterviewFeedbackController@store');
+    Route::post('interview-feedback/update/{id}', 'InterviewFeedbackController@update');
+
+
+
 
 
     
     Route::delete('skills/destroy/{id}', 'SkillController@destroy');
+    Route::delete('recruitment/destroy/{id}', 'RecruitmentController@destroy');
 
 
     

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Repositories\RecruitmentRepository;
+use Illuminate\Support\Facades\URL;
 use Validator,Redirect,Response;
 
 
@@ -126,8 +127,30 @@ class RecruitmentController extends Controller
            }
      }
 
-     public function interviewScheduling(){
-          return view('Interview_scheduled.interview_scheduling');
+     public function destroy($id)
+     {
+         $this->recruitmentRepository->deleteSpecific($id);
+         $notification = array(
+             'message' => 'Recruitment Deleted successfully',
+             'alert-type' => 'success'
+         );
+         return redirect()->action('RecruitmentController@index')
+             ->with($notification);
+     }
+
+     public function interviewScheduling($id)
+     {
+          $data['recruitment'] = $this->recruitmentRepository->viewEdit($id);
+          $data['schedule']    = $this->recruitmentRepository->viewSchedule($id);
+          return view('Interview_scheduled.interview_scheduling',$data);
+     }
+
+     public function interviewFeedback($id)
+     {
+          $data['recruitment'] = $this->recruitmentRepository->viewEdit($id);
+          $data['schedule']    = $this->recruitmentRepository->viewSchedule($id);
+          $data['feedback']    = $this->recruitmentRepository->viewFeedback($id);
+          return view('Interview_scheduled.interview_feedback',$data);
      }
  
 }
