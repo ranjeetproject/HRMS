@@ -118,6 +118,7 @@ class RecruitmentRepository
     public function updateSave($inputData, $id)
     {
 
+        
         $row = Recruitment::find($id);
         if($row){
             $row->name_of_candidate = $inputData['name_of_candidate'];
@@ -135,14 +136,25 @@ class RecruitmentRepository
             $row->notice_period = $inputData['notice_period'];
             $row->special_remarks = $inputData['special_remarks'];
             $row->save();
-            $skill = CandidateSkill::where('recruitment_id','=',$id)->get();
-            $recruitmentSkillData = [];
+            $skill = CandidateSkill::where('recruitment_id','=',$id)->pluck('skill_id','id')->toArray();
+            if($skill){
+                foreach($inputData['skill']  as $val){
+                    if(!in_array($val,$skill))
+                    {
+                        CandidateSkill::create([
+                                'skill_id'=>$val,
+                                'recruitment_id'=> $id
+                                ]);
+                    }
+                        
+                }
+                $oldSkill = array_diff($skill,$inputData['skill']);
+                if(count($oldSkill) > 0)
+                {
+                    CandidateSkill::where('recruitment_id','=',$id)->whereIn('skill_id',$oldSkill)->delete();
+                }
+            }
             
-                    foreach($inputData['skill']  as $val){
-                        $recruitmentSkillData['skill_id'] = $val;
-                        $recruitmentSkillData['recruitment_id'] = $row->id;
-                        CandidateSkill::where('recruitment_id',$row->id)->save($recruitmentSkillData);
-                    } 
             return ['success' => true];
         } else {
             return ['success' => false];
