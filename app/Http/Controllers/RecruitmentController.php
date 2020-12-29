@@ -51,7 +51,7 @@ class RecruitmentController extends Controller
                'expected_ctc'=> 'required',
                'current_location'=> 'required',
                'skill'=> 'required',
-               'notice_period'=> 'required',
+               'notice_period'=> 'required|numeric',
                'reffered_by'=> 'required',
                'special_remarks'=> 'required',
            ]);
@@ -109,7 +109,7 @@ class RecruitmentController extends Controller
                'expected_ctc'=> 'required',
                'current_location'=> 'required',
                'skill'=> 'required',
-               'notice_period'=> 'required',
+               'notice_period'=> 'required|numeric',
                'reffered_by'=> 'required',
                'special_remarks'=> 'required',
            ]);
