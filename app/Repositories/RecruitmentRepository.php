@@ -42,7 +42,7 @@ class RecruitmentRepository
                 <i class="fa fa-wheelchair"></i> 
                 </a>
                 <a href="'.action('RecruitmentController@interviewFeedback', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
-                <i class="fa fa-wheelchair"></i>
+                <i class="fas fa-comment-dots"></i>
                 </a>';
 
                 return $html;
