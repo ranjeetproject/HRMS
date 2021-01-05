@@ -309,7 +309,7 @@
                                      <div class="row">
                                         <div class="col-md-4">
                                             <label class=" form-control-label" for="skill">Skills/Technology</label>
-                                                <ul class="list-group list-group-flush">
+                                                <ul class="list-group list-group-flush" style="overflow: auto;"> 
                                                   @foreach($skills as $skill)
                                                     <li class="list-group-item"> <input type="checkbox" class="form-check-input" name="skill[]" id="skill" value="{{$skill->id}}">{{$skill->skill_name}}</li>
                                                   @endforeach
@@ -335,16 +335,16 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class=" form-control-label" for="reffered_by">Rreffered By</label>
+                                                    <label class=" form-control-label" for="refferdby">Refferd By</label>
                                                     <input
-                                                        class="form-control {{ $errors->has("reffered_by") ? 'is-invalid' : '' }}"
+                                                        class="form-control {{ $errors->has("refferdby") ? 'is-invalid' : '' }}"
                                                         type="text"
-                                                        name="reffered_by" id="reffered_by" placeholder="Please enter reffered by"
+                                                        name="refferdby" id="refferdby" placeholder="Please enter reffered by"
                                                         maxlength="191"
-                                                        value="{{old('reffered_by')}}">
+                                                        value="{{old('refferdby')}}">
 
                                                     <span class="form-text text-danger"
-                                                        id="error_reffered_by">{{ $errors->getBag('default')->first('reffered_by') }}</span>
+                                                        id="error_refferdby">{{ $errors->getBag('default')->first('refferdby') }}</span>
                                                 </div>
                                             </div>
                                            </div>
@@ -368,7 +368,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="col text-right">
-                                        <a class="btn btn-danger" href="">
+                                        <a class="btn btn-danger" href="{{action('RecruitmentController@index')}}">
                                             Cancel </a>
                                         <button type="submit" class="btn btn-primary"> Submit</button>
                                     </div>
@@ -435,12 +435,7 @@
                      notice_period: {
                         required: true
                     },
-                    reffered_by: {
-                        required: true
-                    },
-                    special_remarks: {
-                        required: true
-                    },
+                   
                 },
                 messages: {
                     name_of_candidate: {
@@ -490,12 +485,6 @@
                     },
                     notice_period: {
                         required: "This notice period field is required.",
-                    },
-                    reffered_by: {
-                        required: "This reffered by field is required.",
-                    },
-                    special_remarks: {
-                        required: "This special_remarks field is required.",
                     },
 
                 },

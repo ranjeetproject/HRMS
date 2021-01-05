@@ -88,6 +88,7 @@ class RecruitmentRepository
         $recruitmentData['expected_ctc'] = $inputData['expected_ctc'];
         $recruitmentData['current_location'] = $inputData['current_location'];
         $recruitmentData['notice_period'] = $inputData['notice_period'];
+        $recruitmentData['refferdby'] = $inputData['refferdby'];
         $recruitmentData['special_remarks'] = $inputData['special_remarks'];
         $row = Recruitment::create($recruitmentData);
         if ($row && $row->id > 0) {
@@ -134,6 +135,7 @@ class RecruitmentRepository
             $row->expected_ctc = $inputData['expected_ctc'];
             $row->current_location = $inputData['current_location'];
             $row->notice_period = $inputData['notice_period'];
+            $row->refferdby = $inputData['refferdby'];
             $row->special_remarks = $inputData['special_remarks'];
             $row->save();
             $skill = CandidateSkill::where('recruitment_id','=',$id)->pluck('skill_id','id')->toArray();

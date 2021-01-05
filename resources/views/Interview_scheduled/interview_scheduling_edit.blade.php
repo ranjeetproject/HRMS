@@ -29,7 +29,9 @@
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title"><i class="fas fa-align-justify"></i> Create</h3>
+                                <h3 class="card-title"><i class="fas fa-align-justify"></i> Edit</h3>
+                                <a class="btn btn-danger" href="{{action('RecruitmentController@index')}}" style="float:right">
+                                            Back </a>
                             </div>
                             <form role="form" action="{{action('InterviewScheduleController@update',[@$schedule->id])}}" method="POST"
                                   enctype="multipart/form-data" id="addReqForm">

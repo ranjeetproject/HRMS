@@ -29,6 +29,9 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-eye "></i> View</h3>
+                                <a class="btn btn-danger" href="{{action('RecruitmentController@index')}}" style="float:right">
+                                            Back </a>
+
                             </div>
                             <div class="card-body">
                                 <table class="table table-hover">
@@ -45,21 +48,21 @@
                                         <td>{{@$recruitment->alternate_number}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Total Years Experience</th>
-                                        <td>{{@$recruitment->total_years_experience}} Years</td>
+                                        <th>Total Experience</th>
+                                        <td>{{@$recruitment->total_years_experience}} Years {{@$recruitment->total_months_experience}} Months</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th>Total Months Experience</th>
                                         <td>{{@$recruitment->total_months_experience}} Months</td>
-                                    </tr>
+                                    </tr> -->
                                      <tr>
-                                        <th>Relevent Years Experience</th>
-                                        <td>{{@$recruitment->relevent_years_experience}} Years</td>
+                                        <th>Total Relevent Experience</th>
+                                        <td>{{@$recruitment->relevent_years_experience}} Years {{@$recruitment->relevent_months_experience}} Months</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <th>Relevent Months Experience</th>
                                         <td>{{@$recruitment->relevent_months_experience}} Months</td>
-                                    </tr>
+                                    </tr> -->
                                     <tr>
                                         <th>Address</th>
                                         <td>{{@$recruitment->address}}</td>

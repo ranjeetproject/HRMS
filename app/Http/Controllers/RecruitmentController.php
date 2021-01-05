@@ -52,8 +52,6 @@ class RecruitmentController extends Controller
                'current_location'=> 'required',
                'skill'=> 'required',
                'notice_period'=> 'required|numeric',
-               'reffered_by'=> 'required',
-               'special_remarks'=> 'required',
            ]);
           
            $input = $request->all();
@@ -110,8 +108,6 @@ class RecruitmentController extends Controller
                'current_location'=> 'required',
                'skill'=> 'required',
                'notice_period'=> 'required|numeric',
-               'reffered_by'=> 'required',
-               'special_remarks'=> 'required',
            ]);
           
            $input = $request->all();
