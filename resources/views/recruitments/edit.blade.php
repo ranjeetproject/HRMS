@@ -351,7 +351,7 @@
                                             </div>
                                            </div>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class=" form-control-label" for="special_remarks">Special Remarks</label>
                                                 <textarea
@@ -360,6 +360,24 @@
 
                                                     <span class="form-text text-danger"
                                                         id="error_special_remarks">{{ $errors->getBag('default')->first('special_remarks') }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class=" form-control-label" for="upload_resume">Upload Resume</label>
+                                                    <input
+                                                        class="form-control {{ $errors->has('upload_resume') ? 'is-invalid' : '' }}"
+                                                        type="file"
+                                                        name="upload_resume" id="InputFile" placeholder="Please upload resume"
+                                                        maxlength="191"
+                                                        value="{{old('upload_resume',$recruitment->upload_resume)}}">
+
+                                                    <span class="form-text text-danger"
+                                                        id="error_upload_resume">{{ $errors->getBag('default')->first('upload_resume') }}</span>
+                                                        @if(@$recruitment->upload_resume!='')
+                                                        <img src="{{asset('upload_resume/Zpt8n')}}" height="70" width="120" />
+                                                        @endif
+                                                        <img src=" " id="toUpload" style="height: 100px;" />
                                                 </div>
                                             </div>
                                         </div>
@@ -434,9 +452,10 @@
                     'skill[]': {
                         required: true
                     },
-                     notice_period: {
+                    notice_period: {
                         required: true
                     },
+                   
                 },
                 messages: {
                     name_of_candidate: {
@@ -487,7 +506,7 @@
                     notice_period: {
                         required: "This notice period field is required.",
                     },
-
+                 
                 },
                 errorElement: "span",
                 errorClass: "form-text text-danger is-invalid"
@@ -498,6 +517,21 @@
                     $('button[type=submit]').attr("disabled", false);
                 }, 3000);
             });
+        });
+        function readURL(input) 
+        {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    $('#toUpload').attr('src', e.target.result);
+                }
+                
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+        $("#InputFile").change(function() {
+            readURL(this);
         });
     </script>
 @endsection

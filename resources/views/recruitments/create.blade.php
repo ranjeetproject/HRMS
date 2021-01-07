@@ -30,6 +30,8 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-align-justify"></i> Create</h3>
+                                <a class="btn btn-danger" href="{{action('RecruitmentController@index')}}" style="float:right">
+                                            Back </a>
                             </div>
                             <form role="form" action="{{action('RecruitmentController@store')}}" method="POST"
                                   enctype="multipart/form-data" id="addReqForm">
@@ -40,7 +42,7 @@
                                             <div class="form-group">
                                                <label class="form-control-label" for="name_of_candidate">Name of Candidate</label>
                                                 <input
-                                                    class="form-control {{ $errors->has("name_of_candidate") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="name_of_candidate" id="name_of_candidate" placeholder="Please enter name of candidate"
                                                     maxlength="191"
@@ -54,7 +56,7 @@
                                             <div class="form-group">
                                                 <label class="form-control-label" for="mobile_number">Mobile Number</label>
                                                 <input
-                                                    class="form-control {{ $errors->has("mobile_number") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('mobile_number') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="mobile_number" id="mobile_number" placeholder="Please enter mobile number"
                                                     maxlength="191"
@@ -68,7 +70,7 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="alternate_number">Alternate Number</label>
                                                 <input
-                                                    class="form-control {{ $errors->has("alternate_number") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('alternate_number') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="alternate_number" id="alternate_number" placeholder="Please enter alternate number"
                                                     maxlength="191"
@@ -85,7 +87,7 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="total_years_experience">Total Experience</label>
                                                 <select
-                                                    class="form-control custom-select {{ $errors->has("total_years_experience") ? 'is-invalid' : '' }}"
+                                                    class="form-control custom-select {{ $errors->has('total_years_experience') ? 'is-invalid' : '' }}"
                                                     name="total_years_experience" id="total_years_experience">
                                                     <option value="">Years</option>
                                                     <option value="0">0 Years</option>
@@ -117,7 +119,7 @@
                                             <div class="form-group">
                                                 <label class="form-control-label" for="total_months_experience"><br></label>
                                                 <select
-                                                    class="form-control custom-select {{ $errors->has("total_months_experience") ? 'is-invalid' : '' }}"
+                                                    class="form-control custom-select {{ $errors->has('total_months_experience') ? 'is-invalid' : '' }}"
                                                     name="total_months_experience" id="total_months_experience">
                                                     <option value="">Months</option>
                                                     <option value="0">0 Months</option>
@@ -147,7 +149,7 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="address">Address</label>
                                                 <textarea
-                                                    class="form-control {{ $errors->has("address") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}"
                                                     name="address" id="address" placeholder="Please enter address">{{old('address')}}</textarea>
 
                                                 <span class="form-text text-danger"
@@ -222,7 +224,7 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="email_id">Email ID </label>
                                                <input
-                                                    class="form-control {{ $errors->has("email_id") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('email_id') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="email_id" id="email_id" placeholder="Please enter email id"
                                                     maxlength="191"
@@ -236,7 +238,7 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="application_for">Application For</label>
                                                <input
-                                                    class="form-control {{ $errors->has("application_for") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('application_for') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="application_for" id="application_for" placeholder="Please enter application for"
                                                     maxlength="191"
@@ -250,7 +252,7 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="highest_qualification">Highest Qualification</label>
                                                <input
-                                                    class="form-control {{ $errors->has("highest_qualification") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('highest_qualification') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="highest_qualification" id="highest_qualification" placeholder="Please enter highest qualification"
                                                     maxlength="191"
@@ -266,7 +268,7 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="current_ctc">Current CTC</label>
                                                <input
-                                                    class="form-control {{ $errors->has("current_ctc") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('current_ctc') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="current_ctc" id="current_ctc" placeholder="Please enter current ctc"
                                                     maxlength="191"
@@ -280,7 +282,7 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="expected_ctc">Expected CTC</label>
                                                <input
-                                                    class="form-control {{ $errors->has("expected_ctc") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('expected_ctc') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="expected_ctc" id="expected_ctc" placeholder="Please enter expected ctc"
                                                     maxlength="191"
@@ -294,7 +296,7 @@
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="current_location">Current Location</label>
                                                <input
-                                                    class="form-control {{ $errors->has("current_location") ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('current_location') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="current_location" id="current_location" placeholder="Please enter current location"
                                                     maxlength="191"
@@ -323,7 +325,7 @@
                                                 <div class="form-group">
                                                     <label class=" form-control-label" for="notice_period">Notice Period</label>
                                                     <input
-                                                        class="form-control {{ $errors->has("notice_period") ? 'is-invalid' : '' }}"
+                                                        class="form-control {{ $errors->has('notice_period') ? 'is-invalid' : '' }}"
                                                         type="text"
                                                         name="notice_period" id="notice_period" placeholder="Please enter notice period"
                                                         maxlength="191"
@@ -337,7 +339,7 @@
                                                 <div class="form-group">
                                                     <label class=" form-control-label" for="refferdby">Refferd By</label>
                                                     <input
-                                                        class="form-control {{ $errors->has("refferdby") ? 'is-invalid' : '' }}"
+                                                        class="form-control {{ $errors->has('refferdby') ? 'is-invalid' : '' }}"
                                                         type="text"
                                                         name="refferdby" id="refferdby" placeholder="Please enter reffered by"
                                                         maxlength="191"
@@ -349,15 +351,29 @@
                                             </div>
                                            </div>
                                         <div class="row">
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class=" form-control-label" for="special_remarks">Special Remarks</label>
-                                                <textarea
-                                                    class="form-control {{ $errors->has("special_remarks") ? 'is-invalid' : '' }}"
-                                                    name="special_remarks" id="special_remarks" placeholder="Please enter special remarks">{{old('special_remarks')}}</textarea>
+                                                    <textarea
+                                                        class="form-control {{ $errors->has('special_remarks') ? 'is-invalid' : '' }}"
+                                                        name="special_remarks" id="special_remarks" placeholder="Please enter special remarks">{{old('special_remarks')}}</textarea>
 
                                                     <span class="form-text text-danger"
                                                         id="error_special_remarks">{{ $errors->getBag('default')->first('special_remarks') }}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class=" form-control-label" for="upload_resume">Upload Resume</label>
+                                                    <input
+                                                        class="form-control {{ $errors->has('upload_resume') ? 'is-invalid' : '' }}"
+                                                        type="file"
+                                                        name="upload_resume" id="upload_resume" placeholder="Please upload resume"
+                                                        maxlength="191"
+                                                        value="{{old('upload_resume')}}">
+
+                                                    <span class="form-text text-danger"
+                                                        id="error_upload_resume">{{ $errors->getBag('default')->first('upload_resume') }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -432,7 +448,10 @@
                     'skill[]': {
                         required: true
                     },
-                     notice_period: {
+                    notice_period: {
+                        required: true
+                    },
+                    upload_resume: {
                         required: true
                     },
                    
@@ -485,6 +504,9 @@
                     },
                     notice_period: {
                         required: "This notice period field is required.",
+                    },
+                    upload_resume: {
+                        required:"This resume field is required.",
                     },
 
                 },

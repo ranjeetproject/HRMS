@@ -52,9 +52,26 @@ class RecruitmentController extends Controller
                'current_location'=> 'required',
                'skill'=> 'required',
                'notice_period'=> 'required|numeric',
+               'upload_resume' => 'required|mimes:doc,docx,pdf'
            ]);
           
            $input = $request->all();
+           if ($request->hasFile('upload_resume')){
+               $rand_val           = date('YMDHIS') . rand(11111, 99999);
+               $image_file_name    = md5($rand_val);
+               $file               = $request->file('upload_resume');
+               $fileExt            = $file->getClientOriginalExtension();
+               if($fileExt=='pdf' ||  $fileExt =='doc')
+               {
+                 $fileName           = $image_file_name.'.'.$fileExt;
+                 $destinationPath    = public_path().'/upload_resume';
+                 $file->move($destinationPath,$fileName);
+                 $input['upload_resume']    = $fileName ;
+               }else{
+                    
+                    return redirect()->back();
+               }
+          }
            $data = $this->recruitmentRepository->insert($input);
            if ($data['success'] == true) {
                $notification = array(
@@ -111,16 +128,30 @@ class RecruitmentController extends Controller
            ]);
           
            $input = $request->all();
-           $data = $this->recruitmentRepository->updateSave($input,$id);
-           if ($data['success'] == true) {
+           if ($request->hasFile('upload_resume')){
+               $rand_val           = date('YMDHIS') . rand(11111, 99999);
+               $image_file_name    = md5($rand_val);
+               $file               = $request->file('upload_resume');
+               $fileExt            = $file->getClientOriginalExtension();
+               if($fileExt=='pdf' ||  $fileExt =='doc')
+               {
+                 $fileName           = $image_file_name.'.'.$fileExt;
+                 $destinationPath    = public_path().'/upload_resume';
+                 $file->move($destinationPath,$fileName);
+                 $input['upload_resume']    = $fileName ;
+               }
+          }
+          $data = $this->recruitmentRepository->updateSave($input,$id);
+          if ($data['success'] == true) {
                $notification = array(
                     'message' => 'Recruitment is successfully update!',
                     'alert-type' => 'success'
                );
                return redirect()->action('RecruitmentController@index')->with($notification);
-           } else {
+          } else {
                return redirect()->back();
-           }
+          }
+          
      }
 
      public function destroy($id)

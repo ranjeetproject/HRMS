@@ -90,6 +90,7 @@ class RecruitmentRepository
         $recruitmentData['notice_period'] = $inputData['notice_period'];
         $recruitmentData['refferdby'] = $inputData['refferdby'];
         $recruitmentData['special_remarks'] = $inputData['special_remarks'];
+        $recruitmentData['upload_resume'] = $inputData['upload_resume'];
         $row = Recruitment::create($recruitmentData);
         if ($row && $row->id > 0) {
            foreach($inputData['skill'] as $val){
@@ -119,7 +120,7 @@ class RecruitmentRepository
     public function updateSave($inputData, $id)
     {
 
-        
+      
         $row = Recruitment::find($id);
         if($row){
             $row->name_of_candidate = $inputData['name_of_candidate'];
@@ -137,6 +138,7 @@ class RecruitmentRepository
             $row->notice_period = $inputData['notice_period'];
             $row->refferdby = $inputData['refferdby'];
             $row->special_remarks = $inputData['special_remarks'];
+            $row->upload_resume = $inputData['upload_resume'];
             $row->save();
             $skill = CandidateSkill::where('recruitment_id','=',$id)->pluck('skill_id','id')->toArray();
             if($skill){
