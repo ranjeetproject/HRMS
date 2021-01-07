@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Skill;
+use App\CandidateSkill;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -24,7 +25,10 @@ class SkillRepository
         
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
-                $html = '<form method="POST" action="' . action('SkillController@destroy', $row->id) . '" accept-charset="UTF-8" style="display: inline-block;"
+                $html = ' <a href="' . action('SkillController@edit', $row->id) . '" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary">
+                <i class="fas fa-edit"></i>
+                </a>
+                <form method="POST" action="' . action('SkillController@destroy', $row->id) . '" accept-charset="UTF-8" style="display: inline-block;"
                 onsubmit="return confirm(\'Are you sure want to delete this row?\');"><input name="_method" type="hidden" value="DELETE">
                         <input name="_token" type="hidden" value="' . csrf_token() . '">
                         <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
@@ -49,18 +53,40 @@ class SkillRepository
         }
     }
 
+    public function viewEdit($id)
+    {
+        $row = Skill::find($id);
+        return $row;
+    }
+    public function updateSave($inputData, $id)
+    {
+        $row = Skill::find($id);
+        if ($row) {
+            $row->update($inputData);
+            return ['success' => true];
+        } else {
+            return ['success' => false];
+        }
+    }
+
     public function deleteSpecific($id)
     {
-        if ($id > 0) {
-            $row = Skill::find($id);
-            if ($row) {
-                $row->delete();
-                return ['success' => true];
+        $check = CandidateSkill::where('skill_id','=',$id)->get();
+        if(count($check)!= 0){
+            return ['success' => false];
+           
+        }else{
+            if ($id > 0) {
+                $row = Skill::find($id);
+                if ($row) {
+                    $row->delete();
+                    return ['success' => true];
+                } else {
+                    return ['success' => false];
+                }
             } else {
                 return ['success' => false];
             }
-        } else {
-            return ['success' => false];
         }
     }
 }

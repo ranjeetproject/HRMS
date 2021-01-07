@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
-
+use Carbon\Carbon;
 
 class InterviewFeedbackRepository
 {
     public function insert($inputData)
     {
         $inputData['interview_scheduling_date'] = date('Y-m-d',strtotime($inputData['interview_scheduling_date']));
+        $inputData['interview_scheduling_time'] =  Carbon::parse($inputData['interview_scheduling_time'])->format('h:i:s');
         $row = InterviewFeedback::create($inputData);
         if ($row && $row->id > 0) {
             return ['success' => true];
@@ -38,6 +39,7 @@ class InterviewFeedbackRepository
     public function updateSave($inputData, $id)
     {
         $inputData['interview_scheduling_date'] = date('Y-m-d',strtotime($inputData['interview_scheduling_date']));
+        $inputData['interview_scheduling_time'] =  Carbon::parse($inputData['interview_scheduling_time'])->format('h:i:s');
         $row = InterviewFeedback::find($id);
         if ($row) {
             $row->update($inputData);

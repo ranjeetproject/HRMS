@@ -40,12 +40,15 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('skills', 'SkillController@index');
     Route::get('skills/create', 'SkillController@create');
+    Route::get('skills/edit/{id}', 'SkillController@edit');
+
 
 
 
 
 
     Route::post('skills/store', 'SkillController@store');
+    Route::post('skills/update/{id}', 'SkillController@update');
     Route::post('recruitment/store', 'RecruitmentController@store');
     Route::post('recruitment/update/{id}', 'RecruitmentController@update');
     Route::post('interview-scheduling/store', 'InterviewScheduleController@store');

@@ -89,6 +89,22 @@
                                             </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                    <label class=" form-control-label" for="interview_scheduling_time">Interview Time</label>
+                                                        <input
+                                                                class="form-control timepicker {{ $errors->has('interview_scheduling_time') ? 'is-invalid' : '' }}"
+                                                                type="text"
+                                                                name="interview_scheduling_time" id="interview_scheduling_time" placeholder="Please enter interview scheduling date"
+                                                                maxlength="191"
+                                                                value="{{old('interview_scheduling_time',@$schedule->interview_scheduling_time)}}">
+                                                   
+                                                    <span class="form-text text-danger"
+                                                        id="error_interview_scheduling_time">{{ $errors->getBag('default')->first('interview_scheduling_time') }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class=" form-control-label" for="interviewer">Interviewer </label>
@@ -144,7 +160,9 @@
 @section('customJsInclude')
     <script>
         $(function () {
-            
+            $('.timepicker').datetimepicker({
+                format: 'LT'
+            });
             $("#interview_scheduling_date").datepicker({
                 dateFormat: "dd-mm-yy",
                 changeMonth: true,

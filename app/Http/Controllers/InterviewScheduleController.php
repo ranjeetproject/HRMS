@@ -21,9 +21,10 @@ class InterviewScheduleController extends Controller
         $request->validate([
             'recruitment_id' => 'required',
             'interview_scheduling_date'=>'required',
+            'interview_scheduling_time'=>'required',
             'user_id' => 'required',
         ]);
-        $input = $request->only('recruitment_id', 'interview_scheduling_date','user_id');
+        $input = $request->only('recruitment_id', 'interview_scheduling_date','interview_scheduling_time','user_id');
         $data = $this->interviewScheduleRepository->insert($input);
            if ($data['success'] == true) {
                $notification = array(
@@ -48,9 +49,10 @@ class InterviewScheduleController extends Controller
         $request->validate([
             'recruitment_id' => 'required',
             'interview_scheduling_date'=>'required',
+            'interview_scheduling_time'=>'required',
             'user_id' => 'required',
         ]);
-        $input = $request->only('recruitment_id', 'interview_scheduling_date','user_id');
+        $input = $request->only('recruitment_id', 'interview_scheduling_date','interview_scheduling_time','user_id');
         $data = $this->interviewScheduleRepository->updateSave($input,$id);
            if ($data['success'] == true) {
                $notification = array(

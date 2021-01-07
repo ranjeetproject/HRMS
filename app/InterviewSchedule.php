@@ -13,5 +13,5 @@ class InterviewSchedule extends Model
 
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
-    protected $fillable = ['recruitment_id','interview_scheduling_date','user_id'];
+    protected $fillable = ['recruitment_id','interview_scheduling_date','interview_scheduling_time','user_id'];
 }

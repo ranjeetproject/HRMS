@@ -39,7 +39,7 @@
                                         <div class="form-group row">
                                             <label class="col-md-2 form-control-label" for="skill_name">Skill Name <span class="text-danger">*</span></label>
                                             <div class="col-md-10">
-                                                <input class="form-control {{ $errors->has("skill_name") ? 'is-invalid' : '' }}"
+                                                <input class="form-control {{ $errors->has('skill_name') ? 'is-invalid' : '' }}"
                                                     type="text" name="skill_name" id="skill_name" placeholder="Please enter skill name"
                                                     maxlength="191" value="{{old('skill_name')}}">
                                                 <span class="form-text text-danger"

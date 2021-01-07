@@ -27,7 +27,7 @@ class SkillController extends Controller
     }
     
     public function store(Request $request)
-   {
+    {
         $request->validate([
             'skill_name' => 'required',
         ]);
@@ -42,16 +42,51 @@ class SkillController extends Controller
         } else {
             return redirect()->back();
         }
-   }
+    }
+
+    public function edit($id)
+    {
+        $skill = $this->skillRepository->viewEdit($id);
+        return view('skills.edit',compact('skill'));
+    }
+
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'skill_name' => 'required',
+        ]);
+        $input = $request->all();
+        $data = $this->skillRepository->updateSave($input,$id);
+        if ($data['success'] == true) {
+            $notification = array(
+                'message' => 'Skill is successfully update!',
+                'alert-type' => 'success'
+            );
+            return redirect()->action('SkillController@index')->with($notification);
+        } else {
+            return redirect()->back();
+        }
+    }
 
    public function destroy($id)
    {
-       $this->skillRepository->deleteSpecific($id);
-       $notification = array(
-           'message' => 'Skill Deleted successfully',
-           'alert-type' => 'success'
-       );
-       return redirect()->action('SkillController@index')
-           ->with($notification);
+       $data = $this->skillRepository->deleteSpecific($id);
+       if ($data['success'] == true) {
+            $notification = array(
+                'message' => 'Skill Deleted successfully',
+                'alert-type' => 'success'
+            );
+            return redirect()->action('SkillController@index')
+                ->with($notification);
+       }else{
+        $notification = array(
+            'message' => 'Skill already Selected',
+            'alert-type' => 'success'
+        );
+        return redirect()->action('SkillController@index')
+        ->with($notification);
+       }
+
+    
    }
 }

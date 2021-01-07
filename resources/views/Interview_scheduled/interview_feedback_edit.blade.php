@@ -89,7 +89,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            
+                                        <div class="form-group">
+                                                    <label class=" form-control-label" for="interview_scheduling_time">Interview Time</label>
+                                                        <input
+                                                                class="form-control timepicker {{ $errors->has('interview_scheduling_time') ? 'is-invalid' : '' }}"
+                                                                type="text"
+                                                                name="interview_scheduling_time" id="interview_scheduling_time" placeholder="Please enter interview scheduling date"
+                                                                maxlength="191"
+                                                                value="{{old('interview_scheduling_time',@$feedback->interview_scheduling_time)}}" readonly>
+                                                   
+                                                    <span class="form-text text-danger"
+                                                        id="error_interview_scheduling_time">{{ $errors->getBag('default')->first('interview_scheduling_time') }}</span>
+                                            </div>
                                         </div>
                                        
                                     </div>
