@@ -141,6 +141,7 @@ class RecruitmentController extends Controller
                  $input['upload_resume']    = $fileName ;
                }
           }
+         
           $data = $this->recruitmentRepository->updateSave($input,$id);
           if ($data['success'] == true) {
                $notification = array(
@@ -163,6 +164,20 @@ class RecruitmentController extends Controller
          );
          return redirect()->action('RecruitmentController@index')
              ->with($notification);
+     }
+
+     public function downloadfile($id)
+     {
+          
+          $file= public_path(). "\upload_resume";
+
+          
+      
+          return response()->download($file);
+
+     
+
+     
      }
 
      public function interviewScheduling($id)

@@ -31,6 +31,7 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('recruitment', 'RecruitmentController@index');
     Route::get('recruitment/create', 'RecruitmentController@create');
     Route::get('recruitment/show/{id}', 'RecruitmentController@show');
+    Route::get('recruitment/download/{id}', 'RecruitmentController@downloadfile');
     Route::get('recruitment/edit/{id}', 'RecruitmentController@edit');
     Route::get('recruitment/interview-scheduling/{id}', 'RecruitmentController@interviewScheduling');
     Route::get('recruitment/interview-feedback/{id}', 'RecruitmentController@interviewFeedback');

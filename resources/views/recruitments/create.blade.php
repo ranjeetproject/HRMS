@@ -371,7 +371,7 @@
                                                         name="upload_resume" id="upload_resume" placeholder="Please upload resume"
                                                         maxlength="191"
                                                         value="{{old('upload_resume')}}">
-
+                                                        
                                                     <span class="form-text text-danger"
                                                         id="error_upload_resume">{{ $errors->getBag('default')->first('upload_resume') }}</span>
                                                 </div>

@@ -22,7 +22,7 @@ class RecruitmentRepository
     public function getAll()
     {
         $data = Recruitment::orderBy('created_at', 'DESC')->get([
-            'id', 'name_of_candidate','mobile_number','total_years_experience','total_months_experience','address','email_id'
+            'id', 'name_of_candidate','mobile_number','total_years_experience','total_months_experience','address','email_id','upload_resume'
         ]);
         
         return Datatables::of($data)
@@ -44,6 +44,11 @@ class RecruitmentRepository
                 <a href="'.action('RecruitmentController@interviewFeedback', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
                 <i class="fas fa-comment-dots"></i>
                 </a>';
+                if (isset($row['upload_resume'])){
+                    $html .= '<a href="'.action('RecruitmentController@downloadfile', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
+                                <i class="fas fa-file-download"></i>
+                            </a>';
+                }
 
                 return $html;
             })
@@ -120,9 +125,11 @@ class RecruitmentRepository
     public function updateSave($inputData, $id)
     {
 
-      
         $row = Recruitment::find($id);
         if($row){
+            if(!array_key_exists("upload_resume",$inputData)){
+                $inputData['upload_resume'] = $row->upload_resume;
+            }
             $row->name_of_candidate = $inputData['name_of_candidate'];
             $row->mobile_number = $inputData['mobile_number'];
             $row->alternate_number = $inputData['alternate_number'];
