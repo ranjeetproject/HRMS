@@ -38,15 +38,15 @@ class RecruitmentRepository
                         <input name="_token" type="hidden" value="' . csrf_token() . '">
                         <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
                         </form> 
-                <a href="'.action('RecruitmentController@interviewScheduling', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
+                <a href="'.action('RecruitmentController@interviewScheduling', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Interview Scheduling" class="btn btn-dark">
                 <i class="fa fa-wheelchair"></i> 
                 </a>
-                <a href="'.action('RecruitmentController@interviewFeedback', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
+                <a href="'.action('RecruitmentController@interviewFeedback', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Interview Feedback" class="btn btn-secondary">
                 <i class="fas fa-comment-dots"></i>
                 </a>';
                 if(isset($row['upload_resume']))
                 {
-                    $html .= '<a href="'.action('RecruitmentController@downloadfile', $row->upload_resume) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
+                    $html .= '<a href="'.action('RecruitmentController@downloadfile', $row->upload_resume) .'" data-toggle="tooltip" data-placement="top" title="Download Document" class="btn btn-success">
                                 <i class="fas fa-file-download"></i>
                             </a>';
                 }
