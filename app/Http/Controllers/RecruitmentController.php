@@ -166,18 +166,10 @@ class RecruitmentController extends Controller
              ->with($notification);
      }
 
-     public function downloadfile($id)
+     public function downloadfile($file)
      {
-          
-          $file= public_path(). "\upload_resume";
-
-          
-      
+          $file= public_path()."/upload_resume/".$file;
           return response()->download($file);
-
-     
-
-     
      }
 
      public function interviewScheduling($id)

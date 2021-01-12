@@ -44,8 +44,9 @@ class RecruitmentRepository
                 <a href="'.action('RecruitmentController@interviewFeedback', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
                 <i class="fas fa-comment-dots"></i>
                 </a>';
-                if (isset($row['upload_resume'])){
-                    $html .= '<a href="'.action('RecruitmentController@downloadfile', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
+                if(isset($row['upload_resume']))
+                {
+                    $html .= '<a href="'.action('RecruitmentController@downloadfile', $row->upload_resume) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-dark">
                                 <i class="fas fa-file-download"></i>
                             </a>';
                 }
