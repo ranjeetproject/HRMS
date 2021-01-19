@@ -28,11 +28,18 @@
                         </p>
                     </a>
                 </li>
-                  <li class="nav-item ">
+                <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'skills') ? 'active' : '' }}"
                         href="{{action('SkillController@index')}}">
                         <i class="nav-icon fas fa-book"></i>
                         <p>Add Skills</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'final-round') ? 'active' : '' }}"
+                        href="{{action('FinalRoundController@index')}}">
+                        <i class="nav-icon fas fa-user-check"></i>
+                        <p>Final Round List</p>
                     </a>
                 </li>
             </ul>

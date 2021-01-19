@@ -21,7 +21,7 @@ class InterviewFeedbackController extends Controller
             'interviewer_rating' => 'required',
             'interviewer_feedback'=>'required',
         ]);
-        $input = $request->only('recruitment_id', 'interview_scheduling_date','interview_scheduling_time','user_id','interviewer_rating','interviewer_feedback','active');
+        $input = $request->only('recruitment_id','schedule_id','interview_scheduling_date','interview_scheduling_time','user_id','interviewer_rating','interviewer_feedback','active');
         $key =  array_keys($input);
         $lastkey = end($key);
         if($lastkey == 'active'){
@@ -33,6 +33,7 @@ class InterviewFeedbackController extends Controller
             
             $input['active'] = 0;
         }
+        
         $data = $this->interviewFeedbackRepository->insert($input);
            if ($data['success'] == true) {
                $notification = array(

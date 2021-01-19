@@ -375,7 +375,7 @@
                                                     <span class="form-text text-danger"
                                                         id="error_upload_resume">{{ $errors->getBag('default')->first('upload_resume') }}</span>
                                                         @if(@$recruitment->upload_resume!='')
-                                                        <img src="{{asset('uploadimg/pdf.ico')}}" height="40px" width="40px" />
+                                                        <img src="{{asset('uploadimg/Zpt8n.jpg')}}" height="40px" width="40px" />
                                                         @endif
                                                         
                                                 </div>

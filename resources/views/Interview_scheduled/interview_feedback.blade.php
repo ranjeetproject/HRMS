@@ -44,6 +44,10 @@
                                                 class="form-control"
                                                 type="hidden"
                                                 name="recruitment_id" id="recruitment_id" value="{{@$recruitment->id}}">
+                                                <input
+                                                class="form-control"
+                                                type="hidden"
+                                                name="schedule_id" id="schedule_id" value="{{@$schedule->id}}">
                                                <label class="form-control-label" for="name_of_candidate">Name of Candidate</label>
                                                 <input
                                                     class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"
@@ -96,7 +100,7 @@
                                         <div class="form-group">
                                                     <label class=" form-control-label" for="interview_scheduling_time">Interview Time</label>
                                                         <input
-                                                                class="form-control {{ $errors->has('interview_scheduling_time') ? 'is-invalid' : '' }}"
+                                                                class="form-control timepicker {{ $errors->has('interview_scheduling_time') ? 'is-invalid' : '' }}"
                                                                 type="text"
                                                                 name="interview_scheduling_time" id="interview_scheduling_time" placeholder="Please enter interview scheduling date"
                                                                 maxlength="191"

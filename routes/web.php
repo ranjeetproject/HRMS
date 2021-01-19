@@ -26,6 +26,9 @@ Route::get('/', 'LoginController@getLogin');
 Route::post('/post-login', 'LoginController@authenticate')->name('Login.Auth');
 
 Route::middleware(['adminRoute'])->group(function (){
+  
+////////////////////////////////////// Get ////////////////////////////////////////////////////////////////
+
     Route::get('/logout','LoginController@getLogOut')->name('Logout'); 
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
     Route::get('recruitment', 'RecruitmentController@index');
@@ -33,10 +36,16 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('recruitment/show/{id}', 'RecruitmentController@show');
     Route::get('recruitment/download/{id}', 'RecruitmentController@downloadfile');
     Route::get('recruitment/edit/{id}', 'RecruitmentController@edit');
+
     Route::get('recruitment/interview-scheduling/{id}', 'RecruitmentController@interviewScheduling');
-    Route::get('recruitment/interview-feedback/{id}', 'RecruitmentController@interviewFeedback');
     Route::get('recruitment/interview-scheduling-edit/{id}', 'InterviewScheduleController@interviewSchedulingEdit');
+    
+    Route::get('recruitment/interview-feedback/{id}', 'RecruitmentController@interviewFeedback');
     Route::get('recruitment/interview-feedback-edit/{id}', 'InterviewFeedbackController@interviewFeedbackEdit');
+
+    Route::get('final-round', 'FinalRoundController@index');
+    Route::get('final-round-interview-scheduling/{id}', 'FinalRoundController@finalRoundInterviewScheduling');
+    Route::get('final-round-interview-scheduling-edit/{id}', 'FinalRoundController@finalRoundInterviewSchedulingEdit');
 
 
     Route::get('skills', 'SkillController@index');
@@ -44,7 +53,7 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('skills/edit/{id}', 'SkillController@edit');
 
 
-
+/////////////////////////////////////// Post //////////////////////////////////////////////////////////////
 
 
 
@@ -58,14 +67,16 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('interview-feedback/update/{id}', 'InterviewFeedbackController@update');
 
 
-
+    Route::post('final-round-interview-scheduling/store', 'FinalRoundController@store');
+    Route::post('final-round-interview-scheduling/update/{id}', 'FinalRoundController@update');
 
 
     
     Route::delete('skills/destroy/{id}', 'SkillController@destroy');
     Route::delete('recruitment/destroy/{id}', 'RecruitmentController@destroy');
 
-
+////////////////////////////////////////////// Resource ////////////////////////////////////////////
+   
     
 
  });

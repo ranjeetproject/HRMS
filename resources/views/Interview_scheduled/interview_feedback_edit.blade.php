@@ -44,6 +44,10 @@
                                                 class="form-control"
                                                 type="hidden"
                                                 name="recruitment_id" id="recruitment_id" value="{{@$feedback->recruitment->id}}">
+                                                <input
+                                                class="form-control"
+                                                type="hidden"
+                                                name="schedule_id" id="schedule_id" value="{{@$feedback->schedule->id}}">
                                                <label class="form-control-label" for="name_of_candidate">Name of Candidate</label>
                                                 <input
                                                     class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"
