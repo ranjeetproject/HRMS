@@ -26,7 +26,7 @@ class FinalRoundController extends Controller
         if ($request->ajax()) {
             return $this->finalRoundRepository->getAll($input);
         } else {
-            return view('final_round.index');
+            return view('final_round.final_round_list');
         }
         
     }
@@ -34,7 +34,7 @@ class FinalRoundController extends Controller
     public function finalRoundInterviewScheduling($id)
     {
         $data['feedbackCandiate'] = $this->finalRoundRepository->fetchCandidateName($id);
-        return view('final_round.create',$data);
+        return view('final_round.final_round_interview_schedule',$data);
     }
 
     /**
@@ -94,7 +94,7 @@ class FinalRoundController extends Controller
     public function finalRoundInterviewSchedulingEdit($id)
     {
         $data['final_round_schedule'] = $this->finalRoundRepository->fetchFinalRoundSchedule($id);
-        return view('final_round.edit',$data);
+        return view('final_round.final_round_interview_schedule_edit',$data);
     }
 
     /**
@@ -131,8 +131,9 @@ class FinalRoundController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function finalRoundInterviewFeedback($id)
     {
-        //
+        $data['final_round_feedback_schedule'] = $this->finalRoundRepository->fetchFinalFeedbackRound($id);
+        return view('final_round.final_round_feedback',$data);
     }
 }

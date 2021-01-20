@@ -34,6 +34,9 @@ class FinalRoundRepository
             ->addColumn('action', function ($row) {
                 $html = '<a href="'.action('FinalRoundController@finalRoundInterviewScheduling',$row->id).'" data-toggle="tooltip" data-placement="top" title="Final Round Scheduling" class="btn btn-primary">
                 <i class="fas fa-user-tie"></i>
+                </a>
+                <a href="'.action('FinalRoundController@finalRoundInterviewFeedback',$row->id).'" data-toggle="tooltip" data-placement="top" title="Final Round Scheduling" class="btn btn-success">
+                <i class="fas fa-check-square"></i>
                 </a>';
                 return $html;
             })
@@ -51,6 +54,11 @@ class FinalRoundRepository
     public function fetchFinalRoundSchedule($id){
         $finalRoundSchedule = InterviewSchedule::where('id','=',$id)->first();
         return $finalRoundSchedule;
+    }
+
+    public function fetchFinalFeedbackRound($id){
+        $finalFeedbackRoundSchedule = InterviewFeedback::find($id);
+        return $finalFeedbackRoundSchedule;
     }
 
     public function insert($inputData)
