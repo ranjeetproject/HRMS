@@ -16,7 +16,7 @@
                             <li class="breadcrumb-item"><a
                                     href=""><i class="nav-icon fas fa-address-card"></i>
                                     Final Round Interview Feedback</a></li>
-                            <li class="breadcrumb-item active">Add</li>
+                            <li class="breadcrumb-item active">Edit</li>
                         </ol>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
                             <div class="card-header">
-                                <h3 class="card-title"><i class="fas fa-align-justify"></i> Create</h3>
+                                <h3 class="card-title"><i class="fas fa-align-justify"></i> Edit</h3>
                                 <a class="btn btn-danger" href="{{action('FinalRoundController@index')}}" style="float:right">
                                             Back </a>
                             </div>
