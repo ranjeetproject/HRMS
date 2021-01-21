@@ -49,6 +49,8 @@ Route::middleware(['adminRoute'])->group(function (){
 
 
     Route::get('final-round-interview-feedback/{id}', 'FinalRoundController@finalRoundInterviewFeedback');
+    Route::get('final-round-interview-feedback-edit/{id}', 'FinalRoundController@finalRoundInterviewFeedbackEdit');
+
 
     Route::get('skills', 'SkillController@index');
     Route::get('skills/create', 'SkillController@create');
@@ -71,6 +73,9 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::post('final-round-interview-scheduling/store', 'FinalRoundController@store');
     Route::post('final-round-interview-scheduling/update/{id}', 'FinalRoundController@update');
+
+    Route::post('final-round-interview-feedback/store', 'FinalRoundController@finalRoundFeedbackStore');
+    Route::post('final-round-interview-feedback/update/{id}', 'FinalRoundController@finalRoundFeedbackUpdate');
 
 
     

@@ -33,17 +33,13 @@
                                 <a class="btn btn-danger" href="{{action('RecruitmentController@index')}}" style="float:right">
                                             Back </a>
                             </div>
-                            <form role="form" action="{{action('FinalRoundController@finalRoundFeedbackStore')}}" method="POST"
+                            <form role="form" action="{{action('FinalRoundController@finalRoundFeedbackUpdate',[@$final_round_feedback_schedule->id])}}" method="POST"
                                   enctype="multipart/form-data" id="addReqForm">
                                 {{csrf_field()}}
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                            <input
-                                                class="form-control"
-                                                type="hidden"
-                                                name="feedback_id" id="feedback_id" value="{{@$final_round_feedback_schedule->id}}">
                                                <label class="form-control-label" for="name_of_candidate">Name of Candidate</label>
                                                 <input
                                                     class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"
@@ -59,11 +55,9 @@
                                         <div class="col-md-2">
                                         <br><br>
                                             <div class="col text-right">
-                                            @if(@$final_round_feedback_schedule->offered_ctc)
-                                                <button type="submit" class="btn btn-primary" disabled> Submit</button>
-                                            @else
-                                                <button type="submit" class="btn btn-primary" > Submit</button>
-                                            @endIf
+                                            
+                                                <button type="submit" class="btn btn-primary" >Update</button>
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -106,15 +100,6 @@
                                                         id="error_final_round_interview_scheduling_time">{{ $errors->getBag('default')->first('final_round_interview_scheduling_time') }}</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-2">
-                                                <br><br>
-                                                @if(@$final_round_feedback_schedule->offered_ctc)
-                                                <div class="col text-right">
-                                                    <a   id="btedit" class="btn btn-info" href="{{action('FinalRoundController@finalRoundInterviewFeedbackEdit',['id'=>@$final_round_feedback_schedule->id])}}">
-                                                    Edit </a>
-                                                </div>
-                                                @endif
-                                            </div>
                                     </div>
 
                                     <div class="row">
@@ -126,7 +111,7 @@
                                                     type="text"
                                                     name="interviewer" id="interviewer" placeholder="Please select interviewer name"
                                                     maxlength="191"
-                                                    value="{{old('interviewer')}}" disabled>
+                                                    value="{{old('interviewer')}}" readonly>
 
                                                 <span class="form-text text-danger"
                                                       id="error_interviewer">{{ $errors->getBag('default')->first('interviewer') }}</span>
@@ -142,7 +127,7 @@
                                                 <label class=" form-control-label" for="final_round_interview_user_id"> </label>
                                                     <select
                                                         class="form-control custom-select {{ $errors->has('final_round_interview_user_id') ? 'is-invalid' : '' }}"
-                                                        name="final_round_interview_user_id" id="final_round_interview_user_id" readonly>
+                                                        name="final_round_interview_user_id" id="final_round_interview_user_id" disabled>
                                                         <option value="">SELECT</option>
                                                         <option value="1" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == 1) selected @endIf>A</option>
                                                         <option value="2" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == 2) selected @endIf>B</option>
@@ -159,21 +144,13 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                         <label class=" form-control-label" for="offered_ctc">Offered CTC</label>
-                                                        @if(@$final_round_feedback_schedule->offered_ctc)
+                                                    
                                                             <input
                                                                     class="form-control {{ $errors->has('offered_ctc') ? 'is-invalid' : '' }}"
                                                                     type="text"
                                                                     name="offered_ctc" id="offered_ctc" placeholder="Please enter offered ctc"
                                                                     maxlength="191"
-                                                                    value="{{old('offered_ctc',@$final_round_feedback_schedule->offered_ctc)}}" readonly>
-                                                        @else
-                                                            <input
-                                                                    class="form-control {{ $errors->has('offered_ctc') ? 'is-invalid' : '' }}"
-                                                                    type="text"
-                                                                    name="offered_ctc" id="offered_ctc" placeholder="Please enter offered ctc"
-                                                                    maxlength="191"
-                                                                    value="{{old('offered_ctc')}}">
-                                                        @endIf
+                                                                    value="{{old('offered_ctc',@$final_round_feedback_schedule->offered_ctc)}}">
 
                                                         <span class="form-text text-danger"
                                                             id="error_offered_ctc">{{ $errors->getBag('default')->first('offered_ctc') }}</span>
@@ -182,47 +159,34 @@
                                                 <div class="col-md-8">
                                                     <div class="form-group">
                                                         <label class=" form-control-label" for="final_round_interviewer_feedback">Interviewer Feedback</label>
-                                                        @if(@$final_round_feedback_schedule->final_round_interviewer_feedback)
+                                                        
                                                             <textarea
                                                                 class="form-control {{ $errors->has('final_round_interviewer_feedback') ? 'is-invalid' : '' }}"
-                                                                name="final_round_interviewer_feedback" id="final_round_interviewer_feedback" placeholder="Please enter final round interviewer feedback" readonly>{{old('final_round_interviewer_feedback',@$final_round_feedback_schedule->final_round_interviewer_feedback)}}</textarea>
+                                                                name="final_round_interviewer_feedback" id="final_round_interviewer_feedback" placeholder="Please enter final round interviewer feedback">{{old('final_round_interviewer_feedback',@$final_round_feedback_schedule->final_round_interviewer_feedback)}}</textarea>
                                                         
-                                                        @else
-                                                        <textarea
-                                                                class="form-control {{ $errors->has('final_round_interviewer_feedback') ? 'is-invalid' : '' }}"
-                                                                name="final_round_interviewer_feedback" id="final_round_interviewer_feedback" placeholder="Please enter final round interviewer feedback">{{old('final_round_interviewer_feedback')}}</textarea>
-                                                        @endIf
+                                                       
                                                         <span class="form-text text-danger"
                                                             id="error_final_round_interviewer_feedback">{{ $errors->getBag('default')->first('final_round_interviewer_feedback') }}</span>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <label class=" form-control-label" for="date_of_joining">Date of Joining</label>
-                                                            @if(@$final_round_feedback_schedule->date_of_joining)
-                                                            <input
-                                                                class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
-                                                                type="text"
-                                                                name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
-                                                                value="{{old('date_of_joining',@$final_round_feedback_schedule->date_of_joining)}}" disabled>
-                                                            @else
+                                                           
                                                             <input
                                                                 class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
                                                                 type="text"
                                                                 name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
                                                                 value="{{old('date_of_joining',@$final_round_feedback_schedule->date_of_joining)}}">
-                                                            @endIf
+                                                           
                                                             <span class="form-text text-danger"
                                                                 id="error_date_of_joining">{{ $errors->getBag('default')->first('date_of_joining') }}</span>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-8">
                                                         <div class="form-group">
-                                                        @if(@$final_round_feedback_schedule->offered)
+                                                       
                                                             <label class=" form-control-label" for="offered"><input type="checkbox" name="offered" value="" @if(@$final_round_feedback_schedule->offered) {{'checked'}} @endIf> &nbsp;&nbsp;Offered</label>
-                                                        @else
-                                                            <label class=" form-control-label" for="offered"><input type="checkbox" name="offered" value=""> &nbsp;&nbsp;Offered</label>
-                                                        @endIf
-
+                                                      
                                                             <span class="form-text text-danger"
                                                                 id="error_offered">{{ $errors->getBag('default')->first('offered') }}</span>
                                                         </div>

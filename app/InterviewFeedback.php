@@ -15,7 +15,7 @@ class InterviewFeedback extends Model
 
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
-    protected $fillable = ['recruitment_id','interview_scheduling_date','interview_scheduling_time','user_id','interviewer_rating','interviewer_feedback','active','schedule_id'];
+    protected $fillable = ['recruitment_id','interview_scheduling_date','interview_scheduling_time','final_round_interview_scheduling_date','final_round_interview_scheduling_time','user_id','final_round_interview_user_id','offered_ctc','final_round_interviewer_feedback','interviewer_rating','interviewer_feedback','date_of_joining','active','offered','schedule_id'];
 
     public function recruitment()
     {

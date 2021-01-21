@@ -136,4 +136,74 @@ class FinalRoundController extends Controller
         $data['final_round_feedback_schedule'] = $this->finalRoundRepository->fetchFinalFeedbackRound($id);
         return view('final_round.final_round_feedback',$data);
     }
+
+    public function finalRoundFeedbackStore(Request $request)
+    {
+       
+        $request->validate([
+            'final_round_interview_scheduling_date'=>'required',
+            'final_round_interview_scheduling_time'=>'required',
+            'final_round_interviewer_feedback'=>'required',
+            'date_of_joining' => 'required',
+        ]);
+        $input = $request->only('feedback_id','final_round_interview_scheduling_date','final_round_interview_scheduling_time','final_round_interview_user_id','offered_ctc','final_round_interviewer_feedback','date_of_joining','offered');
+        $key =  array_keys($input);
+        $lastkey = end($key);
+        if($lastkey == 'offered'){
+           
+            $input['offered'] = 1;
+
+        }else
+        {
+            
+            $input['offereds'] = 0;
+        }
+        $data = $this->finalRoundRepository->finalRoundFeedbackinsert($input);
+           if ($data['success'] == true) {
+               $notification = array(
+                    'message' => 'Final Round Interview Feedback is successfully added!',
+                    'alert-type' => 'success'
+               );
+               return redirect()->action('FinalRoundController@index')->with($notification);
+           } else {
+               return redirect()->back();
+           }
+    }
+
+    public function finalRoundInterviewFeedbackEdit($id)
+    {
+        $data['final_round_feedback_schedule'] = $this->finalRoundRepository->fetchFinalFeedbackRound($id);
+        return view('final_round.final_round_feedback_edit',$data);
+        
+    }
+
+    public function finalRoundFeedbackUpdate(Request $request,$id)
+    {
+        $request->validate([
+            'final_round_interviewer_feedback'=>'required',
+            'date_of_joining' => 'required',
+        ]);
+        $input = $request->only('offered_ctc','final_round_interviewer_feedback','date_of_joining','offered');
+        $key =  array_keys($input);
+        $lastkey = end($key);
+        if($lastkey == 'offered'){
+           
+            $input['offered'] = 1;
+
+        }else
+        {
+            
+            $input['offereds'] = 0;
+        }
+        $data = $this->finalRoundRepository->finalRoundInterviwFeedbackUpdate($input,$id);
+           if ($data['success'] == true) {
+               $notification = array(
+                    'message' => 'Final Round Interview Feedback is successfully update!',
+                    'alert-type' => 'success'
+               );
+               return redirect()->action('FinalRoundController@index')->with($notification);
+           } else {
+               return redirect()->back();
+           }
+    }
 }

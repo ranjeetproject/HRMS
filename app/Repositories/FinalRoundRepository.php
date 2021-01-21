@@ -95,4 +95,43 @@ class FinalRoundRepository
         }
     }
 
+    public function finalRoundFeedbackinsert($inputData)
+    {
+        $inputData['final_round_interview_scheduling_date'] = date('Y-m-d',strtotime($inputData['final_round_interview_scheduling_date']));
+        $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
+        $inputData['final_round_interview_scheduling_time'] =  Carbon::parse($inputData['final_round_interview_scheduling_time'])->format('h:i:s');
+
+        $row = InterviewFeedback::where('id', $inputData['feedback_id'])
+        ->update(['final_round_interview_scheduling_date' => $inputData['final_round_interview_scheduling_date'],
+                  'final_round_interview_scheduling_time' => $inputData['final_round_interview_scheduling_time'],
+                  'final_round_interview_user_id' => $inputData['final_round_interview_user_id'],
+                  'final_round_interviewer_feedback' => $inputData['final_round_interviewer_feedback'],
+                  'offered_ctc' => $inputData['offered_ctc'],
+                  'date_of_joining' => $inputData['date_of_joining'],
+                  'offered' => $inputData['offered'],
+        ]);
+        if($row) {
+            return ['success' => true];
+        } else {
+            return ['success' => false];
+        }
+    }
+    public function finalRoundInterviwFeedbackUpdate($inputData,$id)
+    {
+    
+        $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
+        $row = InterviewFeedback::find($id);
+        if($row) 
+        {
+            $row->update(['final_round_interviewer_feedback' => $inputData['final_round_interviewer_feedback'],
+            'offered_ctc' => $inputData['offered_ctc'],
+            'date_of_joining' => $inputData['date_of_joining'],
+            'offered' => $inputData['offered'],
+            ]);
+            return ['success' => true];
+        } else {
+            return ['success' => false];
+        }
+    }
+
 }
