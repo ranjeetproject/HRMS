@@ -30,7 +30,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-align-justify"></i> Create</h3>
-                                <a class="btn btn-danger" href="{{action('RecruitmentController@index')}}" style="float:right">
+                                <a class="btn btn-danger" href="{{action('FinalRoundController@index')}}" style="float:right">
                                             Back </a>
                             </div>
                             <form role="form" action="{{action('FinalRoundController@finalRoundFeedbackStore')}}" method="POST"
@@ -86,7 +86,7 @@
                                             <div class="col-md-2">
                                                 <br><br>
                                                 <div class="col text-right">
-                                                    <a class="btn btn-danger" href="{{action('RecruitmentController@index')}}">
+                                                    <a class="btn btn-danger" href="{{action('FinalRoundController@index')}}">
                                                     Cancel </a>
                                             </div>
                                         </div>
