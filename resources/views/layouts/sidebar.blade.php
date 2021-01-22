@@ -42,6 +42,13 @@
                         <p>Final Round List</p>
                     </a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'offer-list') ? 'active' : '' }}"
+                        href="{{action('OfferedController@index')}}">
+                        <i class="nav-icon fas fa-id-badge"></i>
+                        <p>Offered Candidate List</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

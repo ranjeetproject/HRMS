@@ -51,6 +51,8 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('final-round-interview-feedback/{id}', 'FinalRoundController@finalRoundInterviewFeedback');
     Route::get('final-round-interview-feedback-edit/{id}', 'FinalRoundController@finalRoundInterviewFeedbackEdit');
 
+    Route::get('offer-list', 'OfferedController@index');
+
 
     Route::get('skills', 'SkillController@index');
     Route::get('skills/create', 'SkillController@create');
