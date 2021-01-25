@@ -22,7 +22,7 @@ class InterviewFeedbackRepository
         $inputData['interview_scheduling_time'] =  Carbon::parse($inputData['interview_scheduling_time'])->format('h:i:s');
         $row = InterviewFeedback::create($inputData);
         if ($row && $row->id > 0) {
-            return ['success' => true];
+            return ['success' => true,'active' => $row->active];
         } else {
             return ['success' => false];
         }

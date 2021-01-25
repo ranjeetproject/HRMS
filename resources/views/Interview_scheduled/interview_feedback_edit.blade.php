@@ -71,7 +71,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Scheduling</label>
+                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Schedule Date</label>
                                                <input
                                                     class="form-control {{ $errors->has('interview_scheduling_date') ? 'is-invalid' : '' }}"
                                                     type="text"

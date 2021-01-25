@@ -18,6 +18,8 @@ class InterviewFeedbackController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'interview_scheduling_date' => 'required',
+            'interview_scheduling_time' => 'required',
             'interviewer_rating' => 'required',
             'interviewer_feedback'=>'required',
         ]);
@@ -35,15 +37,22 @@ class InterviewFeedbackController extends Controller
         }
         
         $data = $this->interviewFeedbackRepository->insert($input);
-           if ($data['success'] == true) {
-               $notification = array(
-                    'message' => 'Interview Feedback is successfully added!',
-                    'alert-type' => 'success'
-               );
-               return redirect()->action('RecruitmentController@index')->with($notification);
-           } else {
-               return redirect()->back();
-           }
+        if ($data['success'] == true && $data['active'] == 1) {
+            $notification = array(
+                'message' => 'Interview Feedback is successfully added!',
+                'alert-type' => 'success'
+            );
+            return redirect()->action('FinalRoundController@index')->with($notification);
+        } else if($data['success'] == true) {
+            $notification = array(
+                'message' => 'Interview Feedback is successfully added!',
+                'alert-type' => 'success'
+            );
+            return redirect()->action('RecruitmentController@index')->with($notification);
+            
+        }else{
+            return redirect()->back();
+        }
     }
 
     public function interviewFeedbackEdit($id)

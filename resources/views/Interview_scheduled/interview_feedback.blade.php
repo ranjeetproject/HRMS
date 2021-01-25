@@ -75,7 +75,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Scheduling</label>
+                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Scheduling Date</label>
                                                <input
                                                     class="form-control {{ $errors->has('interview_scheduling_date') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -247,6 +247,9 @@
 
             $('#addReqForm').validate({
                 rules: {
+                    interview_scheduling_date: {
+                        required: true
+                    },
                     interviewer_rating: {
                         required: true
                     },
@@ -255,6 +258,12 @@
                     }
                 },
                 messages: {
+                    interview_scheduling_date: {
+                        required: "This interview scheduling date field is required.",
+                    },
+                    interview_scheduling_time: {
+                        required: "This interview scheduling time field is required.",
+                    },
                     interviewer_rating: {
                         required: "This interviewer rating field is required.",
                     },

@@ -271,6 +271,12 @@
 
             $('#addReqForm').validate({
                 rules: {
+                    final_round_interview_scheduling_date: {
+                        required: true
+                    },
+                    final_round_interview_scheduling_time: {
+                        required: true
+                    },
                     offered_ctc: {
                         required: true
                     },
@@ -282,6 +288,12 @@
                     }
                 },
                 messages: {
+                    final_round_interview_scheduling_date: {
+                        required: "This final round interview scheduling date field is required.",
+                    },
+                    final_round_interview_scheduling_time: {
+                        required: "This final round interview scheduling time field is required.",
+                    },
                     offered_ctc: {
                         required: "This offered ctc field is required.",
                     },
