@@ -25,4 +25,15 @@ class OfferedController extends Controller
         }
         
     }
+
+    public function destroy($id)
+    {
+        $this->offeredRepository->deleteSpecific($id);
+         $notification = array(
+             'message' => 'Offered Candidate Deleted successfully',
+             'alert-type' => 'success'
+         );
+         return redirect()->action('FinalRoundController@index')
+             ->with($notification);
+    }
 }

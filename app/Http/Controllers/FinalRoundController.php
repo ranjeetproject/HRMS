@@ -206,4 +206,15 @@ class FinalRoundController extends Controller
                return redirect()->back();
            }
     }
+
+    public function finalRoundInterviewDestroy($id)
+    {
+        $this->finalRoundRepository->deleteSpecific($id);
+        $notification = array(
+            'message' => 'Final Round Candidate Deleted successfully',
+            'alert-type' => 'success'
+        );
+        return redirect()->action('RecruitmentController@index')
+            ->with($notification);
+    }
 }

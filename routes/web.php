@@ -79,6 +79,11 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('final-round-interview-feedback/store', 'FinalRoundController@finalRoundFeedbackStore');
     Route::post('final-round-interview-feedback/update/{id}', 'FinalRoundController@finalRoundFeedbackUpdate');
 
+    Route::delete('offer/delete/{id}', 'OfferedController@destroy');
+
+    Route::delete('final-round-interview/delete/{id}', 'FinalRoundController@finalRoundInterviewDestroy');
+
+
 
     
     Route::delete('skills/destroy/{id}', 'SkillController@destroy');

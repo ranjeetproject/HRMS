@@ -24,19 +24,38 @@ class OfferedRepository
     {
         $data = InterviewFeedback::orderBy('interview_feedback.created_at', 'DESC')
                 ->leftJoin('recruitments','recruitments.id','=','interview_feedback.recruitment_id')
-                ->where('interview_feedback.offered','=',1)->get([
+                ->where('interview_feedback.offered','=',1)
+                ->where('interview_feedback.status','!=',1)->get([
                     'interview_feedback.id','interview_feedback.date_of_joining','interview_feedback.recruitment_id','recruitments.name_of_candidate','recruitments.mobile_number','recruitments.email_id',
 
             ]);
        
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
-                $html = '';
+                $html = '<form method="POST" action="' . action('OfferedController@destroy', [$row->id]) . '" accept-charset="UTF-8" style="display: inline-block;"
+                onsubmit="return confirm(\'Are you sure want to delete this row?\');"><input name="_method" type="hidden" value="DELETE">
+                        <input name="_token" type="hidden" value="' . csrf_token() . '">
+                        <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
+                        </form>';
                 return $html;
             })
             ->setRowId('id')
             ->rawColumns(['action'])
             ->make(true);
 
+    }
+
+    public function deleteSpecific($id)
+    {
+        $row = InterviewFeedback::find($id);
+        if($row)
+        {
+            $row->update(['status' => 1]);
+            return ['success' => true];
+        }
+         else
+        {
+            return ['success' => false];
+        }
     }
 }

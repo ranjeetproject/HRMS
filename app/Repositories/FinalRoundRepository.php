@@ -25,11 +25,12 @@ class FinalRoundRepository
         $data = InterviewFeedback::orderBy('interview_feedback.created_at', 'DESC')
                 ->leftJoin('recruitments','recruitments.id','=','interview_feedback.recruitment_id')
                 ->leftJoin('interview_schedules','interview_schedules.id','=','interview_feedback.schedule_id')
-                ->where('interview_feedback.active','=',1)->get([
+                ->where('interview_feedback.active','=',1)
+                ->where('interview_schedules.status','!=',1)->get([
                     'interview_feedback.id','interview_feedback.schedule_id','interview_feedback.recruitment_id','recruitments.name_of_candidate','recruitments.mobile_number','recruitments.email_id',
                     'interview_schedules.final_round_interview_scheduling_date','interview_schedules.final_round_interview_scheduling_time'
             ]);
-       
+     
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
                 $html = '<a href="'.action('FinalRoundController@finalRoundInterviewScheduling',$row->id).'" data-toggle="tooltip" data-placement="top" title="Final Round Scheduling" class="btn btn-primary">
@@ -37,7 +38,12 @@ class FinalRoundRepository
                 </a>
                 <a href="'.action('FinalRoundController@finalRoundInterviewFeedback',$row->id).'" data-toggle="tooltip" data-placement="top" title="Final Round Scheduling" class="btn btn-success">
                 <i class="fas fa-check-square"></i>
-                </a>';
+                </a>
+                <form method="POST" action="' . action('FinalRoundController@finalRoundInterviewDestroy', [$row->schedule_id]) . '" accept-charset="UTF-8" style="display: inline-block;"
+                onsubmit="return confirm(\'Are you sure want to delete this row?\');"><input name="_method" type="hidden" value="DELETE">
+                        <input name="_token" type="hidden" value="' . csrf_token() . '">
+                        <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
+                        </form>';
                 return $html;
             })
             ->setRowId('id')
@@ -130,6 +136,20 @@ class FinalRoundRepository
             ]);
             return ['success' => true];
         } else {
+            return ['success' => false];
+        }
+    }
+
+    public function deleteSpecific($id)
+    {
+        $row = InterviewSchedule::find($id);
+        if($row)
+        {
+            $row->update(['status' => 1]);
+            return ['success' => true];
+        }
+         else
+        {
             return ['success' => false];
         }
     }

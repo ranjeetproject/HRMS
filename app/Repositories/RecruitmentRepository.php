@@ -177,7 +177,10 @@ class RecruitmentRepository
     {
         if ($id > 0) {
             $row = Recruitment::find($id);
+     
             if ($row) {
+                InterviewSchedule::where('recruitment_id',$row->id)->delete();
+                InterviewFeedback::where('recruitment_id',$row->id)->delete();
                 $row->delete();
                 return ['success' => true];
             } else {
