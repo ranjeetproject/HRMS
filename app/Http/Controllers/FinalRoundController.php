@@ -146,7 +146,7 @@ class FinalRoundController extends Controller
             'final_round_interviewer_feedback'=>'required',
             'date_of_joining' => 'required',
         ]);
-        $input = $request->only('feedback_id','final_round_interview_scheduling_date','final_round_interview_scheduling_time','final_round_interview_user_id','offered_ctc','final_round_interviewer_feedback','date_of_joining','offered');
+        $input = $request->all();
         $key =  array_keys($input);
         $lastkey = end($key);
         if($lastkey == 'offered'){
@@ -156,7 +156,7 @@ class FinalRoundController extends Controller
         }else
         {
             
-            $input['offereds'] = 0;
+            $input['offered'] = 0;
         }
         $data = $this->finalRoundRepository->finalRoundFeedbackinsert($input);
            if ($data['success'] == true) {
@@ -193,7 +193,7 @@ class FinalRoundController extends Controller
         }else
         {
             
-            $input['offereds'] = 0;
+            $input['offered'] = 0;
         }
         $data = $this->finalRoundRepository->finalRoundInterviwFeedbackUpdate($input,$id);
            if ($data['success'] == true) {
