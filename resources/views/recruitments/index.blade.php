@@ -88,7 +88,7 @@
             table = $('#employee_table').DataTable({
                 createdRow: function (row, data) {
                     $(row).attr('data-entry-id', data.id);
-                    $(row).css('background-color', 'Red');
+                   
                 },
                 processing: false,
                 serverSide: true,
