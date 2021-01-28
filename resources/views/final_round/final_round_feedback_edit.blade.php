@@ -40,6 +40,10 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                            <input
+                                                class="form-control"
+                                                type="hidden"
+                                                name="recruitment_id" id="recruitment_id" value="{{@$final_round_feedback_schedule->recruitment_id}}">
                                                <label class="form-control-label" for="name_of_candidate">Name of Candidate</label>
                                                 <input
                                                     class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"

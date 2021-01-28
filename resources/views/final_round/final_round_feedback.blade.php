@@ -43,6 +43,10 @@
                                             <input
                                                 class="form-control"
                                                 type="hidden"
+                                                name="recruitment_id" id="recruitment_id" value="{{@$final_round_feedback_schedule->recruitment_id}}">
+                                                <input
+                                                class="form-control"
+                                                type="hidden"
                                                 name="feedback_id" id="feedback_id" value="{{@$final_round_feedback_schedule->id}}">
                                                <label class="form-control-label" for="name_of_candidate">Name of Candidate</label>
                                                 <input

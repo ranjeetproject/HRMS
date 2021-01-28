@@ -26,7 +26,8 @@ class FinalRoundRepository
                 ->leftJoin('recruitments','recruitments.id','=','interview_feedback.recruitment_id')
                 ->leftJoin('interview_schedules','interview_schedules.id','=','interview_feedback.schedule_id')
                 ->where('interview_feedback.active','=',1)
-                ->where('interview_schedules.status','!=',1)->get([
+                ->where('recruitments.status','!=',2)
+                ->where('recruitments.status','!=',0)->get([
                     'interview_feedback.id','interview_feedback.schedule_id','interview_feedback.recruitment_id','recruitments.name_of_candidate','recruitments.mobile_number','recruitments.email_id',
                     'interview_schedules.final_round_interview_scheduling_date','interview_schedules.final_round_interview_scheduling_time'
             ]);
@@ -39,7 +40,7 @@ class FinalRoundRepository
                 <a href="'.action('FinalRoundController@finalRoundInterviewFeedback',$row->id).'" data-toggle="tooltip" data-placement="top" title="Final Round Scheduling" class="btn btn-success">
                 <i class="fas fa-check-square"></i>
                 </a>
-                <form method="POST" action="' . action('FinalRoundController@finalRoundInterviewDestroy', [$row->schedule_id]) . '" accept-charset="UTF-8" style="display: inline-block;"
+                <form method="POST" action="' . action('FinalRoundController@finalRoundInterviewDestroy', [$row->id]) . '" accept-charset="UTF-8" style="display: inline-block;"
                 onsubmit="return confirm(\'Are you sure want to delete this row?\');"><input name="_method" type="hidden" value="DELETE">
                         <input name="_token" type="hidden" value="' . csrf_token() . '">
                         <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
@@ -116,7 +117,13 @@ class FinalRoundRepository
                   'date_of_joining' => $inputData['date_of_joining'],
                   'offered' => $inputData['offered'],
         ]);
+        
         if($row) {
+            if($inputData['offered'] == 1){
+                Recruitment::where('id','=',$inputData['recruitment_id'])
+                ->update(['status' => 2 ]);
+                return ['success' => true];
+            }
             return ['success' => true];
         } else {
             return ['success' => false];
@@ -134,6 +141,11 @@ class FinalRoundRepository
             'date_of_joining' => $inputData['date_of_joining'],
             'offered' => $inputData['offered'],
             ]);
+            if($inputData['offered'] == 1){
+                Recruitment::where('id','=',$inputData['recruitment_id'])
+                ->update(['status' => 2 ]);
+                return ['success' => true];
+            }
             return ['success' => true];
         } else {
             return ['success' => false];
@@ -142,10 +154,12 @@ class FinalRoundRepository
 
     public function deleteSpecific($id)
     {
-        $row = InterviewSchedule::find($id);
+        $finalFeedback = InterviewFeedback::where('id', '=' ,$id)->first();
+        $row = Recruitment::where('id','=',$finalFeedback->recruitment_id)
+        ->update(['status' => 0]);
         if($row)
         {
-            $row->update(['status' => 1]);
+            $finalFeedback->update(['active' => 0]);
             return ['success' => true];
         }
          else

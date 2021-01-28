@@ -21,7 +21,10 @@ class RecruitmentRepository
 
     public function getAll()
     {
-        $data = Recruitment::orderBy('created_at', 'DESC')->get([
+        $data = Recruitment::orderBy('created_at', 'DESC')
+        ->where('status','!=', 1)
+        ->where('status','!=', 2)
+        ->get([
             'id', 'name_of_candidate','mobile_number','total_years_experience','total_months_experience','address','email_id','upload_resume'
         ]);
         

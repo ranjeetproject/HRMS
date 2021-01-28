@@ -25,7 +25,8 @@ class OfferedRepository
         $data = InterviewFeedback::orderBy('interview_feedback.created_at', 'DESC')
                 ->leftJoin('recruitments','recruitments.id','=','interview_feedback.recruitment_id')
                 ->where('interview_feedback.offered','=',1)
-                ->where('interview_feedback.status','!=',1)->get([
+                ->where('recruitments.status','!=',1)
+                ->where('recruitments.status','!=',0)->get([
                     'interview_feedback.id','interview_feedback.date_of_joining','interview_feedback.recruitment_id','recruitments.name_of_candidate','recruitments.mobile_number','recruitments.email_id',
 
             ]);
@@ -47,10 +48,12 @@ class OfferedRepository
 
     public function deleteSpecific($id)
     {
-        $row = InterviewFeedback::find($id);
+        $feedback = InterviewFeedback::where('id', '=' ,$id)->first();
+        $row = Recruitment::where('id', '=' ,$feedback->recruitment_id)
+        ->update(['status' => 1]);
         if($row)
         {
-            $row->update(['status' => 1]);
+            $feedback->update(['offered' => 0]);
             return ['success' => true];
         }
          else

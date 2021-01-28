@@ -183,7 +183,7 @@ class FinalRoundController extends Controller
             'final_round_interviewer_feedback'=>'required',
             'date_of_joining' => 'required',
         ]);
-        $input = $request->only('offered_ctc','final_round_interviewer_feedback','date_of_joining','offered');
+        $input = $request->only('offered_ctc','recruitment_id','final_round_interviewer_feedback','date_of_joining','offered');
         $key =  array_keys($input);
         $lastkey = end($key);
         if($lastkey == 'offered'){

@@ -6,6 +6,7 @@ namespace App\Repositories;
 use App\InterviewFeedback;
 use App\Skill;
 use App\CandidateSkill;
+use App\Recruitment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -22,7 +23,12 @@ class InterviewFeedbackRepository
         $inputData['interview_scheduling_time'] =  Carbon::parse($inputData['interview_scheduling_time'])->format('h:i:s');
         $row = InterviewFeedback::create($inputData);
         if ($row && $row->id > 0) {
-            return ['success' => true,'active' => $row->active];
+            if($row->active){
+                Recruitment::where('id','=',$row->recruitment_id)
+                ->update(['status' => 1]);
+                return ['success' => true,'active' => $row->active];
+            }
+            return ['success' => true];
         } else {
             return ['success' => false];
         }
@@ -43,6 +49,11 @@ class InterviewFeedbackRepository
         $row = InterviewFeedback::find($id);
         if ($row) {
             $row->update($inputData);
+            if($row->active){
+                Recruitment::where('id','=',$row->recruitment_id)
+                ->update(['status' => 1]);
+                return ['success' => true,'active' => $row->active];
+            }
             return ['success' => true];
         } else {
             return ['success' => false];
