@@ -156,7 +156,7 @@ class FinalRoundRepository
     {
         $finalFeedback = InterviewFeedback::where('id', '=' ,$id)->first();
         $row = Recruitment::where('id','=',$finalFeedback->recruitment_id)
-        ->update(['status' => 0]);
+        ->update(['status' => 0, 'interview_status' => 1]);
         if($row)
         {
             $finalFeedback->update(['active' => 0]);

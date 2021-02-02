@@ -25,7 +25,9 @@ class RecruitmentRepository
         ->where('status','!=', 1)
         ->where('status','!=', 2)
         ->get([
-            'id', 'name_of_candidate','mobile_number','total_years_experience','total_months_experience','address','email_id','upload_resume'
+            'id', 'name_of_candidate','mobile_number','total_years_experience','total_months_experience','address','email_id','upload_resume',
+            DB::raw('CASE WHEN interview_status = 0 THEN "Pending"
+            WHEN interview_status = 1 THEN "Interview Scheduled" WHEN interview_status = 2 THEN "Done" END AS interview_status')
         ]);
         
         return Datatables::of($data)

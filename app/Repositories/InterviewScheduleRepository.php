@@ -21,9 +21,10 @@ class InterviewScheduleRepository
     {
         $inputData['interview_scheduling_date'] = date('Y-m-d',strtotime($inputData['interview_scheduling_date']));
         $inputData['interview_scheduling_time'] =  Carbon::parse($inputData['interview_scheduling_time'])->format('h:i:s');
-
         $row = InterviewSchedule::create($inputData);
         if ($row && $row->id > 0) {
+            Recruitment::where('id','=',$row->recruitment_id)
+                ->update(['interview_status' => 1]);
             return ['success' => true];
         } else {
             return ['success' => false];
@@ -50,6 +51,8 @@ class InterviewScheduleRepository
         $row = InterviewSchedule::find($id);
         if ($row) {
             $row->update($inputData);
+            Recruitment::where('id','=',$row->recruitment_id)
+                ->update(['interview_status' => 1]);
             return ['success' => true];
         } else {
             return ['success' => false];

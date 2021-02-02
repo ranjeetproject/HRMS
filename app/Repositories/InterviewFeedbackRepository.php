@@ -25,7 +25,7 @@ class InterviewFeedbackRepository
         if ($row && $row->id > 0) {
             if($row->active){
                 Recruitment::where('id','=',$row->recruitment_id)
-                ->update(['status' => 1]);
+                ->update(['status' => 1,'interview_status' => 2]);
                 return ['success' => true,'active' => $row->active];
             }
             return ['success' => true];
@@ -51,7 +51,7 @@ class InterviewFeedbackRepository
             $row->update($inputData);
             if($row->active){
                 Recruitment::where('id','=',$row->recruitment_id)
-                ->update(['status' => 1]);
+                ->update(['status' => 1,'interview_status' => 2]);
                 return ['success' => true,'active' => $row->active];
             }
             return ['success' => true];
