@@ -30,14 +30,17 @@ class OfferedRepository
                     'interview_feedback.id','interview_feedback.date_of_joining','interview_feedback.recruitment_id','recruitments.name_of_candidate','recruitments.mobile_number','recruitments.email_id',
 
             ]);
-       
+    
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
                 $html = '<form method="POST" action="' . action('OfferedController@destroy', [$row->id]) . '" accept-charset="UTF-8" style="display: inline-block;"
                 onsubmit="return confirm(\'Are you sure want to delete this row?\');"><input name="_method" type="hidden" value="DELETE">
                         <input name="_token" type="hidden" value="' . csrf_token() . '">
                         <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
-                        </form>';
+                        </form>
+                        <a href="'.action('EmployeeDetailsController@offerEmployeeDetails',$row->id).'" data-toggle="tooltip" data-placement="top" title="Employee Details" class="btn btn-primary">
+                             <i class="fas fa-user-tie"></i>
+                        </a>';
                 return $html;
             })
             ->setRowId('id')

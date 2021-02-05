@@ -49,6 +49,13 @@
                         <p>Offered Candidate List</p>
                     </a>
                 </li>
+                 <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'current-employee-list') ? 'active' : '' }}"
+                        href="{{action('EmployeeDetailsController@currentEmployeeList')}}">
+                        <i class="nav-icon fas fa-male"></i>
+                        <p>Current Employee</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
