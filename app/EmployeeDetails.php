@@ -18,4 +18,9 @@ class EmployeeDetails extends Model
                             'alternate_number','permanent_address','current_address','father_name','mother_name',
                             'date_of_birth','date_of_joining','marital_status','name_of_spouse','total_years_experience',
                             'total_months_experience','highest_qualification','department','designation'];
+
+    public function recruitment()
+    {
+        return $this->belongsTo('App\Recruitment','recruitment_id');
+    }
 }

@@ -55,6 +55,8 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('offer-employee-details/{id}', 'EmployeeDetailsController@offerEmployeeDetails');
     Route::get('current-employee-list', 'EmployeeDetailsController@currentEmployeeList');
+    Route::get('current-employee-details/{id}', 'EmployeeDetailsController@employeeDetails');
+
 
     Route::get('skills', 'SkillController@index');
     Route::get('skills/create', 'SkillController@create');

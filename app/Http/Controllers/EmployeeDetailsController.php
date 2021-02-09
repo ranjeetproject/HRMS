@@ -69,4 +69,10 @@ class EmployeeDetailsController extends Controller
             return view('employee_details.index');
         }
     }
+
+    public function employeeDetails($id)
+    {
+        $data['employee_details'] = $this->employeeDetailRoundRepository->view($id);
+          return view('employee_details.show',$data);
+    }
 }

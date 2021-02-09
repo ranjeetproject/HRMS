@@ -30,7 +30,9 @@ class EmployeeDetailsRepository
     
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
-                $html = '';
+                $html = '<a href="'.action('EmployeeDetailsController@employeeDetails',$row->id).'" data-toggle="tooltip" data-placement="top" title="View" class="btn btn-primary">
+                <i class="fas fa-eye"></i>
+                </a>';
                 return $html;
             })
             ->setRowId('id')
@@ -61,5 +63,11 @@ class EmployeeDetailsRepository
         $row = EmployeeDetails::where('feedback_id','=',$id)->first();
         return $row;
     }
-    
+
+
+    public function view($id)
+    {
+        $row = EmployeeDetails::find($id);
+        return $row;
+    }
 }
