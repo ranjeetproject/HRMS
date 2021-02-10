@@ -75,4 +75,30 @@ class EmployeeDetailsController extends Controller
         $data['employee_details'] = $this->employeeDetailRoundRepository->view($id);
           return view('employee_details.show',$data);
     }
+
+    public function editEmployeeDetails($id)
+    {
+        $data['employee_details'] = $this->employeeDetailRoundRepository->viewEdit($id);
+          return view('employee_details.edit',$data);
+    }
+
+    public function updateEmployeeDetails(Request $request, $id)
+    {
+        $input = $request->only('reporting_head','email','emp_code','contact_number','alternate_number',
+                                'permanent_address','current_address','father_name','mother_name','date_of_birth','date_of_joining',
+                                'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation');
+        $data = $this->employeeDetailRoundRepository->updateSave($input,$id);
+        if ($data['success'] == true) {
+            $notification = array(
+                    'message' => 'User Details is successfully update!',
+                    'alert-type' => 'success'
+            );
+            return redirect()->action('EmployeeDetailsController@currentEmployeeList')->with($notification);
+        } else {
+            return redirect()->back();
+        }
+    }
+
+    
+
 }

@@ -56,6 +56,7 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('offer-employee-details/{id}', 'EmployeeDetailsController@offerEmployeeDetails');
     Route::get('current-employee-list', 'EmployeeDetailsController@currentEmployeeList');
     Route::get('current-employee-details/{id}', 'EmployeeDetailsController@employeeDetails');
+    Route::get('current-employee-details-edit/{id}', 'EmployeeDetailsController@editEmployeeDetails');
 
 
     Route::get('skills', 'SkillController@index');
@@ -82,6 +83,10 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::post('final-round-interview-feedback/store', 'FinalRoundController@finalRoundFeedbackStore');
     Route::post('final-round-interview-feedback/update/{id}', 'FinalRoundController@finalRoundFeedbackUpdate');
+
+
+    Route::post('current-employee-details/update/{id}', 'EmployeeDetailsController@updateEmployeeDetails');
+
 
     Route::post('offer-employee-detail/store', 'EmployeeDetailsController@storeOfferEmployee');
 

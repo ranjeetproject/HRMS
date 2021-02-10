@@ -30,8 +30,11 @@ class EmployeeDetailsRepository
     
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
-                $html = '<a href="'.action('EmployeeDetailsController@employeeDetails',$row->id).'" data-toggle="tooltip" data-placement="top" title="View" class="btn btn-primary">
+                $html = '<a href="'.action('EmployeeDetailsController@employeeDetails',$row->id).'" data-toggle="tooltip" data-placement="top" title="View" class="btn btn-info">
                 <i class="fas fa-eye"></i>
+                </a>
+                <a href="'.action('EmployeeDetailsController@editEmployeeDetails',$row->id).'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary">
+                <i class="fas fa-edit"></i>
                 </a>';
                 return $html;
             })
@@ -69,5 +72,22 @@ class EmployeeDetailsRepository
     {
         $row = EmployeeDetails::find($id);
         return $row;
+    }
+
+    public function viewEdit($id)
+    {
+        $row = EmployeeDetails::find($id);
+        return $row;
+    }
+
+    public function updateSave($inputData, $id)
+    {
+        $row = EmployeeDetails::find($id);
+        if ($row) {
+            $row->update($inputData);
+            return ['success' => true];
+        } else {
+            return ['success' => false];
+        }
     }
 }
