@@ -3,7 +3,7 @@
         {{--<img src="{{asset('images/thumbnail.png')}}" alt="AdminLTE"
              class="brand-image img-circle elevation-3" style="opacity: .8">--}}
         <span class="brand-text font-weight-light">
-            <b>Hrms Admin</b>
+            <b>Hrms {{$loginUser->name}}</b>
         </span>
     </a>
     <div class="sidebar">

@@ -156,7 +156,18 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-
+                                             <div class="form-group">
+                                               <label class="form-control-label" for="offical_email_id">Official Email id</label>
+                                                <input
+                                                    class="form-control {{ $errors->has('offical_email_id') ? 'is-invalid' : '' }}"
+                                                    type="text"
+                                                    name="offical_email_id" id="offical_email_id" placeholder="Please enter official email id"
+                                                    maxlength="191"
+                                                    value="{{old('offical_email_id',@$employee_details->offical_email_id)}}">
+                                                <span class="form-text text-danger"
+                                                      id="error_offical_email_id">{{ $errors->getBag('default')->first('offical_email_id') }}
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">

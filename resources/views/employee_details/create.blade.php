@@ -89,7 +89,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                      <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                <label class="form-control-label" for="email">Email Id</label>
@@ -196,7 +196,27 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
-
+                                            <div class="form-group">
+                                               <label class="form-control-label" for="offical_email_id">Official Email id</label>
+                                               @if(@$userDetails->offical_email_id) 
+                                                  <input
+                                                        class="form-control {{ $errors->has('offical_email_id') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="offical_email_id" id="offical_email_id" placeholder="Please enter offical email id"
+                                                        maxlength="191"
+                                                        value="{{$userDetails->offical_email_id}}" readonly>
+                                                 @else
+                                                    <input
+                                                            class="form-control {{ $errors->has('offical_email_id') ? 'is-invalid' : '' }}"
+                                                            type="text"
+                                                            name="offical_email_id" id="offical_email_id" placeholder="Please enter offical email id"
+                                                            maxlength="191"
+                                                            value="{{old('offical_email_id')}}">
+                                                @endIf    
+                                                <span class="form-text text-danger"
+                                                      id="error_offical_email_id">{{ $errors->getBag('default')->first('offical_email_id') }}
+                                                </span>
+                                            </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -546,6 +566,9 @@
                     designation: {
                         required: true
                     },
+                    official_email_id:{
+                         required: true
+                    }
                     
                    
                 },
@@ -606,6 +629,9 @@
                     },
                     designation: {
                         required:"This designation field is required.",
+                    },
+                    official_email_id: {
+                        required:"This official email id field is required.",
                     },
 
                 },

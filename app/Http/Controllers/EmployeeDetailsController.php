@@ -28,6 +28,7 @@ class EmployeeDetailsController extends Controller
             'name_of_candidate' => 'required',
             'reporting_head'=>'required',
             'email'=>'required',
+           
             'emp_code' => 'required|numeric',
             'contact_number' => 'required',
             'alternate_number' => 'required',
@@ -45,8 +46,8 @@ class EmployeeDetailsController extends Controller
             'department' => 'required',
             'designation' => 'required',
         ]);
-        $input = $request->only('recruitment_id','feedback_id','reporting_head','email','emp_code','contact_number','alternate_number',
-                                'permanent_address','current_address','father_name','mother_name','date_of_birth','date_of_joining',
+        $input = $request->only('name_of_candidate','recruitment_id','feedback_id','reporting_head','email','emp_code','contact_number','alternate_number',
+                                'permanent_address','current_address','offical_email_id','father_name','mother_name','date_of_birth','date_of_joining',
                                 'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation');
         $data = $this->employeeDetailRoundRepository->insert($input);
            if ($data['success'] == true) {
@@ -84,7 +85,7 @@ class EmployeeDetailsController extends Controller
 
     public function updateEmployeeDetails(Request $request, $id)
     {
-        $input = $request->only('reporting_head','email','emp_code','contact_number','alternate_number',
+        $input = $request->only('reporting_head','email','offical_email_id','emp_code','contact_number','alternate_number',
                                 'permanent_address','current_address','father_name','mother_name','date_of_birth','date_of_joining',
                                 'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation');
         $data = $this->employeeDetailRoundRepository->updateSave($input,$id);

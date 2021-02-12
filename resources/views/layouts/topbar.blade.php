@@ -26,7 +26,7 @@
     <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <i class="far fa-user"></i> Admin
+                <i class="far fa-user"></i> &nbsp;{{$loginUser->name}}
             </a>
             <div class="dropdown-menu dropdown-menu dropdown-menu-right">
                 <a href="#" class="dropdown-item">

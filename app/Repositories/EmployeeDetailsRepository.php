@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\Recruitment;
+use App\User;
 use App\InterviewSchedule;
 use App\EmployeeDetails;
 use App\InterviewFeedback;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
+use Mail;
+
 
 
 class EmployeeDetailsRepository
@@ -46,7 +49,7 @@ class EmployeeDetailsRepository
 
     public function fetchCandidateDetails($id)
     {
-        $recruitmentCandidateDetails = InterviewFeedback::find($id)->first();
+        $recruitmentCandidateDetails = InterviewFeedback::find($id);
         return $recruitmentCandidateDetails;
     }
 
@@ -55,6 +58,20 @@ class EmployeeDetailsRepository
         $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
         $row = EmployeeDetails::create($inputData);
         if ($row && $row->id > 0) {
+            $userData = [];
+            $password = $inputData['name_of_candidate'].'@123';
+            $userData['password'] = Hash::make($password);
+            $userData['user_type'] = 1;
+            $userData['active'] = 1;
+            $userData['remember_token'] = Str::random(32);
+            $userData['name'] = $inputData['name_of_candidate'];
+            $userData['email'] = $inputData['offical_email_id'];
+            $userData['employee_details_id'] = $row->id;
+            $user = User::create($userData);
+            Mail::send('emails.registration', ['row' => $user, 'password' => $password], function ($m) use ($user) {
+                $m->from(Config::get('app.email_send'));
+                $m->to($user->email, $user->name)->subject('Welcome to Brainium Infotech');
+            });
             return ['success' => true];
         } else {
             return ['success' => false];

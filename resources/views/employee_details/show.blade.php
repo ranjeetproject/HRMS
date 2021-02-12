@@ -48,6 +48,10 @@
                                         <td>{{@$employee_details->emp_code}}</td>
                                     </tr>
                                     <tr>
+                                        <th>Official Email id</th>
+                                        <td>{{@$employee_details->offical_email_id}}</td>
+                                    </tr>
+                                    <tr>
                                         <th>Contact Number</th>
                                         <td>{{@$employee_details->contact_number}}</td>
                                     </tr>
