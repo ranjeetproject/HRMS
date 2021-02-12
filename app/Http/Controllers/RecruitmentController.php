@@ -61,7 +61,7 @@ class RecruitmentController extends Controller
                $image_file_name    = md5($rand_val);
                $file               = $request->file('upload_resume');
                $fileExt            = $file->getClientOriginalExtension();
-               if($fileExt=='pdf' ||  $fileExt =='doc')
+               if($fileExt=='pdf' ||  $fileExt =='docx'|| $fileExt =='doc')
                {
                  $fileName           = $image_file_name.'.'.$fileExt;
                  $destinationPath    = public_path().'/upload_resume';
