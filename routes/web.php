@@ -90,6 +90,7 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::post('offer-employee-detail/store', 'EmployeeDetailsController@storeOfferEmployee');
 
+    Route::post('/change-password', 'UserController@changePasswordSubmit');
 
     Route::delete('offer/delete/{id}', 'OfferedController@destroy');
 

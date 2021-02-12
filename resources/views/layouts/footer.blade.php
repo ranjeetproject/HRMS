@@ -144,7 +144,7 @@
         } else {
             $("#error_confirm_password").html('');
         }
-        var baseUrl = '';
+        var baseUrl = '{{action("UserController@changePasswordSubmit")}}';
         $.ajax({
             type: 'post',
             url: baseUrl,
