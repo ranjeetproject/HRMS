@@ -33,11 +33,11 @@
                     <i class="fas fa-user-lock mr-2"></i>
                     <span data-toggle="modal" data-target="#changePassword">Change Password</span>
                 </a>
-                <div class="dropdown-divider"></div>
-                <a href="" class="dropdown-item">
+                {{-- <div class="dropdown-divider"></div> --}}
+                {{-- <a href="" class="dropdown-item">
                     <i class="fas fa-cog"></i>
                     <span>Edit Site Configuration</span>
-                </a>
+                </a> --}}
                 <div class="dropdown-divider"></div>
                 <a href="{{action('LoginController@getLogOut')}}" class="dropdown-item">
                     <i class="fas fa-power-off mr-2"></i>
