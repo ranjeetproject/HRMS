@@ -21,9 +21,13 @@ Auth::routes();
 
 Route::get('/login', 'LoginController@getLogin')->name('Login');
 Route::get('/', 'LoginController@getLogin');
+Route::get('forget-password', 'UserController@forgetPasswordForm');
+Route::get('reset-password','UserController@resetPasswordForm');
 
 
 Route::post('/post-login', 'LoginController@authenticate')->name('Login.Auth');
+Route::post('/reset-password','UserController@forgetPasswordSendLink');
+Route::post('/reset-password-form-submit','UserController@resetPasswordForFrontend');
 
 Route::middleware(['adminRoute'])->group(function (){
   

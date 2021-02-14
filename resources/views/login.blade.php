@@ -12,10 +12,10 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')}}">
 </head>
 
-<body class="login-page" style="background-color: #661fbb9e;">{{--//#024f9257--}}
+<body class="login-page" style="background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">{{--//#024f9257--}}
 <div class="login-box">
     <div class="login-logo">
-        <a href="javascript:void(0);"><b>{{ __('Login') }} Panel</b></a>
+        <a href="javascript:void(0);"><b style="color: #3e92f6">{{ __('Login') }} Panel</b></a>
     </div>
     <div class="card">
         <div class="card-body login-card-body">
@@ -48,10 +48,7 @@
                 </div>
                 <div class="row">
                     <div class="col-8">
-                       {{-- <div class="icheck-primary">
-                            <input type="checkbox" name="remember" id="remember">
-                            <label for="remember">Remember Me</label>
-                        </div>--}}
+                       <a href="{{action('UserController@forgetPasswordForm')}}">Forgot Password</a>
                     </div>
                     <div class="col-4">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">
