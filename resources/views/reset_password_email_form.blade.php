@@ -12,7 +12,7 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic')}}">
 </head>
 
-<body class="login-page" style="background-color: #661fbb9e;">{{--//#024f9257--}}
+<body class="login-page" style="background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);">{{--//#024f9257--}}
 <div class="login-box">
     <div class="login-logo">
         <a href="javascript:void(0);"><b>Reset Your Password</b></a>
