@@ -17,9 +17,16 @@ class EmployeeDetailsController extends Controller
     
     public function offerEmployeeDetails($id)
     {
+        $skilldata = array();
         $data['candiateDetails'] = $this->employeeDetailRoundRepository->fetchCandidateDetails($id);
         $data['userDetails'] = $this->employeeDetailRoundRepository->fetchUserDetails($id);
-        return view('employee_details.create',$data);
+        $data['skills'] =  $this->employeeDetailRoundRepository->fetchSkills();
+        $data['recruitmentSkills'] =  $this->employeeDetailRoundRepository->fetchRecruitmentSkills($id);
+        foreach($data['recruitmentSkills'] as $key => $val)
+        {
+           $skilldata[] = $val['skill_id'];
+        }
+        return view('employee_details.create',$data,compact('skilldata'));
     }
 
     public function storeOfferEmployee(Request $request){
@@ -48,7 +55,7 @@ class EmployeeDetailsController extends Controller
         ]);
         $input = $request->only('name_of_candidate','recruitment_id','feedback_id','reporting_head','email','emp_code','contact_number','alternate_number',
                                 'permanent_address','current_address','offical_email_id','father_name','mother_name','date_of_birth','date_of_joining',
-                                'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation');
+                                'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation','skill');
         $data = $this->employeeDetailRoundRepository->insert($input);
            if ($data['success'] == true) {
                $notification = array(
@@ -79,15 +86,22 @@ class EmployeeDetailsController extends Controller
 
     public function editEmployeeDetails($id)
     {
+        $skilldata = array();
         $data['employee_details'] = $this->employeeDetailRoundRepository->viewEdit($id);
-          return view('employee_details.edit',$data);
+        $data['skills'] =  $this->employeeDetailRoundRepository->fetchSkills();
+        $data['recruitmentSkills'] =  $this->employeeDetailRoundRepository->fetchEmployeeSkills($id);
+        foreach($data['recruitmentSkills'] as $key => $val)
+        {
+           $skilldata[] = $val['skill_id'];
+        }
+          return view('employee_details.edit',$data,compact('skilldata'));
     }
 
     public function updateEmployeeDetails(Request $request, $id)
     {
-        $input = $request->only('reporting_head','email','offical_email_id','emp_code','contact_number','alternate_number',
+        $input = $request->only('reporting_head','recruitment_id','email','offical_email_id','emp_code','contact_number','alternate_number',
                                 'permanent_address','current_address','father_name','mother_name','date_of_birth','date_of_joining',
-                                'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation');
+                                'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation','skill');
         $data = $this->employeeDetailRoundRepository->updateSave($input,$id);
         if ($data['success'] == true) {
             $notification = array(

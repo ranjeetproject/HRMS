@@ -52,12 +52,54 @@ class EmployeeDetailsRepository
         $recruitmentCandidateDetails = InterviewFeedback::find($id);
         return $recruitmentCandidateDetails;
     }
+    public function fetchSkills()
+    {
+        return Skill::get([
+            'id', 'skill_name'
+        ]);
+    }
+    public function fetchRecruitmentSkills($id)
+    {
+        $recruitmentId=InterviewFeedback::find($id);
+        $recruitmentSkill = CandidateSkill::select('skill_id')
+        ->where('recruitment_id', $recruitmentId->recruitment_id)
+       ->get()->toArray();
+       return $recruitmentSkill;
+        
+    }
+    public function fetchEmployeeSkills($id)
+    {
+        $recruitmentId=EmployeeDetails::find($id);
+        $recruitmentSkill = CandidateSkill::select('skill_id')
+        ->where('recruitment_id', $recruitmentId->recruitment_id)
+       ->get()->toArray();
+       return $recruitmentSkill;
+        
+    }
 
     public function insert($inputData){
         $inputData['date_of_birth'] = date('Y-m-d',strtotime($inputData['date_of_birth']));
         $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
         $row = EmployeeDetails::create($inputData);
         if ($row && $row->id > 0) {
+            $skill = CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->pluck('skill_id','id')->toArray();
+            if($skill){
+                foreach($inputData['skill']  as $val){
+                    if(!in_array($val,$skill))
+                    {
+                        CandidateSkill::create([
+                                'skill_id'=>$val,
+                                'recruitment_id'=> $inputData['recruitment_id'],
+                                ]);
+                    }
+                        
+                }
+                $oldSkill = array_diff($skill,$inputData['skill']);
+                if(count($oldSkill) > 0)
+                {
+                    CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->whereIn('skill_id',$oldSkill)->delete();
+                }
+            }
             $userData = [];
             $password = $inputData['name_of_candidate'].'@123';
             $userData['password'] = Hash::make($password);
@@ -101,6 +143,24 @@ class EmployeeDetailsRepository
     {
         $row = EmployeeDetails::find($id);
         if ($row) {
+            $skill = CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->pluck('skill_id','id')->toArray();
+            if($skill){
+                foreach($inputData['skill']  as $val){
+                    if(!in_array($val,$skill))
+                    {
+                        CandidateSkill::create([
+                                'skill_id'=>$val,
+                                'recruitment_id'=> $inputData['recruitment_id'],
+                                ]);
+                    }
+                        
+                }
+                $oldSkill = array_diff($skill,$inputData['skill']);
+                if(count($oldSkill) > 0)
+                {
+                    CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->whereIn('skill_id',$oldSkill)->delete();
+                }
+            }
             $row->update($inputData);
             return ['success' => true];
         } else {

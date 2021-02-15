@@ -23,4 +23,10 @@ class EmployeeDetails extends Model
     {
         return $this->belongsTo('App\Recruitment','recruitment_id');
     }
+
+    public function candidateSkill()
+    {
+        return $this->hasMany('App\CandidateSkill','recruitment_id');
+    }
+
 }

@@ -40,6 +40,10 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                             <input
+                                                class="form-control"
+                                                type="hidden"
+                                                name="recruitment_id" id="recruitment_id" value="{{@$employee_details->recruitment->id}}">
                                                <label class="form-control-label" for="name_of_candidate">Name of Candidate</label>
                                                 <input
                                                     class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"
@@ -349,7 +353,24 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                     <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                               <label class="form-control-label" for="skill">Skills/Technology</label>
+                                                     <ul class="list-group list-group-flush" style="overflow: auto;">
+                                                       @foreach($skills as $skill)
+                                                            <li class="list-group-item"> <input type="checkbox" class="form-check-input" name="skill[]" id="skill" value="{{$skill->id}}" @if(in_array($skill->id,$skilldata)) {{'checked'}} @endIf>{{$skill->skill_name}}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                <span class="form-text text-danger"
+                                                      id="error_skill">{{ $errors->getBag('default')->first('skill') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="card-footer">
                                     <div class="col text-right">
