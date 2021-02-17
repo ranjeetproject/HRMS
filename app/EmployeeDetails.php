@@ -28,5 +28,4 @@ class EmployeeDetails extends Model
     {
         return $this->hasMany('App\CandidateSkill','recruitment_id');
     }
-
 }

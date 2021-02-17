@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Repositories\RecruitmentRepository;
 use Illuminate\Support\Facades\URL;
 use Validator,Redirect,Response;
@@ -72,7 +73,8 @@ class RecruitmentController extends Controller
                     return redirect()->back();
                }
           }
-           $data = $this->recruitmentRepository->insert($input);
+          $user = $this->getUser();
+          $data = $this->recruitmentRepository->insert($input,$user);
            if ($data['success'] == true) {
                $notification = array(
                     'message' => 'Recruitment is successfully added!',
@@ -157,12 +159,13 @@ class RecruitmentController extends Controller
 
      public function destroy($id)
      {
-         $this->recruitmentRepository->deleteSpecific($id);
-         $notification = array(
+          $user = $this->getUser();
+          $this->recruitmentRepository->deleteSpecific($id,$user);
+          $notification = array(
              'message' => 'Recruitment Deleted successfully',
              'alert-type' => 'success'
-         );
-         return redirect()->action('RecruitmentController@index')
+           );
+          return redirect()->action('RecruitmentController@index')
              ->with($notification);
      }
 

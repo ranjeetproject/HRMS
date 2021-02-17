@@ -4,7 +4,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Login</title>
+    <title>Login</title>
+    <link rel="icon" href="{{ URL::asset('uploadimg/download.png') }}" type="image/x-icon"/>
     <link rel="stylesheet" href="{{asset('vendor/fontawesome-free/css/all.min.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <link rel="stylesheet" href="{{asset('vendor/adminlte/dist/css/adminlte.min.css')}}">
@@ -13,8 +14,10 @@
 </head>
 
 <body class="login-page" style="background-image: linear-gradient(120deg, #d4fc79 0%, #96e6a1 100%);">{{--//#024f9257--}}
+
 <div class="login-box">
     <div class="login-logo">
+        
         <a href="javascript:void(0);"><b style="color: #3e92f6">{{ __('Login') }} Panel</b></a>
     </div>
     <div class="card">

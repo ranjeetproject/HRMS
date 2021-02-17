@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\URL;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -80,7 +81,7 @@ class RecruitmentRepository
        return $all;
     }
 
-    public function insert($inputData)
+    public function insert($inputData,$user)
     {
         
         $recruitmentData = [];
@@ -109,7 +110,8 @@ class RecruitmentRepository
             $recruitmentSkillData['skill_id'] = $val;
             $recruitmentSkillData['recruitment_id'] = $row->id;
             CandidateSkill::create($recruitmentSkillData);
-           } 
+           }
+        $this->sendNotificationForRecruitment($row->id,$user);
             return ['success' => true];
         } else {
             return ['success' => false];
@@ -178,15 +180,18 @@ class RecruitmentRepository
         }
     }
 
-    public function deleteSpecific($id)
+    public function deleteSpecific($id,$user)
     {
+
         if ($id > 0) {
             $row = Recruitment::find($id);
      
             if ($row) {
                 InterviewSchedule::where('recruitment_id',$row->id)->delete();
                 InterviewFeedback::where('recruitment_id',$row->id)->delete();
+                $this->sendNotificationForRecruitment($row->id,$user);
                 $row->delete();
+                
                 return ['success' => true];
             } else {
                 return ['success' => false];
@@ -210,5 +215,42 @@ class RecruitmentRepository
         return $feedback;
 
     }
+    public function sendNotificationForRecruitment($recruitmentId,$user)
+    {
+        $currentUrl= URL::current();
+        $explode_url = explode('/', $currentUrl);
+        $url = end($explode_url);
+        if($url == 'store'){
+            $recruitmentId = Recruitment::find($recruitmentId);
+            if ($recruitmentId) {
+                $notificationRepo = new NotificationRepository();
+                $notificationData = [];
+                $notificationData['view_url'] = action('RecruitmentController@store', ['id' => $recruitmentId->id]);
+                $notificationData['recruitment_id'] = $recruitmentId->id;
+                if ($user) {
+                    $name = $user->name;
+                    $notificationData['user_id'] = $user->id;
+                }
+                $notificationData['text'] = $name . ' Create Recruitment.';
+                $notificationRepo->insert($notificationData);
+            }
+       
+        }else{
+            $recruitmentId = Recruitment::find($recruitmentId);
+            if ($recruitmentId) {
+                $notificationRepo = new NotificationRepository();
+                $notificationData = [];
+                $notificationData['view_url'] = action('RecruitmentController@destroy', ['id' => $recruitmentId->id]);
+                $notificationData['recruitment_id'] = $recruitmentId->id;
+                if ($user) {
+                    $name = $user->name;
+                    $notificationData['user_id'] = $user->id;
+                }
+                $notificationData['text'] = $name . ' Delete Recruitment.';
+                $notificationRepo->insert($notificationData);
+            }
+        }
  
+    }
+
 }

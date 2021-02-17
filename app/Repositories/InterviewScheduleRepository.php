@@ -17,7 +17,7 @@ use Carbon\Carbon;
 
 class InterviewScheduleRepository
 {
-    public function insert($inputData)
+    public function insert($inputData,$user)
     {
         $inputData['interview_scheduling_date'] = date('Y-m-d',strtotime($inputData['interview_scheduling_date']));
         $inputData['interview_scheduling_time'] =  Carbon::parse($inputData['interview_scheduling_time'])->format('h:i:s');
@@ -25,6 +25,7 @@ class InterviewScheduleRepository
         if ($row && $row->id > 0) {
             Recruitment::where('id','=',$row->recruitment_id)
                 ->update(['interview_status' => 1]);
+                $this->sendNotificationForSchedule($row->id,$user);
             return ['success' => true];
         } else {
             return ['success' => false];
@@ -57,6 +58,25 @@ class InterviewScheduleRepository
         } else {
             return ['success' => false];
         }
+    }
+
+    public function sendNotificationForSchedule($scheduleId,$user)
+    {
+        
+            $scheduleId = InterviewSchedule::find($scheduleId);
+            if ($scheduleId) {
+                $notificationRepo = new NotificationRepository();
+                $notificationData = [];
+                $notificationData['view_url'] = action('InterviewScheduleController@store', ['id' => $scheduleId->id]);
+                $notificationData['interview_schedule_id'] = $scheduleId->id;
+                if ($user) {
+                    $name = $user->name;
+                    $notificationData['user_id'] = $user->id;
+                }
+                $notificationData['text'] = $name . ' Schedule Interview.';
+                $notificationRepo->insert($notificationData);
+            }
+ 
     }
 
     

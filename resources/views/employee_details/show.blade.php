@@ -111,6 +111,22 @@
                                         <th>Designation</th>
                                         <td>{{@$employee_details->designation}}</td>
                                     </tr>
+
+                                     <tr>
+                                        <th>Skill</th>
+                                        <td>
+                                        @if($employee_details->candidateSkill)
+                                            @foreach (@$employee_details->candidateSkill as  $skills)
+                                                    {{@$skills->skill->skill_name}},
+                                            @endforeach
+                                        @endif
+                                        <td>
+                                      
+                                        
+                                    
+                                       
+                                        
+                                    </tr>
                                 </table>
                             </div>
 

@@ -25,7 +25,8 @@ class InterviewScheduleController extends Controller
             'user_id' => 'required',
         ]);
         $input = $request->only('recruitment_id', 'interview_scheduling_date','interview_scheduling_time','user_id');
-        $data = $this->interviewScheduleRepository->insert($input);
+        $user = $this->getUser();
+        $data = $this->interviewScheduleRepository->insert($input,$user);
            if ($data['success'] == true) {
                $notification = array(
                     'message' => 'Interview schedule is successfully added!',
