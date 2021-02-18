@@ -7,13 +7,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h5>Current Employee Management</h5>
+                    <h5>User Log Management</h5>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href=""> <i class="fas fa-home"></i> Home</a></li>
-                        <li class="breadcrumb-item active"><i class="nav-icon fas fa-user-tie"></i>&nbsp;Current Employee</li>
+                        <li class="breadcrumb-item active"><i class="nav-icon fas fa-user-lock"></i> User Log</li>
                     </ol>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                         <div class="card-header">
                             <h3 class="card-title">
                                 <i class="fas fa-align-justify"></i>
-                                Current Employee 
+                                User Log 
                             </h3>
                             {{-- <div class="btn-toolbar float-right" role="toolbar" aria-label="@lang('labels.general.toolbar_btn_groups')">
                                 <a href="{{action('RecruitmentController@create')}}" class="btn btn-success ml-1" data-toggle="tooltip" title="@lang('labels.general.create_new')"><span>Create New</span> <i class="fas fa-plus-circle"></i></a>
@@ -38,16 +38,14 @@
                             <div class="row mt-4">
                                 <div class="col">
                                     <div class="table-responsive">
-                                        <table class="table table-bordered table-striped data-table dt-select cms_table_width" id="employee_table">
+                                        <table class="table table-bordered table-striped data-table dt-select cms_table_width" id="user_log">
                                             <thead>
                                             <tr>
                                                 <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                 <th>ID</th>
-                                                <th>Name Of Candidate</th>
-                                                <th>Mobile Number</th>
-                                                <th>Email</th>
-                                                <th>Department</th>
-                                                <th>Designation</th>
+                                                <th>Text</th>
+                                                <th>Url</th>
+                                                <th>Created at</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -84,7 +82,7 @@
         });
 
         $(document).ready(function () {
-            table = $('#employee_table').DataTable({
+            table = $('#user_log').DataTable({
                 createdRow: function (row, data) {
                     $(row).attr('data-entry-id', data.id);
                    
@@ -93,13 +91,13 @@
                 serverSide: true,
                 dom: 'lBfrtip<"actions">',
                 ajax: {
-                    url: baseUrl + 'current-employee-list',
+                    url: baseUrl + 'user-log',
                     data: function (d) {
                     }
                 },
                 retrieve: true,
                 columnDefs: [
-                    {"className": "dt-center", "targets": [0,1,2,3,4,5]}
+                    {"className": "dt-center", "targets": [0,1,2,3,4]}
                 ],
                 "iDisplayLength": 10,
                 "aLengthMenu": [[10, 25, 50, 100, -1],[10, 25, 50, 100, "All"]],
@@ -146,11 +144,9 @@
                 columns: [
                     /*{data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},*/
                     {data: 'id', name: 'id', orderable: true, searchable: true, visible: false},
-                    {data: 'name_of_candidate', name: 'name_of_candidate', orderable: true},
-                    {data: 'contact_number', name: 'contact_number', orderable: true},
-                    {data: 'email', name: 'email', orderable: true},
-                    {data: 'department', name: 'department', orderable: true},
-                    {data: 'designation', name: 'designation', orderable: true},
+                    {data: 'text', name: 'text', orderable: true},
+                    {data: 'view_url', name: 'view_url', orderable: true},
+                    {data: 'created_at', name: 'created_at',},
                     {data: 'action', name: 'action', orderable: true, searchable: false}
                 ]
             });

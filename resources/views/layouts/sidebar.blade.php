@@ -52,8 +52,15 @@
                  <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'current-employee-list') ? 'active' : '' }}"
                         href="{{action('EmployeeDetailsController@currentEmployeeList')}}">
-                        <i class="nav-icon fas fa-male"></i>
+                        <i class="nav-icon fas fa-user-tie"></i>
                         <p>Current Employee</p>
+                    </a>
+                </li>
+                 <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'user-log') ? 'active' : '' }}"
+                        href="{{action('NotificationController@index')}}">
+                        <i class="nav-icon fas fa-user-lock"></i>
+                        <p>User Log</p>
                     </a>
                 </li>
             </ul>

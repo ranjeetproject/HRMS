@@ -67,6 +67,8 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('skills/create', 'SkillController@create');
     Route::get('skills/edit/{id}', 'SkillController@edit');
 
+    Route::get('user-log','NotificationController@index');
+
 
 /////////////////////////////////////// Post //////////////////////////////////////////////////////////////
 
