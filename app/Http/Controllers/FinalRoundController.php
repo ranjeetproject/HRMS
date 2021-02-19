@@ -62,7 +62,8 @@ class FinalRoundController extends Controller
             'final_round_interview_user_id' => 'required',
         ]);
         $input = $request->only('recruitment_id','schedule_id','final_round_interview_scheduling_date','final_round_interview_scheduling_time','final_round_interview_user_id');
-        $data = $this->finalRoundRepository->insert($input);
+        $user = $this->getUser();
+        $data = $this->finalRoundRepository->insert($input,$user);
            if ($data['success'] == true) {
                $notification = array(
                     'message' => 'Final Round Interview schedule is successfully added!',
@@ -158,7 +159,8 @@ class FinalRoundController extends Controller
             
             $input['offered'] = 0;
         }
-        $data = $this->finalRoundRepository->finalRoundFeedbackinsert($input);
+        $user = $this->getUser();
+        $data = $this->finalRoundRepository->finalRoundFeedbackinsert($input,$user);
            if ($data['success'] == true) {
                $notification = array(
                     'message' => 'Final Round Interview Feedback is successfully added!',

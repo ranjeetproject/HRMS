@@ -68,7 +68,7 @@ class FinalRoundRepository
         return $finalFeedbackRoundSchedule;
     }
 
-    public function insert($inputData)
+    public function insert($inputData,$user)
     {
         $inputData['final_round_interview_scheduling_date'] = date('Y-m-d',strtotime($inputData['final_round_interview_scheduling_date']));
         $inputData['final_round_interview_scheduling_time'] =  Carbon::parse($inputData['final_round_interview_scheduling_time'])->format('h:i:s');
@@ -78,8 +78,9 @@ class FinalRoundRepository
                         'recruitment_id' => $inputData['recruitment_id'],
                         'final_round_interview_user_id' => $inputData['final_round_interview_user_id'],
               ]);
-       
+      
         if ($row) {
+            $this->sendNotificationForSchedule($inputData['schedule_id'],$user);
             return ['success' => true];
         } else {
             return ['success' => false];
@@ -102,7 +103,7 @@ class FinalRoundRepository
         }
     }
 
-    public function finalRoundFeedbackinsert($inputData)
+    public function finalRoundFeedbackinsert($inputData,$user)
     {
         $inputData['final_round_interview_scheduling_date'] = date('Y-m-d',strtotime($inputData['final_round_interview_scheduling_date']));
         $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
@@ -122,8 +123,10 @@ class FinalRoundRepository
             if($inputData['offered'] == 1){
                 Recruitment::where('id','=',$inputData['recruitment_id'])
                 ->update(['status' => 2 ]);
+                $this->sendNotificationForFinalFeedBack($inputData['feedback_id'],$user);
                 return ['success' => true];
             }
+            $this->sendNotificationForFinalFeedBack($inputData['feedback_id'],$user);
             return ['success' => true];
         } else {
             return ['success' => false];
@@ -166,6 +169,44 @@ class FinalRoundRepository
         {
             return ['success' => false];
         }
+    }
+
+    public function sendNotificationForSchedule($scheduleId,$user)
+    {
+        
+            $scheduledId = InterviewSchedule::find($scheduleId);
+            if ($scheduledId) {
+                $notificationRepo = new NotificationRepository();
+                $notificationData = [];
+                $notificationData['view_url'] = action('FinalRoundController@store', ['id' => $scheduledId->id]);
+                $notificationData['interview_schedule_id'] = $scheduledId->id;
+                if ($user) {
+                    $name = $user->name;
+                    $notificationData['user_id'] = $user->id;
+                }
+                $notificationData['text'] = $name . ' Final Round Schedule Interview.';
+                $notificationRepo->insert($notificationData);
+            }
+ 
+    }
+
+    public function sendNotificationForFinalFeedBack($feedBackId,$user)
+    {
+       
+            $finalFeedBackId = InterviewFeedback::find($feedBackId);
+            if ($finalFeedBackId) {
+                $notificationRepo = new NotificationRepository();
+                $notificationData = [];
+                $notificationData['view_url'] = action('FinalRoundController@finalRoundFeedbackStore', ['id' => $finalFeedBackId->id]);
+                $notificationData['interview_schedule_id'] = $finalFeedBackId->id;
+                if ($user) {
+                    $name = $user->name;
+                    $notificationData['user_id'] = $user->id;
+                }
+                $notificationData['text'] = $name . ' Final Round Interview FeedBack.';
+                $notificationRepo->insert($notificationData);
+            }
+ 
     }
 
 }
