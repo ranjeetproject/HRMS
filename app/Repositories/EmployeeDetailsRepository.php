@@ -77,11 +77,12 @@ class EmployeeDetailsRepository
         
     }
 
-    public function insert($inputData){
+    public function insert($inputData,$user){
         $inputData['date_of_birth'] = date('Y-m-d',strtotime($inputData['date_of_birth']));
         $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
         $row = EmployeeDetails::create($inputData);
         if ($row && $row->id > 0) {
+            $this->sendNotificationForFeedBack($row->id,$user);
             $skill = CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->pluck('skill_id','id')->toArray();
             if($skill){
                 foreach($inputData['skill']  as $val){
@@ -166,5 +167,24 @@ class EmployeeDetailsRepository
         } else {
             return ['success' => false];
         }
+    }
+
+    public function sendNotificationForFeedBack($employeeId,$user)
+    {
+        
+            $employeeDetailsId = EmployeeDetails::find($employeeId);
+            if ($employeeDetailsId) {
+                $notificationRepo = new NotificationRepository();
+                $notificationData = [];
+                $notificationData['view_url'] = action('EmployeeDetailsController@storeOfferEmployee', ['id' => $employeeDetailsId->id]);
+                $notificationData['interview_feedback_id'] = $employeeDetailsId->id;
+                if ($user) {
+                    $name = $user->name;
+                    $notificationData['user_id'] = $user->id;
+                }
+                $notificationData['text'] = $name . ' Employee Details.';
+                $notificationRepo->insert($notificationData);
+            }
+ 
     }
 }
