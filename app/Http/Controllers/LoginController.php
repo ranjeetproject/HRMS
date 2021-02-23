@@ -24,7 +24,7 @@ class LoginController extends Controller
     {
         $this->validate($request, [
             'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'password' => 'required|min:1'
         ],[
             'email.required' => 'Incorrect email or password.',
             'password.required' => 'Incorrect email or password.',
