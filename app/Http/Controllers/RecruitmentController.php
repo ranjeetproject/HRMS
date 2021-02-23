@@ -38,8 +38,8 @@ class RecruitmentController extends Controller
      {
           $request->validate([
                'name_of_candidate' => 'required',
-               'mobile_number'=>'required',
-               'alternate_number' => 'required',
+               'mobile_number'=>'required|numeric|max:10',
+               'alternate_number' => 'required|numeric|max:10',
                'total_years_experience' => 'required',
                'total_months_experience' => 'required',
                'address' => 'required',
@@ -48,11 +48,11 @@ class RecruitmentController extends Controller
                'email_id'=> 'required',
                'application_for'=> 'required',
                'highest_qualification'=> 'required',
-               'current_ctc'=> 'required',
-               'expected_ctc'=> 'required',
+               'current_ctc'=> 'required|numeric',
+               'expected_ctc'=> 'required|numeric',
                'current_location'=> 'required',
                'skill'=> 'required',
-               'notice_period'=> 'required|numeric',
+               'notice_period'=> 'required|numeric|max:2',
                'upload_resume' => 'required|mimes:doc,docx,pdf'
            ]);
           
