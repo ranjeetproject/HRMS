@@ -251,7 +251,8 @@
                         required: true
                     },
                     interviewer_rating: {
-                        required: true
+                        required: true,
+                        number: true
                     },
                     interviewer_feedback: {
                         required: true
@@ -266,6 +267,8 @@
                     },
                     interviewer_rating: {
                         required: "This interviewer rating field is required.",
+                        number: "This interviewer rating field must be number.",
+
                     },
                     interviewer_feedback: {
                         required: "This interviewer feedback field is required.",

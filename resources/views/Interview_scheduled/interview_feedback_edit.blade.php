@@ -214,115 +214,22 @@
 
             $('#addReqForm').validate({
                 rules: {
-                    name_of_candidate: {
-                        required: true
-                    },
-                    mobile_number: {
+                    interviewer_rating: {
                         required: true,
+                        number: true
                     },
-                    alternate_number: {
+                    interviewer_feedback: {
                         required: true
-                    },
-                    total_years_experience: {
-                        required: true
-                    },
-                    total_months_experience: {
-                        required: true
-                    },
-                    address: {
-                        required: true
-                    },
-                    relevent_years_experience: {
-                        required: true
-                    },
-                    relevent_months_experience: {
-                        required: true
-                    },
-                    email_id: {
-                        required: true
-                    },
-                    application_for: {
-                        required: true
-                    },
-                    highest_qualification: {
-                        required: true
-                    },
-                    current_ctc: {
-                        required: true
-                    },
-                    expected_ctc: {
-                        required: true
-                    },
-                     current_location: {
-                        required: true
-                    },
-                    'skill[]': {
-                        required: true
-                    },
-                     notice_period: {
-                        required: true
-                    },
-                    reffered_by: {
-                        required: true
-                    },
-                    special_remarks: {
-                        required: true
-                    },
+                    }
                 },
                 messages: {
-                    name_of_candidate: {
-                        required: "This name of candidate field is required.",
+                    interviewer_rating: {
+                        required: "This interviewer rating field is required.",
+                        number: "This interviewer rating field must be number.",
+
                     },
-                    mobile_number: {
-                        required: "This mobile number field is required.",
-                    },
-                    alternate_number: {
-                        required: "This alternate number field is required.",
-                    },
-                    total_years_experience: {
-                        required: "This total years experience field is required.",
-                    },
-                    total_months_experience: {
-                        required: "This total months experience field is required.",
-                    },
-                    address: {
-                        required: "This address field is required.",
-                    },
-                    relevent_years_experience: {
-                        required: "This relevent years experience field is required.",
-                    },
-                    relevent_months_experience: {
-                        required: "This relevent months experience field is required.",
-                    },
-                    email_id: {
-                        required: "This email id field is required.",
-                    },
-                    application_for: {
-                        required: "This application for field is required.",
-                    },
-                    highest_qualification: {
-                        required: "This highest qualification field is required.",
-                    },
-                    current_ctc: {
-                        required: "This current ctc field is required.",
-                    }, 
-                    expected_ctc: {
-                        required: "This expected ctc field is required.",
-                    },
-                    current_location: {
-                        required: "This current location field is required.",
-                    },
-                    'skill[]': {
-                        required: "This skill field is required.",
-                    },
-                    notice_period: {
-                        required: "This notice period field is required.",
-                    },
-                    reffered_by: {
-                        required: "This reffered by field is required.",
-                    },
-                    special_remarks: {
-                        required: "This special_remarks field is required.",
+                    interviewer_feedback: {
+                        required: "This interviewer feedback field is required.",
                     },
 
                 },
