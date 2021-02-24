@@ -56,7 +56,7 @@
                                         <td>{{@$recruitment->total_months_experience}} Months</td>
                                     </tr> -->
                                      <tr>
-                                        <th>Total Relevent Experience</th>
+                                        <th>Total Relevant  Experience</th>
                                         <td>{{@$recruitment->relevent_years_experience}} Years {{@$recruitment->relevent_months_experience}} Months</td>
                                     </tr>
                                     <!-- <tr>
