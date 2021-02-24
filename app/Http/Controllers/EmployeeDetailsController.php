@@ -100,6 +100,28 @@ class EmployeeDetailsController extends Controller
 
     public function updateEmployeeDetails(Request $request, $id)
     {
+        $request->validate([
+            'name_of_candidate' => 'required',
+            'reporting_head'=>'required',
+            'email'=>'required|email',
+            'offical_email_id'=>'required|email',
+            'emp_code' => 'required|numeric',
+            'contact_number' => 'required',
+            'alternate_number' => 'required',
+            'permanent_address' => 'required',
+            'current_address' => 'required',
+            'father_name' => 'required',
+            'mother_name' => 'required',
+            'date_of_birth' => 'required',
+            'date_of_joining' => 'required',
+            'marital_status' => 'required',
+            'name_of_spouse' => 'required',
+            'total_years_experience' => 'required',
+            'total_months_experience' => 'required',
+            'highest_qualification' => 'required',
+            'department' => 'required',
+            'designation' => 'required',
+        ]);
         $input = $request->only('reporting_head','recruitment_id','email','offical_email_id','emp_code','contact_number','alternate_number',
                                 'permanent_address','current_address','father_name','mother_name','date_of_birth','date_of_joining',
                                 'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation','skill');

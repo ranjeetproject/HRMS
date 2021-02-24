@@ -60,8 +60,8 @@
                                             <div class="form-group">
                                                 <label class="form-control-label" for="reporting_head">Reporting Head</label>
                                                     <select
-                                                        class="form-control custom-select {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
-                                                        name="user_id" id="user_id">
+                                                        class="form-control custom-select {{ $errors->has('reporting_head') ? 'is-invalid' : '' }}"
+                                                        name="reporting_head" id="reporting_head">
                                                         <option value="">SELECT</option>
                                                         <option value="shreya das" @if(@$employee_details->reporting_head=='shreya das') selected @endIf>Shreya Das</option>
                                                         <option value="shadab mullick" @if(@$employee_details->reporting_head=='shadab mullick') selected @endIf>Shadab Mullick</option>
