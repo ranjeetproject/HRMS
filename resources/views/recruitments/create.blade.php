@@ -337,7 +337,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class=" form-control-label" for="refferdby">Refferd By</label>
+                                                    <label class=" form-control-label" for="refferdby">Referred By</label>
                                                     <input
                                                         class="form-control {{ $errors->has('refferdby') ? 'is-invalid' : '' }}"
                                                         type="text"
@@ -408,9 +408,15 @@
                     },
                     mobile_number: {
                         required: true,
+                        number: true,
+                        minlength: 10,
+                        maxlength: 10,
                     },
                     alternate_number: {
-                        required: true
+                        required: true,
+                        number: true,
+                        minlength: 10,
+                        maxlength: 10,
                     },
                     total_years_experience: {
                         required: true
@@ -428,7 +434,8 @@
                         required: true
                     },
                     email_id: {
-                        required: true
+                        required: true,
+                        email: true,
                     },
                     application_for: {
                         required: true
@@ -449,7 +456,10 @@
                         required: true
                     },
                     notice_period: {
-                        required: true
+                        required: true,
+                        number: true,
+                        minlength: 1,
+                        maxlength: 1,
                     },
                     upload_resume: {
                         required: true
@@ -462,9 +472,15 @@
                     },
                     mobile_number: {
                         required: "This mobile number field is required.",
+                        number: "This mobile number field is take number",
+                        minlength: "This mobile number field minimum length is 10",
+                        maxlength: "This mobile number field maxlength is 10",
                     },
                     alternate_number: {
                         required: "This alternate number field is required.",
+                        number: "This alternate number field is take number",
+                        minlength: "This alternate number field minimum length is 10",
+                        maxlength: "This alternate number field maxlength is 10",
                     },
                     total_years_experience: {
                         required: "This total years experience field is required.",
@@ -483,6 +499,7 @@
                     },
                     email_id: {
                         required: "This email id field is required.",
+                        email: "Please enter correct email id",
                     },
                     application_for: {
                         required: "This application for field is required.",
@@ -504,6 +521,9 @@
                     },
                     notice_period: {
                         required: "This notice period field is required.",
+                        number: "This notice period field is take number",
+                        minlength: "This notice period field minimum length is 1",
+                        maxlength: "This notice period field maxlength is 1"
                     },
                     upload_resume: {
                         required:"This resume field is required.",

@@ -38,21 +38,21 @@ class RecruitmentController extends Controller
      {
           $request->validate([
                'name_of_candidate' => 'required',
-               'mobile_number'=>'required|numeric|max:10',
+               'mobile_number'=>'required|numeric',
                'alternate_number' => 'required|numeric|max:10',
                'total_years_experience' => 'required',
                'total_months_experience' => 'required',
                'address' => 'required',
                'relevent_years_experience' => 'required',
                'relevent_months_experience'=> 'required',
-               'email_id'=> 'required',
+               'email_id'=> 'required|email',
                'application_for'=> 'required',
                'highest_qualification'=> 'required',
                'current_ctc'=> 'required|numeric',
                'expected_ctc'=> 'required|numeric',
                'current_location'=> 'required',
                'skill'=> 'required',
-               'notice_period'=> 'required|numeric|max:2',
+               'notice_period'=> 'required|numeric',
                'upload_resume' => 'required|mimes:doc,docx,pdf'
            ]);
           
@@ -112,14 +112,14 @@ class RecruitmentController extends Controller
      {
           $request->validate([
                'name_of_candidate' => 'required',
-               'mobile_number'=>'required',
-               'alternate_number' => 'required',
+               'mobile_number'=>'required|numeric',
+               'alternate_number' => 'required|numeric',
                'total_years_experience' => 'required',
                'total_months_experience' => 'required',
                'address' => 'required',
                'relevent_years_experience' => 'required',
                'relevent_months_experience'=> 'required',
-               'email_id'=> 'required',
+               'email_id'=> 'required|email',
                'application_for'=> 'required',
                'highest_qualification'=> 'required',
                'current_ctc'=> 'required',
