@@ -30,7 +30,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-align-justify"></i> Edit</h3>
-                                <a class="btn btn-danger" href="{{action('OfferedController@index')}}" style="float:right">
+                                <a class="btn btn-danger" href="{{action('EmployeeDetailsController@offerEmployeeDetails')}}" style="float:right">
                                             Back </a>
                             </div>
                             <form role="form" action="{{action('EmployeeDetailsController@updateEmployeeDetails',[$employee_details->id])}}" method="POST"
@@ -374,7 +374,7 @@
                                 </div>
                                 <div class="card-footer">
                                     <div class="col text-right">
-                                        <a class="btn btn-danger" href="{{action('OfferedController@index')}}">
+                                        <a class="btn btn-danger" href="{{action('EmployeeDetailsController@offerEmployeeDetails')}}">
                                             Cancel </a>
                                             <button type="submit" class="btn btn-primary"> Update</button>
                                     </div>
