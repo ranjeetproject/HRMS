@@ -63,6 +63,13 @@
                         <p>User Log</p>
                     </a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'salary-set-up') ? 'active' : '' }}"
+                        href="{{action('SalarySetUpController@index')}}">
+                        <i class="nav-icon fas fa-money-bill-alt"></i>
+                        <p>Salary Set Up</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

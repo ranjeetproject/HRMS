@@ -38,6 +38,9 @@ class EmployeeDetailsRepository
                 </a>
                 <a href="'.action('EmployeeDetailsController@editEmployeeDetails',$row->id).'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary">
                 <i class="fas fa-edit"></i>
+                </a>
+                <a href="'.action('SalarySetUpController@create',$row->id).'" data-toggle="tooltip" data-placement="top" title="Salary Set Up" class="btn btn-warning">
+                <i class="fas fa-money-bill-alt"></i>
                 </a>';
                 return $html;
             })

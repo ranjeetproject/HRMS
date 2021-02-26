@@ -69,6 +69,11 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('user-log','NotificationController@index');
 
+    Route::get('salary-set-up', 'SalarySetUpController@index');
+    Route::get('salary-set-up-show/{id}', 'SalarySetUpController@show');
+    Route::get('salary-set-up-create/{id}', 'SalarySetUpController@create');
+    Route::get('salary-set-up-allowance', 'SalarySetUpController@fetchGrossSalary');
+
 
 /////////////////////////////////////// Post //////////////////////////////////////////////////////////////
 
@@ -95,6 +100,8 @@ Route::middleware(['adminRoute'])->group(function (){
 
 
     Route::post('offer-employee-detail/store', 'EmployeeDetailsController@storeOfferEmployee');
+
+    Route::post('salary-set-up-store', 'SalarySetUpController@store');
 
     Route::post('/change-password', 'UserController@changePasswordSubmit');
 
