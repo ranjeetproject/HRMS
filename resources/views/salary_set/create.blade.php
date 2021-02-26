@@ -30,7 +30,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-align-justify"></i> Create</h3>
-                                <a class="btn btn-danger" href="{{action('SalarySetUpController@index')}}" style="float:right">
+                                <a class="btn btn-danger" href="{{action('EmployeeDetailsController@currentEmployeeList')}}" style="float:right">
                                             Back </a>
                             </div>
                             <form role="form" action="{{action('SalarySetUpController@store')}}" method="POST"
@@ -339,7 +339,7 @@
                                     </div>
                                 <div class="card-footer">
                                     <div class="col text-right">
-                                        <a class="btn btn-danger" href="{{action('OfferedController@index')}}">
+                                        <a class="btn btn-danger" href="{{action('EmployeeDetailsController@currentEmployeeList')}}">
                                             Cancel </a>
                                         @if(@$salary_set_up_detils->id)    
                                            <button type="submit" class="btn btn-primary" disabled> Submit</button>
