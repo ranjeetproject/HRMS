@@ -72,6 +72,7 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('salary-set-up', 'SalarySetUpController@index');
     Route::get('salary-set-up-show/{id}', 'SalarySetUpController@show');
     Route::get('salary-set-up-create/{id}', 'SalarySetUpController@create');
+    Route::get('salary-set-up-edit/{id}', 'SalarySetUpController@edit');
     Route::get('salary-set-up-allowance', 'SalarySetUpController@fetchGrossSalary');
 
 
@@ -102,10 +103,13 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('offer-employee-detail/store', 'EmployeeDetailsController@storeOfferEmployee');
 
     Route::post('salary-set-up-store', 'SalarySetUpController@store');
+    Route::post('salary-set-up-update/{id}', 'SalarySetUpController@update');
 
     Route::post('/change-password', 'UserController@changePasswordSubmit');
 
     Route::delete('offer/delete/{id}', 'OfferedController@destroy');
+
+    Route::delete('salary-set-up-delete/{id}', 'SalarySetUpController@destroy');
 
     Route::delete('final-round-interview/delete/{id}', 'FinalRoundController@finalRoundInterviewDestroy');
 

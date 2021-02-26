@@ -75,5 +75,51 @@ class SalarySetUpController extends Controller
         $salary_set_up = $this->salarySetUpRepository->view($id);
         return view('salary_set.show',compact('salary_set_up'));
     }
+
+    public function edit($id)
+    {
+        $salary_set_up_edit = $this->salarySetUpRepository->viewEdit($id);
+        return view('salary_set.edit', compact('salary_set_up_edit'));
+    }
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'salary_type' => 'required',
+            'gross_salary'=>'required|numeric',
+            'ctc'=>'required|numeric',
+            'basic' => 'required|numeric',
+            'hra' => 'required|numeric',
+            'other_allowances' => 'required|numeric',
+            'epf' => 'required|numeric',
+            'esi' => 'required|numeric',
+            'p_tax' => 'required|numeric',
+            'tds' => 'required|numeric',
+        ]);
+
+        $input = $request->only('recruitment_id','employee_details_id','employee_code','email_id','salary_type','gross_salary','ctc','basic','hra','other_allowances','epf','esi','p_tax','tds');
+        $data = $this->salarySetUpRepository->updateSave($input,$id);
+          if ($data['success'] == true) {
+               $notification = array(
+                    'message' => 'Salary Set Up is successfully update!',
+                    'alert-type' => 'success'
+               );
+               return redirect()->action('SalarySetUpController@index')->with($notification);
+          } else {
+               return redirect()->back();
+          }
+    }
+
+    public function destroy($id)
+     {
+          $user = $this->getUser();
+          $this->salarySetUpRepository->deleteSpecific($id,$user);
+          $notification = array(
+             'message' => 'Salary Set Up Deleted successfully',
+             'alert-type' => 'success'
+           );
+          return redirect()->action('SalarySetUpController@index')
+             ->with($notification);
+     }
+
     
 }

@@ -34,7 +34,15 @@ class SalarySetUpRepository
             ->addColumn('action', function ($row) {
                 $html = '<a href="'.action('SalarySetUpController@show', $row->id) .'" data-toggle="tooltip"
                 data-placement="top" title="View" class="btn btn-info">
-                <i class="fas fa-eye"></i></a>';
+                <i class="fas fa-eye"></i></a>
+                <a href="'.action('SalarySetUpController@edit', $row->id) .'" data-toggle="tooltip" data-placement="top" title="Edit" class="btn btn-primary">
+                <i class="fas fa-edit"></i>
+                </a>
+                <form method="POST" action="' . action('SalarySetUpController@destroy', [$row->id]) . '" accept-charset="UTF-8" style="display: inline-block;"
+                onsubmit="return confirm(\'Are you sure want to delete this row?\');"><input name="_method" type="hidden" value="DELETE">
+                        <input name="_token" type="hidden" value="' . csrf_token() . '">
+                        <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
+                        </form>';
 
                 return $html;
             })
@@ -68,5 +76,37 @@ class SalarySetUpRepository
     {
         $row = SalarySetUp::find($id);
         return $row;
+    }
+
+    public function viewEdit($id)
+    {
+        $rowEdit = SalarySetUp::find($id);
+        return $rowEdit;
+    }
+
+    public function updateSave($inputData, $id)
+    {
+        $row = SalarySetUp::find($id);
+        if ($row) {
+            $row->update($inputData);
+            return ['success' => true];
+        } else {
+            return ['success' => false];
+        }
+    }
+
+    public function deleteSpecific($id,$user)
+    {
+        if ($id > 0) {
+            $row = SalarySetUp::find($id);
+            if ($row) {
+                $row->delete();
+                return ['success' => true];
+            } else {
+                return ['success' => false];
+            }
+        } else {
+            return ['success' => false];
+        }
     }
 }

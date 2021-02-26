@@ -29,7 +29,7 @@
                         <div class="card card-primary card-outline">
                             <div class="card-header">
                                 <h3 class="card-title"><i class="fas fa-eye "></i> View</h3>
-                                <a class="btn btn-danger" href="{{action('EmployeeDetailsController@currentEmployeeList')}}" style="float:right">
+                                <a class="btn btn-danger" href="{{action('SalarySetUpController@index')}}" style="float:right">
                                             Back </a>
 
                             </div>
