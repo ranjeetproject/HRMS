@@ -111,7 +111,30 @@
                                         <th>Designation</th>
                                         <td>{{@$employee_details->designation}}</td>
                                     </tr>
+                                    <tr>
+                                        <th>Notice Period</th>
+                                        @if(@$employee_details->status_serving == 1)
+                                            <td>Serving</td>
+                                        @elseif(@$employee_details->status_serving == 2)
+                                            <td>On Notice</td>
+                                        @elseif(@$employee_details->status_serving == 3)
+                                            <td>Released</td>
+                                        @else
+                                            <td></td>
+                                        @endif
 
+                                    </tr>
+                                     <tr>
+                                        <th>Period</th>
+                                        @if(@$employee_details->status_probation == 1)
+                                            <td>On Probation</td>
+                                        @elseif(@$employee_details->status_probation == 2)
+                                            <td>Confirmed</td>
+                                        @else
+                                            <td></td>
+                                        @endif
+
+                                    </tr>
                                      <tr>
                                         <th>Skill</th>
                                         <td>

@@ -367,8 +367,62 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            
+                                         <div class="col-md-2">
+                                             <div class="form-group">
+                                                <label class="form-control-label" for="">On Probation 
+                                                    <input type="radio" class="form-check-input" name="status_probation" id="onProbation" value="1"@if(@$employee_details->status_probation=='1') checked @endIf style="margin-left:3%">
+                                                </label>
+                                                
+                                                <span class="form-text text-danger"
+                                                      id="error_onProbation">{{ $errors->getBag('default')->first('onProbation') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                         <div class="col-md-2">
+                                             <div class="form-group">
+                                                <label class="form-control-label" for="highest_qualification">Confirmed
+                                                    <input type="radio" class="form-check-input" name="status_probation" id="confirmed" value="2" @if(@$employee_details->status_probation=='2') checked @endIf style="margin-left:3%">
+                                                </label>
+                                                
+                                                <span class="form-text text-danger"
+                                                      id="error_confirmed">{{ $errors->getBag('default')->first('confirmed') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="row">
+                                        <div class="col-md-2">
+                                             <div class="form-group">
+                                                <label class="form-control-label" for="serving">Serving 
+                                                    <input type="radio" class="form-check-input" name="status_serving" id="serving" value="1" @if(@$employee_details->status_serving=='1') checked @endIf style="margin-left:3%">
+                                                </label>
+                                                
+                                                <span class="form-text text-danger"
+                                                      id="error_serving">{{ $errors->getBag('default')->first('serving') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                             <div class="form-group">
+                                                <label class="form-control-label" for="on_notice">On Notice
+                                                    <input type="radio" class="form-check-input" name="status_serving" id="on_notice" value="2" @if(@$employee_details->status_serving=='2') checked @endIf style="margin-left:3%">
+                                                </label>
+                                                
+                                                <span class="form-text text-danger"
+                                                      id="error_on_notice">{{ $errors->getBag('default')->first('on_notice') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                             <div class="form-group">
+                                                <label class="form-control-label" for="released">Released
+                                                    <input type="radio" class="form-check-input" name="status_serving" id="released" value="3" @if(@$employee_details->status_serving=='3') checked @endIf style="margin-left:3%">
+                                                </label>
+                                                
+                                                <span class="form-text text-danger"
+                                                      id="error_released">{{ $errors->getBag('default')->first('released') }}
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
