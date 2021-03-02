@@ -83,6 +83,9 @@ class EmployeeDetailsRepository
     public function insert($inputData,$user){
         $inputData['date_of_birth'] = date('Y-m-d',strtotime($inputData['date_of_birth']));
         $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
+        $inputData['date_of_released'] = date('Y-m-d',strtotime($inputData['date_of_released']));
+        $inputData['date_of_confirmed'] = date('Y-m-d',strtotime($inputData['date_of_confirmed']));
+
         $row = EmployeeDetails::create($inputData);
         if ($row && $row->id > 0) {
             $this->sendNotificationForFeedBack($row->id,$user);
@@ -145,6 +148,10 @@ class EmployeeDetailsRepository
 
     public function updateSave($inputData, $id)
     {
+        $inputData['date_of_birth'] = date('Y-m-d',strtotime($inputData['date_of_birth']));
+        $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
+        $inputData['date_of_released'] = date('Y-m-d',strtotime($inputData['date_of_released']));
+        $inputData['date_of_confirmed'] = date('Y-m-d',strtotime($inputData['date_of_confirmed']));
         $row = EmployeeDetails::find($id);
         if ($row) {
             $skill = CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->pluck('skill_id','id')->toArray();

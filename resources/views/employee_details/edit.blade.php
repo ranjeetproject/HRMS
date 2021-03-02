@@ -356,6 +356,38 @@
                                      <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
+                                               <label class="form-control-label" for="date_of_released">Date of Released</label>
+                                                <input
+                                                    class="form-control {{ $errors->has('date_of_released') ? 'is-invalid' : '' }}"
+                                                    type="text"
+                                                    name="date_of_released" id="date_of_released" placeholder="Please enter date of released"
+                                                    maxlength="191"
+                                                    value="{{old('date_of_released',@$employee_details->date_of_released)}}">
+                                                <span class="form-text text-danger"
+                                                      id="error_date_of_released">{{ $errors->getBag('default')->first('date_of_released') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for="date_of_confirmed">Date of Confirmed</label>
+                                           
+                                                <input
+                                                    class="form-control {{ $errors->has('date_of_confirmed') ? 'is-invalid' : '' }}"
+                                                    type="text"
+                                                    name="date_of_confirmed" id="date_of_confirmed" placeholder="Please enter date of released"
+                                                    maxlength="191"
+                                                    value="{{old('date_of_confirmed',@$employee_details->date_of_confirmed)}}">
+                                            
+                                                <span class="form-text text-danger"
+                                                      id="error_date_of_confirmed">{{ $errors->getBag('default')->first('date_of_confirmed') }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                     <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
                                                <label class="form-control-label" for="skill">Skills/Technology</label>
                                                      <ul class="list-group list-group-flush" style="overflow: auto;">
                                                        @foreach($skills as $skill)
@@ -458,6 +490,8 @@
                 }
             });
             $("#date_of_birth").datepicker();
+             $("#date_of_released").datepicker();
+            $("#date_of_confirmed").datepicker();
             
             $('#addReqForm').validate({
                 rules: {

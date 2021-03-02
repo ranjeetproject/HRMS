@@ -144,11 +144,6 @@
                                             @endforeach
                                         @endif
                                         <td>
-                                      
-                                        
-                                    
-                                       
-                                        
                                     </tr>
                                 </table>
                             </div>
