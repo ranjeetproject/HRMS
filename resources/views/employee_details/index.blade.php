@@ -48,6 +48,8 @@
                                                 <th>Email</th>
                                                 <th>Department</th>
                                                 <th>Designation</th>
+                                                <th>Status Probation</th>
+                                                <th>Status Serving</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -151,6 +153,8 @@
                     {data: 'email', name: 'email', orderable: true},
                     {data: 'department', name: 'department', orderable: true},
                     {data: 'designation', name: 'designation', orderable: true},
+                    {data: 'status_probation', name: 'status_probation', orderable: true},
+                     {data: 'status_serving', name: 'status_serving', orderable: true},
                     {data: 'action', name: 'action', orderable: true, searchable: false}
                 ]
             });

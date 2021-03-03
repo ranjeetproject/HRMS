@@ -29,7 +29,12 @@ class EmployeeDetailsRepository
     {
         $data = EmployeeDetails::orderBy('employee_details.created_at', 'DESC')
         ->leftJoin('recruitments','recruitments.id','=','employee_details.recruitment_id')
-        ->get(['employee_details.id','recruitments.name_of_candidate','email','contact_number','department','designation',]);
+        ->where('employee_details.status_serving','!=',3)
+        ->get(['employee_details.id','recruitments.name_of_candidate','email','contact_number','department','designation',
+        DB::raw('CASE WHEN status_probation = 0 THEN ""
+        WHEN status_probation = 1 THEN "On Probation" WHEN status_probation = 2 THEN "Confirmed" END AS status_probation'),
+        DB::raw('CASE WHEN status_serving = 0 THEN ""
+        WHEN status_serving = 1 THEN "Serving" WHEN status_serving = 2 THEN "On Notice" END AS status_serving')]);
     
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
