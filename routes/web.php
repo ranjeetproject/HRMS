@@ -75,6 +75,10 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('salary-set-up-edit/{id}', 'SalarySetUpController@edit');
     Route::get('salary-set-up-allowance', 'SalarySetUpController@fetchGrossSalary');
 
+    Route::get('released-employees', 'ReleasedEmployeesController@index');
+    Route::get('released-employees-details/{id}', 'ReleasedEmployeesController@show');
+
+
 
 /////////////////////////////////////// Post //////////////////////////////////////////////////////////////
 

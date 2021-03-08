@@ -70,6 +70,13 @@
                         <p>Salary Set Up</p>
                     </a>
                 </li>
+                 <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'released-employees') ? 'active' : '' }}"
+                        href="{{action('ReleasedEmployeesController@index')}}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Released Employees</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
