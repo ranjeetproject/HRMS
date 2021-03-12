@@ -70,11 +70,18 @@
                         <p>Salary Set Up</p>
                     </a>
                 </li>
-                 <li class="nav-item ">
+                <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'released-employees') ? 'active' : '' }}"
                         href="{{action('ReleasedEmployeesController@index')}}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>Released Employees</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'leave-application') ? 'active' : '' }}"
+                        href="{{action('LeaveApplicationController@index')}}">
+                        <i class="nav-icon fas fa-chalkboard-teacher"></i>
+                        <p>Leave Application</p>
                     </a>
                 </li>
             </ul>

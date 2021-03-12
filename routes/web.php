@@ -79,6 +79,13 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('released-employees-details/{id}', 'ReleasedEmployeesController@show');
 
 
+    Route::get('leave-application', 'LeaveApplicationController@index');
+    Route::get('leave-application-show/{id}', 'LeaveApplicationController@show');
+
+
+
+
+
 
 /////////////////////////////////////// Post //////////////////////////////////////////////////////////////
 
@@ -109,6 +116,9 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('salary-set-up-store', 'SalarySetUpController@store');
     Route::post('salary-set-up-update/{id}', 'SalarySetUpController@update');
 
+    Route::post('leave-application/store', 'LeaveApplicationController@store');
+
+
     Route::post('/change-password', 'UserController@changePasswordSubmit');
 
     Route::delete('offer/delete/{id}', 'OfferedController@destroy');
@@ -122,6 +132,8 @@ Route::middleware(['adminRoute'])->group(function (){
     
     Route::delete('skills/destroy/{id}', 'SkillController@destroy');
     Route::delete('recruitment/destroy/{id}', 'RecruitmentController@destroy');
+    Route::delete('leave-application-destroy/{id}', 'LeaveApplicationController@destroy');
+
 
 ////////////////////////////////////////////// Resource ////////////////////////////////////////////
    

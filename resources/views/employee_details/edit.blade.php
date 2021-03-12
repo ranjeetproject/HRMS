@@ -552,6 +552,15 @@
                     designation: {
                         required: true
                     },
+                    official_email_id:{
+                         required: true
+                    },
+                    date_of_released:{
+                         required: true
+                    },
+                    date_of_confirmed:{
+                         required: true
+                    }
                     
                    
                 },
@@ -612,6 +621,15 @@
                     },
                     designation: {
                         required:"This designation field is required.",
+                    },
+                    official_email_id: {
+                        required:"This official email id field is required.",
+                    },
+                    date_of_released: {
+                        required:"This date of released field is required.",
+                    },
+                    date_of_confirmed: {
+                        required:"This date of confirmed field is required.",
                     },
 
                 },
