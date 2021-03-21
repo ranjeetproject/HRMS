@@ -13,7 +13,7 @@
                                     href="{{action('HomeController@index')}}"> <i class="fas fa-home"></i>
                                     Home</a></li>
                             <li class="breadcrumb-item"><a
-                                    href=""> <i class="fas fa-user-tie"></i>
+                                    href=""> <i class="fas fa-user-friends"></i>
                                    Released Employees</a></li>
                             <li class="breadcrumb-item active"> View</li>
                         </ol>

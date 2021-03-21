@@ -82,6 +82,9 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('leave-application', 'LeaveApplicationController@index');
     Route::get('leave-application-show/{id}', 'LeaveApplicationController@show');
 
+    Route::get('team-member', 'TeamMemberController@index');
+
+
 
 
 
@@ -117,6 +120,8 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('salary-set-up-update/{id}', 'SalarySetUpController@update');
 
     Route::post('leave-application/store', 'LeaveApplicationController@store');
+
+    Route::post('team-member/store', 'TeamMemberController@store');
 
 
     Route::post('/change-password', 'UserController@changePasswordSubmit');

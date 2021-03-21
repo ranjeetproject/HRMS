@@ -36,7 +36,6 @@ class LoginController extends Controller
         unset($roles['api']);
         unset($roles['web']);
         $guards = array_combine(range(1, count($roles)),array_keys($roles));
-       
         foreach($guards as $k => $guard)
         {
             $credentials = ['email' => $request->get('email'),

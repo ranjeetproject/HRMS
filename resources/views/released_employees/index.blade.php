@@ -13,7 +13,7 @@
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a
                                 href=""> <i class="fas fa-home"></i> Home</a></li>
-                        <li class="breadcrumb-item active"><i class="nav-icon fas fa-users"></i>&nbsp;Released Employees</li>
+                        <li class="breadcrumb-item active"><i class="nav-icon fas fa-user-friends"></i>&nbsp;Released Employees</li>
                     </ol>
                 </div>
             </div>

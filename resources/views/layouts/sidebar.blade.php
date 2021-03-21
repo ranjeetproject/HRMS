@@ -73,7 +73,7 @@
                 <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'released-employees') ? 'active' : '' }}"
                         href="{{action('ReleasedEmployeesController@index')}}">
-                        <i class="nav-icon fas fa-users"></i>
+                        <i class="nav-icon fas fa-user-friends"></i>
                         <p>Released Employees</p>
                     </a>
                 </li>
@@ -82,6 +82,13 @@
                         href="{{action('LeaveApplicationController@index')}}">
                         <i class="nav-icon fas fa-chalkboard-teacher"></i>
                         <p>Leave Application</p>
+                    </a>
+                </li>
+                 <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'team-members') ? 'active' : '' }}"
+                        href="{{action('TeamMemberController@index')}}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Team Member</p>
                     </a>
                 </li>
             </ul>
