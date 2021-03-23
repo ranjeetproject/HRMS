@@ -24,7 +24,8 @@ class TeamMemberRepository
     public function allEmployees($user){
 
         $users = User::orderBy('created_at', 'DESC')
-        ->where('id', '!=' ,$user->id)->get(['name']);
+        ->whereNotIn('id', DB::table('team_members')->pluck('members'))
+        ->where('id','!=',$user->id)->get(['id','name']);
         return $users;
     }
 
@@ -49,5 +50,32 @@ class TeamMemberRepository
         }else{
             return ['success' => false];
         }
+    }
+
+    public function updateSave($inputData, $id,$user)
+    {
+
+        $member = TeamMember::where('user_id','=',$id)->pluck('members')->toArray();
+        if($member){
+            foreach($inputData['team2']  as $val){
+                if(!in_array($val,$member))
+                {
+                    TeamMember::create([
+                            'user_id'=> $id,
+                            'members'=> $val, 
+                            ]);
+                }
+                    
+            }
+            $oldMember = array_diff($member,$inputData['team2']);
+            if(count($oldMember) > 0)
+            {
+                TeamMember::where('user_id','=',$id)->whereIn('members',$oldMember)->delete();
+            }
+            return ['success' => true];
+        }else{
+            return ['success' => false];
+        }
+       
     }
 }

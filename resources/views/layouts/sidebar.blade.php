@@ -91,6 +91,20 @@
                         <p>Team Member</p>
                     </a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'skills-acquired') ? 'active' : '' }}"
+                        href="{{action('SkillsAcquiredController@index')}}">
+                        <i class="nav-icon fas fa-clipboard-list"></i>
+                        <p>Skills Acquired</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'skills-approved') ? 'active' : '' }}"
+                        href="{{action('SkillsApprovedController@index')}}">
+                        <i class="nav-icon fas fa-thumbs-up"></i>
+                        <p>Skills Approved</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

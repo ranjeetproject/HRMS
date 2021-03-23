@@ -20,7 +20,6 @@ class CreateTeamMembersTable extends Migration
             $table->bigInteger('members')->unsigned()->index();
             $table->foreign('members')->references('id')->on('users')->onDelete('restrict')->onUpdate('restrict');
             $table->timestamps();
-            $table->softDeletes();
             $table->engine="InnoDB";
         });
     }

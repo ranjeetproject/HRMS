@@ -21,6 +21,7 @@ class TeamMemberController extends Controller
         $user = $this->getUser();
         $data['members'] = $this->teamMemberRepository->allEmployees($user);
         $data['select_members'] = $this->teamMemberRepository->allSelected($user);
+        $data['user'] = $user;
         return view('team_member.index',$data);
         
     }
@@ -42,5 +43,25 @@ class TeamMemberController extends Controller
            } else {
                return redirect()->back();
            }
+    }
+
+    public function update(Request $request, $id){
+        
+        $request->validate([
+            'team2' => 'required',
+        ]);
+        $input = $request->all();
+        $user = $this->getUser();
+        $data = $this->teamMemberRepository->updateSave($input,$id,$user);
+           if ($data['success'] == true) {
+               $notification = array(
+                    'message' => 'Team members is successfully Update!',
+                    'alert-type' => 'success'
+               );
+               return redirect()->action('TeamMemberController@index')->with($notification);
+           } else {
+               return redirect()->back();
+           }
+
     }
 }

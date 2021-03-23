@@ -84,6 +84,12 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('team-member', 'TeamMemberController@index');
 
+    Route::get('skills-acquired', 'SkillsAcquiredController@index');
+
+    Route::get('skills-approved', 'SkillsApprovedController@index');
+
+
+
 
 
 
@@ -122,6 +128,9 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('leave-application/store', 'LeaveApplicationController@store');
 
     Route::post('team-member/store', 'TeamMemberController@store');
+
+    Route::post('team-member/update/{id}', 'TeamMemberController@update');
+
 
 
     Route::post('/change-password', 'UserController@changePasswordSubmit');
