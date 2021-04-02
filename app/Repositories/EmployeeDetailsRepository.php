@@ -120,6 +120,7 @@ class EmployeeDetailsRepository
             $userData['remember_token'] = Str::random(32);
             $userData['name'] = $inputData['name_of_candidate'];
             $userData['email'] = $inputData['offical_email_id'];
+            $userData['recruitment_id'] = $inputData['recruitment_id'];
             $userData['employee_details_id'] = $row->id;
             $user = User::create($userData);
             Mail::send('emails.registration', ['row' => $user, 'password' => $password], function ($m) use ($user) {

@@ -39,7 +39,7 @@ class RecruitmentController extends Controller
           $request->validate([
                'name_of_candidate' => 'required',
                'mobile_number'=>'required|numeric',
-               'alternate_number' => 'required|numeric|max:10',
+               'alternate_number' => 'required|numeric',
                'total_years_experience' => 'required',
                'total_months_experience' => 'required',
                'address' => 'required',

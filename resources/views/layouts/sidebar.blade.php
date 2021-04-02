@@ -98,13 +98,13 @@
                         <p>Skills Acquired</p>
                     </a>
                 </li>
-                <li class="nav-item ">
+                {{-- <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'skills-approved') ? 'active' : '' }}"
                         href="{{action('SkillsApprovedController@index')}}">
                         <i class="nav-icon fas fa-thumbs-up"></i>
                         <p>Skills Approved</p>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </nav>
     </div>

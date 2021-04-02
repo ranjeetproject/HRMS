@@ -86,7 +86,7 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('skills-acquired', 'SkillsAcquiredController@index');
 
-    Route::get('skills-approved', 'SkillsApprovedController@index');
+    Route::get('skills-approved/{id}', 'SkillsAcquiredController@approvedSkill');
 
 
 
@@ -131,6 +131,8 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::post('team-member/update/{id}', 'TeamMemberController@update');
 
+    Route::post('skills-acquired/store', 'SkillsAcquiredController@store');
+
 
 
     Route::post('/change-password', 'UserController@changePasswordSubmit');
@@ -138,6 +140,9 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::delete('offer/delete/{id}', 'OfferedController@destroy');
 
     Route::delete('salary-set-up-delete/{id}', 'SalarySetUpController@destroy');
+
+    Route::delete('skills-acquired-delete/{id}', 'SkillsAcquiredController@destroy');
+
 
     Route::delete('final-round-interview/delete/{id}', 'FinalRoundController@finalRoundInterviewDestroy');
 
