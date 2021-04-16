@@ -6,6 +6,7 @@ namespace App\Repositories;
 use App\Skill;
 use App\CandidateSkill;
 use App\SkillsAcquired;
+use App\EmployeeDetails;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -18,17 +19,15 @@ class SkillAcquiredRepository
 {
     public function getAll($input,$user)
     {
-        $data = SkillsAcquired::orderBy('skills_acquireds.created_at', 'DESC')
-        ->leftJoin('candidate_skills','candidate_skills.skills_acquireds_id','=','skills_acquireds.id')
+        $data = CandidateSkill::orderBy('candidate_skills.created_at', 'DESC')
         ->leftJoin('skills','skills.id','=','candidate_skills.skill_id')
-        ->where('skills_acquireds.user_id','=',$user->id)
-        ->get(['skills_acquireds.id','skills_acquireds.acquire_date','skills.skill_name','skills_acquireds.user_id']);
+        ->Where('candidate_skills.status','=',0)
+        ->orWhere('candidate_skills.status','=',1)
+        ->orWhere('candidate_skills.status','=',2)
+        ->get(['candidate_skills.id','candidate_skills.acquire_date','skills.skill_name']);
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
-                $html = '<a href="'.action('SkillsAcquiredController@approvedSkill', [$row->id]) .'" data-toggle="tooltip"
-                data-placement="top" title="approved-skill" class="btn btn-info">
-                <i class="fas fa-thumbs-up"></i></a>
-                <form method="POST" action="' . action('SkillsAcquiredController@destroy', [$row->id]) . '" accept-charset="UTF-8" style="display: inline-block;"
+                $html = '<form method="POST" action="' . action('SkillsAcquiredController@destroy', [$row->id]) . '" accept-charset="UTF-8" style="display: inline-block;"
                 onsubmit="return confirm(\'Are you sure want to delete this row?\');"><input name="_method" type="hidden" value="DELETE">
                         <input name="_token" type="hidden" value="' . csrf_token() . '">
                         <button class="btn btn-danger" type="submit" title="Delete" data-toggle="tooltip" data-placement="top"><i class="fas fa-trash"></i></button>
@@ -52,19 +51,21 @@ class SkillAcquiredRepository
     public function insert($inputData)
     {
         $inputData['acquire_date'] = date('Y-m-d',strtotime($inputData['acquire_date']));
-        $row = SkillsAcquired::create([
-            'user_id'=> $inputData['user_id'],
-            'acquire_date'=> $inputData['acquire_date'], 
-        ]);
-        
-        if ($row && $row->id > 0) {
-            foreach($inputData['skill'] as $val){
+        $employee_details = EmployeeDetails::Select('recruitment_id')->Where('id','=',$inputData['employee_details_id'])->first();
+        $inputData['recruitment_id'] = $employee_details->recruitment_id;
+        if($inputData)
+        {
+            foreach($inputData['skill'] as $val)
+            {
                 $acquiredSkillData = [];
                 $acquiredSkillData['skill_id'] = $val;
-                $acquiredSkillData['skills_acquireds_id'] = $row->id;
+                $acquiredSkillData['recruitment_id'] = $inputData['recruitment_id'];
+                $acquiredSkillData['user_id'] = $inputData['user_id'];
+                $acquiredSkillData['acquire_date'] = $inputData['acquire_date'];
+                $acquiredSkillData['status'] = 0;
                 CandidateSkill::create($acquiredSkillData);
             }
-            return ['success' => true];
+             return ['success' => true];
         } else {
             return ['success' => false];
         }
@@ -74,9 +75,8 @@ class SkillAcquiredRepository
     public function deleteSpecific($id)
     {
         if ($id > 0) {
-            $row = SkillsAcquired::find($id);
+            $row = CandidateSkill::find($id);
             if ($row) {
-                CandidateSkill::where('skills_acquireds_id',$row->id)->delete();
                 $row->delete();
                 return ['success' => true];
             } else {
@@ -87,13 +87,4 @@ class SkillAcquiredRepository
         }
     }
 
-    public function fetchSkillAcquiredUser($id)
-    {
-        $skill_acquired  =  SkillsAcquired::orderBy('skills_acquireds.created_at', 'DESC')
-        ->leftJoin('candidate_skills','candidate_skills.skills_acquireds_id','=','skills_acquireds.id')
-        ->leftJoin('skills','skills.id','=','candidate_skills.skill_id')
-        ->where('skills_acquireds.id','=',$id)->get(['skills.skill_name','skills_acquireds.user_id','skills_acquireds.acquire_date']);   
-        
-        return $skill_acquired;
-    }
 }

@@ -35,7 +35,8 @@ class SkillsAcquiredController extends Controller
         ]);
         $user  = $this->getUser();
         $input = $request->all();
-        $input['user_id'] = $user->id;
+        $input['user_id'] = $user->id ;
+        $input['employee_details_id'] = $user->employee_details_id ;
         $data  = $this->skillAcquiredRepository->insert($input);
         if ($data['success'] == true) {
             $notification = array(
@@ -58,12 +59,6 @@ class SkillsAcquiredController extends Controller
         );
         return redirect()->action('SkillsAcquiredController@index')
             ->with($notification);
-    }
-
-    public function approvedSkill($id)
-    {
-        $data['acquired_skills'] = $this->skillAcquiredRepository->fetchSkillAcquiredUser($id);
-        return view('skills_approved.index',$data);
     }
 
 

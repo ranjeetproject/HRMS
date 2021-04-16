@@ -86,7 +86,13 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('skills-acquired', 'SkillsAcquiredController@index');
 
-    Route::get('skills-approved/{id}', 'SkillsAcquiredController@approvedSkill');
+    Route::get('skills-approved', 'SkillsApprovedController@index');
+
+    Route::get('holidays', 'HolidayController@index');
+
+    Route::get('approve-disapprove', 'SkillsApprovedController@approveAndDisapprove');
+
+
 
 
 
@@ -133,6 +139,8 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::post('skills-acquired/store', 'SkillsAcquiredController@store');
 
+    Route::post('holidays/store', 'HolidayController@store');
+
 
 
     Route::post('/change-password', 'UserController@changePasswordSubmit');
@@ -152,6 +160,8 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::delete('skills/destroy/{id}', 'SkillController@destroy');
     Route::delete('recruitment/destroy/{id}', 'RecruitmentController@destroy');
     Route::delete('leave-application-destroy/{id}', 'LeaveApplicationController@destroy');
+    Route::delete('holiday-destroy/{id}', 'HolidayController@destroy');
+
 
 
 ////////////////////////////////////////////// Resource ////////////////////////////////////////////
