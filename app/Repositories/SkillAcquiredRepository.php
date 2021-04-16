@@ -22,8 +22,6 @@ class SkillAcquiredRepository
         $data = CandidateSkill::orderBy('candidate_skills.created_at', 'DESC')
         ->leftJoin('skills','skills.id','=','candidate_skills.skill_id')
         ->Where('candidate_skills.status','=',0)
-        ->orWhere('candidate_skills.status','=',1)
-        ->orWhere('candidate_skills.status','=',2)
         ->get(['candidate_skills.id','candidate_skills.acquire_date','skills.skill_name']);
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
