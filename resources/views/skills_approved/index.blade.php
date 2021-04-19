@@ -134,12 +134,15 @@
                                  $("#success-message").html(data.message);
                                 setTimeout(function () {
                                     $("#success-message").html('');
-                                }, 2000);
+                                }, 10000);
+                                location.reload();
+
                            }else{
                                $("#success-message").html(data.message);
-                               setTimeout(function () {
+                              setTimeout(function () {
                                     $("#success-message").html('');
-                                }, 2000);
+                                }, 10000);
+                                location.reload();
                            }
                         }
                     });
