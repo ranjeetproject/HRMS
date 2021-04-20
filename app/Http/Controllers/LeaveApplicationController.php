@@ -39,7 +39,7 @@ class LeaveApplicationController extends Controller
         if($input['from_date'] > $input['to_date']){
             $notification = array(
                 'message' => 'From Date is Greater Than To Date',
-                'alert-type' => 'success'
+                'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
         }
