@@ -36,6 +36,13 @@ class LeaveApplicationController extends Controller
             'reason' => 'required',
         ]);
         $input = $request->all();
+        if($input['from_date'] > $input['to_date']){
+            $notification = array(
+                'message' => 'From Date is Greater Than To Date',
+                'alert-type' => 'success'
+            );
+            return redirect()->back()->with($notification);
+        }
         $user = $this->getUser();
         $data = $this->leaveApplicationRepository->insert($input,$user);
         if ($data['success'] == true) {
