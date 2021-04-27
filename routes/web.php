@@ -92,6 +92,20 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('approve-disapprove', 'SkillsApprovedController@approveAndDisapprove');
 
+    Route::get('performance-feedback', 'PerformanceFeedbackController@index');
+
+    Route::get('designation', 'DesignationController@index');
+
+    Route::get('designation-edit/{id}', 'DesignationController@edit');
+
+    Route::get('department', 'DepartmentController@index');
+
+    Route::get('department-edit/{id}', 'DepartmentController@edit');
+
+
+
+
+
 
 
 
@@ -141,6 +155,18 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::post('holidays/store', 'HolidayController@store');
 
+    Route::post('performance-feedback/store', 'PerformanceFeedbackController@store');
+
+    Route::post('designation/store', 'DesignationController@store');
+
+    Route::post('designation/update/{id}', 'DesignationController@update');
+    
+    Route::post('department/store', 'DepartmentController@store');
+
+    Route::post('department/update/{id}', 'DepartmentController@update');
+
+
+
 
 
     Route::post('/change-password', 'UserController@changePasswordSubmit');
@@ -161,6 +187,13 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::delete('recruitment/destroy/{id}', 'RecruitmentController@destroy');
     Route::delete('leave-application-destroy/{id}', 'LeaveApplicationController@destroy');
     Route::delete('holiday-destroy/{id}', 'HolidayController@destroy');
+    Route::delete('performance-feedback-destroy/{id}', 'PerformanceFeedbackController@destroy');
+    Route::delete('designation-destroy/{id}', 'DesignationController@destroy');
+
+    Route::delete('department-destroy/{id}', 'DepartmentController@destroy');
+
+
+
 
 
 

@@ -112,6 +112,27 @@
                         <p>Holidays</p>
                     </a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'performance-feedback') ? 'active' : '' }}"
+                        href="{{action('PerformanceFeedbackController@index')}}">
+                        <i class="nav-icon fas fa-book-open"></i>
+                        <p>Performance Feedback</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'designation') ? 'active' : '' }}"
+                        href="{{action('DesignationController@index')}}">
+                        <i class="nav-icon fab fa-dyalog"></i>
+                        <p>Designation</p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'department') ? 'active' : '' }}"
+                        href="{{action('DepartmentController@index')}}">
+                        <i class="nav-icon far fa-building"></i>
+                        <p>Department</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>
