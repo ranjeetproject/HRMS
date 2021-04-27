@@ -174,7 +174,7 @@
                 ]
             });
 
-            $('#skillForm').validate({
+            $('#designationForm').validate({
                 rules: {
                     designation_name: {
                         required: true
