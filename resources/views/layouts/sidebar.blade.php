@@ -133,6 +133,13 @@
                         <p>Department</p>
                     </a>
                 </li>
+                <li class="nav-item ">
+                    <a class="nav-link {{ (request()->segment(2) == 'user-permission') ? 'active' : '' }}"
+                        href="{{action('UserPermissionController@index')}}">
+                        <i class="nav-icon fas fa-person-booth"></i>
+                        <p>User Permission</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

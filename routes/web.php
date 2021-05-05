@@ -102,6 +102,12 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('department-edit/{id}', 'DepartmentController@edit');
 
+    Route::get('user-permission', 'UserPermissionController@index');
+
+    Route::get('user-permission/{id}', 'UserPermissionController@edit');
+
+
+
 
 
 
@@ -164,6 +170,12 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('department/store', 'DepartmentController@store');
 
     Route::post('department/update/{id}', 'DepartmentController@update');
+
+    Route::post('user-permission/store', 'UserPermissionController@store');
+
+    Route::post('user-permission/update/{id}', 'UserPermissionController@update');
+
+
 
 
 
