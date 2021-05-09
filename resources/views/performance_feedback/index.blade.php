@@ -65,23 +65,56 @@
                                         
                                     </div>
                                 </div>
+                                 <style>
+                                    .inp_redio_wrap {
+                                        display: flex;
+                                        width: 100%;
+                                        position: relative
+                                    }
+
+                                    .inp_redio_wrap .inpredio span {
+                                        position: absolute;
+                                        left: 0px;
+                                        bottom: -27px;
+                                        width: 179px;
+                                    }
+                                </style>
                                 <div class="row">
                                     <div class="col-md-2">
                                         <div class="card-body">
                                             <div class="form-group row">
+                                                {{-- 
                                                 <label class="col-md-2 form-control-label" for="performance_type">Extraordinary Performance <span class="text-danger">*</span></label>
                                                 <div class="col-md-8">
                                                      <input type="radio" class="form-check-input" name="performance_type" id="released" value="1" style="margin-left:3%">
+                                                </div> --}}
+                                                <div class="col-md-12">
+                                                    <div class="inp_redio_wrap" >
+                                                        <label class=" form-control-label" for="performance_type">Extraordinary Performance <span class="text-danger">*</span></label>
+                                                        <div class="inpredio">
+                                                             <input type="radio" class="form-check-input" name="performance_type" id="released" value="1" style="margin-left:3%">
+                                                        </div>
+                                                    </div>
                                                 </div>
+                                                
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="card-body">
                                             <div class="form-group row">
-                                                <label class="col-md-2 form-control-label" for="performance_type">Client Testimonials<span class="text-danger">*</span></label>
+                                                {{-- <label class="col-md-2 form-control-label" for="performance_type">Client Testimonials<span class="text-danger">*</span></label>
                                                 <div class="col-md-8">
                                                      <input type="radio" class="form-check-input" name="performance_type" id="released" value="2" style="margin-left:3%">
+                                                </div> --}}
+
+                                                <div class="col-md-12">
+                                                    <div class="inp_redio_wrap" >
+                                                        <label class="form-control-label" for="performance_type">Client Testimonials<span class="text-danger">*</span></label>
+                                                        <div class="inpredio">
+                                                         <input type="radio" class="form-check-input" name="performance_type" id="released" value="2" style="margin-left:3%">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,9 +122,19 @@
                                     <div class="col-md-2">
                                         <div class="card-body">
                                             <div class="form-group row">
+                                                {{-- 
                                                 <label class="col-md-2 form-control-label" for="performance_type">Received GEM<span class="text-danger">*</span></label>
                                                 <div class="col-md-8">
                                                      <input type="radio" class="form-check-input" name="performance_type" id="released" value="3" style="margin-left:3%">
+                                                </div> --}}
+
+                                                <div class="col-md-12">
+                                                    <div class="inp_redio_wrap" >
+                                                            <label class="form-control-label" for="performance_type">Received GEM<span class="text-danger">*</span></label>
+                                                        <div class="inpredio">
+                                                            <input type="radio" class="form-check-input" name="performance_type" id="released" value="3" style="margin-left:3%">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,9 +142,19 @@
                                      <div class="col-md-2">
                                         <div class="card-body">
                                             <div class="form-group row">
+                                                {{-- 
                                                 <label class="col-md-2 form-control-label" for="performance_type">Poor performance<span class="text-danger">*</span></label>
                                                 <div class="col-md-8">
                                                      <input type="radio" class="form-check-input" name="performance_type" id="released" value="4" style="margin-left:3%">
+                                                </div> --}}
+
+                                                <div class="col-md-12">
+                                                    <div class="inp_redio_wrap" >
+                                                        <label class="form-control-label" for="performance_type">Poor performance<span class="text-danger">*</span></label>
+                                                        <div class="inpredio">
+                                                            <input type="radio" class="form-check-input" name="performance_type" id="released" value="4" style="margin-left:3%">
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -109,11 +162,24 @@
                                      <div class="col-md-2">
                                         <div class="card-body">
                                             <div class="form-group row">
+                                                {{-- 
                                                 <label class="col-md-2 form-control-label" for="performance_type">Client Escallation<span class="text-danger">*</span></label>
                                                 <div class="col-md-8">
                                                      <input type="radio" class="form-check-input" name="performance_type" id="released" value="5" style="margin-left:3%">
                                                     <span class="form-text text-danger"
                                                         id="error_performance_type">{{ $errors->getBag('default')->first('performance_type') }}</span>
+                                                </div> --}}
+
+                                                 <div class="col-md-12">
+                                                    <div class="inp_redio_wrap" >
+                                                <label class="form-control-label" for="performance_type">Client Escallation<span class="text-danger">*</span></label>
+                                                        <div class="inpredio">
+                                                     <input type="radio" class="form-check-input" name="performance_type" id="released" value="5" style="margin-left:3%">
+                                                        </div>
+                                                    </div>
+                                                                                                        <span class="form-text text-danger"
+                                                        id="error_performance_type">{{ $errors->getBag('default')->first('performance_type') }}</span>
+
                                                 </div>
                                             </div>
                                         </div>
