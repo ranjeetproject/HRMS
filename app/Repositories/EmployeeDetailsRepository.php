@@ -9,6 +9,8 @@ use App\InterviewSchedule;
 use App\EmployeeDetails;
 use App\InterviewFeedback;
 use App\Skill;
+use App\Department;
+use App\Designation;
 use App\CandidateSkill;
 use App\FinalRoundInterviewScheduling;
 use Illuminate\Support\Facades\Auth;
@@ -29,8 +31,10 @@ class EmployeeDetailsRepository
     {
         $data = EmployeeDetails::orderBy('employee_details.created_at', 'DESC')
         ->leftJoin('recruitments','recruitments.id','=','employee_details.recruitment_id')
+        ->leftJoin('departments','departments.id','=','employee_details.department_id')
+        ->leftJoin('designations','designations.id','=','employee_details.designation_id')
         ->where('employee_details.status_serving','!=',3)
-        ->get(['employee_details.id','recruitments.name_of_candidate','email','contact_number','department','designation',
+        ->get(['employee_details.id','recruitments.name_of_candidate','email','contact_number','designations.designation_name','departments.department_name',	
         DB::raw('CASE WHEN status_probation = 0 THEN ""
         WHEN status_probation = 1 THEN "On Probation" WHEN status_probation = 2 THEN "Confirmed" END AS status_probation'),
         DB::raw('CASE WHEN status_serving = 0 THEN ""
@@ -64,6 +68,18 @@ class EmployeeDetailsRepository
     {
         return Skill::get([
             'id', 'skill_name'
+        ]);
+    }
+    public function fetchDepartments()
+    {
+        return Department::get([
+            'id', 'department_name'
+        ]);
+    }
+    public function fetchDesignations()
+    {
+        return Designation::get([
+            'id', 'designation_name'
         ]);
     }
     public function fetchRecruitmentSkills($id)
