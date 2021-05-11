@@ -21,6 +21,8 @@ class EmployeeDetailsController extends Controller
         $data['candiateDetails'] = $this->employeeDetailRoundRepository->fetchCandidateDetails($id);
         $data['userDetails'] = $this->employeeDetailRoundRepository->fetchUserDetails($id);
         $data['skills'] =  $this->employeeDetailRoundRepository->fetchSkills();
+        $data['departments'] =  $this->employeeDetailRoundRepository->fetchDepartments();
+        $data['designations'] =  $this->employeeDetailRoundRepository->fetchDesignations();
         $data['recruitmentSkills'] =  $this->employeeDetailRoundRepository->fetchRecruitmentSkills($id);
         foreach($data['recruitmentSkills'] as $key => $val)
         {
@@ -49,8 +51,8 @@ class EmployeeDetailsController extends Controller
             'total_years_experience' => 'required',
             'total_months_experience' => 'required',
             'highest_qualification' => 'required',
-            'department' => 'required',
-            'designation' => 'required',
+            'department_id' => 'required',
+            'designation_id' => 'required',
             'status_probation' => 'required',
             'status_serving' => 'required',
             'date_of_released' => 'required',
@@ -58,7 +60,7 @@ class EmployeeDetailsController extends Controller
         ]);
         $input = $request->only('name_of_candidate','recruitment_id','feedback_id','reporting_head','email','emp_code','contact_number','alternate_number',
                                 'permanent_address','current_address','offical_email_id','father_name','mother_name','date_of_birth','date_of_joining',
-                                'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation','skill','status_probation','status_serving','date_of_released','date_of_confirmed');
+                                'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department_id','designation_id','skill','status_probation','status_serving','date_of_released','date_of_confirmed');
         $user = $this->getUser();
         $data = $this->employeeDetailRoundRepository->insert($input,$user);
            if ($data['success'] == true) {
@@ -93,6 +95,8 @@ class EmployeeDetailsController extends Controller
         $skilldata = array();
         $data['employee_details'] = $this->employeeDetailRoundRepository->viewEdit($id);
         $data['skills'] =  $this->employeeDetailRoundRepository->fetchSkills();
+        $data['departments'] =  $this->employeeDetailRoundRepository->fetchDepartments();
+        $data['designations'] =  $this->employeeDetailRoundRepository->fetchDesignations();
         $data['recruitmentSkills'] =  $this->employeeDetailRoundRepository->fetchEmployeeSkills($id);
         foreach($data['recruitmentSkills'] as $key => $val)
         {
@@ -122,8 +126,8 @@ class EmployeeDetailsController extends Controller
             'total_years_experience' => 'required',
             'total_months_experience' => 'required',
             'highest_qualification' => 'required',
-            'department' => 'required',
-            'designation' => 'required',
+            'department_id' => 'required',
+            'designation_id' => 'required',
             'status_probation' => 'required',
             'status_serving' => 'required',
             'date_of_released' => 'required',
@@ -131,7 +135,7 @@ class EmployeeDetailsController extends Controller
         ]);
         $input = $request->only('reporting_head','recruitment_id','email','offical_email_id','emp_code','contact_number','alternate_number',
                                 'permanent_address','current_address','father_name','mother_name','date_of_birth','date_of_joining',
-                                'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department','designation','skill','status_probation','status_serving','date_of_released','date_of_confirmed');
+                                'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department_id','designation_id','skill','status_probation','status_serving','date_of_released','date_of_confirmed');
         $data = $this->employeeDetailRoundRepository->updateSave($input,$id);
         if ($data['success'] == true) {
             $notification = array(

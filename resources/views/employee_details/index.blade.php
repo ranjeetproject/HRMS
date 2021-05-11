@@ -151,8 +151,8 @@
                     {data: 'name_of_candidate', name: 'name_of_candidate', orderable: true},
                     {data: 'contact_number', name: 'contact_number', orderable: true},
                     {data: 'email', name: 'email', orderable: true},
-                    {data: 'department', name: 'department', orderable: true},
-                    {data: 'designation', name: 'designation', orderable: true},
+                    {data: 'department_name', name: 'department_name', orderable: true},
+                    {data: 'designation_name', name: 'designation_name', orderable: true},
                     {data: 'status_probation', name: 'status_probation', orderable: true},
                      {data: 'status_serving', name: 'status_serving', orderable: true},
                     {data: 'action', name: 'action', orderable: true, searchable: false}

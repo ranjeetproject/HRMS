@@ -105,11 +105,11 @@
                                     </tr>
                                     <tr>
                                         <th>Department</th>
-                                        <td>{{@$employee_details->department}}</td>
+                                        <td>{{@$employee_details->department->department_name}}</td>
                                     </tr>
                                      <tr>
                                         <th>Designation</th>
-                                        <td>{{@$employee_details->designation}}</td>
+                                        <td>{{@$employee_details->designation->designation_name}}</td>
                                     </tr>
                                     <tr>
                                         <th>Notice Period</th>

@@ -320,35 +320,33 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="department">Department</label>
+                                               <label class="form-control-label" for="department_id">Department</label>
                                                 <select
-                                                    class="form-control custom-select {{ $errors->has('department') ? 'is-invalid' : '' }}"
-                                                    name="department" id="department">
+                                                    class="form-control custom-select {{ $errors->has('department_id') ? 'is-invalid' : '' }}"
+                                                    name="department_id" id="department_id">
                                                     <option value="">Select</option>
-                                                    <option value="accounts" @if(@$employee_details->department=='accounts') selected @endIf>Accounts</option>
-                                                    <option value="design" @if(@$employee_details->department=='design') selected @endIf>Design</option>
-                                                    <option value="coding"  @if(@$employee_details->department=='coding') selected @endIf>Coding</option>
-                                                    <option value="hr"  @if(@$employee_details->department=='hr') selected @endIf>HR</option>
+                                                    @foreach ($departments as $department)
+                                                        <option value="{{$department->id}}" @if(@$employee_details->department_id==$department->id) selected @endIf>{{$department->department_name}}</option>
+                                                    @endforeach
                                                 </select>
                                                 <span class="form-text text-danger"
-                                                      id="error_department">{{ $errors->getBag('default')->first('department') }}
+                                                      id="error_department_id">{{ $errors->getBag('default')->first('department_id') }}
                                                 </span>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="designation">Designation</label>
+                                                <label class="form-control-label" for="designation_id">Designation</label>
                                                 <select
-                                                    class="form-control custom-select {{ $errors->has('designation') ? 'is-invalid' : '' }}"
-                                                    name="designation" id="designation">
+                                                    class="form-control custom-select {{ $errors->has('designation_id') ? 'is-invalid' : '' }}"
+                                                    name="designation_id" id="designation_id">
                                                     <option value="">Select</option>
-                                                    <option value="project manager" @if(@$employee_details->designation=='project manager') selected @endIf>Project Manager</option>
-                                                    <option value="account manager"  @if(@$employee_details->designation=='account manager') selected @endIf>Account Manager</option>
-                                                    <option value="business development manager" @if(@$employee_details->designation=='business development manager') selected @endIf>Business Development Manager</option>
-                                                    <option value="manager"  @if(@$employee_details->designation=='manager') selected @endIf>Manager</option>
+                                                    @foreach ($designations as $designation)
+                                                        <option value="{{$designation->id}}" @if(@$employee_details->designation_id==$designation->id) selected @endIf>{{$designation->designation_name}}</opt>
+                                                    @endforeach
                                                 </select>
                                                 <span class="form-text text-danger"
-                                                      id="error_designation">{{ $errors->getBag('default')->first('designation') }}
+                                                      id="error_designation_id">{{ $errors->getBag('default')->first('designation_id') }}
                                                 </span>
                                             </div>
                                         </div>
