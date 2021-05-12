@@ -43,12 +43,16 @@ return [
 
         'superadmin' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'superadmins',
         ],
 
-        'member' => [
+        'hr' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'hrs',
+        ],
+        'account' => [
+            'driver' => 'session',
+            'provider' => 'accounts',
         ],
 
         'api' => [
@@ -86,10 +90,15 @@ return [
             'model' => App\User::class,
         ],
 
-        'members' => [
+        'hrs' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
         ],
+        'accounts' => [
+            'driver' => 'eloquent',
+            'model' => App\User::class,
+        ],
+
 
         // 'users' => [
         //     'driver' => 'database',

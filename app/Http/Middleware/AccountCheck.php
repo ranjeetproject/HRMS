@@ -1,13 +1,10 @@
 <?php
 
 namespace App\Http\Middleware;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 use Closure;
 
-class memberRouteHandler
+class AccountCheck
 {
     /**
      * Handle an incoming request.
@@ -18,7 +15,7 @@ class memberRouteHandler
      */
     public function handle($request, Closure $next)
     {
-        if(!Auth::guard('hr')->check())
+        if(!Auth::guard('account')->check())
         {
             if($request->ajax())
             {
@@ -31,5 +28,6 @@ class memberRouteHandler
             return redirect()->route('dashboard')->with($notification);
         }
         return $next($request);
+        
     }
 }

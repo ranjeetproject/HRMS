@@ -63,9 +63,7 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('current-employee-details-edit/{id}', 'EmployeeDetailsController@editEmployeeDetails');
 
 
-    Route::get('skills', 'SkillController@index');
-    Route::get('skills/create', 'SkillController@create');
-    Route::get('skills/edit/{id}', 'SkillController@edit');
+
 
     Route::get('user-log','NotificationController@index');
 
@@ -125,9 +123,6 @@ Route::middleware(['adminRoute'])->group(function (){
 /////////////////////////////////////// Post //////////////////////////////////////////////////////////////
 
 
-
-    Route::post('skills/store', 'SkillController@store');
-    Route::post('skills/update/{id}', 'SkillController@update');
     Route::post('recruitment/store', 'RecruitmentController@store');
     Route::post('recruitment/update/{id}', 'RecruitmentController@update');
     Route::post('interview-scheduling/store', 'InterviewScheduleController@store');
@@ -195,7 +190,6 @@ Route::middleware(['adminRoute'])->group(function (){
 
 
     
-    Route::delete('skills/destroy/{id}', 'SkillController@destroy');
     Route::delete('recruitment/destroy/{id}', 'RecruitmentController@destroy');
     Route::delete('leave-application-destroy/{id}', 'LeaveApplicationController@destroy');
     Route::delete('holiday-destroy/{id}', 'HolidayController@destroy');
@@ -214,4 +208,24 @@ Route::middleware(['adminRoute'])->group(function (){
     
 
  });
+
+ Route::middleware(['adminRoute','hrs'])->group(function (){
+
+    Route::get('skills', 'SkillController@index');
+    Route::get('skills/create', 'SkillController@create');
+    Route::get('skills/edit/{id}', 'SkillController@edit');
+
+    Route::post('skills/store', 'SkillController@store');
+    Route::post('skills/update/{id}', 'SkillController@update');
+
+    Route::delete('skills/destroy/{id}', 'SkillController@destroy');
+
+ });
+
+ Route::middleware(['adminRoute','accounts'])->group(function (){
+ 
+
+
+
+});
  

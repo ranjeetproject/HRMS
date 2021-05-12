@@ -28,6 +28,7 @@
                         </p>
                     </a>
                 </li>
+                @if($loginUser->user_type == 2)
                 <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'skills') ? 'active' : '' }}"
                         href="{{action('SkillController@index')}}">
@@ -35,6 +36,7 @@
                         <p>Add Skills</p>
                     </a>
                 </li>
+                @endIf
                 <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'final-round') ? 'active' : '' }}"
                         href="{{action('FinalRoundController@index')}}">
