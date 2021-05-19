@@ -21,7 +21,6 @@ class HolidayController extends Controller
         $input = $request->all();
         $user = $this->getUser();
         $user_permissions =  $this->holidayRepository->checkPermission($user);
-          //dd($user_permissions);
         foreach($user_permissions as $user_permission){
             $data['user_permissions'] = $user_permission;
         }

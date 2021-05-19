@@ -19,7 +19,7 @@
                         </p>
                     </a>
                 </li>
-                
+                @if(@$checkModulePermission->recruitment_view == '1')
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->segment(2) == 'recruitment') ? 'active' : '' }}"
                        href="{{action('RecruitmentController@index')}}">
@@ -29,7 +29,7 @@
                         </p>
                     </a>
                 </li>
-                @if($loginUser->user_type == 2)
+                @endIf
                 <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'skills') ? 'active' : '' }}"
                         href="{{action('SkillController@index')}}">
@@ -37,7 +37,6 @@
                         <p>Add Skills</p>
                     </a>
                 </li>
-                @endIf
                 <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'final-round') ? 'active' : '' }}"
                         href="{{action('FinalRoundController@index')}}">
@@ -108,6 +107,7 @@
                         <p>Approved Skills</p>
                     </a>
                 </li>
+                @if(@$checkModulePermission->holiday_view == '1')
                 <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'holidays') ? 'active' : '' }}"
                         href="{{action('HolidayController@index')}}">
@@ -115,6 +115,9 @@
                         <p>Holidays</p>
                     </a>
                 </li>
+                @endIf
+                
+                @if(@$checkModulePermission->performance_view == '1')
                 <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'performance-feedback') ? 'active' : '' }}"
                         href="{{action('PerformanceFeedbackController@index')}}">
@@ -122,6 +125,7 @@
                         <p>Performance Feedback</p>
                     </a>
                 </li>
+                @endIf
                 <li class="nav-item ">
                     <a class="nav-link {{ (request()->segment(2) == 'designation') ? 'active' : '' }}"
                         href="{{action('DesignationController@index')}}">

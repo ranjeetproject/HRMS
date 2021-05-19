@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Config;
+use App\Repositories\UserPermissionnRepository;
 use Illuminate\Support\Facades\Auth;
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,9 +31,17 @@ class AppServiceProvider extends ServiceProvider
                     $data['loginUser'] = Auth::guard($guard)->user();
                 }
             }
-            // dd($data);
+            $permissionCheck = new UserPermissionnRepository();
+            $user_permissions = $permissionCheck->checkPermission($data['loginUser']);
+            if($user_permissions){
+                foreach($user_permissions as $user_permission){
+                    $data['checkModulePermission'] = $user_permission;
+                }
+            }
             $view->with($data);
         });
+
+        
     }
 
     /**

@@ -81,6 +81,13 @@ class UserPermissionnRepository
             return ['success' => false];
         }
     }
+    public function checkPermission($user)
+    {
+        if($user){
+            $row = UserPermission::Where('department_id','=',$user->department_id)->Where('designation_id','=',$user->designation_id)->get();
+            return $row;
+        }
+    }
 
     
 }

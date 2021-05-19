@@ -131,7 +131,8 @@ class EmployeeDetailsRepository
             $userData = [];
             $password = $inputData['name_of_candidate'].'@123';
             $userData['password'] = Hash::make($password);
-            $userData['user_type'] = $inputData['department_id'];
+            $userData['department_id'] = $inputData['department_id'];
+            $userData['designation_id'] = $inputData['designation_id'];
             $userData['active'] = 1;
             $userData['remember_token'] = Str::random(32);
             $userData['name'] = $inputData['name_of_candidate'];

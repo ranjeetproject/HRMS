@@ -39,7 +39,7 @@ class LoginController extends Controller
         foreach($guards as $k => $guard)
         {
             $credentials = ['email' => $request->get('email'),
-            'password' => $request->get('password'),'user_type' => $k];
+            'password' => $request->get('password'),'department_id' => $k];
             if (Auth::guard($guard)->attempt($credentials))
             {
                 return redirect()->route('dashboard');

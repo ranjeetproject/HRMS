@@ -256,7 +256,7 @@ class RecruitmentRepository
 
     public function checkPermission($user)
     {
-        $row = UserPermission::Where('department_id','=',$user->user_type)->get();
+        $row = UserPermission::Where('department_id','=',$user->department_id)->Where('designation_id','=',$user->designation_id)->get();
         return $row;
     }
 
