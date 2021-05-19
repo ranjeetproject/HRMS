@@ -31,7 +31,10 @@
                                 Recruitment 
                             </h3>
                             <div class="btn-toolbar float-right" role="toolbar" aria-label="@lang('labels.general.toolbar_btn_groups')">
-                                <a href="{{action('RecruitmentController@create')}}" class="btn btn-success ml-1" data-toggle="tooltip" title="@lang('labels.general.create_new')"><span>Create New</span> <i class="fas fa-plus-circle"></i></a>
+                            
+                                @if(@$user_permissions->recruitment_modify == '2')
+                                    <a href="{{action('RecruitmentController@create')}}" class="btn btn-success ml-1" data-toggle="tooltip" title="@lang('labels.general.create_new')"><span>Create New</span> <i class="fas fa-plus-circle"></i></a>
+                                @endIf
                             </div>
                         </div>
                         <div class="card-body">

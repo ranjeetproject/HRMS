@@ -7,6 +7,7 @@ use App\Recruitment;
 use App\InterviewSchedule;
 use App\InterviewFeedback;
 use App\Skill;
+use App\UserPermission;
 use App\CandidateSkill;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -251,6 +252,12 @@ class RecruitmentRepository
             }
         }
  
+    }
+
+    public function checkPermission($user)
+    {
+        $row = UserPermission::Where('department_id','=',$user->user_type)->get();
+        return $row;
     }
 
 }

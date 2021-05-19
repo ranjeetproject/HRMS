@@ -98,4 +98,7 @@ class UserPermissionController extends Controller
             return redirect()->back();
         }
     }
+
+
+
 }

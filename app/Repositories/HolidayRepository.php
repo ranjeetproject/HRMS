@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Holiday;
+use App\UserPermission;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -59,5 +60,12 @@ class HolidayRepository
             return ['success' => false];
         }
     }
+
+    public function checkPermission($user)
+    {
+        $row = UserPermission::Where('department_id','=',$user->user_type)->get();
+        return $row;
+    }
+
 
 }

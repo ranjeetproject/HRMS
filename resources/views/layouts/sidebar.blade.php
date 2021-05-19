@@ -19,6 +19,7 @@
                         </p>
                     </a>
                 </li>
+                
                 <li class="nav-item">
                     <a class="nav-link {{ (request()->segment(2) == 'recruitment') ? 'active' : '' }}"
                        href="{{action('RecruitmentController@index')}}">

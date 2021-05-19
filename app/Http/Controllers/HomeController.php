@@ -20,7 +20,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        
+        $user = $this->getUser();
         return view('dashboard');
     }
 }

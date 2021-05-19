@@ -19,6 +19,12 @@ class PerformanceFeedbackController extends Controller
     {
         $user = $this->getUser();
         $data['team_member_name'] = $this->performanceFeedbackRepository->fetchTeamMember($user);
+        $user = $this->getUser();
+        $user_permissions =  $this->performanceFeedbackRepository->checkPermission($user);
+          //dd($user_permissions);
+        foreach($user_permissions as $user_permission){
+               $data['user_permissions'] = $user_permission;
+        }
         $input = $request->all();
         if ($request->ajax()) {
             return $this->performanceFeedbackRepository->getAll($input);

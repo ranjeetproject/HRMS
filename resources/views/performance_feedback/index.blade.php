@@ -22,214 +22,216 @@
 
         <div class="content">
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="card card-primary card-outline">
-                            <div class="card-header">
-                                <div class="card-title">
-                                    <i class="fas fa-plus-square"></i>
-                                     Performance Feedback
+                @if(@$user_permissions->performance_modify == '2')
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <div class="card-title">
+                                        <i class="fas fa-plus-square"></i>
+                                        Performance Feedback
+                                    </div>
                                 </div>
+                                <form action="{{action('PerformanceFeedbackController@store')}}" method="post"
+                                    enctype="multipart/form-data" id="performanceFeedbackForm">
+                                    {{csrf_field()}}
+
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    <div>
+                                                        <label class="col-md-2 form-control-label" for="team_member_name_id" style="display:inline">Team Member Name<span class="text-danger">*</span></label>
+                                                    </div><br><br>
+                                                    <div class="col-md-10">
+                                                    <select
+                                                            class="form-control custom-select {{ $errors->has("team_member_name_id") ? 'is-invalid' : '' }}"
+                                                            name="team_member_name_id" id="team_member_name_id">
+                                                            <option value="">Select</option>
+                                                            @foreach ($team_member_name as $member_name)
+                                                                <option value="{{$member_name->members}}">{{$member_name->name}}</option>
+                                                            @endforeach
+                                                        
+                                                        </select>
+                                                        <span class="form-text text-danger"
+                                                            id="error_team_member_name_id">{{ $errors->getBag('default')->first('team_member_name_id') }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            
+                                        </div>
+                                    </div>
+                                    <style>
+                                        .inp_redio_wrap {
+                                            display: flex;
+                                            width: 100%;
+                                            position: relative
+                                        }
+
+                                        .inp_redio_wrap .inpredio span {
+                                            position: absolute;
+                                            left: 0px;
+                                            bottom: -27px;
+                                            width: 179px;
+                                        }
+                                    </style>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    {{-- 
+                                                    <label class="col-md-2 form-control-label" for="performance_type">Extraordinary Performance <span class="text-danger">*</span></label>
+                                                    <div class="col-md-8">
+                                                        <input type="radio" class="form-check-input" name="performance_type" id="released" value="1" style="margin-left:3%">
+                                                    </div> --}}
+                                                    <div class="col-md-12">
+                                                        <div class="inp_redio_wrap" >
+                                                            <label class=" form-control-label" for="performance_type">Extraordinary Performance <span class="text-danger">*</span></label>
+                                                            <div class="inpredio">
+                                                                <input type="radio" class="form-check-input" name="performance_type" id="released" value="1" style="margin-left:3%">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    {{-- <label class="col-md-2 form-control-label" for="performance_type">Client Testimonials<span class="text-danger">*</span></label>
+                                                    <div class="col-md-8">
+                                                        <input type="radio" class="form-check-input" name="performance_type" id="released" value="2" style="margin-left:3%">
+                                                    </div> --}}
+
+                                                    <div class="col-md-12">
+                                                        <div class="inp_redio_wrap" >
+                                                            <label class="form-control-label" for="performance_type">Client Testimonials<span class="text-danger">*</span></label>
+                                                            <div class="inpredio">
+                                                            <input type="radio" class="form-check-input" name="performance_type" id="released" value="2" style="margin-left:3%">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    {{-- 
+                                                    <label class="col-md-2 form-control-label" for="performance_type">Received GEM<span class="text-danger">*</span></label>
+                                                    <div class="col-md-8">
+                                                        <input type="radio" class="form-check-input" name="performance_type" id="released" value="3" style="margin-left:3%">
+                                                    </div> --}}
+
+                                                    <div class="col-md-12">
+                                                        <div class="inp_redio_wrap" >
+                                                                <label class="form-control-label" for="performance_type">Received GEM<span class="text-danger">*</span></label>
+                                                            <div class="inpredio">
+                                                                <input type="radio" class="form-check-input" name="performance_type" id="released" value="3" style="margin-left:3%">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    {{-- 
+                                                    <label class="col-md-2 form-control-label" for="performance_type">Poor performance<span class="text-danger">*</span></label>
+                                                    <div class="col-md-8">
+                                                        <input type="radio" class="form-check-input" name="performance_type" id="released" value="4" style="margin-left:3%">
+                                                    </div> --}}
+
+                                                    <div class="col-md-12">
+                                                        <div class="inp_redio_wrap" >
+                                                            <label class="form-control-label" for="performance_type">Poor performance<span class="text-danger">*</span></label>
+                                                            <div class="inpredio">
+                                                                <input type="radio" class="form-check-input" name="performance_type" id="released" value="4" style="margin-left:3%">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    {{-- 
+                                                    <label class="col-md-2 form-control-label" for="performance_type">Client Escallation<span class="text-danger">*</span></label>
+                                                    <div class="col-md-8">
+                                                        <input type="radio" class="form-check-input" name="performance_type" id="released" value="5" style="margin-left:3%">
+                                                        <span class="form-text text-danger"
+                                                            id="error_performance_type">{{ $errors->getBag('default')->first('performance_type') }}</span>
+                                                    </div> --}}
+
+                                                    <div class="col-md-12">
+                                                        <div class="inp_redio_wrap" >
+                                                    <label class="form-control-label" for="performance_type">Client Escallation<span class="text-danger">*</span></label>
+                                                            <div class="inpredio">
+                                                        <input type="radio" class="form-check-input" name="performance_type" id="released" value="5" style="margin-left:3%">
+                                                            </div>
+                                                        </div>
+                                                                                                            <span class="form-text text-danger"
+                                                            id="error_performance_type">{{ $errors->getBag('default')->first('performance_type') }}</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    <label class="col-md-2 form-control-label" for="review_date">Review Date <span class="text-danger">*</span></label>
+                                                    <div class="col-md-10">
+                                                        <input
+                                                        class="form-control {{ $errors->has('review_date') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="review_date" id="review_date" placeholder="Please enter review date"
+                                                        maxlength="191"
+                                                        value="{{old('review_date')}}">
+                                                        <span class="form-text text-danger"
+                                                            id="error_review_date">{{ $errors->getBag('default')->first('review_date') }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card-body">
+                                                <div class="form-group row">
+                                                    <label class="col-md-2 form-control-label" for="description">Description/Details <span class="text-danger">*</span></label>
+                                                    <div class="col-md-10">
+                                                        <textarea
+                                                        class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
+                                                        name="description" id="description" placeholder="Please enter description">{{old('description')}}</textarea>
+                                                        <span class="form-text text-danger"
+                                                            id="error_description">{{ $errors->getBag('default')->first('description') }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="col text-right">
+                                            <button type="submit" class="btn btn-primary"> Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <form action="{{action('PerformanceFeedbackController@store')}}" method="post"
-                                  enctype="multipart/form-data" id="performanceFeedbackForm">
-                                {{csrf_field()}}
 
-                                <div class="row">
-                                    <div class="col-md-3">
-                                        
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                <div>
-                                                    <label class="col-md-2 form-control-label" for="team_member_name_id" style="display:inline">Team Member Name<span class="text-danger">*</span></label>
-                                                </div><br><br>
-                                                <div class="col-md-10">
-                                                   <select
-                                                        class="form-control custom-select {{ $errors->has("team_member_name_id") ? 'is-invalid' : '' }}"
-                                                        name="team_member_name_id" id="team_member_name_id">
-                                                        <option value="">Select</option>
-                                                        @foreach ($team_member_name as $member_name)
-                                                            <option value="{{$member_name->members}}">{{$member_name->name}}</option>
-                                                        @endforeach
-                                                       
-                                                    </select>
-                                                    <span class="form-text text-danger"
-                                                        id="error_team_member_name_id">{{ $errors->getBag('default')->first('team_member_name_id') }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        
-                                    </div>
-                                </div>
-                                 <style>
-                                    .inp_redio_wrap {
-                                        display: flex;
-                                        width: 100%;
-                                        position: relative
-                                    }
-
-                                    .inp_redio_wrap .inpredio span {
-                                        position: absolute;
-                                        left: 0px;
-                                        bottom: -27px;
-                                        width: 179px;
-                                    }
-                                </style>
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                {{-- 
-                                                <label class="col-md-2 form-control-label" for="performance_type">Extraordinary Performance <span class="text-danger">*</span></label>
-                                                <div class="col-md-8">
-                                                     <input type="radio" class="form-check-input" name="performance_type" id="released" value="1" style="margin-left:3%">
-                                                </div> --}}
-                                                <div class="col-md-12">
-                                                    <div class="inp_redio_wrap" >
-                                                        <label class=" form-control-label" for="performance_type">Extraordinary Performance <span class="text-danger">*</span></label>
-                                                        <div class="inpredio">
-                                                             <input type="radio" class="form-check-input" name="performance_type" id="released" value="1" style="margin-left:3%">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                {{-- <label class="col-md-2 form-control-label" for="performance_type">Client Testimonials<span class="text-danger">*</span></label>
-                                                <div class="col-md-8">
-                                                     <input type="radio" class="form-check-input" name="performance_type" id="released" value="2" style="margin-left:3%">
-                                                </div> --}}
-
-                                                <div class="col-md-12">
-                                                    <div class="inp_redio_wrap" >
-                                                        <label class="form-control-label" for="performance_type">Client Testimonials<span class="text-danger">*</span></label>
-                                                        <div class="inpredio">
-                                                         <input type="radio" class="form-check-input" name="performance_type" id="released" value="2" style="margin-left:3%">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                {{-- 
-                                                <label class="col-md-2 form-control-label" for="performance_type">Received GEM<span class="text-danger">*</span></label>
-                                                <div class="col-md-8">
-                                                     <input type="radio" class="form-check-input" name="performance_type" id="released" value="3" style="margin-left:3%">
-                                                </div> --}}
-
-                                                <div class="col-md-12">
-                                                    <div class="inp_redio_wrap" >
-                                                            <label class="form-control-label" for="performance_type">Received GEM<span class="text-danger">*</span></label>
-                                                        <div class="inpredio">
-                                                            <input type="radio" class="form-check-input" name="performance_type" id="released" value="3" style="margin-left:3%">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                     <div class="col-md-2">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                {{-- 
-                                                <label class="col-md-2 form-control-label" for="performance_type">Poor performance<span class="text-danger">*</span></label>
-                                                <div class="col-md-8">
-                                                     <input type="radio" class="form-check-input" name="performance_type" id="released" value="4" style="margin-left:3%">
-                                                </div> --}}
-
-                                                <div class="col-md-12">
-                                                    <div class="inp_redio_wrap" >
-                                                        <label class="form-control-label" for="performance_type">Poor performance<span class="text-danger">*</span></label>
-                                                        <div class="inpredio">
-                                                            <input type="radio" class="form-check-input" name="performance_type" id="released" value="4" style="margin-left:3%">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                     </div>
-                                     <div class="col-md-2">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                {{-- 
-                                                <label class="col-md-2 form-control-label" for="performance_type">Client Escallation<span class="text-danger">*</span></label>
-                                                <div class="col-md-8">
-                                                     <input type="radio" class="form-check-input" name="performance_type" id="released" value="5" style="margin-left:3%">
-                                                    <span class="form-text text-danger"
-                                                        id="error_performance_type">{{ $errors->getBag('default')->first('performance_type') }}</span>
-                                                </div> --}}
-
-                                                 <div class="col-md-12">
-                                                    <div class="inp_redio_wrap" >
-                                                <label class="form-control-label" for="performance_type">Client Escallation<span class="text-danger">*</span></label>
-                                                        <div class="inpredio">
-                                                     <input type="radio" class="form-check-input" name="performance_type" id="released" value="5" style="margin-left:3%">
-                                                        </div>
-                                                    </div>
-                                                                                                        <span class="form-text text-danger"
-                                                        id="error_performance_type">{{ $errors->getBag('default')->first('performance_type') }}</span>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                <label class="col-md-2 form-control-label" for="review_date">Review Date <span class="text-danger">*</span></label>
-                                                <div class="col-md-10">
-                                                    <input
-                                                    class="form-control {{ $errors->has('review_date') ? 'is-invalid' : '' }}"
-                                                    type="text"
-                                                    name="review_date" id="review_date" placeholder="Please enter review date"
-                                                    maxlength="191"
-                                                    value="{{old('review_date')}}">
-                                                    <span class="form-text text-danger"
-                                                        id="error_review_date">{{ $errors->getBag('default')->first('review_date') }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="card-body">
-                                            <div class="form-group row">
-                                                <label class="col-md-2 form-control-label" for="description">Description/Details <span class="text-danger">*</span></label>
-                                                <div class="col-md-10">
-                                                    <textarea
-                                                    class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
-                                                    name="description" id="description" placeholder="Please enter description">{{old('description')}}</textarea>
-                                                    <span class="form-text text-danger"
-                                                        id="error_description">{{ $errors->getBag('default')->first('description') }}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="col text-right">
-                                        <button type="submit" class="btn btn-primary"> Submit</button>
-                                    </div>
-                                </div>
-                            </form>
                         </div>
-
                     </div>
-                </div>
+                @endIf
             </div>
             <div class="container-fluid">
                 <div class="row">

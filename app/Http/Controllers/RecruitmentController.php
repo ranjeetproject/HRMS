@@ -19,11 +19,18 @@ class RecruitmentController extends Controller
     }
      public function index(Request $request)
      {
+          $data = [];
           $input = $request->all();
+          $user = $this->getUser();
+          $user_permissions =  $this->recruitmentRepository->checkPermission($user);
+          //dd($user_permissions);
+          foreach($user_permissions as $user_permission){
+               $data['user_permissions'] = $user_permission;
+          }
           if ($request->ajax()) {
                return $this->recruitmentRepository->getAll($input);
           } else {
-               return view('recruitments.index');
+               return view('recruitments.index',$data);
           }
          
      }

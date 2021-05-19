@@ -4,6 +4,7 @@
 namespace App\Repositories;
 
 use App\TeamMember;
+use App\UserPermission;
 use App\PerformanceFeedback;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -78,6 +79,12 @@ class PerformanceFeedbackRepository
         } else {
             return ['success' => false];
         }
+    }
+
+    public function checkPermission($user)
+    {
+        $row = UserPermission::Where('department_id','=',$user->user_type)->get();
+        return $row;
     }
     
 }

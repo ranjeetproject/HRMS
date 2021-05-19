@@ -22,6 +22,7 @@
 
         <div class="content">
             <div class="container-fluid">
+            @if(@$user_permissions->holiday_modify == '2')
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card card-primary card-outline">
@@ -76,6 +77,7 @@
 
                     </div>
                 </div>
+            @endIf
             </div>
             <div class="container-fluid">
                 <div class="row">
