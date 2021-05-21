@@ -47,6 +47,10 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('recruitment/interview-feedback/{id}', 'RecruitmentController@interviewFeedback');
     Route::get('recruitment/interview-feedback-edit/{id}', 'InterviewFeedbackController@interviewFeedbackEdit');
 
+    Route::get('skills', 'SkillController@index');
+    Route::get('skills/create', 'SkillController@create');
+    Route::get('skills/edit/{id}', 'SkillController@edit');
+
     Route::get('final-round', 'FinalRoundController@index');
     Route::get('final-round-interview-scheduling/{id}', 'FinalRoundController@finalRoundInterviewScheduling');
     Route::get('final-round-interview-scheduling-edit/{id}', 'FinalRoundController@finalRoundInterviewSchedulingEdit');
@@ -130,6 +134,8 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('interview-feedback/store', 'InterviewFeedbackController@store');
     Route::post('interview-feedback/update/{id}', 'InterviewFeedbackController@update');
 
+    Route::post('skills/store', 'SkillController@store');
+    Route::post('skills/update/{id}', 'SkillController@update');
 
     Route::post('final-round-interview-scheduling/store', 'FinalRoundController@store');
     Route::post('final-round-interview-scheduling/update/{id}', 'FinalRoundController@update');
@@ -170,13 +176,9 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::post('user-permission/update/{id}', 'UserPermissionController@update');
 
-
-
-
-
-
-
     Route::post('/change-password', 'UserController@changePasswordSubmit');
+    
+    Route::delete('skills/destroy/{id}', 'SkillController@destroy');
 
     Route::delete('offer/delete/{id}', 'OfferedController@destroy');
 
@@ -211,14 +213,9 @@ Route::middleware(['adminRoute'])->group(function (){
 
  Route::middleware(['adminRoute','hrs'])->group(function (){
 
-    Route::get('skills', 'SkillController@index');
-    Route::get('skills/create', 'SkillController@create');
-    Route::get('skills/edit/{id}', 'SkillController@edit');
+   
 
-    Route::post('skills/store', 'SkillController@store');
-    Route::post('skills/update/{id}', 'SkillController@update');
-
-    Route::delete('skills/destroy/{id}', 'SkillController@destroy');
+    
 
  });
 
