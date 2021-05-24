@@ -156,7 +156,7 @@
                         </a>
                     </li>
                 @endIf
-                @if(@$checkModulePermission->user_permission_view == '1')
+                @if(@$checkModulePermission->department_view == '1')
                     <li class="nav-item ">
                         <a class="nav-link {{ (request()->segment(2) == 'department') ? 'active' : '' }}"
                             href="{{action('DepartmentController@index')}}">
