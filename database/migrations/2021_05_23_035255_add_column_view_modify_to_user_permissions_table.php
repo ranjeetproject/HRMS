@@ -52,7 +52,31 @@ class AddColumnViewModifyToUserPermissionsTable extends Migration
     public function down()
     {
         Schema::table('user_permissions', function (Blueprint $table) {
-            //
+            $table->dropColumn('add_skills_view');
+            $table->dropColumn('add_skills_modify');
+            $table->dropColumn('final_round_list_view');
+            $table->dropColumn('final_round_list_modify');
+            $table->dropColumn('offered_candidate_list_view');
+            $table->dropColumn('offered_candidate_list_modify');
+            $table->dropColumn('current_employee_view');
+            $table->dropColumn('current_employee_modify');
+            $table->dropColumn('user_log_view');
+            $table->dropColumn('salary_set_up_view');
+            $table->dropColumn('salary_set_up_modify');
+            $table->dropColumn('released_employees_view');
+            $table->dropColumn('released_employees_modify');
+            $table->dropColumn('leave_application_view');
+            $table->dropColumn('leave_application_modify');
+            $table->dropColumn('team_member_view');
+            $table->dropColumn('team_member_modify');
+            $table->dropColumn('approved_skills_view');
+            $table->dropColumn('approved_skills_modify');
+            $table->dropColumn('designation_view');
+            $table->dropColumn('designation_modify');
+            $table->dropColumn('department_view');
+            $table->dropColumn('department_modify');
+            $table->dropColumn('user_permission_view');
+            $table->dropColumn('user_permission_modify');
         });
     }
 }
