@@ -42,8 +42,8 @@
                                                 <label class="col-md-2 form-control-label" for="from_date">From Date <span class="text-danger">*</span></label>
                                                 <div class="col-md-10">
                                                     <input class="form-control {{ $errors->has('from_date') ? 'is-invalid' : '' }}"
-                                                        type="text" name="from_date" id="from_date" placeholder="Please enter skill name"
-                                                        maxlength="191" value="{{old('from_date')}}">
+                                                        type="text" name="from_date" id="from_date" placeholder="Please enter from date"
+                                                        maxlength="191" value="{{old('from_date')}}" autocomplete="off">
                                                     <span class="form-text text-danger"
                                                         id="error_from_date">{{ $errors->getBag('default')->first('from_date') }}</span>
                                                 </div>
@@ -56,8 +56,8 @@
                                                 <label class="col-md-2 form-control-label" for="to_date">To Date<span class="text-danger">*</span></label>
                                                 <div class="col-md-10">
                                                     <input class="form-control {{ $errors->has('to_date') ? 'is-invalid' : '' }}"
-                                                        type="text" name="to_date" id="to_date" placeholder="Please enter skill name"
-                                                        maxlength="191" value="{{old('to_date')}}">
+                                                        type="text" name="to_date" id="to_date" placeholder="Please enter to date"
+                                                        maxlength="191" value="{{old('to_date')}}" autocomplete="off">
                                                     <span class="form-text text-danger"
                                                         id="error_to_date">{{ $errors->getBag('default')->first('to_date') }}</span>
                                                 </div>

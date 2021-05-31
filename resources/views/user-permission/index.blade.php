@@ -75,209 +75,266 @@
                                                 <thead>
                                                 <tr>
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
-                                                    <th>Action</th>
                                                     <th>Modules</th>
                                                 </tr>
                                                 <tr>
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> HR </label>
+                                                    <input type="checkbox" class="form-check-input" name="hr_module" id="hr" value="hr" style="margin-left:60%">
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> Statutory Master </label>
+                                                    <input type="checkbox" class="form-check-input" name="statutory_master" id="sm" value="sm" style="margin-left:60%" >
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> Super User </label>
+                                                    <input type="checkbox" class="form-check-input" name="super_user" id="su" value="su" style="margin-left:60%" >
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> General </label>
+                                                    <input type="checkbox" class="form-check-input" name="general" id="gr" value="gr" style="margin-left:60%" >
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> Manager </label>
+                                                    <input type="checkbox" class="form-check-input" name="manager" id="mg" value="mg" style="margin-left:60%" >
+                                                    </th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="card-body">
+                                        <div class="form-group row">
+                                            <div class="table-responsive">
+                                            <table class="table table-bordered table-striped data-table dt-select cms_table_width" id="skills_table">
+                                                <thead>
+                                                <tr>
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>Action</th>
+                                                    <th>Sub Modules</th>
+                                                </tr>
+                                                <tr class= "r">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="recruitment_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input r1" name="recruitment_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="recruitment_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input r1" name="recruitment_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Recruitment</th>
                                                 </tr>
-                                                 <tr>
+                                                <tr class= "r">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="holiday_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input r1" name="final_round_list_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="holiday_modify" id="skill" value="2" style="margin-left:5%">
-                                                   
-                                                    </th>
-                                                    <th>Holiday</th>
-                                                </tr>
-                                                 <tr>
-                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
-                                                    <th>
-                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="performance_view" id="skill" value="1" style="margin-left:3%" >
-                                                   
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="performance_modify" id="skill" value="2" style="margin-left:5%">
-                                                   
-                                                    </th>
-                                                    <th>Performance Feedback</th>
-                                                </tr>
-                                                <tr>
-                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
-                                                    <th>
-                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="add_skills_view" id="skill" value="1" style="margin-left:3%" >
-                                                   
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="add_skills_modify" id="skill" value="2" style="margin-left:5%">
-                                                   
-                                                    </th>
-                                                    <th>Add Skills</th>
-                                                </tr>
-                                                <tr>
-                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
-                                                    <th>
-                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="final_round_list_view" id="skill" value="1" style="margin-left:3%" >
-                                                   
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="final_round_list_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input r1" name="final_round_list_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Final Round List</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class= "r">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="offered_candidate_list_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input r1" name="offered_candidate_list_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="offered_candidate_list_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input r1" name="offered_candidate_list_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Offered Candidate List</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class= "r">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="current_employee_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input r1" name="current_employee_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="current_employee_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input r1" name="current_employee_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Current Employee</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class= "r">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="user_log_view" id="skill" value="1" style="margin-left:3%" >
-                                                    </th>
-                                                    <th>User Log</th>
-                                                </tr>
-                                                <tr>
-                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
-                                                    <th>
-                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="salary_set_up_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input r1" name="salary_set_up_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="salary_set_up_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input r1" name="salary_set_up_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Salary Set Up</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class= "r">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="released_employees_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input r1" name="released_employees_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="released_employees_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input r1" name="released_employees_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Released Employees</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class="s">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="leave_application_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input s1" name="add_skills_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="leave_application_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input s1" name="add_skills_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
-                                                    <th>Leave Application</th>
+                                                    <th>Add Skills</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class="s">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="team_member_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input s1" name="holiday_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="team_member_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input s1" name="holiday_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
-                                                    <th>Team Member</th>
+                                                    <th>Holiday</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class="s">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="skill_acquired_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input s1" name="designation_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="skill_acquired_modify" id="skill" value="2" style="margin-left:5%">
-                                                   
-                                                    </th>
-                                                    <th>Skill Acquired</th>
-                                                </tr>
-                                                <tr>
-                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
-                                                    <th>
-                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="approved_skills_view" id="skill" value="1" style="margin-left:3%" >
-                                                   
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="approved_skills_modify" id="skill" value="2" style="margin-left:5%">
-                                                   
-                                                    </th>
-                                                    <th>Approved Skills</th>
-                                                </tr>
-                                                <tr>
-                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
-                                                    <th>
-                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="designation_view" id="skill" value="1" style="margin-left:3%" >
-                                                   
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="designation_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input s1" name="designation_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Designation</th>
                                                 </tr>
-                                                <tr>
+                                                <tr class="s">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="department_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input s1" name="department_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="department_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input s1" name="department_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Department</th>
                                                 </tr>
-                                                <tr>
+                                                 <tr class="sp">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
-                                                    <input type="checkbox" class="form-check-input" name="user_permission_view" id="skill" value="1" style="margin-left:3%" >
+                                                    <input type="checkbox" class="form-check-input sp1" name="user_permission_view" id="skill" value="1" style="margin-left:3%" >
                                                    
                                                     <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
-                                                    <input type="checkbox" class="form-check-input" name="user_permission_modify" id="skill" value="2" style="margin-left:5%">
+                                                    <input type="checkbox" class="form-check-input sp1" name="user_permission_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>User Permission</th>
                                                 </tr>
+                                                <tr class="sp">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                    <input type="checkbox" class="form-check-input sp1" name="user_log_view" id="skill" value="1" style="margin-left:3%" >
+                                                    </th>
+                                                    <th>User Log</th>
+                                                </tr>
+                                                <tr class="g">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                    <input type="checkbox" class="form-check-input g1" name="leave_application_view" id="skill" value="1" style="margin-left:3%" >
+                                                   
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <input type="checkbox" class="form-check-input g1" name="leave_application_modify" id="skill" value="2" style="margin-left:5%">
+                                                   
+                                                    </th>
+                                                    <th>Leave Application</th>
+                                                </tr>
+                                                <tr class="g">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                    <input type="checkbox" class="form-check-input g1" name="skill_acquired_view" id="skill" value="1" style="margin-left:3%" >
+                                                   
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <input type="checkbox" class="form-check-input g1" name="skill_acquired_modify" id="skill" value="2" style="margin-left:5%">
+                                                   
+                                                    </th>
+                                                    <th>Skill Acquired</th>
+                                                </tr>
+                                                <tr class="m">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                    <input type="checkbox" class="form-check-input m1" name="performance_view" id="skill" value="1" style="margin-left:3%" >
+                                                   
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <input type="checkbox" class="form-check-input m1" name="performance_modify" id="skill" value="2" style="margin-left:5%">
+                                                   
+                                                    </th>
+                                                    <th>Performance Feedback</th>
+                                                </tr>
+                                                
+                                                <tr class="m">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                    <input type="checkbox" class="form-check-input m1" name="team_member_view" id="skill" value="1" style="margin-left:3%" >
+                                                   
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <input type="checkbox" class="form-check-input m1" name="team_member_modify" id="skill" value="2" style="margin-left:5%">
+                                                   
+                                                    </th>
+                                                    <th>Team Member</th>
+                                                </tr>
+                                                
+                                                <tr class="m">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                    <input type="checkbox" class="form-check-input m1" name="approved_skills_view" id="skill" value="1" style="margin-left:3%" >
+                                                   
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <input type="checkbox" class="form-check-input m1" name="approved_skills_modify" id="skill" value="2" style="margin-left:5%">
+                                                   
+                                                    </th>
+                                                    <th>Approved Skills</th>
+                                                </tr>
+                                                
+                                               
                                                 </thead>
                                                 <tbody>
                                                 </tbody>
@@ -344,7 +401,6 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-
         $(function () {
 
             table = $('#user_permission_table').DataTable({
@@ -392,7 +448,56 @@
                 errorElement: "span",
                 errorClass: "form-text text-danger"
             });
+            $("#hr").change(function() {
+                if($(this).prop('checked')) {
+                    $(".r").show();
+                } else {
+                    $(".r").hide();
+                    $(".r1").prop('checked',false);
 
+                }
+            });
+            $("#sm").change(function() {
+                if($(this).prop('checked')) {
+                    $(".s").show();
+                } else {
+                    $(".s").hide();
+                    $(".s1").prop('checked',false);
+                }
+            });
+            $("#su").change(function() {
+                if($(this).prop('checked')) {
+                    $(".sp").show();
+                } else {
+                    $(".sp").hide();
+                    $(".sp1").prop('checked',false);
+                }
+            });
+            $("#gr").change(function() {
+                if($(this).prop('checked')) {
+                    $(".g").show();
+                } else {
+                    $(".g").hide();
+                    $(".g1").prop('checked',false);
+                }
+            });
+             $("#mg").change(function() {
+                if($(this).prop('checked')) {
+                    $(".m").show();
+                } else {
+                    $(".m").hide();
+                    $(".m1").prop('checked',false);
+
+                }
+            });
+             $(".r").hide();
+             $(".s").hide();
+             $(".sp").hide();
+             $(".g").hide();
+             $(".m").hide();
+            
+                  // unchecked
+            
 
             $('#skillForm').submit(function(){
                 $('button[type=submit]').attr("disabled", true);
