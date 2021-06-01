@@ -40,7 +40,6 @@ class EmployeeDetailsController extends Controller
             'emp_code' => 'required|numeric',
             'contact_number' => 'required',
             'alternate_number' => 'required',
-            'permanent_address' => 'required',
             'current_address' => 'required',
             'father_name' => 'required',
             'mother_name' => 'required',
