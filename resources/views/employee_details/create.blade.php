@@ -120,7 +120,7 @@
                                                         type="text"
                                                         name="emp_code" id="emp_code" placeholder="Please enter employee code"
                                                         maxlength="191"
-                                                        value="{{old('emp_code')}}">
+                                                        value="{{old('emp_code')}}"  autocomplete="off">
                                                     @endIf
                                                 <span class="form-text text-danger"
                                                       id="error_emp_code">{{ $errors->getBag('default')->first('emp_code') }}
@@ -211,7 +211,7 @@
                                                             type="text"
                                                             name="offical_email_id" id="offical_email_id" placeholder="Please enter offical email id"
                                                             maxlength="191"
-                                                            value="{{old('offical_email_id')}}">
+                                                            value="{{old('offical_email_id')}}" autocomplete="off">
                                                 @endIf    
                                                 <span class="form-text text-danger"
                                                       id="error_offical_email_id">{{ $errors->getBag('default')->first('offical_email_id') }}
@@ -244,7 +244,7 @@
                                                         type="text"
                                                         name="father_name" id="father_name" placeholder="Please enter father name"
                                                         maxlength="191"
-                                                        value="{{old('father_name')}}">
+                                                        value="{{old('father_name')}}"  autocomplete="off">
                                                 @endIf
                                                 <span class="form-text text-danger"
                                                       id="error_father_name">{{ $errors->getBag('default')->first('father_name') }}
@@ -267,7 +267,7 @@
                                                         type="text"
                                                         name="mother_name" id="mother_name" placeholder="Please enter mother name"
                                                         maxlength="191"
-                                                        value="{{old('mother_name')}}">
+                                                        value="{{old('mother_name')}}"  autocomplete="off">
                                                 @endIf
                                                 <span class="form-text text-danger"
                                                       id="error_mother_name">{{ $errors->getBag('default')->first('mother_name') }}
@@ -292,7 +292,7 @@
                                                         type="text"
                                                         name="date_of_birth" id="date_of_birth" placeholder="Please enter date of birth"
                                                         maxlength="191"
-                                                        value="{{old('date_of_birth')}}">
+                                                        value="{{old('date_of_birth')}}" autocomplete="off">
                                                 @endIf
                                                 <span class="form-text text-danger"
                                                       id="error_date_of_birth">{{ $errors->getBag('default')->first('date_of_birth') }}
@@ -356,7 +356,7 @@
                                                         type="text"
                                                         name="name_of_spouse" id="name_of_spouse" placeholder="Please enter name of spouse"
                                                         maxlength="191"
-                                                        value="{{old('name_of_spouse')}}">
+                                                        value="{{old('name_of_spouse')}}" autocomplete="off">
                                                 @endIf
                                                 <span class="form-text text-danger"
                                                       id="error_name_of_spouse">{{ $errors->getBag('default')->first('name_of_spouse') }}
@@ -474,14 +474,14 @@
                                                     type="text"
                                                     name="date_of_released" id="date_of_released" placeholder="Please enter date of released"
                                                     maxlength="191"
-                                                    value="{{old('date_of_released',$userDetails->date_of_released)}}" readonly>
+                                                    value="{{old('date_of_released',@$userDetails->date_of_released)}}" readonly>
                                             @else
                                                 <input
                                                     class="form-control {{ $errors->has('date_of_released') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="date_of_released" id="date_of_released" placeholder="Please enter date of released"
                                                     maxlength="191"
-                                                    value="{{old('date_of_released')}}">
+                                                    value="{{old('date_of_released')}}" autocomplete="off">
                                             @endif
                                                 <span class="form-text text-danger"
                                                       id="error_date_of_released">{{ $errors->getBag('default')->first('date_of_released') }}
@@ -497,14 +497,14 @@
                                                     type="text"
                                                     name="date_of_confirmed" id="date_of_confirmed" placeholder="Please enter date of released"
                                                     maxlength="191"
-                                                    value="{{old('date_of_confirmed',$userDetails->date_of_confirmed)}}" readonly>
+                                                    value="{{old('date_of_confirmed',@$userDetails->date_of_confirmed)}}" readonly>
                                             @else
                                                  <input
                                                     class="form-control {{ $errors->has('date_of_confirmed') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="date_of_confirmed" id="date_of_confirmed" placeholder="Please enter date of confirmed"
                                                     maxlength="191"
-                                                    value="{{old('date_of_confirmed')}}">
+                                                    value="{{old('date_of_confirmed')}}" autocomplete="off">
                                             @endif
                                                 <span class="form-text text-danger"
                                                       id="error_date_of_confirmed">{{ $errors->getBag('default')->first('date_of_confirmed') }}
@@ -636,15 +636,19 @@
             $("#filladdress").on("click", function(){
                 if (this.checked) { 
                         $("#current_address").val($("#permanent_address").val());
-                        $("#permanent_address").prop( "disabled", true )
+                        $("#permanent_address").prop( "readonly", true )
                 }
                 else {
                     $("#current_address").val('');  
-                    $("#permanent_address").prop( "disabled", false )
+                    $("#permanent_address").prop( "readonly", false )
 
                 }
             });
-            $("#date_of_birth").datepicker();
+            $("#date_of_birth").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeMonth: true,
+                changeYear: true,
+            });
 
             $("#date_of_released").datepicker();
             $("#date_of_confirmed").datepicker();
@@ -711,13 +715,6 @@
                     official_email_id:{
                          required: true
                     },
-                    date_of_released:{
-                         required: true
-                    },
-                    date_of_confirmed:{
-                         required: true
-                    }
-                    
                    
                 },
                 messages: {
@@ -780,12 +777,6 @@
                     },
                     official_email_id: {
                         required:"This official email id field is required.",
-                    },
-                    date_of_released: {
-                        required:"This date of released field is required.",
-                    },
-                    date_of_confirmed: {
-                        required:"This date of confirmed field is required.",
                     },
 
                 },

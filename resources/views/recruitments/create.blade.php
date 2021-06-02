@@ -46,7 +46,7 @@
                                                     type="text"
                                                     name="name_of_candidate" id="name_of_candidate" placeholder="Please enter name of candidate"
                                                     maxlength="191"
-                                                    value="{{old('name_of_candidate')}}">
+                                                    value="{{old('name_of_candidate')}}" autocomplete="off">
                                                 <span class="form-text text-danger"
                                                       id="error_name_of_candidate">{{ $errors->getBag('default')->first('name_of_candidate') }}
                                                 </span>
@@ -59,8 +59,8 @@
                                                     class="form-control {{ $errors->has('mobile_number') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="mobile_number" id="mobile_number" placeholder="Please enter mobile number"
-                                                    maxlength="191"
-                                                    value="{{old('mobile_number')}}">
+                                                    maxlength="191" 
+                                                    value="{{old('mobile_number')}}" autocomplete="off">
                                                 <span class="form-text text-danger"
                                                       id="error_mobile_number">{{ $errors->getBag('default')->first('mobile_number') }}
                                                 </span>
@@ -74,7 +74,7 @@
                                                     type="text"
                                                     name="alternate_number" id="alternate_number" placeholder="Please enter alternate number"
                                                     maxlength="191"
-                                                    value="{{old('alternate_number')}}">
+                                                    value="{{old('alternate_number')}}"  autocomplete="off">
 
                                                 <span class="form-text text-danger"
                                                       id="error_alternate_number">{{ $errors->getBag('default')->first('alternate_number') }}</span>
@@ -228,7 +228,7 @@
                                                     type="text"
                                                     name="email_id" id="email_id" placeholder="Please enter email id"
                                                     maxlength="191"
-                                                    value="{{old('email_id')}}">
+                                                    value="{{old('email_id')}}"  autocomplete="off">
 
                                                 <span class="form-text text-danger"
                                                       id="error_email_id">{{ $errors->getBag('default')->first('email_id') }}</span>
@@ -242,7 +242,7 @@
                                                     type="text"
                                                     name="application_for" id="application_for" placeholder="Please enter application for"
                                                     maxlength="191"
-                                                    value="{{old('application_for')}}">
+                                                    value="{{old('application_for')}}"  autocomplete="off">
 
                                                 <span class="form-text text-danger"
                                                       id="error_application_for">{{ $errors->getBag('default')->first('application_for') }}</span>
@@ -256,7 +256,7 @@
                                                     type="text"
                                                     name="highest_qualification" id="highest_qualification" placeholder="Please enter highest qualification"
                                                     maxlength="191"
-                                                    value="{{old('highest_qualification')}}">
+                                                    value="{{old('highest_qualification')}}"  autocomplete="off">
 
                                                 <span class="form-text text-danger"
                                                       id="error_highest_qualification">{{ $errors->getBag('default')->first('highest_qualification') }}</span>
@@ -272,7 +272,7 @@
                                                     type="text"
                                                     name="current_ctc" id="current_ctc" placeholder="Please enter current ctc"
                                                     maxlength="191"
-                                                    value="{{old('current_ctc')}}">
+                                                    value="{{old('current_ctc')}}"  autocomplete="off">
 
                                                 <span class="form-text text-danger"
                                                       id="error_current_ctc">{{ $errors->getBag('default')->first('current_ctc') }}</span>
@@ -286,7 +286,7 @@
                                                     type="text"
                                                     name="expected_ctc" id="expected_ctc" placeholder="Please enter expected ctc"
                                                     maxlength="191"
-                                                    value="{{old('expected_ctc')}}">
+                                                    value="{{old('expected_ctc')}}"  autocomplete="off">
 
                                                 <span class="form-text text-danger"
                                                       id="error_expected_ctc">{{ $errors->getBag('default')->first('expected_ctc') }}</span>
@@ -300,7 +300,7 @@
                                                     type="text"
                                                     name="current_location" id="current_location" placeholder="Please enter current location"
                                                     maxlength="191"
-                                                    value="{{old('current_location')}}">
+                                                    value="{{old('current_location')}}"  autocomplete="off">
 
                                                 <span class="form-text text-danger"
                                                       id="error_current_location">{{ $errors->getBag('default')->first('current_location') }}</span>
@@ -329,7 +329,7 @@
                                                         type="text"
                                                         name="notice_period" id="notice_period" placeholder="Please enter notice period"
                                                         maxlength="191"
-                                                        value="{{old('notice_period')}}">
+                                                        value="{{old('notice_period')}}"  autocomplete="off">
 
                                                     <span class="form-text text-danger"
                                                         id="error_notice_period">{{ $errors->getBag('default')->first('notice_period') }}</span>
@@ -343,7 +343,7 @@
                                                         type="text"
                                                         name="refferdby" id="refferdby" placeholder="Please enter reffered by"
                                                         maxlength="191"
-                                                        value="{{old('refferdby')}}">
+                                                        value="{{old('refferdby')}}"  autocomplete="off">
 
                                                     <span class="form-text text-danger"
                                                         id="error_refferdby">{{ $errors->getBag('default')->first('refferdby') }}</span>

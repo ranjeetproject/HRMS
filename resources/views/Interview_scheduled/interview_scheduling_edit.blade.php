@@ -131,9 +131,9 @@
                                                         class="form-control custom-select {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
                                                         name="user_id" id="user_id">
                                                         <option value="">SELECT</option>
-                                                        <option value="1" @if(@$schedule->user_id==1) selected @endIf>A</option>
-                                                        <option value="2" @if(@$schedule->user_id==2) selected @endIf>B</option>
-                                                        <option value="3" @if(@$schedule->user_id==3) selected @endIf>C</option>
+                                                        @foreach ($interviewers as $interviewer)
+                                                            <option value="{{$interviewer->id}}" @if(@$schedule->user_id==$interviewer->id) selected @endIf>{{$interviewer->name}}</option>
+                                                        @endforeach
                                                 </select>
                                                 <span class="form-text text-danger"
                                                       id="error_user_id">{{ $errors->getBag('default')->first('user_id') }}</span>

@@ -60,6 +60,7 @@ class InterviewFeedbackController extends Controller
     public function interviewFeedbackEdit($id)
     {
         $data['feedback']    = $this->interviewFeedbackRepository->editFeedback($id);
+        $data['interviewers'] = $this->interviewFeedbackRepository->fetchUsersInterviewer();
         return view('Interview_scheduled.interview_feedback_edit',$data);
     }
 
@@ -82,14 +83,23 @@ class InterviewFeedbackController extends Controller
             $input['active'] = 0;
         }
         $data = $this->interviewFeedbackRepository->updateSave($input,$id);
-           if ($data['success'] == true) {
+           if ($data['success'] == true && isset($data['active'])) {
                $notification = array(
                     'message' => 'Interview feedback is successfully update!',
                     'alert-type' => 'success'
                );
-               return redirect()->action('RecruitmentController@index')->with($notification);
-           } else {
-               return redirect()->back();
+               return redirect()->action('FinalRoundController@index')->with($notification);
+           }else if($data['success'] == true) 
+           {
+                $notification = array(
+                    'message' => 'Interview Feedback is successfully update!',
+                    'alert-type' => 'success'
+                );
+                return redirect()->action('RecruitmentController@index')->with($notification);
+            
+           }else
+           {
+            return redirect()->back();
            }
     }
 

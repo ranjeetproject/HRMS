@@ -52,14 +52,11 @@ class EmployeeDetailsController extends Controller
             'highest_qualification' => 'required',
             'department_id' => 'required',
             'designation_id' => 'required',
-            'status_probation' => 'required',
-            'status_serving' => 'required',
-            'date_of_released' => 'required',
-            'date_of_confirmed' => 'required',
         ]);
         $input = $request->only('name_of_candidate','recruitment_id','feedback_id','reporting_head','email','emp_code','contact_number','alternate_number',
                                 'permanent_address','current_address','offical_email_id','father_name','mother_name','date_of_birth','date_of_joining',
                                 'marital_status','name_of_spouse','total_years_experience','total_months_experience','highest_qualification','department_id','designation_id','skill','status_probation','status_serving','date_of_released','date_of_confirmed');
+                                
         $user = $this->getUser();
         $data = $this->employeeDetailRoundRepository->insert($input,$user);
            if ($data['success'] == true) {

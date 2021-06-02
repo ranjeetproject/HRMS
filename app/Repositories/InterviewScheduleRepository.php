@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\InterviewSchedule;
 use App\Skill;
+use App\User;
 use App\Recruitment;
 use App\CandidateSkill;
 use Illuminate\Support\Facades\Auth;
@@ -77,6 +78,12 @@ class InterviewScheduleRepository
                 $notificationRepo->insert($notificationData);
             }
  
+    }
+
+    public function fetchUsersInterviewer()
+    {
+        $row = User::Where('id','!=',1)->get();
+        return $row;
     }
 
     

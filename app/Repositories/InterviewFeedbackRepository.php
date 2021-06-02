@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\InterviewFeedback;
 use App\Skill;
+use App\User;
 use App\CandidateSkill;
 use App\Recruitment;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,12 @@ class InterviewFeedbackRepository
         } else {
             return ['success' => false];
         }
+    }
+
+    public function fetchUsersInterviewer()
+    {
+        $row = User::Where('id','!=',1)->get();
+        return $row;
     }
 
     public function sendNotificationForFeedBack($feedbackId,$user)

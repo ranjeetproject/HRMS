@@ -133,9 +133,9 @@
                                                         class="form-control custom-select {{ $errors->has('final_round_interview_user_id') ? 'is-invalid' : '' }}"
                                                         name="final_round_interview_user_id" id="final_round_interview_user_id" disabled>
                                                         <option value="">SELECT</option>
-                                                        <option value="1" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == 1) selected @endIf>A</option>
-                                                        <option value="2" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == 2) selected @endIf>B</option>
-                                                        <option value="3" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == 3) selected @endIf>C</option>
+                                                        @foreach ($interviewers as $interviewer)
+                                                            <option value="{{$interviewer->id}}" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == $interviewer->id) selected @endIf>{{$interviewer->name}}</option>
+                                                        @endforeach
                                                 </select>
                                                 <span class="form-text text-danger"
                                                       id="error_final_round_interview_user_id">{{ $errors->getBag('default')->first('final_round_interview_user_id') }}</span>
@@ -240,7 +240,8 @@
             $('#addReqForm').validate({
                 rules: {
                     offered_ctc: {
-                        required: true
+                        required: true,
+                        number: true
                     },
                     final_round_interviewer_feedback: {
                         required: true
@@ -252,6 +253,7 @@
                 messages: {
                     offered_ctc: {
                         required: "This offered ctc field is required.",
+                        number: "This offered ctc field must be number.",
                     },
                     final_round_interviewer_feedback: {
                         required: "This interviewer feedback field is required.",

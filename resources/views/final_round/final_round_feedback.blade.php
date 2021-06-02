@@ -148,9 +148,9 @@
                                                         class="form-control custom-select {{ $errors->has('final_round_interview_user_id') ? 'is-invalid' : '' }}"
                                                         name="final_round_interview_user_id" id="final_round_interview_user_id" readonly>
                                                         <option value="">SELECT</option>
-                                                        <option value="1" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == 1) selected @endIf>A</option>
-                                                        <option value="2" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == 2) selected @endIf>B</option>
-                                                        <option value="3" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == 3) selected @endIf>C</option>
+                                                        @foreach ($interviewers as $interviewer)
+                                                            <option value="{{$interviewer->id}}" @if(@$final_round_feedback_schedule->schedule->final_round_interview_user_id == $interviewer->id) selected @endIf>{{$interviewer->name}}</option>
+                                                        @endforeach
                                                 </select>
                                                 <span class="form-text text-danger"
                                                       id="error_final_round_interview_user_id">{{ $errors->getBag('default')->first('final_round_interview_user_id') }}</span>
@@ -176,7 +176,7 @@
                                                                     type="text"
                                                                     name="offered_ctc" id="offered_ctc" placeholder="Please enter offered ctc"
                                                                     maxlength="191"
-                                                                    value="{{old('offered_ctc')}}">
+                                                                    value="{{old('offered_ctc')}}" autocomplete="off">
                                                         @endIf
 
                                                         <span class="form-text text-danger"
@@ -213,7 +213,7 @@
                                                                 class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
                                                                 type="text"
                                                                 name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
-                                                                value="{{old('date_of_joining',@$final_round_feedback_schedule->date_of_joining)}}">
+                                                                value="{{old('date_of_joining')}}"  autocomplete="off">
                                                             @endIf
                                                             <span class="form-text text-danger"
                                                                 id="error_date_of_joining">{{ $errors->getBag('default')->first('date_of_joining') }}</span>
@@ -282,7 +282,8 @@
                         required: true
                     },
                     offered_ctc: {
-                        required: true
+                        required: true,
+                        number: true
                     },
                     final_round_interviewer_feedback: {
                         required: true
@@ -300,6 +301,7 @@
                     },
                     offered_ctc: {
                         required: "This offered ctc field is required.",
+                        number: "This offered ctc field must be number.",
                     },
                     final_round_interviewer_feedback: {
                         required: "This interviewer feedback field is required.",

@@ -136,9 +136,9 @@
                                                                 class="form-control custom-select {{ $errors->has('final_round_interview_user_id') ? 'is-invalid' : '' }}"
                                                                 name="final_round_interview_user_id" id="final_round_interview_user_id">
                                                                 <option value="">SELECT</option>
-                                                                <option value="1" @if(@$final_round_schedule->final_round_interview_user_id==1) selected @endIf>A</option>
-                                                                <option value="2" @if(@$final_round_schedule->final_round_interview_user_id==2) selected @endIf>B</option>
-                                                                <option value="3" @if(@$final_round_schedule->final_round_interview_user_id==3) selected @endIf>C</option>
+                                                                @foreach ($interviewers as $interviewer)
+                                                                    <option value="{{$interviewer->id}}" @if(@$final_round_schedule->final_round_interview_user_id==$interviewer->id) selected @endIf>{{$interviewer->name}}</option>
+                                                                @endforeach
                                                         </select>
                                                 
                                                 <span class="form-text text-danger"

@@ -7,6 +7,7 @@ use App\Recruitment;
 use App\InterviewSchedule;
 use App\InterviewFeedback;
 use App\Skill;
+use App\User;
 use App\CandidateSkill;
 use App\FinalRoundInterviewScheduling;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,12 @@ class FinalRoundRepository
     {
         $recruitmentCandidateName = InterviewFeedback::where('id','=',$id)->first();
         return $recruitmentCandidateName;
+    }
+
+    public function fetchUsersInterviewer()
+    {
+        $row = User::Where('id','!=',1)->get();
+        return $row;
     }
     
     public function fetchFinalRoundSchedule($id){

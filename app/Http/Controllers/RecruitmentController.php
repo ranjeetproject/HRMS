@@ -186,6 +186,7 @@ class RecruitmentController extends Controller
      {
           $data['recruitment'] = $this->recruitmentRepository->viewEdit($id);
           $data['schedule']    = $this->recruitmentRepository->viewSchedule($id);
+          $data['interviewers'] = $this->recruitmentRepository->fetchUsersInterviewer();
           return view('Interview_scheduled.interview_scheduling',$data);
      }
 
@@ -194,6 +195,7 @@ class RecruitmentController extends Controller
           $data['recruitment'] = $this->recruitmentRepository->viewEdit($id);
           $data['schedule']    = $this->recruitmentRepository->viewSchedule($id);
           $data['feedback']    = $this->recruitmentRepository->viewFeedback($id);
+          $data['interviewers'] = $this->recruitmentRepository->fetchUsersInterviewer();
           return view('Interview_scheduled.interview_feedback',$data);
      }
  

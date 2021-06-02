@@ -34,6 +34,7 @@ class FinalRoundController extends Controller
     public function finalRoundInterviewScheduling($id)
     {
         $data['feedbackCandiate'] = $this->finalRoundRepository->fetchCandidateName($id);
+        $data['interviewers'] = $this->finalRoundRepository->fetchUsersInterviewer();
         return view('final_round.final_round_interview_schedule',$data);
     }
 
@@ -95,6 +96,7 @@ class FinalRoundController extends Controller
     public function finalRoundInterviewSchedulingEdit($id)
     {
         $data['final_round_schedule'] = $this->finalRoundRepository->fetchFinalRoundSchedule($id);
+        $data['interviewers'] = $this->finalRoundRepository->fetchUsersInterviewer();
         return view('final_round.final_round_interview_schedule_edit',$data);
     }
 
@@ -135,6 +137,7 @@ class FinalRoundController extends Controller
     public function finalRoundInterviewFeedback($id)
     {
         $data['final_round_feedback_schedule'] = $this->finalRoundRepository->fetchFinalFeedbackRound($id);
+        $data['interviewers'] = $this->finalRoundRepository->fetchUsersInterviewer();
         return view('final_round.final_round_feedback',$data);
     }
 
@@ -145,6 +148,7 @@ class FinalRoundController extends Controller
             'final_round_interview_scheduling_date'=>'required',
             'final_round_interview_scheduling_time'=>'required',
             'final_round_interviewer_feedback'=>'required',
+            'offered_ctc'=>'required|numeric',
             'date_of_joining' => 'required',
         ]);
         $input = $request->all();
@@ -175,6 +179,7 @@ class FinalRoundController extends Controller
     public function finalRoundInterviewFeedbackEdit($id)
     {
         $data['final_round_feedback_schedule'] = $this->finalRoundRepository->fetchFinalFeedbackRound($id);
+        $data['interviewers'] = $this->finalRoundRepository->fetchUsersInterviewer();
         return view('final_round.final_round_feedback_edit',$data);
         
     }
@@ -183,6 +188,7 @@ class FinalRoundController extends Controller
     {
         $request->validate([
             'final_round_interviewer_feedback'=>'required',
+            'offered_ctc'=>'required|numeric',
             'date_of_joining' => 'required',
         ]);
         $input = $request->only('offered_ctc','recruitment_id','final_round_interviewer_feedback','date_of_joining','offered');

@@ -51,7 +51,7 @@
                                                     type="text"
                                                     name="name_of_candidate" id="name_of_candidate" placeholder="Please enter name of candidate"
                                                     maxlength="191"
-                                                    value="{{old('name_of_candidate',@$recruitment->name_of_candidate)}}" readonly>
+                                                    value="{{old('name_of_candidate',@$recruitment->name_of_candidate)}}" readonly autocomplete="off">
                                                 <span class="form-text text-danger"
                                                       id="error_name_of_candidate">{{ $errors->getBag('default')->first('name_of_candidate') }}
                                                 </span>
@@ -82,14 +82,14 @@
                                                             type="text"
                                                             name="interview_scheduling_date" id="interview_scheduling_date" placeholder="Please enter interview scheduling date"
                                                             maxlength="191"
-                                                            value="{{old('interview_scheduling_date',@$schedule->interview_scheduling_date)}}" disabled>
+                                                            value="{{old('interview_scheduling_date',@$schedule->interview_scheduling_date)}}" disabled autocomplete="off">
                                                 @else
                                                     <input
                                                             class="form-control  {{ $errors->has('interview_scheduling_date') ? 'is-invalid' : '' }}"
                                                             type="text"
                                                             name="interview_scheduling_date" id="interview_scheduling_date" placeholder="Please enter interview scheduling date"
                                                             maxlength="191"
-                                                            value="">
+                                                            value="" autocomplete="off">
                                                 @endIf
                                                 <span class="form-text text-danger"
                                                       id="error_interview_scheduling_date">{{ $errors->getBag('default')->first('interview_scheduling_date') }}</span>
@@ -113,14 +113,14 @@
                                                                 type="text"
                                                                 name="interview_scheduling_time" id="interview_scheduling_time" placeholder="Please enter interview scheduling date"
                                                                 maxlength="191"
-                                                                value="{{old('interview_scheduling_time',@$schedule->interview_scheduling_time)}}" disabled>
+                                                                value="{{old('interview_scheduling_time',@$schedule->interview_scheduling_time)}}" disabled autocomplete="off">
                                                     @else
                                                         <input
                                                                 class="form-control timepicker {{ $errors->has('interview_scheduling_time') ? 'is-invalid' : '' }}"
                                                                 type="text"
                                                                 name="interview_scheduling_time" id="interview_scheduling_time" placeholder="Please enter interview scheduling time"
                                                                 maxlength="191"
-                                                                value="">
+                                                                value="" autocomplete="off">
                                                     @endIf
                                                     <span class="form-text text-danger"
                                                         id="error_interview_scheduling_time">{{ $errors->getBag('default')->first('interview_scheduling_time') }}</span>
@@ -147,14 +147,14 @@
                                                     type="text"
                                                     name="interviewer" id="interviewer" placeholder="Please select interviewer name"
                                                     maxlength="191"
-                                                    value="{{old('interviewer')}}" readonly>
+                                                    value="{{old('interviewer')}}" readonly autocomplete="off">
                                                 @else
                                                 <input
                                                     class="form-control {{ $errors->has('interviewer') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="interviewer" id="interviewer" placeholder="Please select interviewer name"
                                                     maxlength="191"
-                                                    value="{{old('interviewer')}}">
+                                                    value="{{old('interviewer')}}" autocomplete="off">
                                                 @endIf
                                                 <span class="form-text text-danger"
                                                       id="error_interviewer">{{ $errors->getBag('default')->first('interviewer') }}</span>
@@ -173,18 +173,18 @@
                                                         class="form-control custom-select {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
                                                         name="user_id" id="user_id" disabled>
                                                         <option value="">SELECT</option>
-                                                        <option value="1" @if(@$schedule->user_id==1) selected @endIf>A</option>
-                                                        <option value="2" @if(@$schedule->user_id==2) selected @endIf>B</option>
-                                                        <option value="3" @if(@$schedule->user_id==3) selected @endIf>C</option>
+                                                        @foreach ($interviewers as $interviewer)
+                                                            <option value="{{$interviewer->id}}" @if(@$schedule->user_id==$interviewer->id) selected @endIf>{{$interviewer->name}}</option>
+                                                         @endforeach
                                                     </select>
                                                 @else
                                                     <select
                                                             class="form-control custom-select {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
                                                             name="user_id" id="user_id">
                                                             <option value="">SELECT</option>
-                                                            <option value="1">A</option>
-                                                            <option value="2">B</option>
-                                                            <option value="3">C</option>
+                                                            @foreach ($interviewers as $interviewer)
+                                                                <option value="{{$interviewer->id}}">{{$interviewer->name}}</option>
+                                                            @endforeach
                                                     </select>
                                                 @endIf
                                                 <span class="form-text text-danger"

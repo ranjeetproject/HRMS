@@ -92,7 +92,7 @@
                                                             type="text"
                                                             name="final_round_interview_scheduling_date" id="final_round_interview_scheduling_date" placeholder="Please enter final round interview scheduling date"
                                                             maxlength="191"
-                                                            value="">
+                                                            value="" autocomplete="off">
                                                 @endif
                                                 
                                                         <span class="form-text text-danger"
@@ -124,7 +124,7 @@
                                                                 type="text"
                                                                 name="final_round_interview_scheduling_time" id="final_round_interview_scheduling_time" placeholder="Please enter final round interview scheduling time"
                                                                 maxlength="191"
-                                                                value="">
+                                                                value="" autocomplete="off">
                                                     @endif
                                                             <span class="form-text text-danger"
                                                                 id="error_final_round_interview_scheduling_time">{{ $errors->getBag('default')->first('final_round_interview_scheduling_time') }}</span>
@@ -169,18 +169,18 @@
                                                             class="form-control custom-select {{ $errors->has('final_round_interview_user_id') ? 'is-invalid' : '' }}"
                                                             name="final_round_interview_user_id" id="final_round_interview_user_id" disabled>
                                                             <option value="">SELECT</option>
-                                                            <option value="1" @if(@$feedbackCandiate->schedule->final_round_interview_user_id==1) selected @endIf>A</option>
-                                                            <option value="2" @if(@$feedbackCandiate->schedule->final_round_interview_user_id==2) selected @endIf>B</option>
-                                                            <option value="3" @if(@$feedbackCandiate->schedule->final_round_interview_user_id==3) selected @endIf>C</option>
-                                                    </select>
+                                                            @foreach ($interviewers as $interviewer)
+                                                                <option value="{{$interviewer->id}}" @if(@$feedbackCandiate->schedule->final_round_interview_user_id==$interviewer->id) selected @endIf>{{$interviewer->name}}</option>
+                                                            @endforeach
+                                                   </select>
                                                 @else
                                                     <select
                                                                 class="form-control custom-select {{ $errors->has('final_round_interview_user_id') ? 'is-invalid' : '' }}"
                                                                 name="final_round_interview_user_id" id="final_round_interview_user_id">
                                                                 <option value="">SELECT</option>
-                                                                <option value="1">A</option>
-                                                                <option value="2">B</option>
-                                                                <option value="3">C</option>
+                                                                @foreach ($interviewers as $interviewer)
+                                                                    <option value="{{$interviewer->id}}">{{$interviewer->name}}</option>
+                                                                @endforeach
                                                         </select>
                                                 @endif
                                                 <span class="form-text text-danger"

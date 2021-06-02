@@ -42,6 +42,7 @@ class InterviewScheduleController extends Controller
     {
         $data['recruitment'] = $this->interviewScheduleRepository->viewRecruitment($id);
         $data['schedule']    = $this->interviewScheduleRepository->viewSchedule($id);
+        $data['interviewers'] = $this->interviewScheduleRepository->fetchUsersInterviewer();
         return view('Interview_scheduled.interview_scheduling_edit',$data);
     }
 
