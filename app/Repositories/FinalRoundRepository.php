@@ -61,7 +61,7 @@ class FinalRoundRepository
 
     public function fetchUsersInterviewer()
     {
-        $row = User::get();
+        $row = User::Where('id','!=',1)->get();
         return $row;
     }
     
