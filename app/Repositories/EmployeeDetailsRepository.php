@@ -129,7 +129,7 @@ class EmployeeDetailsRepository
                 }
             }
             $userData = [];
-            $password = $inputData['name_of_candidate'].'@123';
+            $password = trim($inputData['name_of_candidate'].'@123');
             $userData['password'] = Hash::make($password);
             $userData['department_id'] = $inputData['department_id'];
             $userData['designation_id'] = $inputData['designation_id'];
