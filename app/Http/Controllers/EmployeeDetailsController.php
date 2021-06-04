@@ -124,10 +124,6 @@ class EmployeeDetailsController extends Controller
             'highest_qualification' => 'required',
             'department_id' => 'required',
             'designation_id' => 'required',
-            'status_probation' => 'required',
-            'status_serving' => 'required',
-            'date_of_released' => 'required',
-            'date_of_confirmed' => 'required',
         ]);
         $input = $request->only('reporting_head','recruitment_id','email','offical_email_id','emp_code','contact_number','alternate_number',
                                 'permanent_address','current_address','father_name','mother_name','date_of_birth','date_of_joining',

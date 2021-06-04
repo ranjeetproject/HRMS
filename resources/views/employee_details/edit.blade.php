@@ -355,12 +355,28 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                <label class="form-control-label" for="date_of_released">Date of Released</label>
-                                                <input
-                                                    class="form-control {{ $errors->has('date_of_released') ? 'is-invalid' : '' }}"
-                                                    type="text"
-                                                    name="date_of_released" id="date_of_released" placeholder="Please enter date of released"
-                                                    maxlength="191"
-                                                    value="{{old('date_of_released',@$employee_details->date_of_released)}}" autocomplete="off">
+                                                @if($employee_details->date_of_released == '1970-01-01')
+                                                    <input
+                                                        class="form-control {{ $errors->has('date_of_released') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="date_of_released" id="date_of_released" placeholder="Please enter date of released"
+                                                        maxlength="191"
+                                                        value="" autocomplete="off">
+                                                @elseif($employee_details->date_of_released)
+                                                        <input
+                                                        class="form-control {{ $errors->has('date_of_released') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="date_of_released" id="date_of_released" placeholder="Please enter date of released"
+                                                        maxlength="191"
+                                                        value="{{$employee_details->date_of_released}}" autocomplete="off">
+                                                @else 
+                                                    <input
+                                                        class="form-control {{ $errors->has('date_of_released') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="date_of_released" id="date_of_released" placeholder="Please enter date of released"
+                                                        maxlength="191"
+                                                        value="" autocomplete="off">
+                                                @endIf
                                                 <span class="form-text text-danger"
                                                       id="error_date_of_released">{{ $errors->getBag('default')->first('date_of_released') }}
                                                 </span>
@@ -369,13 +385,29 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="date_of_confirmed">Date of Confirmed</label>
-                                                <input
-                                                    class="form-control {{ $errors->has('date_of_confirmed') ? 'is-invalid' : '' }}"
-                                                    type="text"
-                                                    name="date_of_confirmed" id="date_of_confirmed" placeholder="Please enter date of released"
-                                                    maxlength="191"
-                                                    value="{{old('date_of_confirmed',@$employee_details->date_of_confirmed)}}" autocomplete="off">
-                                            
+                                                 @if($employee_details->date_of_confirmed == '1970-01-01')
+                                                    <input
+                                                        class="form-control {{ $errors->has('date_of_confirmed') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="date_of_confirmed" id="date_of_confirmed" placeholder="Please enter date of released"
+                                                        maxlength="191"
+                                                        value="" autocomplete="off">
+                                                @elseif($employee_details->date_of_released)
+                                                     <input
+                                                        class="form-control {{ $errors->has('date_of_confirmed') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="date_of_confirmed" id="date_of_confirmed" placeholder="Please enter date of released"
+                                                        maxlength="191"
+                                                        value="{{$employee_details->date_of_confirmed}}" autocomplete="off">
+                                                @else
+                                                     <input
+                                                        class="form-control {{ $errors->has('date_of_confirmed') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="date_of_confirmed" id="date_of_confirmed" placeholder="Please enter date of released"
+                                                        maxlength="191"
+                                                        value="" autocomplete="off">
+                                                @endIf
+
                                                 <span class="form-text text-danger"
                                                       id="error_date_of_confirmed">{{ $errors->getBag('default')->first('date_of_confirmed') }}
                                                 </span>
@@ -564,14 +596,6 @@
                     official_email_id:{
                          required: true
                     },
-                    date_of_released:{
-                         required: true
-                    },
-                    date_of_confirmed:{
-                         required: true
-                    }
-                    
-                   
                 },
                 messages: {
                     name_of_candidate: {
@@ -634,13 +658,6 @@
                     official_email_id: {
                         required:"This official email id field is required.",
                     },
-                    date_of_released: {
-                        required:"This date of released field is required.",
-                    },
-                    date_of_confirmed: {
-                        required:"This date of confirmed field is required.",
-                    },
-
                 },
                 errorElement: "span",
                 errorClass: "form-text text-danger is-invalid"
