@@ -137,7 +137,7 @@
                                                             type="text"
                                                             name="gross_salary" id="gross_salary" placeholder="Please enter gross salary"
                                                             maxlength="191"
-                                                            value="{{old('gross_salary')}}">
+                                                            value="{{old('gross_salary')}}" autocomplete="off">
                                                 @endIf
                                                 <span class="form-text text-danger"
                                                       id="error_gross_salary">{{ $errors->getBag('default')->first('gross_salary') }}
@@ -261,7 +261,7 @@
                                                                         type="text"
                                                                         name="epf" id="epf" placeholder="Please enter epf"
                                                                         maxlength="191"
-                                                                        value="{{old('epf')}}">
+                                                                        value="{{old('epf')}}" autocomplete="off">
                                                         @endIf                
                                                         <span class="form-text text-danger"
                                                             id="error_epf">{{ $errors->getBag('default')->first('epf') }}</span>
@@ -305,7 +305,7 @@
                                                                     type="text"
                                                                     name="p_tax" id="p_tax" placeholder="Please enter p tax"
                                                                     maxlength="191"
-                                                                    value="{{old('p_tax')}}">
+                                                                    value="{{old('p_tax')}}" autocomplete="off">
                                                         @endIf
                                                         <span class="form-text text-danger"
                                                             id="error_p_tax">{{ $errors->getBag('default')->first('p_tax') }}</span>
@@ -327,7 +327,7 @@
                                                                     type="text"
                                                                     name="tds" id="tds" placeholder="Please enter tds"
                                                                     maxlength="191"
-                                                                    value="{{old('tds')}}">
+                                                                    value="{{old('tds')}}" autocomplete="off">
                                                         @endIf
                                                         
                                                         <span class="form-text text-danger"
