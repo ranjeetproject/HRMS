@@ -19,7 +19,7 @@
                         </p>
                     </a>
                 </li>
-                @if($checkModulePermission->hr_module == 'hr')
+                @if(@$checkModulePermission->hr_module == 'hr')
                 <li class="nav-item has-treeview @if(request()->segment(1)=='recruitment' || request()->segment(1)=='final-round'
                        || request()->segment(1)=='offer-list' || request()->segment(1)=='current-employee-list' ||
                        request()->segment(1)=='salary-set-up' || request()->segment(1)=='released-employees' || request()->segment(1)=='interview-feedback-content') menu-open
@@ -104,7 +104,7 @@
                     </ul>
                 </li>
                 @endif
-                @if($checkModulePermission->statutory_master == 'sm')
+                @if(@$checkModulePermission->statutory_master == 'sm')
                 <li class="nav-item has-treeview @if(request()->segment(1)=='holidays' || request()->segment(1)=='department'
                        || request()->segment(1)=='designation' || request()->segment(1)=='skills') menu-open
                        @endIf">
@@ -158,7 +158,7 @@
                     </ul>
                 </li>
                 @endif
-                @if($checkModulePermission->super_user == 'su')
+                @if(@$checkModulePermission->super_user == 'su')
                 <li class="nav-item has-treeview @if(request()->segment(1)=='user-permission' || request()->segment(1)=='user-log') menu-open
                        @endIf">
                     <a class="nav-link {{ (request()->segment(1) == 'user-permission') ? 'active' : '' }}
@@ -191,7 +191,7 @@
                     </ul>
                 </li>
                 @endif
-                @if($checkModulePermission->general == 'gr')
+                @if(@$checkModulePermission->general == 'gr')
                     <li class="nav-item has-treeview @if(request()->segment(1)=='leave-application' || request()->segment(1)=='skills-acquired') menu-open
                         @endIf">
                         <a class="nav-link {{ (request()->segment(1) == 'leave-application') ? 'active' : '' }}
@@ -224,7 +224,7 @@
                         </ul>
                     </li>
                  @endif
-               @if($checkModulePermission->manager == 'mg')
+               @if(@$checkModulePermission->manager == 'mg')
                 <li class="nav-item has-treeview @if(request()->segment(1)=='team-members' || request()->segment(1)=='skills-approved' || request()->segment(1)=='performance-feedback') menu-open
                        @endIf">
                     <a class="nav-link {{ (request()->segment(1) == 'team-members') ? 'active' : '' }}
