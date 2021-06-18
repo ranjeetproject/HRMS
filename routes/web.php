@@ -108,6 +108,9 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('user-permission/{id}', 'UserPermissionController@edit');
 
+    Route::get('interview-feedback-content', 'InterviewFeedbackContentController@index');
+
+
 
 
 
@@ -177,7 +180,19 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::post('user-permission/update/{id}', 'UserPermissionController@update');
 
     Route::post('/change-password', 'UserController@changePasswordSubmit');
+   
+    Route::post('interview-feedback-content/selection-store', 'InterviewFeedbackContentController@selectionStore');
     
+    Route::post('interview-feedback-content/rejection-store', 'InterviewFeedbackContentController@rejectionStore');
+
+    Route::post('interview-feedback-content/selection-update/{id}', 'InterviewFeedbackContentController@selectionUpdate');
+
+    Route::post('interview-feedback-content/rejection-update/{id}', 'InterviewFeedbackContentController@rejectionUpdate');
+
+
+
+
+
     Route::delete('skills/destroy/{id}', 'SkillController@destroy');
 
     Route::delete('offer/delete/{id}', 'OfferedController@destroy');

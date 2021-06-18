@@ -112,6 +112,8 @@ class UserPermissionnRepository
                 $userPermissionModule['salary_set_up_modify'] = (isset($inputData['salary_set_up_modify']))?$inputData['salary_set_up_modify']: 0;
                 $userPermissionModule['released_employees_view'] = (isset($inputData['released_employees_view']))?$inputData['released_employees_view']: 0;
                 $userPermissionModule['released_employees_modify'] = (isset($inputData['released_employees_modify']))?$inputData['released_employees_modify']: 0;
+                $userPermissionModule['interview_feedback_content_view'] = (isset($inputData['interview_feedback_content_view']))?$inputData['interview_feedback_content_view']: 0;
+                $userPermissionModule['interview_feedback_content_modify'] = (isset($inputData['interview_feedback_content_modify']))?$inputData['interview_feedback_content_modify']: 0;
                 $userPermissionModule['leave_application_view'] = (isset($inputData['leave_application_view']))?$inputData['leave_application_view']: 0;
                 $userPermissionModule['leave_application_modify'] = (isset($inputData['leave_application_modify']))?$inputData['leave_application_modify']: 0;
                 $userPermissionModule['team_member_view'] = (isset($inputData['team_member_view']))?$inputData['team_member_view']: 0;

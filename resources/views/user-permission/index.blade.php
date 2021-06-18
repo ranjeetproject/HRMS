@@ -137,7 +137,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input r1" name="recruitment_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input r1" name="recruitment_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -149,7 +149,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input r1" name="final_round_list_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input r1" name="final_round_list_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -161,7 +161,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input r1" name="offered_candidate_list_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input r1" name="offered_candidate_list_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -173,7 +173,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input r1" name="current_employee_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input r1" name="current_employee_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -185,7 +185,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input r1" name="salary_set_up_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input r1" name="salary_set_up_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -197,11 +197,23 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input r1" name="released_employees_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input r1" name="released_employees_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Released Employees</th>
+                                                </tr>
+                                                <tr class= "r">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                    <input type="checkbox" class="form-check-input r1" name="interview_feedback_content_view" id="skill" value="1" style="margin-left:3%" >
+                                                   
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
+                                                    <input type="checkbox" class="form-check-input r1" name="interview_feedback_content_modify" id="skill" value="2" style="margin-left:5%">
+                                                   
+                                                    </th>
+                                                    <th>Interview Feedback Content</th>
                                                 </tr>
                                                 <tr class="s">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
@@ -209,7 +221,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input s1" name="add_skills_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input s1" name="add_skills_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -221,7 +233,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input s1" name="holiday_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input s1" name="holiday_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -233,7 +245,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input s1" name="designation_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input s1" name="designation_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -245,7 +257,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input s1" name="department_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input s1" name="department_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -257,7 +269,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input sp1" name="user_permission_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input sp1" name="user_permission_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -277,7 +289,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input g1" name="leave_application_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input g1" name="leave_application_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -289,7 +301,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input g1" name="skill_acquired_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input g1" name="skill_acquired_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -301,7 +313,7 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input m1" name="performance_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input m1" name="performance_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
@@ -314,20 +326,19 @@
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input m1" name="team_member_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input m1" name="team_member_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>
                                                     <th>Team Member</th>
                                                 </tr>
-                                                
                                                 <tr class="m">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>
                                                     <label class="col-md-2 form-control-label" for="skill_name"> View </label>
                                                     <input type="checkbox" class="form-check-input m1" name="approved_skills_view" id="skill" value="1" style="margin-left:3%" >
                                                    
-                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%"> Modify </label>
+                                                    <label class="col-md-2 form-control-label" for="skill_name" style="margin-left:15%;display:inline;"> Modify </label>
                                                     <input type="checkbox" class="form-check-input m1" name="approved_skills_modify" id="skill" value="2" style="margin-left:5%">
                                                    
                                                     </th>

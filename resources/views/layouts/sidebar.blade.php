@@ -22,14 +22,15 @@
                 @if($checkModulePermission->hr_module == 'hr')
                 <li class="nav-item has-treeview @if(request()->segment(1)=='recruitment' || request()->segment(1)=='final-round'
                        || request()->segment(1)=='offer-list' || request()->segment(1)=='current-employee-list' ||
-                       request()->segment(1)=='salary-set-up' || request()->segment(1)=='released-employees') menu-open
+                       request()->segment(1)=='salary-set-up' || request()->segment(1)=='released-employees' || request()->segment(1)=='interview-feedback-content') menu-open
                        @endIf">
                     <a class="nav-link {{ (request()->segment(1) == 'recruitment') ? 'active' : '' }}
                                        {{ (request()->segment(1) == 'final-round') ? 'active' : '' }}
                                        {{ (request()->segment(1) == 'offer-list') ? 'active' : '' }}
                                        {{ (request()->segment(1) == 'current-employee-list') ? 'active' : '' }}
                                        {{ (request()->segment(1) == 'salary-set-up') ? 'active' : '' }}
-                                       {{ (request()->segment(1) == 'released-employees') ? 'active' : '' }}"
+                                       {{ (request()->segment(1) == 'released-employees') ? 'active' : '' }}
+                                       {{ (request()->segment(1) == 'interview-feedback-content') ? 'active' : '' }}"
                        href="#">
                         <i class="nav-icon fas fa-angle-down"></i>
                         <p>
@@ -91,7 +92,15 @@
                                 </a>
                             </li>
                         @endIf
-                       
+                        @if(@$checkModulePermission->interview_feedback_content_view == '1')
+                            <li class="nav-item ">
+                                    <a class="nav-link {{(request()->segment(1) == 'interview-feedback-content') ? 'active' : '' }}"
+                                        href="{{action('InterviewFeedbackContentController@index')}}">
+                                        <i class="nav-icon fas fa-edit"></i>
+                                        <p>Interview Feedback Content</p>
+                                    </a>
+                            </li>
+                        @endIf
                     </ul>
                 </li>
                 @endif
