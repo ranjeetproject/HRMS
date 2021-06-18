@@ -31,8 +31,8 @@
                                     Interview Feedback Content
                                 </div>
                             </div>
-                            @if($interview_feedback_contents[0]['id'])
-                            <form action="{{action('InterviewFeedbackContentController@selectionUpdate',[$interview_feedback_contents[0]['id']])}}" method="post"
+                            @if(@$interview_feedback_contents[0]['id'])
+                            <form action="{{action('InterviewFeedbackContentController@selectionUpdate',[@$interview_feedback_contents[0]['id']])}}" method="post"
                                   enctype="multipart/form-data" id="selectionForm">
                             @else
                             <form action="{{action('InterviewFeedbackContentController@selectionStore')}}" method="post"
@@ -44,10 +44,10 @@
                                         <div class="form-group row">
                                             <label class="col-md-2 form-control-label" for="content_for_selection">Content for Selection <span class="text-danger">*</span></label>
                                             <div class="col-md-10">
-                                            @if($interview_feedback_contents[0]['content_for_selection'])
+                                            @if(@$interview_feedback_contents[0]['content_for_selection'])
                                                 <textarea
                                                         class="form-control {{ $errors->has('content_for_selection') ? 'is-invalid' : '' }}"
-                                                        name="content_for_selection" id="content_for_selection" placeholder="Please enter content for selection">{{$interview_feedback_contents[0]['content_for_selection']}}</textarea>
+                                                        name="content_for_selection" id="content_for_selection" placeholder="Please enter content for selection">{{@$interview_feedback_contents[0]['content_for_selection']}}</textarea>
                                                 <span class="form-text text-danger"
                                                       id="error_content_for_selection">{{ $errors->getBag('default')->first('content_for_selection') }}</span>
                                             @else
@@ -86,8 +86,8 @@
                                     Interview Feedback Content
                                 </div>
                             </div>
-                            @if($interview_feedback_contents[1]['id'])
-                                <form action="{{action('InterviewFeedbackContentController@rejectionUpdate',[$interview_feedback_contents[1]['id']])}}" method="post"
+                            @if(@$interview_feedback_contents[1]['id'])
+                                <form action="{{action('InterviewFeedbackContentController@rejectionUpdate',[@$interview_feedback_contents[1]['id']])}}" method="post"
                                     enctype="multipart/form-data" id="rejectionForm">
                             @else
                                 <form action="{{action('InterviewFeedbackContentController@rejectionStore')}}" method="post"
@@ -99,10 +99,10 @@
                                         <div class="form-group row">
                                             <label class="col-md-2 form-control-label" for="content_for_rejection">Content for Rejection<span class="text-danger">*</span></label>
                                             <div class="col-md-10">
-                                            @if($interview_feedback_contents[1]['content_for_rejection'])
+                                            @if(@$interview_feedback_contents[1]['content_for_rejection'])
                                                 <textarea
                                                         class="form-control {{ $errors->has('content_for_rejection') ? 'is-invalid' : '' }}"
-                                                        name="content_for_rejection" id="content_for_rejection" placeholder="Please enter content for rejection">{{$interview_feedback_contents[1]['content_for_rejection']}}</textarea>
+                                                        name="content_for_rejection" id="content_for_rejection" placeholder="Please enter content for rejection">{{@$interview_feedback_contents[1]['content_for_rejection']}}</textarea>
                                                 <span class="form-text text-danger"
                                                       id="error_content_for_rejection">{{ $errors->getBag('default')->first('content_for_rejection') }}</span>
                                             @else
