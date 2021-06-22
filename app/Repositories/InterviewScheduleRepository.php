@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
+use Mail;
+
 
 class InterviewScheduleRepository
 {
@@ -24,6 +26,12 @@ class InterviewScheduleRepository
         $inputData['interview_scheduling_time'] =  Carbon::parse($inputData['interview_scheduling_time'])->format('h:i:s');
         $row = InterviewSchedule::create($inputData);
         if ($row && $row->id > 0) {
+            $interviewer = User::where('id','=',$row->user_id)->get(['email']);
+            $recruitmentId = Recruitment::where('id','=', $row->recruitment_id)->first(['id']);
+            Mail::send('emails.interviewerFeedback', ['row' => $recruitmentId , 'interviewerEmail' => $interviewer], function ($m) use ($interviewer,$user) {
+                $m->from($user->email);
+                $m->to($interviewer[0]->email)->subject('Interviewer Feedback');
+            });
             Recruitment::where('id','=',$row->recruitment_id)
                 ->update(['interview_status' => 1]);
                 $this->sendNotificationForSchedule($row->id,$user);

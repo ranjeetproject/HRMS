@@ -23,29 +23,28 @@ class InterviewFeedbackController extends Controller
             'interviewer_rating' => 'required|numeric',
             'interviewer_feedback'=>'required',
         ]);
+       
         $input = $request->only('recruitment_id','schedule_id','interview_scheduling_date','interview_scheduling_time','user_id','interviewer_rating','interviewer_feedback','active');
         $user = $this->getUser();
-        $key =  array_keys($input);
-        $lastkey = end($key);
-        if($lastkey == 'active'){
+        // $key =  array_keys($input);
+        // $lastkey = end($key);
+        // if($lastkey == 'active'){
            
-            $input['active'] = 1;
+        //     $input['active'] = 1;
 
-        }else
-        {
+        // }else
+        // {
             
-            $input['active'] = 0;
-        }
-        
+        //     $input['active'] = 0;
+        // }
         $data = $this->interviewFeedbackRepository->insert($input,$user);
-        
-        if ($data['success'] == true && isset($data['active'])) {
+        if ($data['success'] == true && isset($data['active']) && $data['active'] == 1) {
             $notification = array(
                 'message' => 'Interview Feedback is successfully added!',
                 'alert-type' => 'success'
             );
             return redirect()->action('FinalRoundController@index')->with($notification);
-        } else if($data['success'] == true) {
+        } else if($data['success'] == true || $data['active'] == 2) {
             $notification = array(
                 'message' => 'Interview Feedback is successfully added!',
                 'alert-type' => 'success'
@@ -71,17 +70,17 @@ class InterviewFeedbackController extends Controller
             'interviewer_feedback'=>'required',
         ]);
         $input = $request->only('recruitment_id', 'interview_scheduling_date','interview_scheduling_time','user_id','interviewer_rating','interviewer_feedback','active');
-        $key =  array_keys($input);
-        $lastkey = end($key);
-        if($lastkey == 'active'){
+        // $key =  array_keys($input);
+        // $lastkey = end($key);
+        // if($lastkey == 'active'){
            
-            $input['active'] = 1;
+        //     $input['active'] = 1;
 
-        }else
-        {
+        // }else
+        // {
             
-            $input['active'] = 0;
-        }
+        //     $input['active'] = 0;
+        // }
         $data = $this->interviewFeedbackRepository->updateSave($input,$id);
            if ($data['success'] == true && isset($data['active'])) {
                $notification = array(

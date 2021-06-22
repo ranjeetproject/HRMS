@@ -199,18 +199,30 @@
                                                         <span class="form-text text-danger"
                                                             id="error_interviewer_feedback">{{ $errors->getBag('default')->first('interviewer_feedback') }}</span>
                                                     </div>
-                                                    <div class="col-md-8">
-                                                        <div class="form-group">
-                                                        @if(@$feedback->active)
-                                                             <label class=" form-control-label" for="active"><input type="checkbox" name="active" value="" @if(@$feedback->active) {{'checked'}} @endIf> &nbsp;&nbsp;Selected for Final Round</label>
-                                                        @else
-                                                            <label class=" form-control-label" for="active"><input type="checkbox" name="active" value=""> &nbsp;&nbsp;Selected for Final Round</label>
-                                                        @endIf
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                            @if(@$feedback->active == 1)
+                                                                <label class=" form-control-label" for="active"><input type="radio" name="active" value="1" @if(@$feedback->active == 1) {{'checked'}} @endIf> &nbsp;&nbsp;Selected for Final Round</label>
+                                                            @else
+                                                                <label class=" form-control-label" for="active"><input type="radio" name="active" value="1"> &nbsp;&nbsp;Selected for Final Round</label>
+                                                            @endIf
 
-                                                            <span class="form-text text-danger"
-                                                                id="error_active">{{ $errors->getBag('default')->first('active') }}</span>
+                                                                <span class="form-text text-danger"
+                                                                    id="error_active">{{ $errors->getBag('default')->first('active') }}</span>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                        <div class="col-md-8">
+                                                            <div class="form-group">
+                                                            @if(@$feedback->active == 2)
+                                                                <label class="form-control-label" for="active"><input type="radio" name="active" value="2" @if(@$feedback->active == 2) {{'checked'}} @endIf> &nbsp;&nbsp;Rejected</label>
+                                                            @else
+                                                                <label class="form-control-label" for="active"><input type="radio" name="active" value="2"> &nbsp;&nbsp;Rejected</label>
+                                                            @endIf    
+                                                                <span class="form-text text-danger"
+                                                                    id="error_active">{{ $errors->getBag('default')->first('active') }}</span>
+                                                            </div>
+                                                        </div>
+                                                    
                                             </div>
                                         </div>
                                          

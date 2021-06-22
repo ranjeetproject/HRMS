@@ -24,6 +24,7 @@ class InterviewScheduleController extends Controller
             'interview_scheduling_time'=>'required',
             'user_id' => 'required',
         ]);
+        //dd($request->all());
         $input = $request->only('recruitment_id', 'interview_scheduling_date','interview_scheduling_time','user_id');
         $user = $this->getUser();
         $data = $this->interviewScheduleRepository->insert($input,$user);

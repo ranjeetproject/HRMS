@@ -5,6 +5,7 @@ namespace App\Repositories;
 
 use App\InterviewFeedback;
 use App\Skill;
+use App\InterviewFeedbackContent;
 use App\User;
 use App\CandidateSkill;
 use App\Recruitment;
@@ -15,16 +16,34 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Yajra\DataTables\Facades\DataTables;
 use Carbon\Carbon;
+use Mail;
+
 
 class InterviewFeedbackRepository
 {
     public function insert($inputData,$user)
     {
+       
         $inputData['interview_scheduling_date'] = date('Y-m-d',strtotime($inputData['interview_scheduling_date']));
         $inputData['interview_scheduling_time'] =  Carbon::parse($inputData['interview_scheduling_time'])->format('h:i:s');
         $row = InterviewFeedback::create($inputData);
         if ($row && $row->id > 0) {
-            if($row->active){
+            if($row->active == 1){
+                $finalSelection = InterviewFeedbackContent::find(1);
+                $candidateEmail = Recruitment::where('id','=',  $row->recruitment_id)->first(['email_id']);
+                Mail::send('emails.selectionFinalRound', ['row' => $finalSelection], function ($m) use ($candidateEmail,$user) {
+                    $m->from($user->email);
+                    $m->to($candidateEmail->email_id)->subject('Selection For Final Round');
+                });
+            }elseif($row->active == 2){
+                $Rejection = InterviewFeedbackContent::find(2);
+                $candidateEmail = Recruitment::where('id','=',  $row->recruitment_id)->first(['email_id']);
+                Mail::send('emails.rejection', ['row' => $Rejection], function ($m) use ($candidateEmail,$user) {
+                    $m->from($user->email);
+                    $m->to($candidateEmail->email_id)->subject('Rejected');
+                });
+            }
+            if($row->active == 1){
                 $this->sendNotificationForFeedBack($row->id,$user);
                 Recruitment::where('id','=',$row->recruitment_id)
                 ->update(['status' => 1,'interview_status' => 2]);
@@ -52,7 +71,7 @@ class InterviewFeedbackRepository
         $row = InterviewFeedback::find($id);
         if ($row) {
             $row->update($inputData);
-            if($row->active){
+            if($row->active == 1){
                 Recruitment::where('id','=',$row->recruitment_id)
                 ->update(['status' => 1,'interview_status' => 2]);
                 return ['success' => true,'active' => $row->active];

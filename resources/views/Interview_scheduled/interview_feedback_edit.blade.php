@@ -173,13 +173,21 @@
                                                             id="error_interviewer_feedback">{{ $errors->getBag('default')->first('interviewer_feedback') }}</span>
                                                     </div>
                                                     <div class="col-md-8">
-                                                    <div class="form-group">
-                                                        <label class=" form-control-label" for="active"><input type="checkbox" name="active" value="" @if(@$feedback->active==1) {{'checked'}} @endIf> &nbsp;&nbsp;Selected for Final Round</label>
-                                                   
-                                                            <span class="form-text text-danger"
-                                                                id="error_active">{{ $errors->getBag('default')->first('active') }}</span>
+                                                        <div class="form-group">
+                                                            <label class=" form-control-label" for="active"><input type="radio" name="active" value="1" @if(@$feedback->active == 1) {{'checked'}} @endIf> &nbsp;&nbsp;Selected for Final Round</label>
+                                                    
+                                                                <span class="form-text text-danger"
+                                                                    id="error_active">{{ $errors->getBag('default')->first('active') }}</span>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label class=" form-control-label" for="active"><input type="radio" name="active" value="2" @if(@$feedback->active == 2) {{'checked'}} @endIf> &nbsp;&nbsp;Rejected</label>
+                                                    
+                                                                <span class="form-text text-danger"
+                                                                    id="error_active">{{ $errors->getBag('default')->first('active') }}</span>
+                                                        </div>
+                                                    </div>
                                             </div>
                                         </div>
                                          
