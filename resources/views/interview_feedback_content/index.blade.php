@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="content">
+        {{-- <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -31,7 +31,7 @@
                                     Interview Feedback Content
                                 </div>
                             </div>
-                            @if(@$interview_feedback_contents[0]['id'])
+                             @if(@$interview_feedback_contents[0]['id'])
                             <form action="{{action('InterviewFeedbackContentController@selectionUpdate',[@$interview_feedback_contents[0]['id']])}}" method="post"
                                   enctype="multipart/form-data" id="selectionForm">
                             @else
@@ -74,7 +74,7 @@
             </div>
             
          
-        </div>
+        </div> --}}
         <div class="content">
             <div class="container-fluid">
                 <div class="row">

@@ -188,6 +188,14 @@
                                                                     id="error_active">{{ $errors->getBag('default')->first('active') }}</span>
                                                         </div>
                                                     </div>
+                                                    <div class="col-md-8">
+                                                        <div class="form-group">
+                                                            <label class=" form-control-label" for="active"><input type="radio" name="active" value="3" @if(@$feedback->active == 3) {{'checked'}} @endIf> &nbsp;&nbsp;On Hold</label>
+                                                    
+                                                                <span class="form-text text-danger"
+                                                                    id="error_active">{{ $errors->getBag('default')->first('active') }}</span>
+                                                        </div>
+                                                    </div>
                                             </div>
                                         </div>
                                          

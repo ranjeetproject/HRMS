@@ -215,6 +215,14 @@
                                                     </th>
                                                     <th>Interview Feedback Content</th>
                                                 </tr>
+                                                <tr class="r">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                    <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                    <input type="checkbox" class="form-check-input r1" name="rejected_view" id="skill" value="1" style="margin-left:3%" >
+                                                    </th>
+                                                    <th>Rejected List</th>
+                                                </tr>
                                                 <tr class="s">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>

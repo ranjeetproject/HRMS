@@ -24,15 +24,17 @@ class RecruitmentRepository
 
     public function getAll()
     {
-        $data = Recruitment::orderBy('created_at', 'DESC')
-        ->where('status','!=', 1)
-        ->where('status','!=', 2)
+        $data = Recruitment::orderBy('recruitments.created_at', 'DESC')
+        ->leftJoin('interview_feedback','interview_feedback.recruitment_id','=','recruitments.id')
+        ->where('recruitments.status','!=', 1)
+        ->where('recruitments.status','!=', 2)
         ->get([
-            'id', 'name_of_candidate','mobile_number','total_years_experience','total_months_experience','address','email_id','upload_resume',
+            'recruitments.id', 'recruitments.name_of_candidate','recruitments.mobile_number','recruitments.total_years_experience','recruitments.total_months_experience','recruitments.address','recruitments.email_id','recruitments.upload_resume',
             DB::raw('CASE WHEN interview_status = 0 THEN "Pending"
-            WHEN interview_status = 1 THEN "Interview Scheduled" WHEN interview_status = 2 THEN "Done" END AS interview_status')
+            WHEN interview_status = 1 THEN "Interview Scheduled" WHEN interview_status = 2 THEN "Done" END AS interview_status'),
+            DB::raw('CASE WHEN active = 0 THEN ""
+            WHEN active = 1 THEN "Selected for Final Round" WHEN active = 2 THEN "Rejected" WHEN active = 3 THEN "On Hold" END AS active')
         ]);
-        
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
                 $html = '<a href="'.action('RecruitmentController@show', $row->id) .'" data-toggle="tooltip"

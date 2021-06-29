@@ -44,14 +44,21 @@ class InterviewFeedbackController extends Controller
                 'alert-type' => 'success'
             );
             return redirect()->action('FinalRoundController@index')->with($notification);
-        } else if($data['success'] == true || $data['active'] == 2) {
+        }else if($data['success'] == true && isset($data['active']) && $data['active'] == 3) {
+        
             $notification = array(
                 'message' => 'Interview Feedback is successfully added!',
                 'alert-type' => 'success'
             );
             return redirect()->action('RecruitmentController@index')->with($notification);
             
-        }else{
+        }else if($data['success'] == true && isset($data['active']) && $data['active'] == 2) {
+            $notification = array(
+                'message' => 'Interview Feedback is successfully added!',
+                'alert-type' => 'success'
+            );
+            return redirect()->action('RejectedController@index')->with($notification);
+        }else {
             return redirect()->back();
         }
     }
@@ -70,6 +77,7 @@ class InterviewFeedbackController extends Controller
             'interviewer_feedback'=>'required',
         ]);
         $input = $request->only('recruitment_id', 'interview_scheduling_date','interview_scheduling_time','user_id','interviewer_rating','interviewer_feedback','active');
+        $user = $this->getUser();
         // $key =  array_keys($input);
         // $lastkey = end($key);
         // if($lastkey == 'active'){
@@ -81,22 +89,28 @@ class InterviewFeedbackController extends Controller
             
         //     $input['active'] = 0;
         // }
-        $data = $this->interviewFeedbackRepository->updateSave($input,$id);
-           if ($data['success'] == true && isset($data['active'])) {
+        $data = $this->interviewFeedbackRepository->updateSave($input,$id,$user);
+           if ($data['success'] == true && isset($data['active']) && $data['active'] == 1) {
                $notification = array(
                     'message' => 'Interview feedback is successfully update!',
                     'alert-type' => 'success'
                );
                return redirect()->action('FinalRoundController@index')->with($notification);
-           }else if($data['success'] == true) 
-           {
+            }else if($data['success'] == true && isset($data['active']) && $data['active'] == 3) {
+        
                 $notification = array(
                     'message' => 'Interview Feedback is successfully update!',
                     'alert-type' => 'success'
                 );
                 return redirect()->action('RecruitmentController@index')->with($notification);
-            
-           }else
+                
+            }else if($data['success'] == true && isset($data['active']) && $data['active'] == 2) {
+                $notification = array(
+                    'message' => 'Interview Feedback is successfully update!',
+                    'alert-type' => 'success'
+                );
+                return redirect()->action('RejectedController@index')->with($notification);
+            }else
            {
             return redirect()->back();
            }

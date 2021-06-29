@@ -29,28 +29,29 @@ class InterviewFeedbackRepository
         $row = InterviewFeedback::create($inputData);
         if ($row && $row->id > 0) {
             if($row->active == 1){
-                $finalSelection = InterviewFeedbackContent::find(1);
-                $candidateEmail = Recruitment::where('id','=',  $row->recruitment_id)->first(['email_id']);
-                Mail::send('emails.selectionFinalRound', ['row' => $finalSelection], function ($m) use ($candidateEmail,$user) {
-                    $m->from($user->email);
-                    $m->to($candidateEmail->email_id)->subject('Selection For Final Round');
-                });
-            }elseif($row->active == 2){
+                $this->sendNotificationForFeedBack($row->id,$user);
+                Recruitment::where('id','=',$row->recruitment_id)
+                ->update(['status' => 1,'interview_status' => 2]);
+                return ['success' => true,'active' => $row->active];
+            }
+            if($row->active == 2){
                 $Rejection = InterviewFeedbackContent::find(2);
                 $candidateEmail = Recruitment::where('id','=',  $row->recruitment_id)->first(['email_id']);
                 Mail::send('emails.rejection', ['row' => $Rejection], function ($m) use ($candidateEmail,$user) {
                     $m->from($user->email);
                     $m->to($candidateEmail->email_id)->subject('Rejected');
                 });
-            }
-            if($row->active == 1){
                 $this->sendNotificationForFeedBack($row->id,$user);
                 Recruitment::where('id','=',$row->recruitment_id)
                 ->update(['status' => 1,'interview_status' => 2]);
                 return ['success' => true,'active' => $row->active];
             }
-            $this->sendNotificationForFeedBack($row->id,$user);
-            return ['success' => true];
+            if($row->active == 3){
+                $this->sendNotificationForFeedBack($row->id,$user);
+                Recruitment::where('id','=',$row->recruitment_id)
+                ->update(['interview_status' => 2]);
+                return ['success' => true,'active' => $row->active];
+            }
         } else {
             return ['success' => false];
         }
@@ -64,7 +65,7 @@ class InterviewFeedbackRepository
 
     }
 
-    public function updateSave($inputData, $id)
+    public function updateSave($inputData,$id,$user)
     {
         $inputData['interview_scheduling_date'] = date('Y-m-d',strtotime($inputData['interview_scheduling_date']));
         $inputData['interview_scheduling_time'] =  Carbon::parse($inputData['interview_scheduling_time'])->format('h:i:s');
@@ -76,7 +77,22 @@ class InterviewFeedbackRepository
                 ->update(['status' => 1,'interview_status' => 2]);
                 return ['success' => true,'active' => $row->active];
             }
-            return ['success' => true];
+            if($row->active == 2){
+                $Rejection = InterviewFeedbackContent::find(2);
+                $candidateEmail = Recruitment::where('id','=',  $row->recruitment_id)->first(['email_id']);
+                Mail::send('emails.rejection', ['row' => $Rejection], function ($m) use ($candidateEmail,$user) {
+                    $m->from($user->email);
+                    $m->to($candidateEmail->email_id)->subject('Rejected');
+                });
+                Recruitment::where('id','=',$row->recruitment_id)
+                ->update(['status' => 1,'interview_status' => 2]);
+                return ['success' => true,'active' => $row->active];
+            }
+            if($row->active == 3){
+                Recruitment::where('id','=',$row->recruitment_id)
+                ->update(['interview_status' => 2]);
+                return ['success' => true,'active' => $row->active];
+            }
         } else {
             return ['success' => false];
         }

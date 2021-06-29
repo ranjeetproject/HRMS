@@ -22,7 +22,7 @@
                 @if(@$checkModulePermission->hr_module == 'hr')
                 <li class="nav-item has-treeview @if(request()->segment(1)=='recruitment' || request()->segment(1)=='final-round'
                        || request()->segment(1)=='offer-list' || request()->segment(1)=='current-employee-list' ||
-                       request()->segment(1)=='salary-set-up' || request()->segment(1)=='released-employees' || request()->segment(1)=='interview-feedback-content') menu-open
+                       request()->segment(1)=='salary-set-up' || request()->segment(1)=='released-employees' || request()->segment(1)=='interview-feedback-content' || request()->segment(1)=='rejected-list') menu-open
                        @endIf">
                     <a class="nav-link {{ (request()->segment(1) == 'recruitment') ? 'active' : '' }}
                                        {{ (request()->segment(1) == 'final-round') ? 'active' : '' }}
@@ -30,7 +30,8 @@
                                        {{ (request()->segment(1) == 'current-employee-list') ? 'active' : '' }}
                                        {{ (request()->segment(1) == 'salary-set-up') ? 'active' : '' }}
                                        {{ (request()->segment(1) == 'released-employees') ? 'active' : '' }}
-                                       {{ (request()->segment(1) == 'interview-feedback-content') ? 'active' : '' }}"
+                                       {{ (request()->segment(1) == 'interview-feedback-content') ? 'active' : '' }}
+                                       {{ (request()->segment(1) == 'rejected-list') ? 'active' : '' }}"
                        href="#">
                         <i class="nav-icon fas fa-angle-down"></i>
                         <p>
@@ -56,6 +57,15 @@
                                 </a>
                             </li>
                         @endIf
+                        @if(@$checkModulePermission->rejected_view == '1')
+                            <li class="nav-item ">
+                                <a class="nav-link {{ (request()->segment(1) == 'rejected-list') ? 'active' : '' }}"
+                                    href="{{action('RejectedController@index')}}">
+                                    <i class="nav-icon fas fa-user-alt-slash"></i>
+                                    <p>Rejected List</p>
+                                </a>
+                            </li>
+                         @endIf
                         @if(@$checkModulePermission->offered_candidate_list_view == '1')
                             <li class="nav-item ">
                                 <a class="nav-link {{ (request()->segment(1) == 'offer-list') ? 'active' : '' }}"

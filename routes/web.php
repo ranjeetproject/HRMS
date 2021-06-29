@@ -110,6 +110,7 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('interview-feedback-content', 'InterviewFeedbackContentController@index');
 
+    Route::get('rejected-list', 'RejectedController@index');
 
 
 
