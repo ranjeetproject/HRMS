@@ -43,20 +43,29 @@
                                             <input
                                                 class="form-control"
                                                 type="hidden"
-                                                name="recruitment_id" id="recruitment_id" value="{{$salary_set_up->recruitment->id}}">
+                                                name="recruitment_id" id="recruitment_id" value="{{@$salary_set_up->recruitment->id}}">
                                                 <input
                                                 class="form-control"
                                                 type="hidden"
-                                                name="employee_details_id" id="employee_details_id" value="{{$salary_set_up->id}}">
+                                                name="employee_details_id" id="employee_details_id" value="{{@$salary_set_up->id}}">
                                                <label class="form-control-label" for="employee_id">Employee Name</label>
+                                                @if(@$salary_set_up->recruitment->name_of_candidate)
                                                 <input
-                                                    class="form-control {{ $errors->has('employee_name') ? 'is-invalid' : '' }}"
+                                                    class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"
                                                     type="text"
-                                                    name="employee_name" id="employee_name" placeholder="Please enter employee name"
+                                                    name="name_of_candidate" id="name_of_candidate" placeholder="Please enter employee name"
                                                     maxlength="191"
-                                                    value="{{old('employee_name',$salary_set_up->recruitment->name_of_candidate)}}" readonly>
+                                                    value="{{old('name_of_candidate',@$salary_set_up->recruitment->name_of_candidate)}}" readonly>
+                                                @else
+                                                <input
+                                                    class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"
+                                                    type="text"
+                                                    name="name_of_candidate" id="name_of_candidate" placeholder="Please enter employee name"
+                                                    maxlength="191"
+                                                    value="{{old('name_of_candidate',@$salary_set_up->name_of_candidate)}}" readonly>
+                                                @endif    
                                                 <span class="form-text text-danger"
-                                                      id="error_employee_name">{{ $errors->getBag('default')->first('employee_name') }}
+                                                      id="error_name_of_candidate">{{ $errors->getBag('default')->first('name_of_candidate') }}
                                                 </span>
                                             </div>
                                         </div>

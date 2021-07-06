@@ -14,7 +14,7 @@ class SalarySetUp extends Model
 
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
-    protected $fillable = ['recruitment_id','employee_details_id','employee_code','email_id','salary_type','gross_salary','ctc','basic','hra','other_allowances','epf','esi','p_tax','tds'];
+    protected $fillable = ['recruitment_id','employee_details_id','name_of_candidate','employee_code','email_id','salary_type','gross_salary','ctc','basic','hra','other_allowances','epf','esi','p_tax','tds'];
 
     public function recruitment()
     {

@@ -36,8 +36,13 @@
                             <div class="card-body">
                                 <table class="table table-hover">
                                     <tr>
+                                    @if(@$salary_set_up->recruitment->name_of_candidate)
                                         <th>Name of Candidate</th>
                                         <td>{{@$salary_set_up->recruitment->name_of_candidate}}</td>
+                                    @else
+                                        <th>Name Of Candidate</th>
+                                        <td>{{@$salary_set_up->name_of_candidate}}</td>
+                                    @endif
                                     </tr>
                                     <tr>
                                         <th>Employee Code</th>

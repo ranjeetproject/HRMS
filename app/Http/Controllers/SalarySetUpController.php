@@ -55,8 +55,12 @@ class SalarySetUpController extends Controller
             'p_tax' => 'required|numeric',
             'tds' => 'required|numeric',
         ]);
-
-        $input = $request->only('recruitment_id','employee_details_id','employee_code','email_id','salary_type','gross_salary','ctc','basic','hra','other_allowances','epf','esi','p_tax','tds');
+        
+        if($request->recruitment_id != null){
+            $input = $request->only('recruitment_id','employee_details_id','employee_code','email_id','salary_type','gross_salary','ctc','basic','hra','other_allowances','epf','esi','p_tax','tds');
+        }else{
+            $input = $request->only('employee_details_id','name_of_candidate','employee_code','email_id','salary_type','gross_salary','ctc','basic','hra','other_allowances','epf','esi','p_tax','tds');
+        }
         $user = $this->getUser();
         $data = $this->salarySetUpRepository->insert($input,$user);
            if ($data['success'] == true) {

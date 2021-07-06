@@ -27,8 +27,9 @@ class SalarySetUpRepository
     {
         $data = SalarySetUp::orderBy('salary_set_ups.created_at', 'DESC')
         ->leftJoin('recruitments','recruitments.id','=','salary_set_ups.recruitment_id')
+        ->leftJoin('employee_details','employee_details.id','=','salary_set_ups.employee_details_id')
         ->get([
-            'recruitments.name_of_candidate','salary_set_ups.id','salary_set_ups.employee_code','salary_set_ups.email_id','salary_set_ups.salary_type','salary_set_ups.gross_salary','salary_set_ups.ctc'
+            'recruitments.name_of_candidate','employee_details.name_of_candidate as name','salary_set_ups.id','salary_set_ups.employee_code','salary_set_ups.email_id','salary_set_ups.salary_type','salary_set_ups.gross_salary','salary_set_ups.ctc'
         ]);
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
@@ -45,6 +46,13 @@ class SalarySetUpRepository
                         </form>';
 
                 return $html;
+            })
+            ->editColumn('name_of_candidate', function ($row) {
+                if ($row->name_of_candidate) {
+                    return $row->name_of_candidate;
+                }else{
+                    return $row->name;
+                }
             })
             ->setRowId('id')
             ->rawColumns(['action'])

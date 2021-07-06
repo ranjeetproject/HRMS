@@ -12,7 +12,7 @@ class CandidateSkill extends Model
 
     protected $dates = ['created_at', 'updated_at'];
 
-    protected $fillable = ['recruitment_id','skill_id','user_id','acquire_date','status'];
+    protected $fillable = ['recruitment_id','employee_details_id','skill_id','user_id','acquire_date','status'];
 
     public function skill()
     {

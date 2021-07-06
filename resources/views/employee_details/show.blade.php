@@ -36,9 +36,13 @@
                             <div class="card-body">
                                 <table class="table table-hover">
                                     <tr>
+                                    @if(@$employee_details->recruitment->name_of_candidate)
                                         <th>Name of Candidate</th>
                                         <td>{{@$employee_details->recruitment->name_of_candidate}}</td>
-                                    </tr>
+                                    @else
+                                        <th>Name Of Candidate</th>
+                                        <td>{{@$employee_details->name_of_candidate}}</td>
+                                    @endif                                    </tr>
                                     <tr>
                                         <th>Reporting Head</th>
                                         <td>{{@$employee_details->reporting_head}}</td>
@@ -138,9 +142,14 @@
                                      <tr>
                                         <th>Skill</th>
                                         <td>
-                                        @if($employee_details->candidateSkill)
+                                        @if(@$employee_details->candidateSkill)
                                             @foreach (@$employee_details->candidateSkill as  $skills)
                                                     {{@$skills->skill->skill_name}},
+                                            @endforeach
+                                        @endif
+                                        @if(@$employee_details->existingEmployee)
+                                            @foreach (@$employee_details->existingEmployee as  $skills)
+                                                    {{$skills->skill->skill_name}},
                                             @endforeach
                                         @endif
                                         <td>

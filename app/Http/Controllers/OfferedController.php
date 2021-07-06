@@ -26,6 +26,14 @@ class OfferedController extends Controller
         
     }
 
+    public function create()
+    {
+        $data['skills'] =  $this->offeredRepository->fetchSkills();
+        $data['departments'] =  $this->offeredRepository->fetchDepartments();
+        $data['designations'] =  $this->offeredRepository->fetchDesignations();
+        return view('final_round.existing_employee',$data);
+    }
+
     public function destroy($id)
     {
         $this->offeredRepository->deleteSpecific($id);

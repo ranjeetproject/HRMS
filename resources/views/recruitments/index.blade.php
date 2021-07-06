@@ -52,6 +52,7 @@
                                                 <th>Total Months Experience</th>
                                                 <th>Address</th>
                                                 <th>Email</th>
+                                               <th>Interview Round</th>
                                                <th>Interview Status</th>
                                                 <th>Action</th>
                                             </tr>
@@ -158,6 +159,7 @@
                     {data: 'address', name: 'address', orderable: true},
                     {data: 'email_id', name: 'email_id', orderable: true},
                     {data: 'interview_status', name: 'interview_status', orderable: true},
+                    {data: 'active', name: 'active', orderable: true},
                     {data: 'action', name: 'action', orderable: true, searchable: false}
                 ]
             });

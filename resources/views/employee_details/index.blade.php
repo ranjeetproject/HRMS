@@ -148,7 +148,7 @@
                 columns: [
                     /*{data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},*/
                     {data: 'id', name: 'id', orderable: true, searchable: true, visible: false},
-                    {data: 'name_of_candidate', name: 'name_of_candidate', orderable: true},
+                    {data: 'name_of_candidate', name: 'name_of_candidate',defaultContent:'null', orderable: true},
                     {data: 'contact_number', name: 'contact_number', orderable: true},
                     {data: 'email', name: 'email', orderable: true},
                     {data: 'department_name', name: 'department_name', orderable: true},

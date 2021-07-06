@@ -34,12 +34,12 @@ class EmployeeDetailsRepository
         ->leftJoin('departments','departments.id','=','employee_details.department_id')
         ->leftJoin('designations','designations.id','=','employee_details.designation_id')
         ->where('employee_details.status_serving','!=',3)
-        ->get(['employee_details.id','recruitments.name_of_candidate','email','contact_number','designations.designation_name','departments.department_name',	
+        ->get(['employee_details.id','employee_details.name_of_candidate as name','recruitments.name_of_candidate','email','contact_number','designations.designation_name','departments.department_name',	
         DB::raw('CASE WHEN status_probation = 0 THEN ""
         WHEN status_probation = 1 THEN "On Probation" WHEN status_probation = 2 THEN "Confirmed" END AS status_probation'),
         DB::raw('CASE WHEN status_serving = 0 THEN ""
         WHEN status_serving = 1 THEN "Serving" WHEN status_serving = 2 THEN "On Notice" END AS status_serving')]);
-    
+    //]dd($data);
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
                 $html = '<a href="'.action('EmployeeDetailsController@employeeDetails',$row->id).'" data-toggle="tooltip" data-placement="top" title="View" class="btn btn-info">
@@ -52,6 +52,13 @@ class EmployeeDetailsRepository
                 <i class="fas fa-money-bill-alt"></i>
                 </a>';
                 return $html;
+            })
+            ->editColumn('name_of_candidate', function ($row) {
+                if ($row->name_of_candidate) {
+                    return $row->name_of_candidate;
+                }else{
+                    return $row->name;
+                }
             })
             ->setRowId('id')
             ->rawColumns(['action'])
@@ -94,8 +101,15 @@ class EmployeeDetailsRepository
     public function fetchEmployeeSkills($id)
     {
         $recruitmentId=EmployeeDetails::find($id);
+        $recruitmentSkill = CandidateSkill::where('recruitment_id','=',isset($recruitmentId->recruitment_id))
+       ->get(['skill_id']);
+       return $recruitmentSkill;
+        
+    }
+    public function fetchExistingEmployeeSkills($id)
+    {
         $recruitmentSkill = CandidateSkill::select('skill_id')
-        ->where('recruitment_id', $recruitmentId->recruitment_id)
+        ->where('employee_details_id', $id)
        ->get()->toArray();
        return $recruitmentSkill;
         
@@ -106,18 +120,17 @@ class EmployeeDetailsRepository
         $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
         $inputData['date_of_released'] = date('Y-m-d',strtotime($inputData['date_of_released']));
         $inputData['date_of_confirmed'] = date('Y-m-d',strtotime($inputData['date_of_confirmed']));
-
         $row = EmployeeDetails::create($inputData);
         if ($row && $row->id > 0) {
             $this->sendNotificationForFeedBack($row->id,$user);
-            $skill = CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->pluck('skill_id','id')->toArray();
-            if($skill){
+            $skill = CandidateSkill::where('recruitment_id','=',isset($inputData['recruitment_id']))->pluck('skill_id','id')->toArray();
+            if(!empty($skill)){
                 foreach($inputData['skill']  as $val){
                     if(!in_array($val,$skill))
                     {
                         CandidateSkill::create([
                                 'skill_id'=>$val,
-                                'recruitment_id'=> $inputData['recruitment_id'],
+                                'recruitment_id'=> isset($inputData['recruitment_id']),
                                 ]);
                     }
                         
@@ -125,9 +138,17 @@ class EmployeeDetailsRepository
                 $oldSkill = array_diff($skill,$inputData['skill']);
                 if(count($oldSkill) > 0)
                 {
-                    CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->whereIn('skill_id',$oldSkill)->delete();
+                    CandidateSkill::where('recruitment_id','=',isset($inputData['recruitment_id']))->whereIn('skill_id',$oldSkill)->delete();
+                }
+            }else{
+                foreach($inputData['skill'] as $val){
+                    CandidateSkill::create([
+                                'skill_id'=>$val,
+                                'employee_details_id'=> $row->id,
+                                ]);
                 }
             }
+            //dd($inputData);
             $userData = [];
             $password = trim($inputData['name_of_candidate'].'@123');
             $userData['password'] = Hash::make($password);
@@ -137,7 +158,12 @@ class EmployeeDetailsRepository
             $userData['remember_token'] = Str::random(32);
             $userData['name'] = $inputData['name_of_candidate'];
             $userData['email'] = $inputData['offical_email_id'];
-            $userData['recruitment_id'] = $inputData['recruitment_id'];
+            if(isset($inputData['recruitment_id'])){
+                $userData['recruitment_id'] = $inputData['recruitment_id'];
+            }else{
+                $userData['recruitment_id'] = null ;
+            }
+           // dd($userData);
             $userData['employee_details_id'] = $row->id;
             $user = User::create($userData);
             Mail::send('emails.registration', ['row' => $user, 'password' => $password], function ($m) use ($user) {
@@ -175,28 +201,51 @@ class EmployeeDetailsRepository
         $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
         $inputData['date_of_released'] = date('Y-m-d',strtotime($inputData['date_of_released']));
         $inputData['date_of_confirmed'] = date('Y-m-d',strtotime($inputData['date_of_confirmed']));
+        //dd($inputData);
         $row = EmployeeDetails::find($id);
         if ($row) {
-            $skill = CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->pluck('skill_id','id')->toArray();
+            if(isset($inputData['recruitment_id'])){
+                $skill = CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->pluck('skill_id','id')->toArray();
+            }else{
+                $skill = CandidateSkill::where('employee_details_id','=',$row->id)->pluck('skill_id','id')->toArray();
+            }
             if($skill){
                 foreach($inputData['skill']  as $val){
                     if(!in_array($val,$skill))
                     {
-                        CandidateSkill::create([
+                        if(isset($inputData['recruitment_id'])){
+                            CandidateSkill::create([
+                                    'skill_id'=>$val,
+                                    'recruitment_id'=> $inputData['recruitment_id'],
+                                    ]);
+                        }else{
+                            CandidateSkill::create([
                                 'skill_id'=>$val,
-                                'recruitment_id'=> $inputData['recruitment_id'],
+                                'employee_details_id'=> $row->id,
                                 ]);
+                        }    
                     }
                         
                 }
                 $oldSkill = array_diff($skill,$inputData['skill']);
                 if(count($oldSkill) > 0)
                 {
-                    CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->whereIn('skill_id',$oldSkill)->delete();
+                    if(isset($inputData['recruitment_id'])){
+                        CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->whereIn('skill_id',$oldSkill)->delete();
+                    }else{
+                        CandidateSkill::where('employee_details_id','=',$row->id)->whereIn('skill_id',$oldSkill)->delete();
+
+                    }
                 }
+                
             }
-            $row->update($inputData);
-            return ['success' => true];
+            if(isset($inputData['recruitment_id'])){
+                $row->update($inputData);
+                return ['success' => true];
+            }else{
+                $row->update($inputData);
+                return ['success' => true];
+            }
         } else {
             return ['success' => false];
         }

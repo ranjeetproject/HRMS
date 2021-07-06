@@ -60,6 +60,7 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('final-round-interview-feedback-edit/{id}', 'FinalRoundController@finalRoundInterviewFeedbackEdit');
 
     Route::get('offer-list', 'OfferedController@index');
+    Route::get('offer-create', 'OfferedController@create');
 
     Route::get('offer-employee-details/{id}', 'EmployeeDetailsController@offerEmployeeDetails');
     Route::get('current-employee-list', 'EmployeeDetailsController@currentEmployeeList');

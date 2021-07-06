@@ -31,7 +31,7 @@ class ReleasedEmployeesRepository
         ->leftJoin('recruitments','recruitments.id','=','employee_details.recruitment_id')
         ->where('status_serving','=',3)
         ->get([
-            'employee_details.id','recruitments.name_of_candidate','employee_details.contact_number', 'employee_details.offical_email_id','employee_details.date_of_joining','employee_details.date_of_released'
+            'employee_details.id','employee_details.name_of_candidate as name','recruitments.name_of_candidate','employee_details.contact_number', 'employee_details.offical_email_id','employee_details.date_of_joining','employee_details.date_of_released'
         ]);
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
@@ -39,6 +39,13 @@ class ReleasedEmployeesRepository
                 data-placement="top" title="View" class="btn btn-info">
                 <i class="fas fa-eye"></i></a>';
                 return $html;
+            })
+            ->editColumn('name_of_candidate', function ($row) {
+                if ($row->name_of_candidate) {
+                    return $row->name_of_candidate;
+                }else{
+                    return $row->name;
+                }
             })
             ->setRowId('id')
             ->rawColumns(['action'])

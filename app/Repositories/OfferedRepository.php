@@ -8,6 +8,8 @@ use App\InterviewSchedule;
 use App\InterviewFeedback;
 use App\Skill;
 use App\CandidateSkill;
+use App\Department;
+use App\Designation;
 use App\FinalRoundInterviewScheduling;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -47,6 +49,25 @@ class OfferedRepository
             ->rawColumns(['action'])
             ->make(true);
 
+    }
+
+    public function fetchDepartments()
+    {
+        return Department::get([
+            'id', 'department_name'
+        ]);
+    }
+    public function fetchDesignations()
+    {
+        return Designation::get([
+            'id', 'designation_name'
+        ]);
+    }
+    public function fetchSkills()
+    {
+        return Skill::get([
+            'id', 'skill_name'
+        ]);
     }
 
     public function deleteSpecific($id)
