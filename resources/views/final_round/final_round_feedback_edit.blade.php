@@ -162,7 +162,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <label class=" form-control-label" for="final_round_interviewer_feedback">Interviewer Feedback</label>
+                                                        <label class=" form-control-label" for="final_round_interviewer_feedback">Interviewer Feedback &nbsp;<span style="color:red">*</span></label>
                                                         
                                                             <textarea
                                                                 class="form-control {{ $errors->has('final_round_interviewer_feedback') ? 'is-invalid' : '' }}"
@@ -239,28 +239,14 @@
 
             $('#addReqForm').validate({
                 rules: {
-                    offered_ctc: {
-                        required: true,
-                        number: true
-                    },
                     final_round_interviewer_feedback: {
                         required: true
                     },
-                    date_of_joining: {
-                        required: true
-                    }
                 },
                 messages: {
-                    offered_ctc: {
-                        required: "This offered ctc field is required.",
-                        number: "This offered ctc field must be number.",
-                    },
                     final_round_interviewer_feedback: {
                         required: "This interviewer feedback field is required.",
                     },
-                    date_of_joining: {
-                        required: "This date of joining field is required.",
-                    }
                    
                 },
                 errorElement: "span",
@@ -270,7 +256,7 @@
                 $('button[type=submit]').attr("disabled", true);
                 setTimeout(function () {
                     $('button[type=submit]').attr("disabled", false);
-                }, 3000);
+                }, 4000);
             });
         });
     </script>

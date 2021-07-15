@@ -75,7 +75,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Scheduling Date</label>
+                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Scheduling Date &nbsp;<span style="color:red">*</span></label>
                                                <input
                                                     class="form-control {{ $errors->has('interview_scheduling_date') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -98,7 +98,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                         <div class="form-group">
-                                                    <label class=" form-control-label" for="interview_scheduling_time">Interview Time</label>
+                                                    <label class=" form-control-label" for="interview_scheduling_time">Interview Time &nbsp;<span style="color:red">*</span></label>
                                                         <input
                                                                 class="form-control timepicker {{ $errors->has('interview_scheduling_time') ? 'is-invalid' : '' }}"
                                                                 type="text"
@@ -185,7 +185,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <label class=" form-control-label" for="interviewer_feedback">Interviewer Feedback</label>
+                                                        <label class=" form-control-label" for="interviewer_feedback">Interviewer Feedback &nbsp;<span style="color:red">*</span></label>
                                                         @if(@$feedback->interviewer_feedback)
                                                           <textarea
                                                             class="form-control {{ $errors->has('interviewer_feedback') ? 'is-invalid' : '' }}"
@@ -273,13 +273,15 @@
                     interview_scheduling_date: {
                         required: true
                     },
-                    interviewer_rating: {
-                        required: true,
-                        number: true
+                    interview_scheduling_time: {
+                        required: true
                     },
                     interviewer_feedback: {
                         required: true
-                    }
+                    },
+                    active: {
+                        required: true
+                    },
                 },
                 messages: {
                     interview_scheduling_date: {
@@ -288,13 +290,11 @@
                     interview_scheduling_time: {
                         required: "This interview scheduling time field is required.",
                     },
-                    interviewer_rating: {
-                        required: "This interviewer rating field is required.",
-                        number: "This interviewer rating field must be number.",
-
-                    },
                     interviewer_feedback: {
                         required: "This interviewer feedback field is required.",
+                    },
+                    active: {
+                        required: "Please select any one.",
                     },
                    
                 },
@@ -305,7 +305,7 @@
                 $('button[type=submit]').attr("disabled", true);
                 setTimeout(function () {
                     $('button[type=submit]').attr("disabled", false);
-                }, 3000);
+                }, 4000);
             });
         });
     </script>

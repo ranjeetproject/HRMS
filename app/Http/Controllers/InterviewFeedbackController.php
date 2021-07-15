@@ -20,7 +20,6 @@ class InterviewFeedbackController extends Controller
         $request->validate([
             'interview_scheduling_date' => 'required',
             'interview_scheduling_time' => 'required',
-            'interviewer_rating' => 'required|numeric',
             'interviewer_feedback'=>'required',
         ]);
        
@@ -73,8 +72,8 @@ class InterviewFeedbackController extends Controller
     public function update(Request $request,$id)
     {
         $request->validate([
-            'interviewer_rating' => 'required|numeric',
             'interviewer_feedback'=>'required',
+            'active'=>'required',
         ]);
         $input = $request->only('recruitment_id', 'interview_scheduling_date','interview_scheduling_time','user_id','interviewer_rating','interviewer_feedback','active');
         $user = $this->getUser();

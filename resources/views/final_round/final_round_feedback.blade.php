@@ -75,7 +75,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="final_round_interview_scheduling_date">Final Round Interview Scheduling</label>
+                                                <label class=" form-control-label" for="final_round_interview_scheduling_date">Final Round Interview Scheduling Date &nbsp;<span style="color:red">*</span></label>
                                                <input
                                                     class="form-control {{ $errors->has('final_round_interview_scheduling_date') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -98,7 +98,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                         <div class="form-group">
-                                                    <label class=" form-control-label" for="final_round_interview_scheduling_time">Final Round Interview Time</label>
+                                                    <label class=" form-control-label" for="final_round_interview_scheduling_time">Final Round Interview Time &nbsp;<span style="color:red">*</span></label>
                                                         <input
                                                                 class="form-control timepicker {{ $errors->has('final_round_interview_scheduling_time') ? 'is-invalid' : '' }}"
                                                                 type="text"
@@ -112,7 +112,7 @@
                                         </div>
                                         <div class="col-md-2">
                                                 <br><br>
-                                                @if(@$final_round_feedback_schedule->offered_ctc)
+                                                @if(@$final_round_feedback_schedule->final_round_interviewer_feedback)
                                                 <div class="col text-right">
                                                     <a   id="btedit" class="btn btn-info" href="{{action('FinalRoundController@finalRoundInterviewFeedbackEdit',['id'=>@$final_round_feedback_schedule->id])}}">
                                                     Edit </a>
@@ -162,7 +162,7 @@
                                             <div class="row container-sm">
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <label class=" form-control-label" for="offered_ctc">Offered CTC</label>
+                                                        <label class=" form-control-label" for="offered_ctc">Offered CTC </label>
                                                         @if(@$final_round_feedback_schedule->offered_ctc)
                                                             <input
                                                                     class="form-control {{ $errors->has('offered_ctc') ? 'is-invalid' : '' }}"
@@ -185,7 +185,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <label class=" form-control-label" for="final_round_interviewer_feedback">Interviewer Feedback</label>
+                                                        <label class=" form-control-label" for="final_round_interviewer_feedback">Interviewer Feedback &nbsp;<span style="color:red">*</span></label>
                                                         @if(@$final_round_feedback_schedule->final_round_interviewer_feedback)
                                                             <textarea
                                                                 class="form-control {{ $errors->has('final_round_interviewer_feedback') ? 'is-invalid' : '' }}"
@@ -281,16 +281,10 @@
                     final_round_interview_scheduling_time: {
                         required: true
                     },
-                    offered_ctc: {
-                        required: true,
-                        number: true
-                    },
                     final_round_interviewer_feedback: {
                         required: true
                     },
-                    date_of_joining: {
-                        required: true
-                    }
+                   
                 },
                 messages: {
                     final_round_interview_scheduling_date: {
@@ -299,17 +293,9 @@
                     final_round_interview_scheduling_time: {
                         required: "This final round interview scheduling time field is required.",
                     },
-                    offered_ctc: {
-                        required: "This offered ctc field is required.",
-                        number: "This offered ctc field must be number.",
-                    },
                     final_round_interviewer_feedback: {
                         required: "This interviewer feedback field is required.",
                     },
-                    date_of_joining: {
-                        required: "This date of joining field is required.",
-                    }
-                   
                 },
                 errorElement: "span",
                 errorClass: "form-text text-danger is-invalid"
@@ -318,7 +304,7 @@
                 $('button[type=submit]').attr("disabled", true);
                 setTimeout(function () {
                     $('button[type=submit]').attr("disabled", false);
-                }, 3000);
+                }, 4000);
             });
         });
     </script>

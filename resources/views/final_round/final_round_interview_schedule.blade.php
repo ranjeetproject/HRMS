@@ -78,7 +78,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="final_round_interview_scheduling_date">Final Round Interview Scheduling Date</label>
+                                                <label class=" form-control-label" for="final_round_interview_scheduling_date">Final Round Interview Scheduling Date &nbsp;<span style="color:red">*</span></label>
                                                 @if(@$feedbackCandiate->schedule->final_round_interview_scheduling_date)
                                                     <input
                                                             class="form-control  {{ $errors->has('final_round_interview_scheduling_date') ? 'is-invalid' : '' }}"
@@ -110,7 +110,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                    <label class=" form-control-label" for="final_round_interview_scheduling_time">Final Round Interview Scheduling Time</label>.
+                                                    <label class=" form-control-label" for="final_round_interview_scheduling_time">Final Round Interview Scheduling Time &nbsp;<span style="color:red">*</span></label>.
                                                     @if(@$feedbackCandiate->schedule->final_round_interview_scheduling_time)
                                                         <input
                                                                 class="form-control timepicker {{ $errors->has('final_round_interview_scheduling_time') ? 'is-invalid' : '' }}"
@@ -144,7 +144,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="interviewer">Interviewer </label>
+                                                <label class=" form-control-label" for="interviewer">Interviewer &nbsp;<span style="color:red">*</span></label>
 
                                                 <input
                                                     class="form-control {{ $errors->has('interviewer') ? 'is-invalid' : '' }}"
@@ -232,6 +232,9 @@
                     final_round_interview_scheduling_date: {
                         required: true,
                     },
+                    final_round_interview_scheduling_time: {
+                        required: true,
+                    },
                     final_round_interview_user_id: {
                         required: true
                     },
@@ -241,7 +244,10 @@
                         required: "This name of candidate field is required.",
                     },
                     final_round_interview_scheduling_date: {
-                        required: "This final round interview scheduling field is required.",
+                        required: "This final round interview scheduling date field is required.",
+                    },
+                    final_round_interview_scheduling_time: {
+                        required: "This final round interview scheduling time field is required.",
                     },
                     final_round_interview_user_id: {
                         required: "This interviewer field is required.",
@@ -255,7 +261,7 @@
                 $('button[type=submit]').attr("disabled", true);
                 setTimeout(function () {
                     $('button[type=submit]').attr("disabled", false);
-                }, 3000);
+                }, 4000);
             });
         });
     </script>

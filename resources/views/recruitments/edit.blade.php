@@ -40,7 +40,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="name_of_candidate">Name of Candidate</label>
+                                               <label class="form-control-label" for="name_of_candidate">Name of Candidate &nbsp;<span style="color:red">*</span></label>
                                                 <input
                                                     class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="mobile_number">Mobile Number</label>
+                                                <label class="form-control-label" for="mobile_number">Mobile Number &nbsp;<span style="color:red">*</span></label>
                                                 <input
                                                     class="form-control {{ $errors->has('mobile_number') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -85,7 +85,7 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="total_years_experience">Total Experience</label>
+                                                <label class=" form-control-label" for="total_years_experience">Total Experience &nbsp;<span style="color:red">*</span></label>
                                                 <select
                                                     class="form-control custom-select {{ $errors->has('total_years_experience') ? 'is-invalid' : '' }}"
                                                     name="total_years_experience" id="total_years_experience">
@@ -222,7 +222,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="email_id">Email ID </label>
+                                                <label class=" form-control-label" for="email_id">Email ID &nbsp;<span style="color:red">*</span></label>
                                                <input
                                                     class="form-control {{ $errors->has('email_id') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -236,7 +236,7 @@
                                         </div>
                                           <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="application_for">Application For</label>
+                                                <label class=" form-control-label" for="application_for">Application For &nbsp;<span style="color:red">*</span></label>
                                                <input
                                                     class="form-control {{ $errors->has('application_for') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -266,7 +266,7 @@
                                       <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="current_ctc">Current CTC</label>
+                                                <label class=" form-control-label" for="current_ctc">Current CTC &nbsp;<span style="color:red">*</span></label>
                                                <input
                                                     class="form-control {{ $errors->has('current_ctc') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -280,7 +280,7 @@
                                         </div>
                                           <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="expected_ctc">Expected CTC</label>
+                                                <label class=" form-control-label" for="expected_ctc">Expected CTC &nbsp;<span style="color:red">*</span></label>
                                                <input
                                                     class="form-control {{ $errors->has('expected_ctc') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -310,7 +310,7 @@
 
                                      <div class="row">
                                         <div class="col-md-4">
-                                            <label class=" form-control-label" for="skill">Skills/Technology</label>
+                                            <label class=" form-control-label" for="skill">Skills/Technology &nbsp;<span style="color:red">*</span></label>
                                                 <ul class="list-group list-group-flush" style="overflow: auto;">
                                                   @foreach($skills as $skill)
                                                     <li class="list-group-item"> <input type="checkbox" class="form-check-input" name="skill[]" id="skill" value="{{$skill->id}}" @if(in_array($skill->id,$skilldata)) {{'checked'}} @endIf >{{$skill->skill_name}}</li>
@@ -323,7 +323,7 @@
                                            <div class="row">
                                              <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class=" form-control-label" for="notice_period">Notice Period</label>
+                                                    <label class=" form-control-label" for="notice_period">Notice Period &nbsp;<span style="color:red">*</span></label>
                                                     <input
                                                         class="form-control {{ $errors->has('notice_period') ? 'is-invalid' : '' }}"
                                                         type="text"
@@ -364,7 +364,7 @@
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group">
-                                                    <label class=" form-control-label" for="upload_resume">Upload Resume</label>
+                                                    <label class=" form-control-label" for="upload_resume">Upload Resume &nbsp;<span style="color:red">*</span></label>
                                                     <input
                                                         class="form-control {{ $errors->has('upload_resume') ? 'is-invalid' : '' }}"
                                                         type="file"
@@ -416,25 +416,10 @@
                         minlength: 10,
                         maxlength: 10,
                     },
-                    alternate_number: {
-                        required: true,
-                        number: true,
-                        minlength: 10,
-                        maxlength: 10,
-                    },
                     total_years_experience: {
                         required: true
                     },
                     total_months_experience: {
-                        required: true
-                    },
-                    address: {
-                        required: true
-                    },
-                    relevent_years_experience: {
-                        required: true
-                    },
-                    relevent_months_experience: {
                         required: true
                     },
                     email_id: {
@@ -444,16 +429,10 @@
                     application_for: {
                         required: true
                     },
-                    highest_qualification: {
-                        required: true
-                    },
                     current_ctc: {
                         required: true
                     },
                     expected_ctc: {
-                        required: true
-                    },
-                     current_location: {
                         required: true
                     },
                     'skill[]': {
@@ -477,26 +456,11 @@
                         minlength: "This mobile number field minimum length is 10",
                         maxlength: "This mobile number field maxlength is 10",
                     },
-                    alternate_number: {
-                        required: "This alternate number field is required.",
-                        number: "This alternate number field is take number",
-                        minlength: "This alternate number field minimum length is 10",
-                        maxlength: "This alternate number field maxlength is 10",
-                    },
                     total_years_experience: {
                         required: "This total years experience field is required.",
                     },
                     total_months_experience: {
                         required: "This total months experience field is required.",
-                    },
-                    address: {
-                        required: "This address field is required.",
-                    },
-                    relevent_years_experience: {
-                        required: "This relevent years experience field is required.",
-                    },
-                    relevent_months_experience: {
-                        required: "This relevent months experience field is required.",
                     },
                     email_id: {
                         required: "This email id field is required.",
@@ -505,17 +469,11 @@
                     application_for: {
                         required: "This application for field is required.",
                     },
-                    highest_qualification: {
-                        required: "This highest qualification field is required.",
-                    },
                     current_ctc: {
                         required: "This current ctc field is required.",
                     }, 
                     expected_ctc: {
                         required: "This expected ctc field is required.",
-                    },
-                    current_location: {
-                        required: "This current location field is required.",
                     },
                     'skill[]': {
                         required: "This skill field is required.",

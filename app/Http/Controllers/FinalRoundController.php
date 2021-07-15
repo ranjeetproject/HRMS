@@ -148,8 +148,6 @@ class FinalRoundController extends Controller
             'final_round_interview_scheduling_date'=>'required',
             'final_round_interview_scheduling_time'=>'required',
             'final_round_interviewer_feedback'=>'required',
-            'offered_ctc'=>'required|numeric',
-            'date_of_joining' => 'required',
         ]);
         $input = $request->all();
         $key =  array_keys($input);
@@ -188,8 +186,6 @@ class FinalRoundController extends Controller
     {
         $request->validate([
             'final_round_interviewer_feedback'=>'required',
-            'offered_ctc'=>'required|numeric',
-            'date_of_joining' => 'required',
         ]);
         $input = $request->only('offered_ctc','recruitment_id','final_round_interviewer_feedback','date_of_joining','offered');
         $key =  array_keys($input);

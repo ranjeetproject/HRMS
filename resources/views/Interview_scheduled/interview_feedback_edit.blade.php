@@ -71,7 +71,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Schedule Date</label>
+                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Schedule Date &nbsp;<span style="color:red">*</span></label>
                                                <input
                                                     class="form-control {{ $errors->has('interview_scheduling_date') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -94,7 +94,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                         <div class="form-group">
-                                                    <label class=" form-control-label" for="interview_scheduling_time">Interview Time</label>
+                                                    <label class=" form-control-label" for="interview_scheduling_time">Interview Time &nbsp;<span style="color:red">*</span></label>
                                                         <input
                                                                 class="form-control timepicker {{ $errors->has('interview_scheduling_time') ? 'is-invalid' : '' }}"
                                                                 type="text"
@@ -112,7 +112,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="interviewer">interviewer </label>
+                                                <label class=" form-control-label" for="interviewer">Interviewer </label>
                                                <input
                                                     class="form-control {{ $errors->has('interviewer') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -164,7 +164,7 @@
                                                 </div>
                                                 <div class="col-md-8">
                                                     <div class="form-group">
-                                                        <label class=" form-control-label" for="interviewer_feedback">Interviewer Feedback</label>
+                                                        <label class=" form-control-label" for="interviewer_feedback">Interviewer Feedback &nbsp;<span style="color:red">*</span></label>
                                                           <textarea
                                                             class="form-control {{ $errors->has('interviewer_feedback') ? 'is-invalid' : '' }}"
                                                             name="interviewer_feedback" id="interviewer_feedback" placeholder="Please enter interviewer feedback">{{old('interviewer_feedback',@$feedback->interviewer_feedback)}}</textarea>
@@ -230,24 +230,15 @@
 
             $('#addReqForm').validate({
                 rules: {
-                    interviewer_rating: {
-                        required: true,
-                        number: true
-                    },
                     interviewer_feedback: {
                         required: true
-                    }
+                    },
                 },
                 messages: {
-                    interviewer_rating: {
-                        required: "This interviewer rating field is required.",
-                        number: "This interviewer rating field must be number.",
-
-                    },
                     interviewer_feedback: {
                         required: "This interviewer feedback field is required.",
                     },
-
+                   
                 },
                 errorElement: "span",
                 errorClass: "form-text text-danger is-invalid"
@@ -256,7 +247,7 @@
                 $('button[type=submit]').attr("disabled", true);
                 setTimeout(function () {
                     $('button[type=submit]').attr("disabled", false);
-                }, 3000);
+                }, 4000);
             });
         });
     </script>

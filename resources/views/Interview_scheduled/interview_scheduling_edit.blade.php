@@ -68,7 +68,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Schedule Date</label>
+                                                <label class=" form-control-label" for="interview_scheduling_date">Interview Schedule Date &nbsp;<span style="color:red">*</span></label>
                                                <input
                                                     class="form-control {{ $errors->has('interview_scheduling_date') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -91,7 +91,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                    <label class=" form-control-label" for="interview_scheduling_time">Interview Schedule Time</label>
+                                                    <label class=" form-control-label" for="interview_scheduling_time">Interview Schedule Time &nbsp;<span style="color:red">*</span></label>
                                                         <input
                                                                 class="form-control timepicker {{ $errors->has('interview_scheduling_time') ? 'is-invalid' : '' }}"
                                                                 type="text"
@@ -107,7 +107,7 @@
                                     <div class="row">
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class=" form-control-label" for="interviewer">Interviewer </label>
+                                                <label class=" form-control-label" for="interviewer">Interviewer &nbsp;<span style="color:red">*</span></label>
                                                <input
                                                     class="form-control {{ $errors->has('interviewer') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -207,7 +207,7 @@
                 $('button[type=submit]').attr("disabled", true);
                 setTimeout(function () {
                     $('button[type=submit]').attr("disabled", false);
-                }, 3000);
+                }, 4000);
             });
         });
     </script>

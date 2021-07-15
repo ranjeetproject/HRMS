@@ -19,7 +19,6 @@ class InterviewScheduleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'recruitment_id' => 'required',
             'interview_scheduling_date'=>'required',
             'interview_scheduling_time'=>'required',
             'user_id' => 'required',
@@ -50,7 +49,6 @@ class InterviewScheduleController extends Controller
     public function update(Request $request,$id)
     {
         $request->validate([
-            'recruitment_id' => 'required',
             'interview_scheduling_date'=>'required',
             'interview_scheduling_time'=>'required',
             'user_id' => 'required',
