@@ -250,20 +250,27 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="date_of_joining">Date of Joining</label>
-                                                @if(@$employee_details->date_of_joining) 
+                                               @if(@$employee_details->date_of_joining == '1970-01-01')
                                                 <input
                                                     class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
                                                     maxlength="191"
-                                                    value="{{old('date_of_joining',@$employee_details->date_of_joining)}}" readonly>
+                                                    value="" autocomplete="off">
+                                                @elseif(@$employee_details->date_of_joining) 
+                                                    <input
+                                                        class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
+                                                        maxlength="191"
+                                                        value="{{old('date_of_joining',@$employee_details->date_of_joining)}}" readonly>
                                                 @else
                                                     <input
                                                     class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
                                                     type="text"
                                                     name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
                                                     maxlength="191"
-                                                    value="{{old('date_of_joining')}}">
+                                                    value="" autocomplete="off">
                                                 @endif
                                                 <span class="form-text text-danger"
                                                       id="error_date_of_joining">{{ $errors->getBag('default')->first('date_of_joining') }}
@@ -306,12 +313,38 @@
                                         <div class="col-md-3">
                                             <div class="form-group">
                                                <label class="form-control-label" for="total_years_experience">Experience at Joining </label>
-                                                 <select
-                                                    class="form-control custom-select {{ $errors->has('total_years_experience') ? 'is-invalid' : '' }}"
-                                                    name="total_years_experience" id="total_years_experience" readonly>
-                                                    <option value="{{$employee_details->total_years_experience}}">{{$employee_details->total_years_experience}} Years</option>
-                                                    
-                                                </select>
+                                                @if(@$employee_details->total_years_experience) 
+                                                    <select
+                                                        class="form-control custom-select {{ $errors->has('total_years_experience') ? 'is-invalid' : '' }}"
+                                                        name="total_years_experience" id="total_years_experience" readonly>
+                                                        <option value="{{$employee_details->total_years_experience}}">{{$employee_details->total_years_experience}} Years</option>
+                                                        
+                                                    </select>
+                                                @else
+                                                   <select
+                                                        class="form-control custom-select {{ $errors->has('total_years_experience') ? 'is-invalid' : '' }}"
+                                                        name="total_years_experience" id="total_years_experience">
+                                                        <option value="">Years</option>
+                                                        <option value="0">0 Years</option>
+                                                        <option value="1">1 Years</option>
+                                                        <option value="2">2 Years</option>
+                                                        <option value="3">3 Years</option>
+                                                        <option value="4">4 Years</option>
+                                                        <option value="5">5 Years</option>  
+                                                        <option value="6">6 Years</option>
+                                                        <option value="7">7 Years</option>
+                                                        <option value="8">8 Years</option>
+                                                        <option value="9">9 Years</option>
+                                                        <option value="10">10 Years</option>
+                                                        <option value="11">11 Years</option>
+                                                        <option value="12">12 Years</option>
+                                                        <option value="13">13 Years</option>
+                                                        <option value="14">14 Years</option>
+                                                        <option value="15">15 Years</option>
+                                                        <option value="15+">15+ Years</option>
+                                                    </select>
+                                                @endif    
+
                                                 <span class="form-text text-danger"
                                                       id="error_total_years_experience">{{ $errors->getBag('default')->first('total_years_experience') }}
                                                 </span>
@@ -320,12 +353,33 @@
                                          <div class="col-md-3">
                                             <div class="form-group">
                                                <label class="form-control-label" for="total_months_experience">&nbsp;</label>
-                                                 <select
-                                                    class="form-control custom-select {{ $errors->has('total_months_experience') ? 'is-invalid' : '' }}"
-                                                    name="total_months_experience" id="total_months_experience" readonly>
-                                                    <option value="{{$employee_details->total_months_experience}}">{{$employee_details->total_months_experience}} Months</option>
+                                                @if(@$employee_details->total_months_experience)     
+                                                    <select
+                                                        class="form-control custom-select {{ $errors->has('total_months_experience') ? 'is-invalid' : '' }}"
+                                                        name="total_months_experience" id="total_months_experience" readonly>
+                                                        <option value="{{$employee_details->total_months_experience}}">{{$employee_details->total_months_experience}} Months</option>
+                                                        
+                                                    </select>
+                                                @else
+                                                    <select
+                                                        class="form-control custom-select {{ $errors->has('total_months_experience') ? 'is-invalid' : '' }}"
+                                                        name="total_months_experience" id="total_months_experience">
+                                                        <option value="">Months</option>
+                                                        <option value="0">0 Months</option>
+                                                        <option value="1">1 Months</option>
+                                                        <option value="2">2 Months</option>
+                                                        <option value="3">3 Months</option>
+                                                        <option value="4">4 Months</option>
+                                                        <option value="5">5 Months</option>
+                                                        <option value="6">6 Months</option>
+                                                        <option value="7">7 Months</option>
+                                                        <option value="8">8 Months</option>
+                                                        <option value="9">9 Months</option>
+                                                        <option value="10">10 Months</option>
+                                                        <option value="11">11 Months</option>
                                                     
-                                                </select>
+                                                    </select>
+                                                @endif
                                                 <span class="form-text text-danger"
                                                       id="error_total_months_experience">{{ $errors->getBag('default')->first('total_months_experience') }}
                                                 </span>
@@ -334,12 +388,21 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="highest_qualification">Highest Education Qualification</label>
-                                                <input
-                                                    class="form-control {{ $errors->has('highest_qualification') ? 'is-invalid' : '' }}"
-                                                    type="text"
-                                                    name="highest_qualification" id="highest_qualification" placeholder="Please enter highest qualification"
-                                                    maxlength="191"
-                                                    value="{{old('highest_qualification',$employee_details->highest_qualification)}}" readonly>
+                                                    @if(@$employee_details->highest_qualification)
+                                                        <input
+                                                            class="form-control {{ $errors->has('highest_qualification') ? 'is-invalid' : '' }}"
+                                                            type="text"
+                                                            name="highest_qualification" id="highest_qualification" placeholder="Please enter highest qualification"
+                                                            maxlength="191"
+                                                            value="{{old('highest_qualification',$employee_details->highest_qualification)}}" readonly>
+                                                    @else
+                                                            <input
+                                                            class="form-control {{ $errors->has('highest_qualification') ? 'is-invalid' : '' }}"
+                                                            type="text"
+                                                            name="highest_qualification" id="highest_qualification" placeholder="Please enter highest qualification"
+                                                            maxlength="191"
+                                                            value="" autocomplete="off">
+                                                    @endif
                                                 <span class="form-text text-danger"
                                                       id="error_highest_qualification">{{ $errors->getBag('default')->first('highest_qualification') }}
                                                 </span>
@@ -549,6 +612,12 @@
 
                 }
             });
+            $("#date_of_joining").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeMonth: true,
+                changeYear: true,
+            });
+
             $("#date_of_birth").datepicker({
                 dateFormat: "dd-mm-yy",
                 changeMonth: true,

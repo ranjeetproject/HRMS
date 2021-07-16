@@ -40,7 +40,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="name_of_candidate">Name of Candidate</label>
+                                               <label class="form-control-label" for="name_of_candidate">Name of Candidate &nbsp;<span style="color:red">*</span></label>
                                                 <input
                                                     class="form-control {{ $errors->has('name_of_candidate') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="reporting_head">Reporting Head</label>
+                                                <label class="form-control-label" for="reporting_head">Reporting Head &nbsp;<span style="color:red">*</span></label>
                                                 <select
                                                     class="form-control custom-select {{ $errors->has("reporting_head") ? 'is-invalid' : '' }}"
                                                     name="reporting_head" id="reporting_head">
@@ -73,7 +73,7 @@
                                       <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="email">Email Id</label>
+                                               <label class="form-control-label" for="email">Email Id &nbsp;<span style="color:red">*</span></label>
                                                 <input
                                                     class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -103,7 +103,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="contact_number">Contact Number</label>
+                                               <label class="form-control-label" for="contact_number">Contact Number &nbsp;<span style="color:red">*</span></label>
                                                 <input
                                                     class="form-control {{ $errors->has('contact_number') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -158,7 +158,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="offical_email_id">Official Email id</label>
+                                               <label class="form-control-label" for="offical_email_id">Official Email id &nbsp;<span style="color:red">*</span></label>
                                                     <input
                                                             class="form-control {{ $errors->has('offical_email_id') ? 'is-invalid' : '' }}"
                                                             type="text"
@@ -212,7 +212,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="date_of_birth">Date of Birth</label>
+                                               <label class="form-control-label" for="date_of_birth">Date of Birth &nbsp;<span style="color:red">*</span></label>
                                                     <input
                                                         class="form-control {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}"
                                                         type="text"
@@ -346,7 +346,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="department_id">Department</label>
+                                               <label class="form-control-label" for="department_id">Department &nbsp;<span style="color:red">*</span></label>
                                                 <select
                                                     class="form-control custom-select {{ $errors->has('department_id') ? 'is-invalid' : '' }}"
                                                     name="department_id" id="department_id">
@@ -362,7 +362,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="designation_id">Designation</label>
+                                                <label class="form-control-label" for="designation_id">Designation &nbsp;<span style="color:red">*</span></label>
                                                 <select
                                                     class="form-control custom-select {{ $errors->has('designation_id') ? 'is-invalid' : '' }}"
                                                     name="designation_id" id="designation_id">
@@ -445,7 +445,7 @@
                                     <div class="row">
                                         <div class="col-md-2">
                                              <div class="form-group">
-                                                <label class="form-control-label" for="serving">Serving 
+                                                <label class="form-control-label" for="serving">Working 
                                                     <input type="radio" class="form-check-input" name="status_serving" id="serving" value="1" style="margin-left:3%">
                                                 </label>
                                                 <span class="form-text text-danger"
@@ -530,46 +530,10 @@
                     email: {
                         required: true
                     },
-                    emp_code: {
-                        required: true
-                    },
                     contact_number: {
                         required: true
                     },
-                    alternate_number: {
-                        required: true
-                    },
-                    permanent_address: {
-                        required: true
-                    },
-                    current_address: {
-                        required: true
-                    },
-                    father_name: {
-                        required: true
-                    },
-                    mother_name: {
-                        required: true
-                    },
                     date_of_birth: {
-                        required: true
-                    },
-                    date_of_joining: {
-                        required: true
-                    },
-                    marital_status: {
-                        required: true
-                    },
-                    name_of_spouse: {
-                        required: true
-                    },
-                    total_years_experience: {
-                        required: true
-                    },
-                    total_months_experience: {
-                        required: true
-                    },
-                    highest_qualification: {
                         required: true
                     },
                     department_id: {
@@ -593,20 +557,8 @@
                     email: {
                         required: "This email id field is required.",
                     },
-                    emp_code: {
-                        required: "This emp code field is required.",
-                    },
                     contact_number: {
                         required: "This contact number field is required.",
-                    },
-                    alternate_number: {
-                        required: "This alternate number field is required.",
-                    },
-                    permanent_address: {
-                        required: "This permanent address field is required.",
-                    },
-                    current_address: {
-                        required: "This current address field is required.",
                     },
                     father_name: {
                         required: "This father name field is required.",
@@ -616,24 +568,6 @@
                     },
                     date_of_birth: {
                         required: "This date of birth field is required.",
-                    },
-                    date_of_joining: {
-                        required: "This date of joining field is required.",
-                    }, 
-                    marital_status: {
-                        required: "This marital status field is required.",
-                    },
-                    name_of_spouse: {
-                        required: "This name of spouse field is required.",
-                    },
-                    total_years_experience: {
-                        required: "This total years experience field is required.",
-                    },
-                    total_months_experience: {
-                        required: "This total months experience field is required.",
-                    },
-                    highest_qualification: {
-                        required:"This highest qualification field is required.",
                     },
                     department_id: {
                         required:"This department field is required.",
@@ -653,7 +587,7 @@
                 $('button[type=submit]').attr("disabled", true);
                 setTimeout(function () {
                     $('button[type=submit]').attr("disabled", false);
-                }, 3000);
+                }, 4000);
             });
         });
     </script>

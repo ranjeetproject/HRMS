@@ -175,13 +175,25 @@
                                                     <div class="col-md-8">
                                                         <div class="form-group">
                                                             <label class=" form-control-label" for="date_of_joining">Date of Joining</label>
-                                                           
-                                                            <input
+                                                           @if(@$final_round_feedback_schedule->date_of_joining == '1970-01-01')
+                                                                <input
                                                                 class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
                                                                 type="text"
                                                                 name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
-                                                                value="{{old('date_of_joining',@$final_round_feedback_schedule->date_of_joining)}}">
-                                                           
+                                                                value="" autocomplete="off">
+                                                           @elseif(@$final_round_feedback_schedule->date_of_joining)
+                                                                <input
+                                                                    class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
+                                                                    type="text"
+                                                                    name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
+                                                                    value="{{old('date_of_joining',@$final_round_feedback_schedule->date_of_joining)}}">
+                                                            @else
+                                                                <input
+                                                                class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
+                                                                type="text"
+                                                                name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
+                                                                value="" autocomplete="off">
+                                                            @endif
                                                             <span class="form-text text-danger"
                                                                 id="error_date_of_joining">{{ $errors->getBag('default')->first('date_of_joining') }}</span>
                                                         </div>
