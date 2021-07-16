@@ -38,7 +38,7 @@ class EmployeeDetailsRepository
         DB::raw('CASE WHEN status_probation = 0 THEN ""
         WHEN status_probation = 1 THEN "On Probation" WHEN status_probation = 2 THEN "Confirmed" END AS status_probation'),
         DB::raw('CASE WHEN status_serving = 0 THEN ""
-        WHEN status_serving = 1 THEN "Serving" WHEN status_serving = 2 THEN "On Notice" END AS status_serving')]);
+        WHEN status_serving = 1 THEN "Working" WHEN status_serving = 2 THEN "On Notice" END AS status_serving')]);
     //]dd($data);
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
