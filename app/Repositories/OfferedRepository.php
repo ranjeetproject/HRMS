@@ -45,6 +45,13 @@ class OfferedRepository
                         </a>';
                 return $html;
             })
+            ->editColumn('date_of_joining', function ($row) {
+                if ($row->date_of_joining == '1970-01-01') {
+                    return null;
+                }else{
+                    return $row->date_of_joining;
+                }
+            })
             ->setRowId('id')
             ->rawColumns(['action'])
             ->make(true);
