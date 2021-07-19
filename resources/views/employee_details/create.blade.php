@@ -311,14 +311,21 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="date_of_joining">Date of Joining</label>
-                                                @if(@$candiateDetails->date_of_joining)
+                                                @if(@$candiateDetails->date_of_joining == '1970-01-01')
+                                                    <input
+                                                        class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
+                                                        maxlength="191"
+                                                        value="" autocomplete="off">
+                                                @elseif(@$candiateDetails->date_of_joining)
                                                     <input
                                                         class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
                                                         type="text"
                                                         name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
                                                         maxlength="191"
                                                         value="{{old('date_of_joining',$candiateDetails->date_of_joining)}}" readonly>
-                                                @else
+
                                                     <input
                                                     class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
                                                     type="text"
