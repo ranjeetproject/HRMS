@@ -145,6 +145,7 @@ class RecruitmentRepository
             $row->name_of_candidate = $inputData['name_of_candidate'];
             $row->mobile_number = $inputData['mobile_number'];
             $row->alternate_number = $inputData['alternate_number'];
+            $row->address = $inputData['address'];
             $row->total_years_experience = $inputData['total_years_experience'];
             $row->total_months_experience = $inputData['total_months_experience'];
             $row->relevent_years_experience = $inputData['relevent_years_experience'];
