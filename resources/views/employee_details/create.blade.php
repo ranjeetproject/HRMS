@@ -674,6 +674,11 @@
                 changeMonth: true,
                 changeYear: true,
             });
+            $("#date_of_joining").datepicker({
+                dateFormat: "dd-mm-yy",
+                changeMonth: true,
+                changeYear: true,
+            });
 
             $("#date_of_released").datepicker();
             $("#date_of_confirmed").datepicker();
