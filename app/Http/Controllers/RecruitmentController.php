@@ -50,8 +50,8 @@ class RecruitmentController extends Controller
                'total_months_experience' => 'required',
                'email_id'=> 'required|email',
                'application_for'=> 'required',
-               'current_ctc'=> 'required|numeric',
-               'expected_ctc'=> 'required|numeric',
+               'current_ctc'=> 'required',
+               'expected_ctc'=> 'required',
                'skill'=> 'required',
                'notice_period'=> 'required|numeric',
                'upload_resume' => 'required|mimes:doc,docx,pdf'
@@ -118,8 +118,8 @@ class RecruitmentController extends Controller
                'total_months_experience' => 'required',
                'email_id'=> 'required|email',
                'application_for'=> 'required',
-               'current_ctc'=> 'required|numeric',
-               'expected_ctc'=> 'required|numeric',
+               'current_ctc'=> 'required',
+               'expected_ctc'=> 'required',
                'skill'=> 'required',
                'notice_period'=> 'required|numeric',
            ]);
