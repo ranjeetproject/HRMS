@@ -325,7 +325,7 @@
                                                         name="date_of_joining" id="date_of_joining" placeholder="Please enter date of joining"
                                                         maxlength="191"
                                                         value="{{old('date_of_joining',$candiateDetails->date_of_joining)}}" readonly>
-
+                                                @else
                                                     <input
                                                     class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
                                                     type="text"
