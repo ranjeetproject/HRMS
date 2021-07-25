@@ -59,10 +59,10 @@
                                                     class="form-control custom-select {{ $errors->has("reporting_head") ? 'is-invalid' : '' }}"
                                                     name="reporting_head" id="reporting_head">
                                                     <option value="">Select</option>
-                                                    <option value="shreya das">Shreya Das</option>
-                                                    <option value="shadab mullick">Shadab Mullick</option>
-                                                    <option value="tanmay dutta">Tanmay Dutta</option>
-
+                                                    @foreach ($reportingHeads as $reportingHead)
+                                                        <option value="{{$reportingHead->id}}">{{$reportingHead->name}}</option>
+                                                    @endforeach
+                                                        <option value="N/A">N/A</option>
                                                 </select>
                                                 <span class="form-text text-danger"
                                                       id="error_reporting_head">{{ $errors->getBag('default')->first('reporting_head') }}
@@ -212,7 +212,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="date_of_birth">Date of Birth &nbsp;<span style="color:red">*</span></label>
+                                               <label class="form-control-label" for="date_of_birth">Date of Birth </label>
                                                     <input
                                                         class="form-control {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}"
                                                         type="text"
@@ -226,7 +226,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="date_of_joining">Date of Joining</label>
+                                                <label class="form-control-label" for="date_of_joining">Date of Joining &nbsp;<span style="color:red">*</span></label>
                                                 <input
                                                     class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
                                                     type="text"
@@ -533,7 +533,7 @@
                     contact_number: {
                         required: true
                     },
-                    date_of_birth: {
+                    date_of_joining: {
                         required: true
                     },
                     department_id: {
@@ -566,8 +566,8 @@
                     mother_name: {
                         required: "This mother name field is required.",
                     },
-                    date_of_birth: {
-                        required: "This date of birth field is required.",
+                    date_of_joining: {
+                        required: "This date of joining field is required.",
                     },
                     department_id: {
                         required:"This department field is required.",

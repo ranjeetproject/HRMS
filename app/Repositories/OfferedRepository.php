@@ -7,6 +7,7 @@ use App\Recruitment;
 use App\InterviewSchedule;
 use App\InterviewFeedback;
 use App\Skill;
+use App\User;
 use App\CandidateSkill;
 use App\Department;
 use App\Designation;
@@ -57,7 +58,12 @@ class OfferedRepository
             ->make(true);
 
     }
-
+    public function fetchReportingHeadDetails()
+    {
+        $reportingHead=User::where('id','!=',1)->get();
+        return $reportingHead;
+        
+    }
     public function fetchDepartments()
     {
         return Department::get([

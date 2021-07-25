@@ -31,6 +31,7 @@ class OfferedController extends Controller
         $data['skills'] =  $this->offeredRepository->fetchSkills();
         $data['departments'] =  $this->offeredRepository->fetchDepartments();
         $data['designations'] =  $this->offeredRepository->fetchDesignations();
+        $data['reportingHeads'] =  $this->offeredRepository->fetchReportingHeadDetails();
         return view('final_round.existing_employee',$data);
     }
 

@@ -24,6 +24,7 @@ class EmployeeDetailsController extends Controller
         $data['departments'] =  $this->employeeDetailRoundRepository->fetchDepartments();
         $data['designations'] =  $this->employeeDetailRoundRepository->fetchDesignations();
         $data['recruitmentSkills'] =  $this->employeeDetailRoundRepository->fetchRecruitmentSkills($id);
+        $data['reportingHeads'] =  $this->employeeDetailRoundRepository->fetchReportingHeadDetails();
         foreach($data['recruitmentSkills'] as $key => $val)
         {
            $skilldata[] = $val['skill_id'];
@@ -39,7 +40,7 @@ class EmployeeDetailsController extends Controller
             'email'=>'required',
             'offical_email_id'=>'required|email',
             'contact_number' => 'required',
-            'date_of_birth' => 'required',
+            'date_of_joining' => 'required',
             'department_id' => 'required',
             'designation_id' => 'required',
         ]);
@@ -83,6 +84,7 @@ class EmployeeDetailsController extends Controller
         $data['designations'] =  $this->employeeDetailRoundRepository->fetchDesignations();
         $data['recruitmentSkills'] =  $this->employeeDetailRoundRepository->fetchEmployeeSkills($id);
         $data['employeeSkills'] =  $this->employeeDetailRoundRepository->fetchExistingEmployeeSkills($id);
+        $data['reportingHeads'] =  $this->employeeDetailRoundRepository->fetchReportingHeadDetails();
         foreach($data['recruitmentSkills'] as $key => $val)
         {
            $skilldata[] = $val['skill_id'];
@@ -101,7 +103,7 @@ class EmployeeDetailsController extends Controller
             'reporting_head'=>'required',
             'email'=>'required|email',
             'offical_email_id'=>'required|email',
-            'date_of_birth' => 'required',
+            'date_of_joining' => 'required',
             'department_id' => 'required',
             'designation_id' => 'required',
         ]);

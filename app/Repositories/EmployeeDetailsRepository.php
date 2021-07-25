@@ -98,6 +98,13 @@ class EmployeeDetailsRepository
        return $recruitmentSkill;
         
     }
+
+    public function fetchReportingHeadDetails()
+    {
+        $reportingHead=User::where('id','!=',1)->get();
+        return $reportingHead;
+        
+    }
     public function fetchEmployeeSkills($id)
     {
         $recruitmentId=EmployeeDetails::find($id);

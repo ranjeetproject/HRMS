@@ -67,20 +67,28 @@
                                                     <select
                                                         class="form-control custom-select {{ $errors->has('user_id') ? 'is-invalid' : '' }}"
                                                         name="user_id" id="user_id" readonly>
-                                                        <option value="">SELECT</option>
-                                                        <option value="shreya das" @if(@$userDetails->reporting_head=='shreya das') selected @endIf>Shreya Das</option>
-                                                        <option value="shadab mullick" @if(@$userDetails->reporting_head=='shadab mullick') selected @endIf>Shadab Mullick</option>
-                                                        <option value="tanmay dutta" @if(@$userDetails->reporting_head=='tanmay dutta') selected @endIf>Tanmay Dutta</option>
+                                                            <option value="">SELECT</option>
+                                                        @if($userDetails->reporting_head=='N/A')
+                                                            @foreach ($reportingHeads as $reportingHead)
+                                                                <option value="{{$reportingHead->id}}" @if(@$userDetails->reporting_head==$reportingHead->id) selected @endIf>{{$reportingHead->name}}</option>
+                                                            @endforeach
+                                                            <option value="N/A" selected>N/A</option>
+                                                        @else
+                                                            @foreach ($reportingHeads as $reportingHead)
+                                                                <option value="{{$reportingHead->id}}" @if(@$userDetails->reporting_head==$reportingHead->id) selected @endIf>{{$reportingHead->name}}</option>
+                                                            @endforeach
+                                                            <option value="N/A">N/A</option>
+                                                        @endif
                                                     </select>
                                                 @else
                                                 <select
                                                     class="form-control custom-select {{ $errors->has("reporting_head") ? 'is-invalid' : '' }}"
                                                     name="reporting_head" id="reporting_head">
                                                     <option value="">Select</option>
-                                                    <option value="shreya das">Shreya Das</option>
-                                                    <option value="shadab mullick">Shadab Mullick</option>
-                                                    <option value="tanmay dutta">Tanmay Dutta</option>
-
+                                                    @foreach ($reportingHeads as $reportingHead)
+                                                        <option value="{{$reportingHead->id}}">{{$reportingHead->name}}</option>
+                                                    @endforeach
+                                                    <option value="N/A">N/A</option>
                                                 </select>
                                                 @endIf
                                                 <span class="form-text text-danger"
@@ -287,7 +295,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="date_of_birth">Date of Birth &nbsp;<span style="color:red">*</span></label>
+                                               <label class="form-control-label" for="date_of_birth">Date of Birth </label>
                                                @if(@$userDetails->date_of_birth)
                                                     <input
                                                         class="form-control {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}"
@@ -310,7 +318,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="date_of_joining">Date of Joining</label>
+                                                <label class="form-control-label" for="date_of_joining">Date of Joining &nbsp;<span style="color:red">*</span></label>
                                                 @if(@$candiateDetails->date_of_joining == '1970-01-01')
                                                     <input
                                                         class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
@@ -421,12 +429,21 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-control-label" for="highest_qualification">Highest Education Qualification</label>
-                                                <input
-                                                    class="form-control {{ $errors->has('highest_qualification') ? 'is-invalid' : '' }}"
-                                                    type="text"
-                                                    name="highest_qualification" id="highest_qualification" placeholder="Please enter highest qualification"
-                                                    maxlength="191"
-                                                    value="{{old('highest_qualification',$candiateDetails->recruitment->highest_qualification)}}" readonly>
+                                                @if(@$candiateDetails->recruitment->highest_qualification)
+                                                    <input
+                                                        class="form-control {{ $errors->has('highest_qualification') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="highest_qualification" id="highest_qualification" placeholder="Please enter highest qualification"
+                                                        maxlength="191"
+                                                        value="{{old('highest_qualification',$candiateDetails->recruitment->highest_qualification)}}" readonly>
+                                                @else
+                                                    <input
+                                                        class="form-control {{ $errors->has('highest_qualification') ? 'is-invalid' : '' }}"
+                                                        type="text"
+                                                        name="highest_qualification" id="highest_qualification" placeholder="Please enter highest qualification"
+                                                        maxlength="191"
+                                                        value="{{old('highest_qualification')}}" autocomplete="off">
+                                                @endif
                                                 <span class="form-text text-danger"
                                                       id="error_highest_qualification">{{ $errors->getBag('default')->first('highest_qualification') }}
                                                 </span>
@@ -700,7 +717,7 @@
                     contact_number: {
                         required: true
                     },
-                    date_of_birth: {
+                    date_of_joining: {
                         required: true
                     },
                     department_id: {
@@ -726,8 +743,8 @@
                     contact_number: {
                         required: "This contact number field is required.",
                     },
-                    date_of_birth: {
-                        required: "This date of birth field is required.",
+                    date_of_joining: {
+                        required: "This date of joining field is required.",
                     },
                     department_id: {
                         required:"This department field is required.",

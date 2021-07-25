@@ -73,9 +73,18 @@
                                                         class="form-control custom-select {{ $errors->has('reporting_head') ? 'is-invalid' : '' }}"
                                                         name="reporting_head" id="reporting_head">
                                                         <option value="">SELECT</option>
-                                                        <option value="shreya das" @if(@$employee_details->reporting_head=='shreya das') selected @endIf>Shreya Das</option>
-                                                        <option value="shadab mullick" @if(@$employee_details->reporting_head=='shadab mullick') selected @endIf>Shadab Mullick</option>
-                                                        <option value="tanmay dutta" @if(@$employee_details->reporting_head=='tanmay dutta') selected @endIf>Tanmay Dutta</option>
+                                                        @if($employee_details->reporting_head=='N/A')
+                                                            @foreach ($reportingHeads as $reportingHead)
+                                                                <option value="{{$reportingHead->id}}" @if(@$employee_details->reporting_head==$reportingHead->id) selected @endIf>{{$reportingHead->name}}</option>
+                                                            @endforeach
+                                                            <option value="N/A" selected>N/A</option>
+                                                            
+                                                        @else
+                                                            @foreach ($reportingHeads as $reportingHead)
+                                                                <option value="{{$reportingHead->id}}" @if(@$employee_details->reporting_head==$reportingHead->id) selected @endIf>{{$reportingHead->name}}</option>
+                                                            @endforeach
+                                                            <option value="N/A">N/A</option>
+                                                        @endif
                                                     </select>
                                                 <span class="form-text text-danger"
                                                       id="error_reporting_head">{{ $errors->getBag('default')->first('reporting_head') }}
@@ -648,7 +657,7 @@
                     contact_number: {
                         required: true
                     },
-                    date_of_birth: {
+                    date_of_joining: {
                         required: true
                     },
                     department: {
@@ -674,8 +683,8 @@
                     contact_number: {
                         required: "This contact number field is required.",
                     },
-                    date_of_birth: {
-                        required: "This date of birth field is required.",
+                    date_of_joining: {
+                        required: "This date of joining field is required.",
                     },
                     department: {
                         required:"This department field is required.",
