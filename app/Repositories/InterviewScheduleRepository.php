@@ -90,7 +90,7 @@ class InterviewScheduleRepository
 
     public function fetchUsersInterviewer()
     {
-        $row = User::Where('id','!=',1)->get();
+        $row = User::get();
         return $row;
     }
 
