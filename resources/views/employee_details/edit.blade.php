@@ -251,7 +251,7 @@
                                                             type="text"
                                                             name="date_of_birth" id="date_of_birth" placeholder="Please enter date of birth"
                                                             maxlength="191"
-                                                            value="">
+                                                            value="" autocomplete="off">
                                                     @elseif(@$employee_details->date_of_birth)
                                                         <input
                                                             class="form-control {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}"
@@ -265,7 +265,7 @@
                                                             type="text"
                                                             name="date_of_birth" id="date_of_birth" placeholder="Please enter date of birth"
                                                             maxlength="191"
-                                                            value="">
+                                                            value="" autocomplete="off">
                                                     @endif
 
                                                 <span class="form-text text-danger"
