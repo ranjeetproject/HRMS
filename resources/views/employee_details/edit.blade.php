@@ -244,7 +244,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                               <label class="form-control-label" for="date_of_birth">Date of Birth &nbsp;<span style="color:red">*</span></label>
+                                               <label class="form-control-label" for="date_of_birth">Date of Birth</label>
                                                     @if(@$employee_details->date_of_birth == '1970-01-01')
                                                         <input
                                                             class="form-control {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}"
@@ -275,7 +275,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-control-label" for="date_of_joining">Date of Joining</label>
+                                                <label class="form-control-label" for="date_of_joining">Date of Joining &nbsp;<span style="color:red">*</span></label>
                                                @if(@$employee_details->date_of_joining == '1970-01-01')
                                                 <input
                                                     class="form-control {{ $errors->has('date_of_joining') ? 'is-invalid' : '' }}"
