@@ -115,7 +115,7 @@
                                                         type="text"
                                                         name="emp_code" id="emp_code" placeholder="Please enter employee code"
                                                         maxlength="191"
-                                                        value="{{@$employee_details->emp_code}}">
+                                                        value="{{@$employee_details->emp_code}}" autocomplete="off">
                                                 <span class="form-text text-danger"
                                                       id="error_emp_code">{{ $errors->getBag('default')->first('emp_code') }}
                                                 </span>
@@ -153,7 +153,7 @@
                                                         type="text"
                                                         name="alternate_number" id="alternate_number" placeholder="Please enter alternate number"
                                                         maxlength="191"
-                                                        value="{{old('alternate_number')}}">
+                                                        value="{{old('alternate_number')}}" autocomplete="off">
                                                 @endif
 
                                                 <span class="form-text text-danger"
@@ -220,7 +220,7 @@
                                                         type="text"
                                                         name="father_name" id="father_name" placeholder="Please enter father name"
                                                         maxlength="191"
-                                                        value="{{@$employee_details->father_name}}">
+                                                        value="{{@$employee_details->father_name}}" autocomplete="off">
                                                 <span class="form-text text-danger"
                                                       id="error_father_name">{{ $errors->getBag('default')->first('father_name') }}
                                                 </span>
@@ -234,7 +234,7 @@
                                                         type="text"
                                                         name="mother_name" id="mother_name" placeholder="Please enter mother name"
                                                         maxlength="191"
-                                                        value="{{@$employee_details->mother_name}}">
+                                                        value="{{@$employee_details->mother_name}}" autocomplete="off">
                                                 <span class="form-text text-danger"
                                                       id="error_mother_name">{{ $errors->getBag('default')->first('mother_name') }}
                                                 </span>
@@ -328,7 +328,7 @@
                                                         type="text"
                                                         name="name_of_spouse" id="name_of_spouse" placeholder="Please enter name of spouse"
                                                         maxlength="191"
-                                                        value="{{@$employee_details->name_of_spouse}}">
+                                                        value="{{@$employee_details->name_of_spouse}}" autocomplete="off">
                                                 <span class="form-text text-danger"
                                                       id="error_name_of_spouse">{{ $errors->getBag('default')->first('name_of_spouse') }}
                                                 </span>
