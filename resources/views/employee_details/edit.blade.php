@@ -245,12 +245,29 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                <label class="form-control-label" for="date_of_birth">Date of Birth &nbsp;<span style="color:red">*</span></label>
-                                                    <input
-                                                        class="form-control {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}"
-                                                        type="text"
-                                                        name="date_of_birth" id="date_of_birth" placeholder="Please enter date of birth"
-                                                        maxlength="191"
-                                                        value="{{@$employee_details->date_of_birth}}">
+                                                    @if(@$employee_details->date_of_birth == '1970-01-01')
+                                                        <input
+                                                            class="form-control {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}"
+                                                            type="text"
+                                                            name="date_of_birth" id="date_of_birth" placeholder="Please enter date of birth"
+                                                            maxlength="191"
+                                                            value="">
+                                                    @elseif(@$employee_details->date_of_birth)
+                                                        <input
+                                                            class="form-control {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}"
+                                                            type="text"
+                                                            name="date_of_birth" id="date_of_birth" placeholder="Please enter date of birth"
+                                                            maxlength="191"
+                                                            value="{{@$employee_details->date_of_birth}}">
+                                                    @else
+                                                        <input
+                                                            class="form-control {{ $errors->has('date_of_birth') ? 'is-invalid' : '' }}"
+                                                            type="text"
+                                                            name="date_of_birth" id="date_of_birth" placeholder="Please enter date of birth"
+                                                            maxlength="191"
+                                                            value="">
+                                                    @endif
+
                                                 <span class="form-text text-danger"
                                                       id="error_date_of_birth">{{ $errors->getBag('default')->first('date_of_birth') }}
                                                 </span>
