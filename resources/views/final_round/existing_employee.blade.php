@@ -411,7 +411,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                <label class="form-control-label" for="skill">Skills/Technology</label>
-                                                     <ul class="list-group list-group-flush" style="overflow: auto;">
+                                                     <ul class="list-group list-group-flush" style="overflow:scroll;">
                                                     @foreach($skills as $skill)
                                                         <li class="list-group-item"> <input type="checkbox" class="form-check-input" name="skill[]" id="skill" value="{{$skill->id}}">{{$skill->skill_name}}</li>
                                                     @endforeach    
