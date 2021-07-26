@@ -520,11 +520,9 @@
                                             <div class="form-group">
                                                <label class="form-control-label" for="skill">Skills/Technology</label>
                                                      <ul class="list-group list-group-flush" style="overflow: auto;">
-                                                     @if(@$skilldata)
                                                        @foreach($skills as $skill)
                                                             <li class="list-group-item"> <input type="checkbox" class="form-check-input" name="skill[]" id="skill" value="{{$skill->id}}" @if(in_array($skill->id,$skilldata)) {{'checked'}} @endIf>{{$skill->skill_name}}</li>
                                                         @endforeach
-                                                    @endif
                                                     </ul>
                                                 <span class="form-text text-danger"
                                                       id="error_skill">{{ $errors->getBag('default')->first('skill') }}

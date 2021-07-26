@@ -147,7 +147,7 @@ class EmployeeDetailsRepository
                 {
                     CandidateSkill::where('recruitment_id','=',isset($inputData['recruitment_id']))->whereIn('skill_id',$oldSkill)->delete();
                 }
-            }else{
+            }elseif(isset($inputData['skill'])){
                 foreach($inputData['skill'] as $val){
                     CandidateSkill::create([
                                 'skill_id'=>$val,
@@ -208,13 +208,15 @@ class EmployeeDetailsRepository
         $inputData['date_of_joining'] = date('Y-m-d',strtotime($inputData['date_of_joining']));
         $inputData['date_of_released'] = date('Y-m-d',strtotime($inputData['date_of_released']));
         $inputData['date_of_confirmed'] = date('Y-m-d',strtotime($inputData['date_of_confirmed']));
-        //dd($inputData);
+       
         $row = EmployeeDetails::find($id);
+        
         if ($row) {
             if(isset($inputData['recruitment_id'])){
                 $skill = CandidateSkill::where('recruitment_id','=',$inputData['recruitment_id'])->pluck('skill_id','id')->toArray();
             }else{
                 $skill = CandidateSkill::where('employee_details_id','=',$row->id)->pluck('skill_id','id')->toArray();
+                //dd($inputData['skill'],$row->id, $skill);
             }
             if($skill){
                 foreach($inputData['skill']  as $val){
@@ -245,6 +247,13 @@ class EmployeeDetailsRepository
                     }
                 }
                 
+            }elseif(isset($inputData['skill'])){
+                foreach($inputData['skill'] as $val){
+                    CandidateSkill::create([
+                                'skill_id'=>$val,
+                                'employee_details_id'=> $row->id,
+                                ]);
+                }
             }
             if(isset($inputData['recruitment_id'])){
                 $row->update($inputData);
