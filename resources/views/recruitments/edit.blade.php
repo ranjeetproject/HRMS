@@ -441,8 +441,6 @@
                     notice_period: {
                         required: true,
                         number: true,
-                        minlength: 2,
-                        maxlength: 2,
                     },
                    
                 },
