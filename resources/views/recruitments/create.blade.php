@@ -438,8 +438,8 @@
                     notice_period: {
                         required: true,
                         number: true,
-                        minlength: 1,
-                        maxlength: 1,
+                        minlength: 2,
+                        maxlength: 2,
                     },
                     upload_resume: {
                         required: true
