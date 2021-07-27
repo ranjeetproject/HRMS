@@ -53,7 +53,7 @@ class RecruitmentController extends Controller
                'current_ctc'=> 'required',
                'expected_ctc'=> 'required',
                'skill'=> 'required',
-               'notice_period'=> 'required|numeric',
+               'notice_period'=> 'required',
                'upload_resume' => 'required|mimes:doc,docx,pdf'
            ]);
           
@@ -121,7 +121,7 @@ class RecruitmentController extends Controller
                'current_ctc'=> 'required',
                'expected_ctc'=> 'required',
                'skill'=> 'required',
-               'notice_period'=> 'required|numeric',
+               'notice_period'=> 'required',
            ]);
           
            $input = $request->all();

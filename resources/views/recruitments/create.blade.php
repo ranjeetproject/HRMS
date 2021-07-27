@@ -437,7 +437,6 @@
                     },
                     notice_period: {
                         required: true,
-                        number: true,
                     },
                     upload_resume: {
                         required: true

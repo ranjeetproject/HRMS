@@ -440,7 +440,6 @@
                     },
                     notice_period: {
                         required: true,
-                        number: true,
                     },
                    
                 },
@@ -478,9 +477,6 @@
                     },
                     notice_period: {
                         required: "This notice period field is required.",
-                        number: "This notice period field is take number",
-                        minlength: "This notice period field minimum length is 1",
-                        maxlength: "This notice period field maxlength is 1"
                     },
                  
                 },
