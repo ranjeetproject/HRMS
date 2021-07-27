@@ -29,10 +29,10 @@
                 <i class="far fa-user"></i> &nbsp;{{$loginUser->name}}
             </a>
             <div class="dropdown-menu dropdown-menu dropdown-menu-right">
-                {{-- <a href="#" class="dropdown-item">
+                <a href="{{action('UserController@changePasswordForm')}}" class="dropdown-item">
                     <i class="fas fa-user-lock mr-2"></i>
-                    <span data-toggle="modal" data-target="#changePassword">Change Password</span>
-                </a> --}}
+                    Change Password
+                </a>
                 {{-- <div class="dropdown-divider"></div> --}}
                 {{-- <a href="" class="dropdown-item">
                     <i class="fas fa-cog"></i>

@@ -35,6 +35,7 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('/logout','LoginController@getLogOut')->name('Logout'); 
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+    Route::get('/change-password-form', 'UserController@changePasswordForm');
     Route::get('recruitment', 'RecruitmentController@index');
     Route::get('recruitment/create', 'RecruitmentController@create');
     Route::get('recruitment/show/{id}', 'RecruitmentController@show');
