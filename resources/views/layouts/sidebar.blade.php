@@ -202,10 +202,11 @@
                 </li>
                 @endif
                 @if(@$checkModulePermission->general == 'gr')
-                    <li class="nav-item has-treeview @if(request()->segment(1)=='leave-application' || request()->segment(1)=='skills-acquired') menu-open
+                    <li class="nav-item has-treeview @if(request()->segment(1)=='leave-application' || request()->segment(1)=='skills-acquired' || request()->segment(1)=='leave-pending-approval') menu-open
                         @endIf">
                         <a class="nav-link {{ (request()->segment(1) == 'leave-application') ? 'active' : '' }}
-                                        {{ (request()->segment(1) == 'skills-acquired') ? 'active' : '' }}"
+                                        {{ (request()->segment(1) == 'skills-acquired') ? 'active' : '' }}
+                                        {{ (request()->segment(1) == 'leave-pending-approval') ? 'active' : '' }}"
                         href="#">
                             <i class="nav-icon fas fa-angle-down"></i>
                             <p>
@@ -228,6 +229,15 @@
                                         href="{{action('SkillsAcquiredController@index')}}">
                                         <i class="nav-icon fas fa-clipboard-list"></i>
                                         <p>Skills Acquired</p>
+                                    </a>
+                                </li>
+                            @endIf
+                            @if(@$checkModulePermission->pending_approve_leave_view == '1')
+                                <li class="nav-item ">
+                                    <a class="nav-link {{ (request()->segment(1) == 'leave-pending-approval') ? 'active' : '' }}"
+                                        href="{{action('PendingApprovalController@index')}}">
+                                        <i class="nav-icon fab fa-penny-arcade"></i>
+                                        <p>Pending Approvals</p>
                                     </a>
                                 </li>
                             @endIf
