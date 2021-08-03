@@ -118,6 +118,8 @@ Route::middleware(['adminRoute'])->group(function (){
 
     Route::get('approve-rejected', 'PendingApprovalController@approveAndRejectedLeave');
 
+    Route::get('employees-leaves', 'EmployeesLeaveController@index');
+
 
 
 

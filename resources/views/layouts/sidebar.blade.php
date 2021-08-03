@@ -202,11 +202,13 @@
                 </li>
                 @endif
                 @if(@$checkModulePermission->general == 'gr')
-                    <li class="nav-item has-treeview @if(request()->segment(1)=='leave-application' || request()->segment(1)=='skills-acquired' || request()->segment(1)=='leave-pending-approval') menu-open
+                    <li class="nav-item has-treeview @if(request()->segment(1)=='leave-application' || request()->segment(1)=='skills-acquired' || request()->segment(1)=='leave-pending-approval' 
+                                                        || request()->segment(1)=='employees-leaves') menu-open
                         @endIf">
                         <a class="nav-link {{ (request()->segment(1) == 'leave-application') ? 'active' : '' }}
                                         {{ (request()->segment(1) == 'skills-acquired') ? 'active' : '' }}
-                                        {{ (request()->segment(1) == 'leave-pending-approval') ? 'active' : '' }}"
+                                        {{ (request()->segment(1) == 'leave-pending-approval') ? 'active' : '' }}
+                                        {{ (request()->segment(1) == 'employees-leaves') ? 'active' : '' }}"
                         href="#">
                             <i class="nav-icon fas fa-angle-down"></i>
                             <p>
@@ -238,6 +240,15 @@
                                         href="{{action('PendingApprovalController@index')}}">
                                         <i class="nav-icon fab fa-penny-arcade"></i>
                                         <p>Pending Approvals</p>
+                                    </a>
+                                </li>
+                            @endIf
+                            @if(@$checkModulePermission->employees_leaves_view == '1')
+                                <li class="nav-item ">
+                                    <a class="nav-link {{ (request()->segment(1) == 'employees-leaves') ? 'active' : '' }}"
+                                        href="{{action('EmployeesLeaveController@index')}}">
+                                        <i class="nav-icon fab fa-canadian-maple-leaf"></i>
+                                        <p>Employees Leaves</p>
                                     </a>
                                 </li>
                             @endIf
