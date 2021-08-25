@@ -29,8 +29,9 @@ Route::post('/post-login', 'LoginController@authenticate')->name('Login.Auth');
 Route::post('/reset-password','UserController@forgetPasswordSendLink');
 Route::post('/reset-password-form-submit','UserController@resetPasswordForFrontend');
 
-Route::middleware(['adminRoute'])->group(function (){
-  
+Route::middleware(['adminRoute'])->group(function ()
+{
+
 ////////////////////////////////////// Get ////////////////////////////////////////////////////////////////
 
     Route::get('/logout','LoginController@getLogOut')->name('Logout'); 
@@ -119,6 +120,9 @@ Route::middleware(['adminRoute'])->group(function (){
     Route::get('approve-rejected', 'PendingApprovalController@approveAndRejectedLeave');
 
     Route::get('employees-leaves', 'EmployeesLeaveController@index');
+
+    Route::get('employees-leaves-details', 'EmployeesLeaveController@getAllEmployeesLeaves');
+
 
 
 

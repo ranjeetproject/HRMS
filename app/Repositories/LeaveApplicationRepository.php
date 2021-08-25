@@ -9,6 +9,7 @@ use App\InterviewSchedule;
 use App\LeaveApplication;
 use App\Skill;
 use App\Recruitment;
+use App\TeamMember;
 use App\CandidateSkill;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
@@ -48,7 +49,13 @@ class LeaveApplicationRepository
             ->make(true);
 
     }
-
+    public function getTeamHead($details)
+    {
+        $data = TeamMember::orderBy('created_at', 'DESC')
+        ->where('members','=',$details->id)
+        ->first(['user_id']);
+        return $data;
+    }
 
     public function insert($inputData,$user)
     {

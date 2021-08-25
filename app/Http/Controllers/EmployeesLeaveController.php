@@ -25,4 +25,16 @@ class EmployeesLeaveController extends Controller
 
         }
     }
+
+    public function getAllEmployeesLeaves(Request $request)
+    {
+        $input = $request->all();
+        if ($request->ajax()) {
+            return $this->employeesLeaveRepository->getAllLeavesDetails($input);
+        } else {
+            return view('employees_leaves.all-employees-leave-details');
+
+        }
+    }
+
 }

@@ -12,5 +12,5 @@ class LeaveApplication extends Model
 
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
-    protected $fillable = ['user_id','from_date','to_date','application_type','reason'];
+    protected $fillable = ['user_id','from_date','to_date','application_type','reason','manager_id'];
 }

@@ -34,7 +34,10 @@
                             <form action="{{action('LeaveApplicationController@store')}}" method="post"
                                   enctype="multipart/form-data" id="leaveForm">
                                 {{csrf_field()}}
-
+                                <input
+                                    class="form-control"
+                                    type="hidden"
+                                    name="manager_id" id="manager_id" value="{{@$employees_manager->user_id}}">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="card-body">

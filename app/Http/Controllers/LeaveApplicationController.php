@@ -20,10 +20,11 @@ class LeaveApplicationController extends Controller
     {
         $input = $request->all();
         $user = $this->getUser();
+        $data['employees_manager'] = $this->leaveApplicationRepository->getTeamHead($user);
         if ($request->ajax()) {
              return $this->leaveApplicationRepository->getAll($input,$user);
         } else {
-             return view('leave_application.index');
+             return view('leave_application.index',$data);
         }
     }
 
