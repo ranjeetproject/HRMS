@@ -313,7 +313,7 @@
                                                     <input type="checkbox" class="form-check-input m1" name="team_member_modify" id="skill" value="2" @if(@$permission['user_permission']->team_member_modify == 2) {{'checked'}} @endIf style="margin-left:5%">
                                                    
                                                     </th>
-                                                    <th>Team Member </th>
+                                                    <th>Team Member</th>
                                                 </tr>
                                                 <tr class="g">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
