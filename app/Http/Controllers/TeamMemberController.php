@@ -47,10 +47,11 @@ class TeamMemberController extends Controller
 
     public function update(Request $request, $id){
         
-        $request->validate([
-            'team2' => 'required',
-        ]);
-        $input = $request->all();
+       
+        
+        
+        $input = $request->only('team2');
+
         $user = $this->getUser();
         $data = $this->teamMemberRepository->updateSave($input,$id,$user);
            if ($data['success'] == true) {

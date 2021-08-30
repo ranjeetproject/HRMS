@@ -56,6 +56,7 @@ class TeamMemberRepository
     {
 
         $member = TeamMember::where('user_id','=',$id)->pluck('members')->toArray();
+       
         if($member){
             foreach($inputData['team2']  as $val){
                 if(!in_array($val,$member))

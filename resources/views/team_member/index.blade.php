@@ -67,7 +67,7 @@
                                                                     @endforeach
                                                                 </select>
                                                             @else
-                                                                <select multiple="multiple" id='lstBox2' style="width: 100%;" name="team2[]">
+                                                                <select multiple="multiple" id='lstBox1' style="width: 100%;" name="team2[]">
                                                                 
                                                                 </select>
                                                             @endif
@@ -135,6 +135,7 @@
         })
            $('#memeberForm').submit(function(){
                $('#lstBox2 option').attr('selected',true);
+               $('#lstBox1 option').attr('selected',true);
 
             });
 </script>
