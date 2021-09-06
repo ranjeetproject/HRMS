@@ -67,6 +67,10 @@ class TeamMemberRepository
         $member = TeamMember::where('user_id','=',$id)->pluck('members')->toArray();
        
         if($member){
+            if($inputData['team'] == null){
+                TeamMember::where('user_id','=',$id)->whereIn('members',$member)->delete();
+                return ['success' => true];
+            }
             foreach($inputData['team']  as $val){
                 if(!in_array($val,$member))
                 {

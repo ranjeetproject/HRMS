@@ -182,13 +182,20 @@
         {
             e.preventDefault(); 
             var selectTeam =  [...document.querySelector("#lstBox2").options].map( opt => opt.value );
-            var team = {
+            if(selectTeam.length == 0){
+                var team = {
                         "_token": "{{ csrf_token() }}",
-                        "team": selectTeam,
+                        "team": null,
                     }
+            }else{
+                var team = {
+                            "_token": "{{ csrf_token() }}",
+                            "team": selectTeam,
+                        }
+            }
             var baseUrl = "{{action('TeamMemberController@update',[$user->id])}}";
             $.ajax({
-               type: 'POST',
+            type: 'POST',
                 url: baseUrl,
                 data: team,
                 success: function (data)
