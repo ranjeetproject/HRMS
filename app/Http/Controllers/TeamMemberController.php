@@ -21,48 +21,39 @@ class TeamMemberController extends Controller
         $user = $this->getUser();
         $data['members'] = $this->teamMemberRepository->allEmployees($user);
         $data['select_members'] = $this->teamMemberRepository->allSelected($user);
+        $data['all_users'] = $this->teamMemberRepository->allMember();
+        foreach($data['all_users'] as $val)
+        {
+            $allMember[] = $val->id;
+        }
+        $data['all_member'] = $allMember;
         $data['user'] = $user;
         return view('team_member.index',$data);
         
     }
 
-    public function store(Request $request){
-
-        $request->validate([
-            'team2' => 'required',
-        ]);
+    public function store(Request $request)
+    {
         $input = $request->all();
         $user = $this->getUser();
         $data = $this->teamMemberRepository->insert($input,$user);
-           if ($data['success'] == true) {
-               $notification = array(
-                    'message' => 'Team members is successfully added!',
-                    'alert-type' => 'success'
-               );
-               return redirect()->action('TeamMemberController@index')->with($notification);
-           } else {
-               return redirect()->back();
-           }
+        if($data['success'] == true){
+            return ['success' => true, 'message' => 'Team Member Successful Added'];
+        }else{
+            return ['success' => false, 'message' => 'Team Member Failed To Add'];
+        }
     }
 
     public function update(Request $request, $id){
         
-       
-        
-        
-        $input = $request->only('team2');
-
+        $input = $request->all();
         $user = $this->getUser();
         $data = $this->teamMemberRepository->updateSave($input,$id,$user);
-           if ($data['success'] == true) {
-               $notification = array(
-                    'message' => 'Team members is successfully Update!',
-                    'alert-type' => 'success'
-               );
-               return redirect()->action('TeamMemberController@index')->with($notification);
-           } else {
-               return redirect()->back();
-           }
+        if($data['success'] == true){
+            return ['success' => true, 'message' => 'Team Member Successful Update'];
+        }else{
+            return ['success' => false, 'message' => 'Team Member Failed To Update'];
+        }
 
     }
 }

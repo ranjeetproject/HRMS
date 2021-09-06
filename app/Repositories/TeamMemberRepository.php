@@ -36,11 +36,20 @@ class TeamMemberRepository
         return $selectUsers;
     }
 
+    public function allMember(){
+
+        $users = User::orderBy('created_at', 'DESC')
+        ->where('id','!=',1)
+        ->get(['id']);
+        return $users;
+    }
+
     public function insert($inputData,$user)
     {
+        
         if($inputData)
         {
-            foreach($inputData['team2'] as $val){
+            foreach($inputData['team'] as $val){
                 $team_member = [];
                 $team_member['user_id'] = $user->id;
                 $team_member['members'] = $val;
@@ -54,11 +63,11 @@ class TeamMemberRepository
 
     public function updateSave($inputData, $id,$user)
     {
-
+        
         $member = TeamMember::where('user_id','=',$id)->pluck('members')->toArray();
        
         if($member){
-            foreach($inputData['team2']  as $val){
+            foreach($inputData['team']  as $val){
                 if(!in_array($val,$member))
                 {
                     TeamMember::create([
@@ -68,7 +77,7 @@ class TeamMemberRepository
                 }
                     
             }
-            $oldMember = array_diff($member,$inputData['team2']);
+            $oldMember = array_diff($member,$inputData['team']);
             if(count($oldMember) > 0)
             {
                 TeamMember::where('user_id','=',$id)->whereIn('members',$oldMember)->delete();
