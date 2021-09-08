@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <form action="{{action('HolidayController@store')}}" method="post"
-                                  enctype="multipart/form-data" id="holidayForm">
+                                   id="holidayForm">
                                 {{csrf_field()}}
                                 <div class="col-md-12">
                                     <div class="card-body">
@@ -45,7 +45,6 @@
                                                         class="form-control {{ $errors->has('holiday_name') ? 'is-invalid' : '' }}"
                                                         type="text"
                                                         name="holiday_name" id="holiday_name" placeholder="Please enter holiday name"
-                                                        maxlength=""
                                                         value="{{old('holiday_name')}}">
                                                     <span class="form-text text-danger"
                                                         id="error_holiday_name">{{ $errors->getBag('default')->first('holiday_name') }}</span>   
@@ -172,7 +171,7 @@
                     {data: 'action', name: 'action', orderable: true, searchable: false}
                 ]
             });
-            $('#holiday_table').DataTable().ajax.reload()
+            
             $('#holidayForm').validate({
                 rules: {
                     holiday_name: {
