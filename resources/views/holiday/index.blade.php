@@ -45,7 +45,7 @@
                                                         class="form-control {{ $errors->has('holiday_name') ? 'is-invalid' : '' }}"
                                                         type="text"
                                                         name="holiday_name" id="holiday_name" placeholder="Please enter holiday name"
-                                                        value="{{old('holiday_name')}}">
+                                                        value="{{old('holiday_name')}}" autocomplete="off">
                                                     <span class="form-text text-danger"
                                                         id="error_holiday_name">{{ $errors->getBag('default')->first('holiday_name') }}</span>   
                                                     
@@ -58,7 +58,7 @@
                                                         class="form-control {{ $errors->has('holiday_date') ? 'is-invalid' : '' }}"
                                                         type="text"
                                                         name="holiday_date" id="holiday_date" placeholder="Please enter holiday date"
-                                                        value="{{old('holiday_date')}}">
+                                                        value="{{old('holiday_date')}}" autocomplete="off">
                                                     <span class="form-text text-danger"
                                                         id="error_holiday_date">{{ $errors->getBag('default')->first('holiday_date') }}</span>
                                                 </div>
