@@ -39,8 +39,10 @@ class EmployeesLeaveRepository
                     return 'Half Day Leave';
                 }elseif($row->application_type == 3){
                     return 'Extra Day Worked';
-                }else{
+                }elseif($row->application_type == 4){
                     return 'Work From Home';
+                }else{
+                    return 'Work From Office';
                 }
             })
             ->editColumn('status', function ($row) {
@@ -81,8 +83,10 @@ class EmployeesLeaveRepository
                 return 'Half Day Leave';
             }elseif($row->application_type == 3){
                 return 'Extra Day Worked';
-            }else{
+            }elseif($row->application_type == 4){
                 return 'Work From Home';
+            }else{
+                return 'Work From Office';
             }
         })
         ->editColumn('status', function ($row) {

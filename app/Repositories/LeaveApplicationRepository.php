@@ -29,7 +29,9 @@ class LeaveApplicationRepository
         ->get([
             'id','from_date','to_date',
             DB::raw('CASE WHEN application_type = 0 THEN " "
-            WHEN application_type = 1 THEN "Full Day Leave" WHEN application_type = 2 THEN "Half Day Leave" WHEN application_type = 3 THEN "Extra Day Worked" WHEN application_type = 4 THEN "Work From Home" END AS application_type')
+            WHEN application_type = 1 THEN "Full Day Leave" WHEN application_type = 2 THEN "Half Day Leave"
+            WHEN application_type = 3 THEN "Extra Day Worked" WHEN application_type = 4 THEN "Work From Home" 
+            WHEN application_type = 5 THEN "Work From Office" END AS application_type')
         ]);
         return Datatables::of($data)
             ->addColumn('action', function ($row) {

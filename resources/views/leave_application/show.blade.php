@@ -53,6 +53,8 @@
                                             <td>Extra Day Worked</td>
                                         @elseif(@$leaveData->application_type==4)
                                             <td>Work From Home</td>
+                                        @else
+                                            <td>Work From Office</td>
                                         @endIf
                                     </tr>
                                     <tr>

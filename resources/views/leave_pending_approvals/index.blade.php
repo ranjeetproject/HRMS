@@ -58,8 +58,10 @@
                                                                 <th>Half Day Leave</th>
                                                             @elseif($appliedLeave->application_type == 3)
                                                                 <th>Extra Day Worked</th>
-                                                            @else
+                                                            @elseif($appliedLeave->application_type == 4)
                                                                 <th>Work From Home</th>
+                                                            @else
+                                                                <th>Work From Office</th>
                                                             @endif
                                                             <th>{{$appliedLeave->name}}</th>
                                                             <th>{{$appliedLeave->from_date}}</th>

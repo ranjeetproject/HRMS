@@ -44,7 +44,7 @@
                                             <div class="form-group row">
                                                 <label class="col-md-2 form-control-label" for="from_date">From Date <span class="text-danger">*</span></label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control {{ $errors->has('from_date') ? 'is-invalid' : '' }}"
+                                                        <input class="form-control {{ $errors->has('from_date') ? 'is-invalid' : '' }}"
                                                         type="text" name="from_date" id="from_date" placeholder="Please enter from date"
                                                         maxlength="191" value="{{old('from_date')}}" autocomplete="off">
                                                     <span class="form-text text-danger"
@@ -131,16 +131,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                     <div class="col-md-3">
+                                    <div class="col-md-3">
                                         <div class="card-body">
                                             <div class="form-group row">
-                                                {{-- <label class="col-md-2 form-control-label" for="application_type">Work From Home<span class="text-danger">*</span></label>
-                                                <div class="col-md-8">
-                                                     <input type="radio" class="form-check-input" name="application_type" id="released" value="4" style="margin-left:3%">
-                                                    <span class="form-text text-danger"
-                                                        id="error_application_type">{{ $errors->getBag('default')->first('application_type') }}</span>
-                                                </div> --}}
-
                                                 <div class="col-md-12">
                                                     <div class="inp_redio_wrap" >
                                                  <label class=" form-control-label" for="application_type">Work From Home<span class="text-danger">*</span></label>
@@ -148,6 +141,22 @@
                                                      <input type="radio" class="form-check-input" name="application_type" id="released" value="4" style="margin-left:3%">
                                                     <span class="form-text text-danger"
                                                         id="error_application_type">{{ $errors->getBag('default')->first('application_type') }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="card-body">
+                                            <div class="form-group row">
+                                                <div class="col-md-12">
+                                                    <div class="inp_redio_wrap" >
+                                                        <label class=" form-control-label" for="application_type">Work From Office <span class="text-danger">*</span></label>
+                                                        <div class="inpredio">
+                                                            <input type="radio" class="form-check-input" name="application_type" id="released" value="5" style="margin-left:3%">
+                                                                <span class="form-text text-danger"
+                                                                id="error_application_type">{{ $errors->getBag('default')->first('application_type') }}</span>
                                                         </div>
                                                     </div>
                                                 </div>
