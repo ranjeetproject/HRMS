@@ -113,6 +113,7 @@
     function changeStatus(id,status_val){
             var id = id;
             var status_val = status_val;
+
             var dataValue = {
                         id: id,
                         status_val:status_val

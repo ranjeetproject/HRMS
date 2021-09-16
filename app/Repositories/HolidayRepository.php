@@ -16,7 +16,8 @@ class HolidayRepository
 {
     public function getAll()
     {
-        $data = Holiday::orderBy('created_at', 'DESC')->get([
+        $data = Holiday::orderBy('created_at', 'DESC')
+        ->get([
             'id', 'holiday_name','holiday_date'
         ]);
         return Datatables::of($data)

@@ -89,6 +89,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                                    
                                 <div class="row mt-4">
                                     <div class="col">
                                         <div class="table-responsive">
@@ -136,9 +137,11 @@
                 table = $('#holiday_table').DataTable({
                 createdRow: function (row, data) {
                     $(row).attr('data-entry-id', data.id);
+                    
                 },
                 processing: false,
                 serverSide: true,
+                bFilter: false,
                 dom: 'lBfrtip<"actions">',
                 ajax: {
                     url: baseUrl + 'holidays',
@@ -153,13 +156,7 @@
                 "aLengthMenu": [[10, 25, 50, 100, -1],[10, 25, 50, 100, "All"]],
                 "aaSorting": [],
                 buttons: [
-                     {
-                        extend: 'colvis',
-                        text: window.colvisButtonTrans,
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    }
+                     'print'
                 ],
                 orderCellsTop: true,
                 fixedHeader: true,
@@ -168,9 +165,10 @@
                     {data: 'id', name: 'id', orderable: true, searchable: true, visible: false},
                     {data: 'holiday_name', name: 'holiday_name', orderable: true},
                     {data: 'holiday_date', name: 'holiday_date', orderable: true},
-                    {data: 'action', name: 'action', orderable: true, searchable: false}
+                    {data: 'action', name: 'action',searchable: false, orderable: true}
                 ]
             });
+            
             
             $('#holidayForm').validate({
                 rules: {
