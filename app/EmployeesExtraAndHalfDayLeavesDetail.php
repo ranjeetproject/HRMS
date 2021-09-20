@@ -15,5 +15,5 @@ class EmployeesExtraAndHalfDayLeavesDetail extends Model
 
     protected $dates = ['deleted_at', 'created_at', 'updated_at'];
 
-    protected $fillable = ['employee_name','apply_date','extra_leaves','leaves','half_day_leaves','narration'];
+    protected $fillable = ['user_id','leave_id','apply_date','extra_leaves','leaves','half_day_leaves','narration'];
 }

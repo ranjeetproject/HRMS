@@ -7,7 +7,6 @@ use App\Skill;
 use App\LeaveApplication;
 use App\TeamMember;
 use App\EmployeesExtraAndHalfDayLeavesDetail;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
@@ -34,13 +33,13 @@ class PendingApprovalRepository
         $changeLeaveApplictionStatus = LeaveApplication::where('id','=',$statusId)
                 ->update(['status' => $btnid]);
             if($changeLeaveApplictionStatus && $btnid != 2){
-                $Leaves = LeaveApplication::orderBy('leave_applications.created_at', 'DESC')
-                ->leftJoin('users','users.id','=','leave_applications.user_id')
+                $Leaves = LeaveApplication::orderBy('created_at', 'DESC')
                 ->where('leave_applications.id','=',$statusId)
-                ->get(['users.name','leave_applications.from_date','leave_applications.application_type']);
+                ->get(['id','user_id','from_date','application_type']);
                 
                 if($Leaves[0]->application_type == 1){
-                    $employee_full_leave['employee_name'] = $Leaves[0]->name;
+                    $employee_full_leave['user_id'] = $Leaves[0]->user_id;
+                    $employee_full_leave['leave_id'] = $Leaves[0]->id;
                     $employee_full_leave['apply_date'] = $Leaves[0]->from_date;
                     $employee_full_leave['leaves'] = 1;
                     $employee_full_leave['narration'] = $Leaves[0]->application_type;
@@ -49,7 +48,8 @@ class PendingApprovalRepository
                         return ['success' => true,'status' => $btnid];
                     }
                 }elseif($Leaves[0]->application_type == 2){
-                    $employee_full_leave['employee_name'] = $Leaves[0]->name;
+                    $employee_full_leave['user_id'] = $Leaves[0]->user_id;
+                    $employee_full_leave['leave_id'] = $Leaves[0]->id;
                     $employee_full_leave['apply_date'] = $Leaves[0]->from_date;
                     $employee_full_leave['half_day_leaves'] = 1;
                     $employee_full_leave['narration'] = $Leaves[0]->application_type;
@@ -58,7 +58,8 @@ class PendingApprovalRepository
                         return ['success' => true,'status' => $btnid];
                     }
                 }elseif($Leaves[0]->application_type == 3){
-                    $employee_full_leave['employee_name'] = $Leaves[0]->name;
+                    $employee_full_leave['user_id'] = $Leaves[0]->user_id;
+                    $employee_full_leave['leave_id'] = $Leaves[0]->id;
                     $employee_full_leave['apply_date'] = $Leaves[0]->from_date;
                     $employee_full_leave['extra_leaves'] = 1;
                     $employee_full_leave['narration'] = $Leaves[0]->application_type;
