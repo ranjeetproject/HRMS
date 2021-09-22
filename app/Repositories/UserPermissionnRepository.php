@@ -120,6 +120,7 @@ class UserPermissionnRepository
                 $userPermissionModule['pending_approve_leave_view'] = (isset($inputData['pending_approve_leave_view']))?$inputData['pending_approve_leave_view']: 0;
                 $userPermissionModule['employees_leaves_view'] = (isset($inputData['employees_leaves_view']))?$inputData['employees_leaves_view']: 0;
                 $userPermissionModule['employees_leaves_details_view'] = (isset($inputData['employees_leaves_details_view']))?$inputData['employees_leaves_details_view']: 0;
+                $userPermissionModule['extra_half_day_leaves_details_view'] = (isset($inputData['extra_half_day_leaves_details_view']))?$inputData['extra_half_day_leaves_details_view']: 0;
                 $userPermissionModule['team_member_view'] = (isset($inputData['team_member_view']))?$inputData['team_member_view']: 0;
                 $userPermissionModule['team_member_modify'] = (isset($inputData['team_member_modify']))?$inputData['team_member_modify']: 0;
                 $userPermissionModule['skill_acquired_view'] = (isset($inputData['skill_acquired_view']))?$inputData['skill_acquired_view']: 0;

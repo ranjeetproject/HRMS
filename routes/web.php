@@ -123,6 +123,8 @@ Route::middleware(['adminRoute'])->group(function ()
 
     Route::get('employees-leaves-details', 'EmployeesLeaveController@getAllEmployeesLeaves');
 
+    Route::get('employees-extra-and-halfday-leaves-details', 'EmployeeExrtaHalfDayLeaveDetails@index');
+
 
 
 
@@ -203,9 +205,12 @@ Route::middleware(['adminRoute'])->group(function ()
 
     Route::post('interview-feedback-content/rejection-update/{id}', 'InterviewFeedbackContentController@rejectionUpdate');
 
-
-
-
+    
+    
+    
+    
+    
+    Route::delete('employees-extra-and-halfday-leaves-details/{id}', 'EmployeeExrtaHalfDayLeaveDetails@destroy');
 
     Route::delete('skills/destroy/{id}', 'SkillController@destroy');
 
