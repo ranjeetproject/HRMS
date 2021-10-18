@@ -204,14 +204,16 @@
                 @if(@$checkModulePermission->general == 'gr')
                     <li class="nav-item has-treeview @if(request()->segment(1)=='leave-application' || request()->segment(1)=='skills-acquired' || request()->segment(1)=='leave-pending-approval' 
                                                         || request()->segment(1)=='employees-leaves'|| request()->segment(1)=='employees-leaves-details' 
-                                                        || request()->segment(1)=='employees-extra-and-halfday-leaves-details') menu-open
+                                                        || request()->segment(1)=='employees-extra-and-halfday-leaves-details'
+                                                        || request()->segment(1)=='employee-leaves-details') menu-open
                         @endIf">
                         <a class="nav-link {{ (request()->segment(1) == 'leave-application') ? 'active' : '' }}
                                         {{ (request()->segment(1) == 'skills-acquired') ? 'active' : '' }}
                                         {{ (request()->segment(1) == 'leave-pending-approval') ? 'active' : '' }}
                                         {{ (request()->segment(1) == 'employees-leaves') ? 'active' : '' }}
                                         {{ (request()->segment(1) == 'employees-leaves-details') ? 'active' : '' }}
-                                        {{ (request()->segment(1) == 'employees-extra-and-halfday-leaves-details') ? 'active' : '' }}"
+                                        {{ (request()->segment(1) == 'employees-extra-and-halfday-leaves-details') ? 'active' : '' }}
+                                        {{ (request()->segment(1) == 'employee-leaves-details') ? 'active' : ''}}"
                         href="#">
                             <i class="nav-icon fas fa-angle-down"></i>
                             <p>
@@ -271,6 +273,15 @@
                                         <i class="nav-icon fab fa-avianex"></i>
                                         <p>ExtraAndHalfDay Leaves Details</p>
                                     </a>
+                                </li>
+                            @endIf
+                            @if(@$checkModulePermission->leaves_details_view == '1')
+                                <li class="nav-item ">
+                                        <a class="nav-link {{ (request()->segment(1) == 'employee-leaves-details') ? 'active' : '' }}"
+                                            href="{{action('LeaveApplicationController@AllEmployessBankLeavesDetails')}}">
+                                            <i class="nav-icon fab fa fa-check"></i>
+                                            <p>Leaves Details</p>
+                                        </a>
                                 </li>
                             @endIf
                         </ul>

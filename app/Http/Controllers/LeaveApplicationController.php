@@ -75,4 +75,51 @@ class LeaveApplicationController extends Controller
             ->with($notification);
     }
 
+    public function AllEmployessBankLeavesDetails()
+    {
+        $employee_leaves_data = [];
+        $yearsMonths = $this->leaveApplicationRepository->yearMonths();
+        $employess = $this->leaveApplicationRepository->employessDetails();
+        foreach($employess as $i => $val){
+            $employee_leaves_data[$i]['employee_name'] = $val->name;
+            $employee_leaves_data[$i]['twd'] = $this->leaveApplicationRepository->TotalWorkDetail();
+            $employee_leaves_data[$i]['totalworkingdays'] = $this->leaveApplicationRepository->TotalWorkingDaysDetail($val->id);
+            $employee_leaves_data[$i]['numberoffs'] = $this->leaveApplicationRepository->TotalNumberOffs($val->id);
+            $employee_leaves_data[$i]['numberapprove'] = $this->leaveApplicationRepository->TotalNumberOfApproveLeaves($val->id);
+            $employee_leaves_data[$i]['extra_work'] = $this->leaveApplicationRepository->TotalNumberOfExtraWorkApprove($val->id);
+            $employee_leaves_data[$i]['half_day_work'] = $this->leaveApplicationRepository->TotalNumberOfHalfDaysWorkApprove($val->id);
+            $employee_leaves_data[$i]['salary_deduction'] = $this->leaveApplicationRepository->TotalNumberOfNotApproveLeavesSalaryDeduction($val->id);
+        }
+        return view('leave_application.all_employee_leaves_bank',compact('employee_leaves_data','yearsMonths'));
+        
+    }
+
+    public function MonthAndYearWiseLeaves(Request $request)
+    {
+        $input = $request->only('monthAndYear');
+        $data = explode(" ",$input['monthAndYear']);
+        if(count($data)>1){
+            $month = ($data[0]>=10)?$data[0]:'0'.$data[0];
+            $year = $data[1];
+        }else{
+            $month = date('m');
+            $year = date('Y');
+        }
+        $employee_leaves_data = [];
+        $yearsMonths = $this->leaveApplicationRepository->yearMonths();
+        $employess   = $this->leaveApplicationRepository->employessDetails();
+        foreach($employess as $i => $val){
+            $employee_leaves_data[$i]['employee_name'] = $val->name;
+            $employee_leaves_data[$i]['twd'] = $this->leaveApplicationRepository->TotalWorkDetailSearch($month,$year);
+            $employee_leaves_data[$i]['totalworkingdays'] = $this->leaveApplicationRepository->TotalWorkingDaysDetailSearch($val->id,$month,$year);
+            $employee_leaves_data[$i]['numberoffs'] = $this->leaveApplicationRepository->TotalNumberOffsSearch($val->id,$month,$year);
+            $employee_leaves_data[$i]['numberapprove'] = $this->leaveApplicationRepository->TotalNumberOfApproveLeavesSearch($val->id,$month,$year);
+            $employee_leaves_data[$i]['extra_work'] = $this->leaveApplicationRepository->TotalNumberOfExtraWorkApproveSearch($val->id,$month,$year);
+            $employee_leaves_data[$i]['half_day_work'] = $this->leaveApplicationRepository->TotalNumberOfHalfDaysWorkApproveSearch($val->id,$month,$year);
+            $employee_leaves_data[$i]['salary_deduction'] = $this->leaveApplicationRepository->TotalNumberOfNotApproveLeavesSalaryDeductionSearch($val->id,$month,$year);
+        }
+        return view('leave_application.all_employee_leaves_bank',compact('employee_leaves_data','yearsMonths'));
+    }
+
+
 }

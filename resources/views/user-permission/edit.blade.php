@@ -311,6 +311,14 @@
                                                     </th>
                                                     <th>ExtraAndHalfDay Leaves Details</th>
                                                 </tr>
+                                                <tr class="g">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                        <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                        <input type="checkbox" class="form-check-input g1" name="leaves_details_view" id="skill" value="1" @if(@$permission['user_permission']->leaves_details_view == 1) {{'checked'}} @endIf style="margin-left:3%" >
+                                                    </th>
+                                                    <th>Leaves Details</th>
+                                                </tr>
                                                 <tr class="m">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>

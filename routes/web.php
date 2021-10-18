@@ -125,6 +125,9 @@ Route::middleware(['adminRoute'])->group(function ()
 
     Route::get('employees-extra-and-halfday-leaves-details', 'EmployeeExrtaHalfDayLeaveDetails@index');
 
+    Route::get('employee-leaves-details', 'LeaveApplicationController@AllEmployessBankLeavesDetails');
+
+
 
 
 
@@ -204,6 +207,9 @@ Route::middleware(['adminRoute'])->group(function ()
     Route::post('interview-feedback-content/selection-update/{id}', 'InterviewFeedbackContentController@selectionUpdate');
 
     Route::post('interview-feedback-content/rejection-update/{id}', 'InterviewFeedbackContentController@rejectionUpdate');
+
+    Route::post('employee-leaves-details/{search?}', 'LeaveApplicationController@MonthAndYearWiseLeaves');
+
 
     
     
