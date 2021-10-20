@@ -20,6 +20,7 @@ class HolidayController extends Controller
         $data = [];
         $input = $request->all();
         $user = $this->getUser();
+        $yearsMonths = $this->holidayRepository->yearMonths();
         $user_permissions =  $this->holidayRepository->checkPermission($user);
         foreach($user_permissions as $user_permission){
             $data['user_permissions'] = $user_permission;
@@ -27,7 +28,7 @@ class HolidayController extends Controller
         if ($request->ajax()) {
             return $this->holidayRepository->getAll($input);
         } else {
-            return view('holiday.index',$data);
+            return view('holiday.index',$data,compact('yearsMonths'));
         }
     }
 
@@ -60,6 +61,4 @@ class HolidayController extends Controller
         return redirect()->action('HolidayController@index')
             ->with($notification);
     }
-
-
 }

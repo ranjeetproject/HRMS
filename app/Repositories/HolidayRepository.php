@@ -17,9 +17,13 @@ class HolidayRepository
     public function getAll()
     {
         $data = Holiday::orderBy('created_at', 'DESC')
+        ->whereYear('created_at', Carbon::now()->year)
         ->get([
-            'id', 'holiday_name','holiday_date'
+            'id', 'holiday_name',
+            DB::raw('date_format(holiday_date,"%d-%M-%Y") as monthName'),
+            'holiday_date'
         ]);
+       // dd($data->holiday_date);
         return Datatables::of($data)
             ->addColumn('action', function ($row) {
                 $html = '<form method="POST" action="' . action('HolidayController@destroy', [$row->id]) . '" accept-charset="UTF-8" style="display: inline-block;"
@@ -68,5 +72,19 @@ class HolidayRepository
         return $row;
     }
 
+    public function yearMonths(){
+        $data = array();
+        for ($i = 11; $i >= 0; $i--) {
+            $month_number = Carbon::today()->subMonth($i);
+            $month = Carbon::today()->subMonth($i);
+            $year = Carbon::today()->subMonth($i)->format('Y');
+            array_push($data, array(
+                'month_number' => $month_number->month,
+                'month' => $month->shortMonthName,
+                'year' => $year
+            ));
+        }
+        return $data;     
+    }
 
 }

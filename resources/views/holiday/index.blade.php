@@ -89,7 +89,21 @@
                                 </div>
                             </div>
                             <div class="card-body">
+                            <style>
+                                .form-control-sm {
+                                    width:25%;
                                     
+                                }
+                                .dataTables_filter{
+                                    display:none;
+                                }
+                                </style>
+                                        <select class="form-control form-control-sm" id="monthAndYear" name="monthAndYear">
+                                            <option value="">Select Months</option>
+                                              @foreach ($yearsMonths as $yearandmonth)
+                                                <option value="{{$yearandmonth['month']}} {{$yearandmonth['year']}}">{{$yearandmonth['month']}} {{$yearandmonth['year']}}</option>
+                                            @endforeach
+                                        </select>
                                 <div class="row mt-4">
                                     <div class="col">
                                         <div class="table-responsive">
@@ -141,7 +155,7 @@
                 },
                 processing: false,
                 serverSide: true,
-                bFilter: false,
+                bFilter: true,
                 dom: 'lBfrtip<"actions">',
                 ajax: {
                     url: baseUrl + 'holidays',
@@ -164,9 +178,12 @@
                     /*{data: 'checkbox', name: 'checkbox', orderable: false, searchable: false},*/
                     {data: 'id', name: 'id', orderable: true, searchable: true, visible: false},
                     {data: 'holiday_name', name: 'holiday_name', orderable: true},
-                    {data: 'holiday_date', name: 'holiday_date', orderable: true},
+                    {data: 'monthName', name: 'monthName', orderable: true},
                     {data: 'action', name: 'action',searchable: false, orderable: true}
                 ]
+            });
+            $('#monthAndYear').on('change', function(){
+                table.search(this.value).draw();   
             });
             
             
@@ -200,6 +217,7 @@
                     $('button[type=submit]').attr("disabled", false);
                 }, 3000);
             });
+
 
         });
        
