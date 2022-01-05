@@ -127,6 +127,9 @@ Route::middleware(['adminRoute'])->group(function ()
 
     Route::get('employee-leaves-details', 'LeaveApplicationController@AllEmployessBankLeavesDetails');
 
+    Route::get('add-leaves-bank', 'LeavesBankController@index');
+
+
 
 
 
@@ -209,6 +212,8 @@ Route::middleware(['adminRoute'])->group(function ()
     Route::post('interview-feedback-content/rejection-update/{id}', 'InterviewFeedbackContentController@rejectionUpdate');
 
     Route::post('employee-leaves-details/{search?}', 'LeaveApplicationController@MonthAndYearWiseLeaves');
+
+    Route::post('add-leaves-bank/create', 'LeavesBankController@store');
 
 
     

@@ -205,7 +205,8 @@
                     <li class="nav-item has-treeview @if(request()->segment(1)=='leave-application' || request()->segment(1)=='skills-acquired' || request()->segment(1)=='leave-pending-approval' 
                                                         || request()->segment(1)=='employees-leaves'|| request()->segment(1)=='employees-leaves-details' 
                                                         || request()->segment(1)=='employees-extra-and-halfday-leaves-details'
-                                                        || request()->segment(1)=='employee-leaves-details') menu-open
+                                                        || request()->segment(1)=='employee-leaves-details'
+                                                        || request()->segment(1)=='add-leaves-bank') menu-open
                         @endIf">
                         <a class="nav-link {{ (request()->segment(1) == 'leave-application') ? 'active' : '' }}
                                         {{ (request()->segment(1) == 'skills-acquired') ? 'active' : '' }}
@@ -213,7 +214,8 @@
                                         {{ (request()->segment(1) == 'employees-leaves') ? 'active' : '' }}
                                         {{ (request()->segment(1) == 'employees-leaves-details') ? 'active' : '' }}
                                         {{ (request()->segment(1) == 'employees-extra-and-halfday-leaves-details') ? 'active' : '' }}
-                                        {{ (request()->segment(1) == 'employee-leaves-details') ? 'active' : ''}}"
+                                        {{ (request()->segment(1) == 'employee-leaves-details') ? 'active' : ''}}
+                                        {{ (request()->segment(1) == 'add-leaves-bank') ? 'active' : ''}}"
                         href="#">
                             <i class="nav-icon fas fa-angle-down"></i>
                             <p>
@@ -284,6 +286,16 @@
                                         </a>
                                 </li>
                             @endIf
+                            @if(@$checkModulePermission->add_leaves_bank_view == '1')
+                                <li class="nav-item ">
+                                            <a class="nav-link {{ (request()->segment(1) == 'add-leaves-bank') ? 'active' : '' }}"
+                                                href="{{action('LeavesBankController@index')}}">
+                                                <i class="nav-icon fab fas fa-piggy-bank"></i>
+                                                <p>Add Leaves Bank</p>
+                                            </a>
+                                </li>
+                            @endIf
+                            
                         </ul>
                     </li>
                  @endif

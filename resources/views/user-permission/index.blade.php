@@ -356,6 +356,14 @@
                                                     </th>
                                                     <th>Leaves Details</th>
                                                 </tr>
+                                                <tr class="g">
+                                                    <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
+                                                    <th>
+                                                        <label class="col-md-2 form-control-label" for="skill_name"> View </label>
+                                                        <input type="checkbox" class="form-check-input g1" name="add_leaves_bank_view" id="skill" value="1" style="margin-left:3%" >
+                                                    </th>
+                                                    <th>Add Leaves Bank</th>
+                                                </tr>
                                                 <tr class="m">
                                                     <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                     <th>

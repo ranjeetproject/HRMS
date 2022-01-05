@@ -65,8 +65,8 @@
                                                                             <th>Work From Office</th>
                                                                         @endif
                                                                         <th>{{$appliedLeave->name}}</th>
-                                                                        <th>{{$appliedLeave->from_date}}</th>
-                                                                        <th>{{$appliedLeave->to_date}}</th>
+                                                                        <th>{{date('d-m-Y', strtotime($appliedLeave->from_date))}}</th>
+                                                                        <th>{{date('d-m-Y', strtotime($appliedLeave->to_date))}}</th>
                                                                         @if($appliedLeave->status == 0)
                                                                             <th>Pending</th>
                                                                         @elseif($appliedLeave->status == 1)
@@ -78,9 +78,9 @@
                                                                         <th>
                                                                             <div class="card-footer" style="padding:0px;background-color:white">
                                                                                 <div class="col text-center">
-                                                                                    <a class="btn btn-primary" href="#"  onclick="changeStatus(1,{{$appliedLeave->id}})">
+                                                                                    <a class="btn btn-primary" href="javascript:void(0)"  onclick="event.preventDefault(); changeStatus(1,{{$appliedLeave->id}},{{$appliedLeave->application_type}},'{{$appliedLeave->from_date}}','{{$appliedLeave->to_date}}',{{$appliedLeave->usersId}})">
                                                                                         Approved </a>&nbsp;&nbsp;&nbsp;
-                                                                                    <a class="btn btn-danger" href="#" onclick="changeStatus(2,{{$appliedLeave->id}})">
+                                                                                    <a class="btn btn-danger" href="#" onclick="changeStatus(2,{{$appliedLeave->id}},{{$appliedLeave->application_type}},{{$appliedLeave->usersId}})">
                                                                                         Rejected </a>
                                                                                 </div>
                                                                             </div>
@@ -110,13 +110,21 @@
 @endsection
 @section('customJsInclude')
     <script>
-    function changeStatus(id,status_val){
-            var id = id;
-            var status_val = status_val;
+    function changeStatus(btn_id,leave_application_id,leave_application_type = null,from_date=null,to_date=null,user_id = null){
+            var btn_id = btn_id;
+            var leave_application_id = leave_application_id;
+            var leave_application_type = leave_application_type;
+            var from_date = from_date;
+            var to_date = to_date;
+            var user_id = user_id;
 
             var dataValue = {
-                        id: id,
-                        status_val:status_val
+                        btn_id: btn_id,
+                        leave_application_id:leave_application_id,
+                        leave_application_type:leave_application_type,
+                        from_date:from_date,
+                        to_date:to_date,
+                        user_id:user_id,
                     }
 
             var baseUrl = '{{action("PendingApprovalController@approveAndRejectedLeave")}}';
@@ -126,7 +134,7 @@
                         data: dataValue,
                         success: function (data)
                         {
-                           if (data.success == true) {
+                            if (data.success == true) {
                                  $("#success-message").html(data.message);
                                 setTimeout(function () {
                                     $("#success-message").html('');

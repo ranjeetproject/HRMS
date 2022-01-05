@@ -83,12 +83,15 @@ class LeaveApplicationController extends Controller
         foreach($employess as $i => $val){
             $employee_leaves_data[$i]['employee_name'] = $val->name;
             $employee_leaves_data[$i]['twd'] = $this->leaveApplicationRepository->TotalWorkDetail();
+            $employee_leaves_data[$i]['applicationNotApplied'] = $this->leaveApplicationRepository->remainingNotApplicationApplied($val->id);
+            $employee_leaves_data[$i]['applicationNotApproved'] = $this->leaveApplicationRepository->applicationNotApproved($val->id);
             $employee_leaves_data[$i]['totalworkingdays'] = $this->leaveApplicationRepository->TotalWorkingDaysDetail($val->id);
             $employee_leaves_data[$i]['numberoffs'] = $this->leaveApplicationRepository->TotalNumberOffs($val->id);
             $employee_leaves_data[$i]['numberapprove'] = $this->leaveApplicationRepository->TotalNumberOfApproveLeaves($val->id);
             $employee_leaves_data[$i]['extra_work'] = $this->leaveApplicationRepository->TotalNumberOfExtraWorkApprove($val->id);
             $employee_leaves_data[$i]['half_day_work'] = $this->leaveApplicationRepository->TotalNumberOfHalfDaysWorkApprove($val->id);
             $employee_leaves_data[$i]['salary_deduction'] = $this->leaveApplicationRepository->TotalNumberOfNotApproveLeavesSalaryDeduction($val->id);
+        
         }
         return view('leave_application.all_employee_leaves_bank',compact('employee_leaves_data','yearsMonths'));
         
@@ -111,6 +114,8 @@ class LeaveApplicationController extends Controller
         foreach($employess as $i => $val){
             $employee_leaves_data[$i]['employee_name'] = $val->name;
             $employee_leaves_data[$i]['twd'] = $this->leaveApplicationRepository->TotalWorkDetailSearch($month,$year);
+            $employee_leaves_data[$i]['applicationNotApplied'] = $this->leaveApplicationRepository->remainingNotApplicationAppliedSearch($val->id,$month,$year);
+            $employee_leaves_data[$i]['applicationNotApproved'] = $this->leaveApplicationRepository->applicationNotApprovedSearch($val->id,$month,$year);
             $employee_leaves_data[$i]['totalworkingdays'] = $this->leaveApplicationRepository->TotalWorkingDaysDetailSearch($val->id,$month,$year);
             $employee_leaves_data[$i]['numberoffs'] = $this->leaveApplicationRepository->TotalNumberOffsSearch($val->id,$month,$year);
             $employee_leaves_data[$i]['numberapprove'] = $this->leaveApplicationRepository->TotalNumberOfApproveLeavesSearch($val->id,$month,$year);

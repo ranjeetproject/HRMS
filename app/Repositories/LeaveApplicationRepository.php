@@ -8,6 +8,7 @@ namespace App\Repositories;
 use App\InterviewSchedule;
 use App\LeaveApplication;
 use App\User;
+use App\Holiday;
 use App\Recruitment;
 use App\TeamMember;
 use App\CandidateSkill;
@@ -108,38 +109,113 @@ class LeaveApplicationRepository
         $d = cal_days_in_month(CAL_GREGORIAN,$month,$year);
         $sun = $this->getSundays($year,$month);
         $sat = $this->getSaturday($year,$month);
-        $totalworkday = $d - $sun - $sat;
+        $holiday = $this->getHoliday();
+        $totalworkday = $d - $sun - $sat - $holiday;
         return $totalworkday;
     }
 
+    public function remainingNotApplicationApplied($id)
+    {
+        $totalWorkDetail = $this->TotalWorkDetail();
+        $totalNumberOfApproveLeaves = $this->TotalNumberOfApproveLeaves($id);
+        $totalWfhApplicationApplied = LeaveApplication::where('user_id','=',$id)
+        ->where('application_type','=',4)
+        ->whereMonth('created_at', Carbon::now()->month)
+        ->whereYear('created_at', Carbon::now()->year)
+        ->get (['application_type'])->count();
+        $totalWfoApplicationApplied = LeaveApplication::where('user_id','=',$id)
+        ->where('application_type','=',5)
+        ->whereMonth('created_at', Carbon::now()->month)
+        ->whereYear('created_at', Carbon::now()->year)
+        ->get (['application_type'])->count();
+        $totalApplicationApplied = $totalWfhApplicationApplied + $totalWfoApplicationApplied;
+        $remainingNotAppliedGivenMonth = abs($totalWorkDetail - $totalApplicationApplied - $totalNumberOfApproveLeaves);
+        return $remainingNotAppliedGivenMonth;
 
-    function getSundays($year, $month)
+    }
+
+    public function applicationNotApproved($id)
+    {
+        $totalApplicationNotApproved = LeaveApplication::where('user_id','=',$id)
+        ->where('status','=',0)
+        ->whereMonth('created_at', Carbon::now()->month)
+        ->whereYear('created_at', Carbon::now()->year)
+        ->get (['status'])->count();
+        return $totalApplicationNotApproved;
+    }
+
+    public function getSundays($year, $month)
     {
         $results = '';
         $days = cal_days_in_month(CAL_GREGORIAN, $month,$year);
         for($i = 1; $i<= $days; $i++){
         $day  = date('Y-m-'.$i);
         $result = date("l", strtotime($day));
-        if($result == "Sunday"){
-            $results++;
-        }
+            if($result == "Sunday"){
+                $results++;
+            }
         }
         return $results;
     }
-
-    function getSaturday($year, $month)
+    public function getSaturday($year, $month)
     {
         $results = '';
         $days = cal_days_in_month(CAL_GREGORIAN, $month,$year);
         for($i = 1; $i<= $days; $i++){
         $day  = date('Y-m-'.$i);
         $result = date("l", strtotime($day));
-        if($result == "Saturday"){
-            $results++;
-        }
+            if($result == "Saturday"){
+                $results++;
+            }
         }
         return $results;
     }
+    public function getHoliday()
+    {
+        $holidaySaturday = $this->getHolidaySaturday();
+        $holidaySunday = $this->getHolidaySunday();
+        $numberOfHolidays = Holiday::orderBy('created_at', 'DESC')
+        ->whereMonth('holiday_date', Carbon::now()->month)
+        ->whereYear('holiday_date',Carbon::now()->year)
+        ->get()->count();
+        
+        if(isset($holidaySaturday)||isset($holidaySunday)){
+            $data = (int)$numberOfHolidays - (int)$holidaySaturday - (int)$holidaySunday;
+        }
+        return $data;
+    }
+
+    public function getHolidaySaturday()
+    {
+        $results = '';
+        $data = Holiday::orderBy('created_at', 'DESC')
+        ->whereMonth('holiday_date', Carbon::now()->month)
+        ->whereYear('holiday_date',Carbon::now()->year)
+        ->get(['holiday_date']);
+        foreach($data as $val){
+            $result = date("l", strtotime($val->holiday_date));
+            if($result == "Saturday"){
+                $results++;
+            }
+        }
+        return $results;
+    }
+    public function getHolidaySunday()
+    {
+        $results = '';
+        $data = Holiday::orderBy('created_at', 'DESC')
+        ->whereMonth('holiday_date', Carbon::now()->month)
+        ->whereYear('holiday_date',Carbon::now()->year)
+        ->get(['holiday_date']);
+        foreach($data as $val){
+            $result = date("l", strtotime($val->holiday_date));
+            if($result == "Sunday"){
+                $results++;
+            }
+        }
+        return $results;
+    }
+
 
     public function TotalWorkingDaysDetail($id)
     {
@@ -220,17 +296,21 @@ class LeaveApplicationRepository
 
     public function TotalNumberOfNotApproveLeavesSalaryDeduction($id)
     {
-        $row = LeaveApplication::orderBy('created_at', 'DESC')
-        ->where('user_id','=',$id)
-        ->where(function ($query) {
-            $query->where('application_type','=',1)
-                    ->where('status','=',1);          
-        })
-        ->where(function ($querySecond) {
-            $querySecond->whereMonth('created_at', Carbon::now()->month)
-                        ->whereYear('created_at', Carbon::now()->year);          
-        })
-        ->get()->count();
+        // $row = LeaveApplication::orderBy('created_at', 'DESC')
+        // ->where('user_id','=',$id)
+        // ->where(function ($query) {
+        //     $query->where('application_type','=',1)
+        //             ->where('status','=',1);          
+        // })
+        // ->where(function ($querySecond) {
+        //     $querySecond->whereMonth('created_at', Carbon::now()->month)
+        //                 ->whereYear('created_at', Carbon::now()->year);          
+        // })
+        // ->get()->count();
+        $totalNumberOfApproveLeaves = $this->remainingNotApplicationApplied($id);
+        $totalApplicationNotApproved = $this->applicationNotApproved($id);
+        $row =  abs($totalNumberOfApproveLeaves + $totalApplicationNotApproved);
+
         return  $row;
     }
 
@@ -246,7 +326,7 @@ class LeaveApplicationRepository
                 'year' => $year
             ));
         }
-        return $data;     
+        return $data;       
     }
 
     public function TotalWorkDetailSearch($month,$year)
@@ -256,13 +336,44 @@ class LeaveApplicationRepository
         $d = cal_days_in_month(CAL_GREGORIAN,$month,$year);
         $sun = $this->getSundaysSearch($year,$month);
         $sat = $this->getSaturdaySearch($year,$month);
-        $totalworkday = $d - $sun - $sat;
-       // dd($totalworkday);
+        $holiday = $this->getHolidaySearch($year,$month);
+        $totalworkday = $d - $sun - $sat - $holiday;
         return $totalworkday;
     }
 
+    public function remainingNotApplicationAppliedSearch($id,$month,$year)
+    {
+        $totalWorkDetail = $this->TotalWorkDetailSearch($month,$year);
+        $totalNumberOfApproveLeaves = $this->TotalNumberOfApproveLeavesSearch($id,$month,$year);
+        $totalWfhApplicationApplied = LeaveApplication::where('user_id','=',$id)
+        ->where('application_type','=',4)
+        ->whereMonth('created_at', '=',$month)
+        ->whereYear('created_at', '=',$year)
+        ->get (['application_type'])->count();
 
-    function getSundaysSearch($year, $month)
+        $totalWfoApplicationApplied = LeaveApplication::where('user_id','=',$id)
+        ->where('application_type','=',5)
+        ->whereMonth('created_at', '=',$month)
+        ->whereYear('created_at', '=',$year)
+        ->get (['application_type'])->count();
+        
+        $totalApplicationApplied = $totalWfhApplicationApplied + $totalWfoApplicationApplied;
+        $remainingNotAppliedGivenMonth = abs($totalWorkDetail - $totalApplicationApplied - $totalNumberOfApproveLeaves);
+        return $remainingNotAppliedGivenMonth;
+
+    }
+
+    public function applicationNotApprovedSearch($id,$month,$year)
+    {
+        $totalApplicationNotApproved = LeaveApplication::where('user_id','=',$id)
+        ->where('status','=',0)
+        ->whereMonth('created_at', '=',$month)
+        ->whereYear('created_at', '=',$year)
+        ->get (['status'])->count();
+        return $totalApplicationNotApproved;
+    }
+
+    public function getSundaysSearch($year, $month)
     {
         $results = '';
         $days = cal_days_in_month(CAL_GREGORIAN, $month,$year);
@@ -285,6 +396,52 @@ class LeaveApplicationRepository
         $day  = date($year.'-'.$month.'-'.$i);
         $result = date("l", strtotime($day));
             if($result == "Saturday"){
+                $results++;
+            }
+        }
+        return $results;
+    }
+
+    function getHolidaySearch($year,$month)
+    {
+        $holidaySaturday = $this->getHolidaySaturdaySearch($year,$month);
+        $holidaySunday = $this->getHolidaySundaySearch($year,$month);
+        $numberOfHolidays = Holiday::orderBy('created_at', 'DESC')
+        ->whereMonth('holiday_date', '=',$month)
+        ->whereYear('holiday_date','=',$year)
+        ->get()->count();
+        
+        if(isset($holidaySaturday)||isset($holidaySunday)){
+            $data = (int)$numberOfHolidays - (int)$holidaySaturday - (int)$holidaySunday;
+        }
+        return $data;
+    }
+
+    function getHolidaySaturdaySearch($year,$month)
+    {
+        $results = '';
+        $data = Holiday::orderBy('created_at', 'DESC')
+        ->whereMonth('holiday_date', '=',$month)
+        ->whereYear('holiday_date','=',$year)
+        ->get(['holiday_date']);
+        foreach($data as $val){
+            $result = date("l", strtotime($val->holiday_date));
+            if($result == "Saturday"){
+                $results++;
+            }
+        }
+        return $results;
+    }
+    function getHolidaySundaySearch($year,$month)
+    {
+        $results = '';
+        $data = Holiday::orderBy('created_at', 'DESC')
+        ->whereMonth('holiday_date', '=',$month)
+        ->whereYear('holiday_date','=',$year)
+        ->get(['holiday_date']);
+        foreach($data as $val){
+            $result = date("l", strtotime($val->holiday_date));
+            if($result == "Sunday"){
                 $results++;
             }
         }
@@ -371,17 +528,20 @@ class LeaveApplicationRepository
 
     public function TotalNumberOfNotApproveLeavesSalaryDeductionSearch($id,$month,$year)
     {
-        $row = LeaveApplication::orderBy('created_at', 'DESC')
-        ->where('user_id','=',$id)
-        ->where(function ($query) {
-            $query->where('application_type','=',1)
-                    ->where('status','=',1);          
-        })
-        ->where(function ($querySecond) use($month,$year){
-            $querySecond->whereMonth('created_at','=',$month)
-                        ->whereYear('created_at','=',$year);          
-        })
-        ->get()->count();
+        // $row = LeaveApplication::orderBy('created_at', 'DESC')
+        // ->where('user_id','=',$id)
+        // ->where(function ($query) {
+        //     $query->where('application_type','=',1)
+        //             ->where('status','=',1);          
+        // })
+        // ->where(function ($querySecond) use($month,$year){
+        //     $querySecond->whereMonth('created_at','=',$month)
+        //                 ->whereYear('created_at','=',$year);          
+        // })
+        // ->get()->count();
+        $totalNumberOfApproveLeaves = $this->remainingNotApplicationApplied($id);
+        $totalApplicationNotApproved = $this->applicationNotApproved($id);
+        $row =  abs($totalNumberOfApproveLeaves + $totalApplicationNotApproved);
         return  $row;
     }
 

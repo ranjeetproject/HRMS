@@ -24,10 +24,16 @@ class PendingApprovalController extends Controller
 
     public function approveAndRejectedLeave(Request $request)
     {
-        if ($request->has('id') && $request->get('id') > 0 && $request->has('status_val') && $request->get('status_val') > 0) {
-            $btnId = $request->get('id');
-            $statusId = $request->get('status_val');
-            $leaveStatus = $this->pendingApprovalRepository->approveAndRejectedStatus($btnId,$statusId);
+        if ($request->has('btn_id') && $request->get('btn_id') > 0 && $request->has('leave_application_id') && $request->get('leave_application_id') > 0 
+            && $request->has('leave_application_type') && $request->get('leave_application_type') > 0 && $request->has('from_date') && $request->get('from_date') > 0 
+            && $request->has('to_date') && $request->get('to_date') > 0 && $request->has('user_id') && $request->get('user_id') > 0) {
+            $btnId = $request->get('btn_id');
+            $leaveApplicationId = $request->get('leave_application_id');
+            $leaveApplicationType = ($request->get('leave_application_type'))?$request->get('leave_application_type'):null;
+            $leaveApplicationFromDate = ($request->get('from_date'))?$request->get('from_date'):null;
+            $leaveApplicationToDate = ($request->get('to_date'))?$request->get('to_date'):null;
+            $userId = ($request->get('user_id'))?$request->get('user_id'):null;
+            $leaveStatus = $this->pendingApprovalRepository->approveAndRejectedStatus($btnId,$leaveApplicationId,$leaveApplicationType,$leaveApplicationFromDate,$leaveApplicationToDate,$userId);
                 if($leaveStatus['success'] == true && $leaveStatus['status'] == 1){
                     return ['success' => true, 'message' => 'Approved'];
                 }else{

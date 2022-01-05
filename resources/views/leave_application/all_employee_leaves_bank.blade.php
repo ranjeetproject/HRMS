@@ -63,11 +63,13 @@
                                                         <!-- <th style="text-align:center;"><input type="checkbox" id="select-all"/></th> -->
                                                         <th>Name Of Employee</th>
                                                         <th>Total Work Days</th>
-                                                        <th>Total Working Days</th>
+                                                        <th>Total Days Work</th>
                                                         <th>Numbers Offs</th>
                                                         <th>Numbers of Approved Leaves</th>
                                                         <th>Numbers of Approved ExtraDay Working</th>
                                                         <th>Numbers of Approved HalfDays Working</th>
+                                                        <th>Numbers of Application Not Applied</th>
+                                                        <th>Numbers of Application Not Approved</th>
                                                         <th>Salary Deductions</th>
                                                     </tr>
                                                     @foreach ($employee_leaves_data as $val)
@@ -75,10 +77,12 @@
                                                         <td>{{$val['employee_name']}}</td>
                                                         <td>{{$val['twd']}}</td>
                                                         <td>{{$val['totalworkingdays']}}</td>
-                                                        <td>{{$val['numberoffs']}}</td>
+                                                        <td>{{$val['twd']-$val['totalworkingdays']}}</td>
                                                         <td>{{$val['numberapprove']}}</td>
                                                         <td>{{$val['extra_work']}}</td>
                                                         <td>{{$val['half_day_work']}}</td>
+                                                        <td>{{$val['applicationNotApplied']}}</td>
+                                                        <td>{{$val['applicationNotApproved']}}</td>
                                                         <td>{{$val['salary_deduction']}}</td>
                                                     </tr>  
                                                     @endforeach
