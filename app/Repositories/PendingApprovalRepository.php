@@ -72,17 +72,22 @@ class PendingApprovalRepository
             ->sum('half_day_leaves');
             
            $checkLeaves = abs((int)$totalAddLeave - (int)$total_days_leaves - (int)$totalHalfDayLeave);
+           //dd($checkLeaves);
             for($i=1;$i<=$checkLeaves;$i++){
-                if($totalLeaveBank[0]->number_of_leaves >= $i){
+                if(isset($totalLeaveBank[0]->number_of_leaves)){
+                    if($totalLeaveBank[0]->number_of_leaves >= $i){
+                        $changeLeaveApplictionStatus = LeaveApplication::where('id','=',$leaveApplicationId)
+                        ->update(['status' => $btnId]);
+                            $employee_full_leave['user_id'] = $userId;
+                            $employee_full_leave['leave_id'] = $leaveApplicationId;
+                            $employee_full_leave['apply_date'] = date("Y-m-d");
+                            $employee_full_leave['leaves'] = 1;
+                            $employee_full_leave['narration'] = $leaveApplicationType;
+                            $row = EmployeesExtraAndHalfDayLeavesDetail::create($employee_full_leave);
+                    }
+                }else{
                     $changeLeaveApplictionStatus = LeaveApplication::where('id','=',$leaveApplicationId)
                     ->update(['status' => $btnId]);
-                        $employee_full_leave['user_id'] = $userId;
-                        $employee_full_leave['leave_id'] = $leaveApplicationId;
-                        $employee_full_leave['apply_date'] = date("Y-m-d");
-                        $employee_full_leave['leaves'] = 1;
-                        $employee_full_leave['narration'] = $leaveApplicationType;
-                        $row = EmployeesExtraAndHalfDayLeavesDetail::create($employee_full_leave);
-                }else{
                     return ['success' => true,'status' => $btnId];
                 }
           }

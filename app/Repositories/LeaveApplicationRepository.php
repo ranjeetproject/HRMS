@@ -252,6 +252,7 @@ class LeaveApplicationRepository
         $row = LeaveApplication::orderBy('created_at', 'DESC')
         ->where('user_id','=',$id)
         ->where(function ($query) {
+            $query->where('application_type','=',1);  
             $query->where('status','=',1);          
         })
         ->where(function ($querySecond) {
@@ -484,6 +485,7 @@ class LeaveApplicationRepository
         $row = LeaveApplication::orderBy('created_at', 'DESC')
         ->where('user_id','=',$id)
         ->where(function ($query) {
+            $query->where('application_type','=',1);
             $query->where('status','=',1);          
         })
         ->where(function ($querySecond) use($month,$year){
